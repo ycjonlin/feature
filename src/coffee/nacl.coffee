@@ -35,10 +35,10 @@ module.exports = (id, url, onload)->
   listener.addEventListener 'load', ((event)->
     register = (methods)->
       for method, type of methods
-        module[method] = (args=[], callback=null)->
+        module[method] = (args=[], callback)->
           session.create(method, args, callback)
       module._ready = true
-      onload()
+      onload() if onload
       null # no reture value
     session.create('_interface', [], register)
     null # no reture value
