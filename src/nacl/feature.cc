@@ -129,10 +129,7 @@ void matrix_determinant(
 
 namespace {
 
-// The expected string sent by the browser.
 const char* const kHelloString = "hello";
-// The string sent back to the browser upon receipt of a message
-// containing "hello".
 const char* const kReplyString = "hello from NaCl";
 
 }  // namespace
@@ -144,11 +141,12 @@ class FeatureInstance : public pp::Instance {
   virtual ~FeatureInstance() {}
 
   virtual void HandleMessage(const pp::Var& var_message) {
-    // Ignore the message if it is not a string.
     if (!var_message.is_dictionary())
       return;
 
-    PostMessage(var_message);
+    const pp::VarDictionary var(var_message);
+    
+    PostMessage(var);
   }
 };
 
