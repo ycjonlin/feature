@@ -147,8 +147,11 @@ protected:
     method_library.Set(pp::Var("image_free"), pp::Var(""));
     method_library.Set(pp::Var("image_import"), pp::Var(""));
     method_library.Set(pp::Var("image_export"), pp::Var(""));
-    // image to array
+    // array manipulation
+    method_library.Set(pp::Var("array_allocate"), pp::Var(""));
     method_library.Set(pp::Var("array_free"), pp::Var(""));
+    method_library.Set(pp::Var("array_free"), pp::Var(""));
+    // image to array
     method_library.Set(pp::Var("array_srgb"), pp::Var(""));
     method_library.Set(pp::Var("array_cie_rgb"), pp::Var(""));
     method_library.Set(pp::Var("array_cie_xyz"), pp::Var(""));
@@ -159,9 +162,12 @@ protected:
     method_library.Set(pp::Var("matrix_trace"), pp::Var(""));
     method_library.Set(pp::Var("matrix_determinant"), pp::Var(""));
     method_library.Set(pp::Var("matrix_gaussian"), pp::Var(""));
-    // array to list
+    // array to cloud
     method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
     method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
+    // cloud to cloud
+    method_library.Set(pp::Var("cloud_sort"), pp::Var(""));
+    method_library.Set(pp::Var("cloud_match"), pp::Var(""));
   }
   virtual ~FeatureInstance() {}
 
