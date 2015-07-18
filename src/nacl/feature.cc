@@ -147,19 +147,20 @@ protected:
     method_library.Set(pp::Var("image_import"), pp::Var(""));
     method_library.Set(pp::Var("image_export"), pp::Var(""));
     method_library.Set(pp::Var("image_close"), pp::Var(""));
-    // array from image
+    // image to array
     method_library.Set(pp::Var("array_srgb"), pp::Var(""));
     method_library.Set(pp::Var("array_cie_rgb"), pp::Var(""));
     method_library.Set(pp::Var("array_cie_xyz"), pp::Var(""));
     method_library.Set(pp::Var("array_grayscale"), pp::Var(""));
-    // array manipulation
+    // array to array
     method_library.Set(pp::Var("array_integral"), pp::Var(""));
     method_library.Set(pp::Var("array_convolute"), pp::Var(""));
-    method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
-    method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
     method_library.Set(pp::Var("matrix_trace"), pp::Var(""));
     method_library.Set(pp::Var("matrix_determinant"), pp::Var(""));
     method_library.Set(pp::Var("matrix_gaussian"), pp::Var(""));
+    // array to list
+    method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
+    method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
   }
   virtual ~FeatureInstance() {}
 
