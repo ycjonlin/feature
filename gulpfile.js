@@ -144,13 +144,13 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
-      'echo <%= f(file.path) %>',
-      'ls -l <%= file.path %>'
+      '<%= toolchain %>/bin/pnacl-clang++ <%= file.path %> -I<%= include %> -c -o <%= file.path %>.o -g -O3',
+      '<%= toolchain %>/bin/pnacl-clang++ -o <%= file.path %>.pexe <%= file.path %>.o -L<%= library %> -lppapi_cpp -lppapi',
     ], {
       templateData: {
-        f: function (s) {
-          return s.replace(/$/, '.bak')
-        }
+        toolchain: 'nacl_sdk/pepper_43/toolchain/mac_pnacl',
+        include: 'nacl_sdk/pepper_43/include',
+        library: 'nacl_sdk/pepper_43/lib/pnacl/Debug'
       }
     }))
     .on('error', handleError);
