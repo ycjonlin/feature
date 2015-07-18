@@ -1,4 +1,4 @@
-var through = require('through2');
+var through = require('through');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
