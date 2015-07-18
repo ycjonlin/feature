@@ -42,11 +42,11 @@ NaCl = (id, url)->
     event.data.callback.apply null, event.data.results
   ), true
   listener.addEventListener 'error', ((event)->
-    log @listener.lastError
+    log listener.lastError
   ), true
   listener.addEventListener 'crash', ((event)->
-    log if @embed.exitStatus == -1 then "crashed" 
-    else "exited with code #{@embed.exitStatus}"
+    log if embed.exitStatus == -1 then "crashed" 
+    else "exited with code #{embed.exitStatus}"
   ), true
 
   document.appendChild listener
