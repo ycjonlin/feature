@@ -4,8 +4,6 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-const PLUGIN_NAME = 'gulp-nacl';
-
 module.exports = function(options){
   var opts = options || {};
 
