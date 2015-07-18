@@ -2,23 +2,33 @@ console.log 'foobar'
 
 # NaCl
 
-class NaCl
-  constructor: (@id, @path, @name)->
-    embed = document.createElement 'embed'
-    embed.setAttribute 'id', @id
-    embed.setAttribute 'width', 0
-    embed.setAttribute 'height', 0
-    embed.setAttribute 'path', "#{path}/#{name}.nmf"
-    embed.setAttribute 'src', @path
-    embed.setAttribute 'type', 'application/x-pnacl'
+NaCl = (id, url)->
+  embed = document.createElement 'embed'
+  embed.setAttribute 'id', @id
+  embed.setAttribute 'width', 0
+  embed.setAttribute 'height', 0
+  embed.setAttribute 'path', "#{path}/#{name}.nmf"
+  embed.setAttribute 'src', @url
+  embed.setAttribute 'type', 'application/x-pnacl'
 
-    listener = document.createElement 'div'
-    listener.appendChild embed
+  log = (message)->
+    console.log "##{id}: #{message}"
 
-    document.appendChild listener
+  listener = document.createElement 'div'
+  listener.addEventListener 'load', ((event)->
+    log "loaded"
+  ), true
+  listener.addEventListener 'message', ((event)->
+    event.data.callback.apply null, event.data.results
+  ), true
+  listener.addEventListener 'error', ((event)->
+    log @listener.lastError
+  ), true
+  listener.addEventListener 'crash', ((event)->
+    log if @embed.exitStatus == -1 then "crashed" 
+    else "exited with code #{@embed.exitStatus}"
+  ), true
+  listener.appendChild embed
 
-  manifest: ()->  
-    'program':
-      'portable':
-        'pnacl-translate':
-          'url': @url
+  document.appendChild listener
+    
