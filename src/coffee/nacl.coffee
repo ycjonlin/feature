@@ -34,7 +34,7 @@ module.exports = (id, url)->
     log "loaded"
     register = (methods)->
       for id, type of methods
-        module[id] = (args=[], callback=()->)->
+        module[id] = (args=[], callback=noop)->
           embed.postMessage
             serial: session.create(callback)
             method: name
