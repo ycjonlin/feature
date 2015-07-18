@@ -144,14 +144,17 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
-      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.path.basename %>.o -g -O3',
-      '<%= bin %>/pnacl-clang++ -o <%= dst+file.path.basename %>.pexe <%= dst+file.path.basename %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
+      '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe <%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
         inc: 'nacl_sdk/pepper_43/include',
         lib: 'nacl_sdk/pepper_43/lib/pnacl/Debug',
-        dst: config.natives.destination
+        dst: function(file) {
+          conosole.log(file);
+          return config.natives.destination+'temp';
+        }
       }
     }))
     .on('error', handleError);
