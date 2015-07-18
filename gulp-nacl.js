@@ -3,41 +3,29 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
 // consts
-const PLUGIN_NAME = 'gulp-prefixer';
+const PLUGIN_NAME = 'gulp-nacl';
 
-function prefixStream(prefixText) {
+function naclStream(prefixText) {
   var stream = through();
   stream.write(prefixText);
   return stream;
 }
 
-// plugin level function (dealing with files)
-function gulpPrefixer(prefixText) {
-  if (!prefixText) {
-    throw new PluginError(PLUGIN_NAME, 'Missing prefix text!');
-  }
+function gulpNaCler() {
 
-  prefixText = new Buffer(prefixText); // allocate ahead of time
-
-  // creating a stream through which each file will pass
   var stream = through.obj(function(file, enc, cb) {
     if (file.isBuffer()) {
-      this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
-      return cb();
+      //file.contents = Buffer.concat([prefixText, file.contents]);
     }
 
     if (file.isStream()) {
-      // define the streamer that will transform the content
-      var streamer = prefixStream(prefixText);
-      // catch errors from the streamer and emit a gulp plugin error
-      streamer.on('error', this.emit.bind(this, 'error'));
-      // start the transformation
-      file.contents = file.contents.pipe(streamer);
+      var stream = through();
+      //stream.write(prefixText);
+      stream.on('error', this.emit.bind(this, 'error'));
+      file.contents = file.contents.pipe(stream);
     }
 
-    // make sure the file goes through the next gulp plugin
     this.push(file);
-    // tell the stream engine that we are done with this file
     cb();
   });
 
@@ -46,4 +34,4 @@ function gulpPrefixer(prefixText) {
 }
 
 // exporting the plugin main function
-module.exports = gulpPrefixer;
+module.exports = gulpNaCler;
