@@ -144,8 +144,8 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
-      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.path %>.o -g -O3',
-      '<%= bin %>/pnacl-clang++ -o <%= dst+file.path %>.pexe <%= dst+file.path %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.basename %>.o -g -O3',
+      '<%= bin %>/pnacl-clang++ -o <%= dst+file.basename %>.pexe <%= dst+file.basename %>.o -L<%= lib %> -lppapi_cpp -lppapi',
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
