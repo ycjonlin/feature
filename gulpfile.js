@@ -145,7 +145,7 @@ gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
       '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.path.basename %>.o -g -O3',
-      '<%= bin %>/pnacl-clang++ -o <%= dst+file.base %>.pexe <%= dst+file.base %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      '<%= bin %>/pnacl-clang++ -o <%= dst+file.path.basename %>.pexe <%= dst+file.path.basename %>.o -L<%= lib %> -lppapi_cpp -lppapi',
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
