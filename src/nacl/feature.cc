@@ -152,7 +152,7 @@ class FeatureInstance : public pp::Instance {
     if (!dictionary.HasKey(pp::Var("arguments")))
       return;
 
-    std::string method = dictionary.Key(pp::Var("method"));
+    std::string method = dictionary.Get(pp::Var("method"));
     if (method == "_interface") {
       pp::VarDictionary _interface;
       _interface.Set(pp::Var("array_integral"), pp::Var(""));
