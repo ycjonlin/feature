@@ -153,6 +153,7 @@ class FeatureInstance : public pp::Instance {
       return;
 
     std::string method = dictionary.Get(pp::Var("method")).AsString();
+    pp::VarArray arguments(dictionary.Get(pp::Var("arguments")));
     if (method == "_interface") {
       pp::VarDictionary _interface;
       _interface.Set(pp::Var("array_integral"), pp::Var(""));
@@ -162,6 +163,14 @@ class FeatureInstance : public pp::Instance {
       _interface.Set(pp::Var("matrix_trace"), pp::Var(""));
       _interface.Set(pp::Var("matrix_determinant"), pp::Var(""));
       dictionary.Set(pp::Var("results"), _interface);
+    } else if (method == "array_integral") {
+      float* dst = static_cast<char*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
+      float* src = static_cast<char*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
+      int i_count = arguments.Get(2).AsInt();
+      int i_step  = arguments.Get(3).AsInt();
+      int j_count = arguments.Get(4).AsInt();
+      int j_step  = arguments.Get(5).AsInt();
+      array_integral(dst, src, i_count, i_step, j_count, j_step);
     }
 
     PostMessage(dictionary);
