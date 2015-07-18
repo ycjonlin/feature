@@ -164,8 +164,8 @@ class FeatureInstance : public pp::Instance {
       _interface.Set(pp::Var("matrix_determinant"), pp::Var(""));
       dictionary.Set(pp::Var("results"), _interface);
     } else if (method == "array_integral") {
-      float* dst = static_cast<char*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
-      float* src = static_cast<char*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
+      float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
+      float* src = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
       int i_count = arguments.Get(2).AsInt();
       int i_step  = arguments.Get(3).AsInt();
       int j_count = arguments.Get(4).AsInt();
