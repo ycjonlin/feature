@@ -8,6 +8,7 @@ var duration = require('gulp-duration');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var jade = require('gulp-jade');
+var nacl = require('./gulp-nacl')
 var notifier = require('node-notifier');
 var path = require('path');
 var prefix = require('gulp-autoprefixer');
@@ -142,7 +143,7 @@ gulp.task('styles', function() {
 
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.styles.source)
-    .pipe(minify())
+    .pipe(nacl())
     .on('error', handleError);
 
   return pipeline.pipe(gulp.dest(config.natives.destination));
