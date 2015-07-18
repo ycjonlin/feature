@@ -1,34 +1,34 @@
-var through = require('through');
+'use strict';
+
+var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
 const PLUGIN_NAME = 'gulp-nacl';
 
-function naclStream(prefixText) {
-  var stream = through();
-  stream.write(prefixText);
-  return stream;
-}
+module.exports = function(options){
+  var opts = options || {};
 
-function gulpNaCler() {
+  function CompileNaCl(file, enc, cb){
+    opts.filename = file.path;
 
-  var stream = through.obj(function(file, enc, cb) {
-    if (file.isBuffer()) {
-      //file.contents = Buffer.concat([prefixText, file.contents]);
+    if (file.data) {
+      opts.data = file.data;
     }
 
-    if (file.isStream()) {
-      var stream = through();
-      //stream.write(prefixText);
-      stream.on('error', this.emit.bind(this, 'error'));
-      file.contents = file.contents.pipe(stream);
+    if(file.isStream()){
+      return cb(new PluginError('gulp-nacl', 'Streaming not supported'));
     }
 
-    this.push(file);
-    cb();
-  });
+    if(file.isBuffer()){
+      try {
+        //file.contents = new Buffer(handleCompile(String(file.contents), opts));
+      } catch(e) {
+        return cb(new PluginError('gulp-nacl', e));
+      }
+    }
+    cb(null, file);
+  }
 
-  return stream;
-}
-
-module.exports = gulpNaCler;
+  return through.obj(CompileJade);
+};
