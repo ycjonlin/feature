@@ -15,7 +15,9 @@
     "gulp",
     "template"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "through2": "^2.0.0"
+  },
   "devDependencies": {
     "bower": "~1.3.5",
     "browser-sync": "^2.7.2",
