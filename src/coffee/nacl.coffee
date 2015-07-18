@@ -12,14 +12,19 @@ module.exports = (id, url)->
   embed.setAttribute 'type', 'application/x-pnacl'
 
   # callback
-  session = (arg)->
-    if arg is 
-      registry[id] = 
-  session = {}
-  session_serial = 0
-  session_get_serial = ()->
-    session_serial += 1
-    return session_serial
+  session = 
+    serial: 0
+    registry: {}
+    create: (callback)->
+      id = "#{@serial}"
+      @serial += 1
+      @registry[id] = callback
+      return id
+    release: (id)->
+      callback = @registry[id]
+      delete @registry[id]
+      return callback
+  noop = ()->
   log = (message)->
     console.log "nacl: ##{id}: #{message}"
 
@@ -29,9 +34,9 @@ module.exports = (id, url)->
     log "loaded"
     register = (methods)->
       for id, type of methods
-        module[id] = (args=[], callback=null)->
+        module[id] = (args=[], callback=()->)->
           embed.postMessage
-            serial: session(callback)
+            serial: session.create(callback)
             method: name
             arguments: args
       module._ready = true
@@ -46,7 +51,7 @@ module.exports = (id, url)->
   listener.addEventListener 'message', ((event)->
     console.log event.data
     serial = event.data.serial
-    session(serial) event.data.results
+    session.release(serial) event.data.results
     null # no reture value
   ), true
   ###
