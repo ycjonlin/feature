@@ -145,16 +145,10 @@ class FeatureInstance : public pp::Instance {
 
   virtual void HandleMessage(const pp::Var& var_message) {
     // Ignore the message if it is not a string.
-    if (!var_message.is_string())
+    if (!var_message.is_dictionary())
       return;
 
-    // Get the string message and compare it to "hello".
-    std::string message = var_message.AsString();
-    if (message == kHelloString) {
-      // If it matches, send our response back to JavaScript.
-      pp::Var var_reply(kReplyString);
-      PostMessage(var_reply);
-    }
+    PostMessage(var);
   }
 };
 
