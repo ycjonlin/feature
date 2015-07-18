@@ -150,6 +150,9 @@ protected:
     // array manipulation
     method_library.Set(pp::Var("array_export"), pp::Var(""));
     method_library.Set(pp::Var("array_free"), pp::Var(""));
+    // array manipulation
+    method_library.Set(pp::Var("cloud_export"), pp::Var(""));
+    method_library.Set(pp::Var("cloud_free"), pp::Var(""));
     // image to array
     method_library.Set(pp::Var("array_srgb"), pp::Var(""));
     method_library.Set(pp::Var("array_cie_rgb"), pp::Var(""));
