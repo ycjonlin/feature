@@ -2,9 +2,14 @@ console.log 'foobar'
 
 # NaCl
 class NaCl
-  constructor: (@url)->
-    div = document.createElement 'DIV'
-    embed = document.createElement 'EMBED'
+  constructor: (@id, @url)->
+    embed = document.createElement 'embed'
+    embed.setAttribute 'id', @id
+    embed.setAttribute 'width', 0
+    embed.setAttribute 'height', 0
+    embed.setAttribute 'path', "#{path}/#{name}.nmf"
+    embed.setAttribute 'src', @path
+    embed.setAttribute 'type', 'application/x-pnacl'
 
   manifest: ()->  
     'program':
