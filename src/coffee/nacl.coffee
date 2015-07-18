@@ -15,11 +15,14 @@ module.exports = (id, url)->
   session = 
     serial: 0
     registry: {}
-    create: (callback)->
+    create = (method, args, callback)->
       id = "#{@serial}"
       @serial += 1
       @registry[id] = callback
-      return id
+      embed.postMessage
+        id: id
+        method: method
+        arguments: args
     release: (id)->
       callback = @registry[id]
       delete @registry[id]
@@ -32,19 +35,13 @@ module.exports = (id, url)->
   listener.addEventListener 'load', ((event)->
     log "loaded"
     register = (methods)->
-      for id, type of methods
-        module[id] = (args=[], callback=null)->
-          embed.postMessage
-            id: session.create(callback)
-            method: name
-            arguments: args
+      for method, type of methods
+        module[method] = (args=[], callback=null)->
+          session.create(method, args, callback)
       module._ready = true
       console.log module
       null # no reture value
-    embed.postMessage
-      id: session.create(register)
-      method: '_interface'
-      arguments: []
+    session.create('_interface', [], register)
     null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
