@@ -37,14 +37,14 @@ module.exports = (id, url, onload)->
       for method, type of methods
         module[method] = session.create.bind session, method
       module._ready = true
-      onload() if onload
+      if onload
+        onload()
       null # no reture value
     session.create('_interface', [], register)
     null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
     callback = session.release(event.data.id)
-    console.log event.data
     if callback
       callback event.data.results
     null # no reture value
