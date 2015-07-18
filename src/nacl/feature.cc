@@ -162,12 +162,10 @@ protected:
 
     pp::VarDictionary dictionary(var);
 
-    if (!dictionary.HasKey(pp::Var("method")))
-      return;
-    if (!dictionary.HasKey(pp::Var("arguments")))
-      return;
-
+    if (!dictionary.HasKey(pp::Var("method"))) return;
     std::string method = dictionary.Get(pp::Var("method")).AsString();
+
+    if (!dictionary.HasKey(pp::Var("arguments"))) return;
     pp::VarArray arguments(dictionary.Get(pp::Var("arguments")));
 
     if (method == "_interface") {
