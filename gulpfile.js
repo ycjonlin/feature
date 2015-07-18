@@ -14,6 +14,7 @@ var prefix = require('gulp-autoprefixer');
 var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var rimraf = require('rimraf');
+var shell = require('gulp-shell');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var streamify = require('gulp-streamify');
