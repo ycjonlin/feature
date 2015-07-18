@@ -15,7 +15,7 @@ module.exports = (id, url, onload)->
   session = 
     serial: 0
     registry: {}
-    create: (method, args, callback)->
+    create: (method, args=[], callback=null)->
       id = "#{@serial}"
       @serial += 1
       @registry[id] = callback
@@ -35,8 +35,7 @@ module.exports = (id, url, onload)->
   listener.addEventListener 'load', ((event)->
     register = (methods)->
       for method, type of methods
-        module[method] = (args=[], callback)->
-          session.create(method, args, callback)
+        module[method] = session.create.bind session, method
       module._ready = true
       onload() if onload
       null # no reture value
