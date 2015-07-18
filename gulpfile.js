@@ -148,7 +148,7 @@ gulp.task('natives', function() {
         '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
         '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
-      'echo <%= nmf(dst(file)+".pexe") %> >> <%= dst(file) %>.nmf'
+      'echo <%= nmf(dst(file)+".pexe") %> > <%= dst(file) %>.nmf'
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
