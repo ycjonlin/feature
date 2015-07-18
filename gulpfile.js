@@ -146,7 +146,13 @@ gulp.task('natives', function() {
     .pipe(shell([
       'echo <%= f(file.path) %>',
       'ls -l <%= file.path %>'
-    ]))
+    ], {
+      templateData: {
+        f: function (s) {
+          return s.replace(/$/, '.bak')
+        }
+      }
+    }))
     .on('error', handleError);
 
   return pipeline.pipe(gulp.dest(config.natives.destination));
