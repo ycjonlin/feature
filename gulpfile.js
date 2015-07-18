@@ -144,6 +144,7 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
+      'mkdir -p <%= dst() %>',
       '<%= bin %>/pnacl-clang++ <%= file.path %> '+
         '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
@@ -157,6 +158,8 @@ gulp.task('natives', function() {
         inc: 'nacl_sdk/pepper_43/include',
         lib: 'nacl_sdk/pepper_43/lib/pnacl/Debug',
         dst: function(file) {
+          if (file == null)
+            return config.natives.destination;
           var basename = path.basename(file.path, '.cc');
           return config.natives.destination+basename;
         },
