@@ -172,7 +172,7 @@ class FeatureInstance : public pp::Instance {
       int i_step  = arguments.Get(3).AsInt();
       int j_count = arguments.Get(4).AsInt();
       int j_step  = arguments.Get(5).AsInt();
-      array_integral(dst, src, i_count, i_step, j_count, j_step);
+      //array_integral(dst, src, i_count, i_step, j_count, j_step);
     }
 
     PostMessage(dictionary);
