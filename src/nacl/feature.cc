@@ -146,7 +146,7 @@ class FeatureInstance : public pp::Instance {
 
     pp::VarDictionary dictionary(var);
 
-    PostMessage(pp::Var(dictionary));
+    PostMessage(var);
   }
 };
 
