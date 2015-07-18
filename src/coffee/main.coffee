@@ -11,6 +11,11 @@ class NaCl
     embed.setAttribute 'src', @path
     embed.setAttribute 'type', 'application/x-pnacl'
 
+    listener = document.createElement 'div'
+    listener.appendChild embed
+
+    document.appendChild listener
+
   manifest: ()->  
     'program':
       'portable':
