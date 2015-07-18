@@ -152,7 +152,7 @@ gulp.task('natives', function() {
         inc: 'nacl_sdk/pepper_43/include',
         lib: 'nacl_sdk/pepper_43/lib/pnacl/Debug',
         dst: function(file) {
-          conosole.log(file);
+          console.log(file);
           return config.natives.destination+'temp';
         }
       }
