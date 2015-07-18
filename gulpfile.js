@@ -144,8 +144,11 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
-      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
-      '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe <%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      '<%= bin %>/pnacl-clang++ <%= file.path %> '+
+        '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
+      '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
+        '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      'echo <%= nmf(dst(file)+".pexe") %>'
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
@@ -154,6 +157,9 @@ gulp.task('natives', function() {
         dst: function(file) {
           var basename = path.basename(file.path, '.cc');
           return config.natives.destination+basename;
+        },
+        nmf: function(url) {
+          return JSON.stringify({program: {portable: {'pnacl-translate': {url: url}}}});
         }
       }
     }))
