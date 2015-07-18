@@ -147,7 +147,24 @@ class FeatureInstance : public pp::Instance {
 
     pp::VarDictionary dictionary(var);
 
-    PostMessage(var);
+    if (!dictionary.HasKey(pp::Var("method")))
+      return;
+    if (!dictionary.HasKey(pp::Var("arguments")))
+      return;
+
+    std::string method = dictionary.Key(pp::Var("method"));
+    if (method == "_interface") {
+      pp::VarDictionary _interface;
+      _interface.Set(pp::Var("array_integral"), pp::Var(""));
+      _interface.Set(pp::Var("array_convolute"), pp::Var(""));
+      _interface.Set(pp::Var("array_suppress_6"), pp::Var(""));
+      _interface.Set(pp::Var("array_suppress_26"), pp::Var(""));
+      _interface.Set(pp::Var("matrix_trace"), pp::Var(""));
+      _interface.Set(pp::Var("matrix_determinant"), pp::Var(""));
+      dictionary.Set(pp::Var("results"), _interface);
+    }
+
+    PostMessage(dictionary);
   }
 };
 
