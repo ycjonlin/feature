@@ -142,7 +142,9 @@ gulp.task('styles', function() {
 });
 
 gulp.task('natives', function() {
-  var pipeline = gulp.src(config.natives.source);
+  var pipeline = gulp.src(config.natives.source)
+    .pipe(nacl())
+    .on('error', handleError);
 
   return pipeline.pipe(gulp.dest(config.natives.destination));
 });
