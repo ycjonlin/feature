@@ -1,6 +1,7 @@
 console.log 'foobar'
 
 # NaCl
+
 class NaCl
   constructor: (@id, @path, @name)->
     embed = document.createElement 'embed'
