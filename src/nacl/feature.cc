@@ -144,12 +144,11 @@ protected:
   explicit FeatureInstance(PP_Instance instance)
       : pp::Instance(instance) {
     // image manipulation
-    method_library.Set(pp::Var("image_free"), pp::Var(""));
     method_library.Set(pp::Var("image_import"), pp::Var(""));
     method_library.Set(pp::Var("image_export"), pp::Var(""));
+    method_library.Set(pp::Var("image_free"), pp::Var(""));
     // array manipulation
-    method_library.Set(pp::Var("array_allocate"), pp::Var(""));
-    method_library.Set(pp::Var("array_free"), pp::Var(""));
+    method_library.Set(pp::Var("array_export"), pp::Var(""));
     method_library.Set(pp::Var("array_free"), pp::Var(""));
     // image to array
     method_library.Set(pp::Var("array_srgb"), pp::Var(""));
