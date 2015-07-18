@@ -151,7 +151,7 @@ protected:
     method_library.Set(pp::Var("array_srgb"), pp::Var(""));
     method_library.Set(pp::Var("array_rgb"), pp::Var(""));
     method_library.Set(pp::Var("array_xyz"), pp::Var(""));
-    method_library.Set(pp::Var("array_grayscale"), pp::Var(""));
+    method_library.Set(pp::Var("array_gs"), pp::Var(""));
     // array manipulation
     method_library.Set(pp::Var("array_integral"), pp::Var(""));
     method_library.Set(pp::Var("array_convolute"), pp::Var(""));
