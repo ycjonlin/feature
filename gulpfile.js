@@ -144,7 +144,7 @@ gulp.task('styles', function() {
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
-      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.base %>.o -g -O3',
+      '<%= bin %>/pnacl-clang++ <%= file.path %> -I<%= inc %> -c -o <%= dst+file.path.basename %>.o -g -O3',
       '<%= bin %>/pnacl-clang++ -o <%= dst+file.base %>.pexe <%= dst+file.base %>.o -L<%= lib %> -lppapi_cpp -lppapi',
     ], {
       templateData: {
