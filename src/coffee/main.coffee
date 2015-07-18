@@ -26,7 +26,7 @@ NaCl = (id, url)->
   listener.addEventListener 'load', ((event)->
     log "loaded"
     embed.postMessage
-      method: '_get_methods'
+      method: '_interface'
       callback: (methods)->
         for id, type of methods
           module[id] = (args=[], callback=null)->
@@ -37,16 +37,20 @@ NaCl = (id, url)->
               callback: callback
         module._ready = true
         null # no reture value
+    null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
     event.data.callback.apply null, event.data.results
+    null # no reture value
   ), true
   listener.addEventListener 'error', ((event)->
     log listener.lastError
+    null # no reture value
   ), true
   listener.addEventListener 'crash', ((event)->
     log if embed.exitStatus == -1 then "crashed" 
     else "exited with code #{embed.exitStatus}"
+    null # no reture value
   ), true
 
   document.appendChild listener
