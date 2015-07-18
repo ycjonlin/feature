@@ -148,7 +148,7 @@ class FeatureInstance : public pp::Instance {
     if (!var_message.is_dictionary())
       return;
 
-    PostMessage(var);
+    PostMessage(var_message);
   }
 };
 
