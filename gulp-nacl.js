@@ -28,5 +28,5 @@ module.exports = function(options){
     cb(null, file);
   }
 
-  return through.obj(CompileJade);
+  return through.obj(CompileNaCl);
 };
