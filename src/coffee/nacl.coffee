@@ -1,4 +1,4 @@
-module.exports = (id, url)->
+module.exports = (id, url, onload)->
   # module object
   module = 
     _ready: false
@@ -33,13 +33,12 @@ module.exports = (id, url)->
   # event lisnter wrapper
   listener = document.createElement 'div'
   listener.addEventListener 'load', ((event)->
-    log "loaded"
     register = (methods)->
       for method, type of methods
         module[method] = (args=[], callback=null)->
           session.create(method, args, callback)
       module._ready = true
-      console.log module
+      onload()
       null # no reture value
     session.create('_interface', [], register)
     null # no reture value
