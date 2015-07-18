@@ -15,7 +15,7 @@ module.exports = (id, url)->
   session = 
     serial: 0
     registry: {}
-    create = (method, args, callback)->
+    create: (method, args, callback)->
       id = "#{@serial}"
       @serial += 1
       @registry[id] = callback
