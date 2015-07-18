@@ -46,7 +46,7 @@ module.exports = (id, url)->
     null # no reture value
   ), true
 
-  document.appendChild listener
+  document.body.appendChild listener
   listener.appendChild embed
     
   return module
