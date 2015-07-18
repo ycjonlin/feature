@@ -49,17 +49,6 @@ module.exports = (id, url, onload)->
       callback event.data.results
     null # no reture value
   ), true
-  ###
-  listener.addEventListener 'error', ((event)->
-    log embed.lastError
-    null # no reture value
-  ), true
-  listener.addEventListener 'crash', ((event)->
-    log if embed.exitStatus == -1 then "crashed" 
-    else "exited with code #{embed.exitStatus}"
-    null # no reture value
-  ), true
-  ###
 
   document.body.appendChild listener
   listener.appendChild embed
