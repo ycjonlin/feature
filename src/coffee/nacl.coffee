@@ -37,6 +37,7 @@ module.exports = (id, url)->
     event.data.callback.apply null, event.data.results
     null # no reture value
   ), true
+  ###
   listener.addEventListener 'error', ((event)->
     log embed.lastError
     null # no reture value
@@ -46,6 +47,7 @@ module.exports = (id, url)->
     else "exited with code #{embed.exitStatus}"
     null # no reture value
   ), true
+  ###
 
   document.body.appendChild listener
   listener.appendChild embed
