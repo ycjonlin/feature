@@ -1,2 +1,2 @@
-feature = require('./nacl')('feature', 'nacl/feature.nmf', ()->
-  console.log feature)
+feature = require('./nacl') 'feature', 'nacl/feature.nmf', ()->
+  console.log feature
