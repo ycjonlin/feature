@@ -140,13 +140,13 @@ class FeatureInstance : public pp::Instance {
       : pp::Instance(instance) {}
   virtual ~FeatureInstance() {}
 
-  virtual void HandleMessage(const pp::Var& var_message) {
-    if (!var_message.is_dictionary())
+  virtual void HandleMessage(const pp::Var& var) {
+    if (!var.is_dictionary())
       return;
 
-    const pp::VarDictionary var(var_message);
-    
-    PostMessage(var);
+    pp::VarDictionary dictionary(var);
+
+    PostMessage(dictionary);
   }
 };
 
