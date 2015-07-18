@@ -1,3 +1,1 @@
-
-
-image = require('./nacl')('image', 'nacl/image.nmf')
+feature = require('./nacl')('feature', 'nacl/feature.nmf')
