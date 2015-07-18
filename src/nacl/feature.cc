@@ -143,16 +143,17 @@ protected:
  public:
   explicit FeatureInstance(PP_Instance instance)
       : pp::Instance(instance) {
-      method_library.Set(pp::Var("image_import"), pp::Var(""));
-      method_library.Set(pp::Var("image_export"), pp::Var(""));
-      method_library.Set(pp::Var("array_integral"), pp::Var(""));
-      method_library.Set(pp::Var("array_convolute"), pp::Var(""));
-      method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
-      method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
-      method_library.Set(pp::Var("matrix_trace"), pp::Var(""));
-      method_library.Set(pp::Var("matrix_determinant"), pp::Var(""));
-      method_library.Set(pp::Var("matrix_gaussian"), pp::Var(""));
-    }
+    method_library.Set(pp::Var("image_import"), pp::Var(""));
+    method_library.Set(pp::Var("image_export"), pp::Var(""));
+    method_library.Set(pp::Var("image_close"), pp::Var(""));
+    method_library.Set(pp::Var("array_integral"), pp::Var(""));
+    method_library.Set(pp::Var("array_convolute"), pp::Var(""));
+    method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
+    method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
+    method_library.Set(pp::Var("matrix_trace"), pp::Var(""));
+    method_library.Set(pp::Var("matrix_determinant"), pp::Var(""));
+    method_library.Set(pp::Var("matrix_gaussian"), pp::Var(""));
+  }
   virtual ~FeatureInstance() {}
 
   virtual void HandleMessage(const pp::Var& var) {
@@ -168,8 +169,10 @@ protected:
 
     std::string method = dictionary.Get(pp::Var("method")).AsString();
     pp::VarArray arguments(dictionary.Get(pp::Var("arguments")));
+
     if (method == "_interface") {
       dictionary.Set(pp::Var("results"), method_library);
+    } else if (method == "image_import") {
     } else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
       float* src = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
