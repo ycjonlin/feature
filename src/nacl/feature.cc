@@ -126,6 +126,7 @@ void matrix_determinant(
 #include "ppapi/cpp/instance.h"
 #include "ppapi/cpp/module.h"
 #include "ppapi/cpp/var.h"
+#include "ppapi/cpp/var_dictionary.h"
 
 namespace {
 
