@@ -34,6 +34,7 @@ module.exports = (id, url)->
     null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
+    console.log event.data
     event.data.callback.apply null, event.data.results
     null # no reture value
   ), true
