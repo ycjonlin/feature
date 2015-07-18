@@ -37,7 +37,7 @@ module.exports = (id, url)->
     null # no reture value
   ), true
   listener.addEventListener 'error', ((event)->
-    log listener.lastError
+    log embed.lastError
     null # no reture value
   ), true
   listener.addEventListener 'crash', ((event)->
