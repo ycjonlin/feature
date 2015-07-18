@@ -43,6 +43,11 @@ var config = {
     watch: './src/stylus/*.styl',
     destination: './public/css/'
   },
+  natives: {
+    source: './src/nacl/*.cc',
+    watch: './src/nacl/*.cc',
+    destination: './public/nacl/'
+  },
   assets: {
     source: './src/assets/**/*.*',
     watch: './src/assets/**/*.*',
@@ -135,6 +140,14 @@ gulp.task('styles', function() {
   }));
 });
 
+gulp.task('natives', function() {
+  var pipeline = gulp.src(config.styles.source)
+    .pipe(minify())
+    .on('error', handleError);
+
+  return pipeline.pipe(gulp.dest(config.natives.destination));
+});
+
 gulp.task('assets', function() {
   return gulp.src(config.assets.source)
     .pipe(gulp.dest(config.assets.destination));
@@ -153,6 +166,7 @@ gulp.task('server', function() {
 gulp.task('watch', function() {
   gulp.watch(config.templates.watch, ['templates']);
   gulp.watch(config.styles.watch, ['styles']);
+  gulp.watch(config.natives.watch, ['natives']);
   gulp.watch(config.assets.watch, ['assets']);
 
   var bundle = watchify(browserify(browserifyConfig));
@@ -168,7 +182,7 @@ gulp.task('watch', function() {
   }).emit('update');
 });
 
-var buildTasks = ['templates', 'styles', 'assets'];
+var buildTasks = ['templates', 'styles', 'natives', 'assets'];
 
 gulp.task('revision', buildTasks.concat(['scripts']), function() {
   return gulp.src(config.revision.source, {base: config.revision.base})
