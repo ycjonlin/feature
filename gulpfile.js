@@ -155,7 +155,7 @@ gulp.task('natives', function() {
     }))
     .on('error', handleError);
 
-  return pipeline.pipe(gulp.dest(config.natives.destination));
+  return pipeline;
 });
 
 gulp.task('assets', function() {
