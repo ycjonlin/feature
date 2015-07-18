@@ -152,7 +152,7 @@ gulp.task('natives', function() {
         inc: 'nacl_sdk/pepper_43/include',
         lib: 'nacl_sdk/pepper_43/lib/pnacl/Debug',
         dst: function(file) {
-          var basename = path.basename(file.path);
+          var basename = path.basename(file.path, '.cc');
           return config.natives.destination+basename;
         }
       }
