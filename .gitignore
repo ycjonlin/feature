@@ -5,5 +5,4 @@ public
 rev-manifest.json
 nacl_sdk/pepper_43
 nacl_sdk/sdk_cache/archives
-nacl_sdk/sdk_cache/naclsdk_manifest2.json
 *.pyc
