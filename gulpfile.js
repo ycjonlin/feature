@@ -142,7 +142,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('natives', function() {
-  var pipeline = gulp.src(config.styles.source)
+  var pipeline = gulp.src(config.natives.source)
     .pipe(nacl())
     .on('error', handleError);
 
