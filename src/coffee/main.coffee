@@ -4,5 +4,5 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', ()->
   src = new Float32Array(32)
   for i in [0..31]
     src[i] = i
-  feature.array_integral [dst, src, 1, 1, 1, 1]
+  feature.array_integral [dst.buffer, src.buffer, 32, 1, 1, 1]
   console.log dst
