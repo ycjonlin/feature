@@ -132,6 +132,7 @@ void matrix_determinant(
 
 namespace {
 
+pp::VarDictionary method_library();
 pp::VarDictionary image_library();
 pp::VarDictionary array_library();
 
