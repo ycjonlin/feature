@@ -2,7 +2,7 @@ console.log 'foobar'
 
 # NaCl
 class NaCl
-  constructor: (@id, @url)->
+  constructor: (@id, @path, @name)->
     embed = document.createElement 'embed'
     embed.setAttribute 'id', @id
     embed.setAttribute 'width', 0
