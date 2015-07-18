@@ -19,6 +19,7 @@ module.exports = (id, url)->
       id = "#{@serial}"
       @serial += 1
       @registry[id] = callback
+      console.log id
       embed.postMessage
         id: id
         method: method
