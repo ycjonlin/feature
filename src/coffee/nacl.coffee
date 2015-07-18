@@ -24,7 +24,6 @@ module.exports = (id, url)->
       callback = @registry[id]
       delete @registry[id]
       return callback
-  noop = ()->
   log = (message)->
     console.log "nacl: ##{id}: #{message}"
 
@@ -34,24 +33,25 @@ module.exports = (id, url)->
     log "loaded"
     register = (methods)->
       for id, type of methods
-        module[id] = (args=[], callback=noop)->
+        module[id] = (args=[], callback=null)->
           embed.postMessage
-            serial: session.create(callback)
+            id: session.create(callback)
             method: name
             arguments: args
       module._ready = true
       console.log module
       null # no reture value
     embed.postMessage
-      serial: session(register)
+      id: session.create(register)
       method: '_interface'
       arguments: []
     null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
     console.log event.data
-    serial = event.data.serial
-    session.release(serial) event.data.results
+    callback = session.release(event.data.id)
+    if callback
+      callback event.data.results
     null # no reture value
   ), true
   ###
