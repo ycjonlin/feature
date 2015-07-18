@@ -143,7 +143,10 @@ gulp.task('styles', function() {
 
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
-    .pipe(nacl())
+    .pipe(shell([
+      'echo <%= f(file.path) %>',
+      'ls -l <%= file.path %>'
+    ]))
     .on('error', handleError);
 
   return pipeline.pipe(gulp.dest(config.natives.destination));
