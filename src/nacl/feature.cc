@@ -143,8 +143,8 @@ protected:
  public:
   explicit FeatureInstance(PP_Instance instance)
       : pp::Instance(instance) {
-      method_library.Set(pp::Var("image_load"), pp::Var(""));
-      method_library.Set(pp::Var("image_"), pp::Var(""));
+      method_library.Set(pp::Var("image_import"), pp::Var(""));
+      method_library.Set(pp::Var("image_export"), pp::Var(""));
       method_library.Set(pp::Var("array_integral"), pp::Var(""));
       method_library.Set(pp::Var("array_convolute"), pp::Var(""));
       method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
