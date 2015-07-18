@@ -2,7 +2,6 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-// consts
 const PLUGIN_NAME = 'gulp-nacl';
 
 function naclStream(prefixText) {
@@ -29,9 +28,7 @@ function gulpNaCler() {
     cb();
   });
 
-  // returning the file stream
   return stream;
 }
 
-// exporting the plugin main function
 module.exports = gulpNaCler;
