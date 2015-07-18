@@ -132,8 +132,8 @@ void matrix_determinant(
 
 namespace {
 
-const char* const kHelloString = "hello";
-const char* const kReplyString = "hello from NaCl";
+pp::VarDictionary image_library();
+pp::VarDictionary array_library();
 
 }  // namespace
 
@@ -158,12 +158,15 @@ class FeatureInstance : public pp::Instance {
     pp::VarArray arguments(dictionary.Get(pp::Var("arguments")));
     if (method == "_interface") {
       pp::VarDictionary _interface;
+      _interface.Set(pp::Var("image_load"), pp::Var(""));
+      _interface.Set(pp::Var("image_"), pp::Var(""));
       _interface.Set(pp::Var("array_integral"), pp::Var(""));
       _interface.Set(pp::Var("array_convolute"), pp::Var(""));
       _interface.Set(pp::Var("array_suppress_6"), pp::Var(""));
       _interface.Set(pp::Var("array_suppress_26"), pp::Var(""));
       _interface.Set(pp::Var("matrix_trace"), pp::Var(""));
       _interface.Set(pp::Var("matrix_determinant"), pp::Var(""));
+      _interface.Set(pp::Var("matrix_gaussian"), pp::Var(""));
       dictionary.Set(pp::Var("results"), _interface);
     } else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
