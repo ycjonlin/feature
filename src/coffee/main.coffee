@@ -9,11 +9,10 @@ NaCl = (id, url)->
 
   # nacl embed object
   embed = document.createElement 'embed'
-  embed.setAttribute 'id', @id
+  embed.setAttribute 'id', id
   embed.setAttribute 'width', 0
   embed.setAttribute 'height', 0
-  embed.setAttribute 'path', "#{path}/#{name}.nmf"
-  embed.setAttribute 'src', @url
+  embed.setAttribute 'src', url
   embed.setAttribute 'type', 'application/x-pnacl'
 
   # event lisnter wrapper
