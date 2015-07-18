@@ -12,7 +12,7 @@ module.exports = (id, url)->
   embed.setAttribute 'type', 'application/x-pnacl'
 
   log = (message)->
-    console.log "nacl module: ##{id}: #{message}"
+    console.log "nacl: ##{id}: #{message}"
 
   # event lisnter wrapper
   listener = document.createElement 'div'
