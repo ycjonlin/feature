@@ -148,6 +148,8 @@ gulp.task('natives', function() {
         '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
         '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+      '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
+        '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
     ], {
       templateData: {
@@ -159,7 +161,7 @@ gulp.task('natives', function() {
           return config.natives.destination+basename;
         },
         nmf: function(file) {
-          var url = path.basename(file.path, '.cc')+'.pexe';
+          var url = path.basename(file.path, '.cc')+'.final.pexe';
           return JSON.stringify(JSON.stringify(
             {program: {portable: {'pnacl-translate': {url: url}}}},
             null, 2));
