@@ -3,8 +3,6 @@ module.exports = (id, url)->
   module = 
     _ready: false
 
-  console.log id, url
-
   # nacl embed object
   embed = document.createElement 'embed'
   embed.setAttribute 'id', id
