@@ -29,6 +29,7 @@ module.exports = (id, url)->
               results: null
               callback: callback
         module._ready = true
+        console.log module
         null # no reture value
     null # no reture value
   ), true
