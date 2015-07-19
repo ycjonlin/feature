@@ -46,7 +46,7 @@ var config = {
   },
   natives: {
     source: './src/nacl/*.cpp',
-    watch: './src/nacl/*.cpp',
+    watch: './src/nacl/*.{cpp,hpp}',
     destination: './public/nacl/'
   },
   assets: {
