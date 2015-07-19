@@ -29,7 +29,7 @@ protected:
 
     pp::URLRequestInfo url_request(instance);
     url_request.SetURL(url);
-    url_request.SetMethod("POST");
+    url_request.SetMethod("GET");
     url_request.SetAllowCrossOriginRequests(true);
     url_request.SetFollowRedirects(true);
 
