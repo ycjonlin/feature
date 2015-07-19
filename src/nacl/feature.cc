@@ -129,6 +129,8 @@ void matrix_determinant(
 #include "ppapi/cpp/var_array.h"
 #include "ppapi/cpp/var_array_buffer.h"
 #include "ppapi/cpp/var_dictionary.h"
+#include "ppapi/cpp/var_url_loader.h"
+#include "ppapi/cpp/var_url_request_info.h"
 
 namespace {
 
@@ -144,32 +146,32 @@ protected:
   explicit FeatureInstance(PP_Instance instance)
       : pp::Instance(instance) {
     // image manipulation
-    method_library.Set(pp::Var("image_import"), pp::Var(""));
-    method_library.Set(pp::Var("image_export"), pp::Var(""));
-    method_library.Set(pp::Var("image_free"), pp::Var(""));
+    method_library.Set("image_import", pp::Var(""));
+    method_library.Set("image_export", pp::Var(""));
+    method_library.Set("image_free", pp::Var(""));
     // array manipulation
-    method_library.Set(pp::Var("array_export"), pp::Var(""));
-    method_library.Set(pp::Var("array_free"), pp::Var(""));
+    method_library.Set("array_export", pp::Var(""));
+    method_library.Set("array_free", pp::Var(""));
     // array manipulation
-    method_library.Set(pp::Var("cloud_export"), pp::Var(""));
-    method_library.Set(pp::Var("cloud_free"), pp::Var(""));
+    method_library.Set("cloud_export", pp::Var(""));
+    method_library.Set("cloud_free", pp::Var(""));
     // image to array
-    method_library.Set(pp::Var("array_srgb"), pp::Var(""));
-    method_library.Set(pp::Var("array_cie_rgb"), pp::Var(""));
-    method_library.Set(pp::Var("array_cie_xyz"), pp::Var(""));
-    method_library.Set(pp::Var("array_grayscale"), pp::Var(""));
+    method_library.Set("array_srgb", pp::Var(""));
+    method_library.Set("array_cie_rgb", pp::Var(""));
+    method_library.Set("array_cie_xyz", pp::Var(""));
+    method_library.Set("array_grayscale", pp::Var(""));
     // array to array
-    method_library.Set(pp::Var("array_integral"), pp::Var(""));
-    method_library.Set(pp::Var("array_convolute"), pp::Var(""));
-    method_library.Set(pp::Var("matrix_trace"), pp::Var(""));
-    method_library.Set(pp::Var("matrix_determinant"), pp::Var(""));
-    method_library.Set(pp::Var("matrix_gaussian"), pp::Var(""));
+    method_library.Set("array_integral", pp::Var(""));
+    method_library.Set("array_convolute", pp::Var(""));
+    method_library.Set("matrix_trace", pp::Var(""));
+    method_library.Set("matrix_determinant", pp::Var(""));
+    method_library.Set("matrix_gaussian", pp::Var(""));
     // array to cloud
-    method_library.Set(pp::Var("array_suppress_6"), pp::Var(""));
-    method_library.Set(pp::Var("array_suppress_26"), pp::Var(""));
+    method_library.Set("array_suppress_6", pp::Var(""));
+    method_library.Set("array_suppress_26", pp::Var(""));
     // cloud to cloud
-    method_library.Set(pp::Var("cloud_sort"), pp::Var(""));
-    method_library.Set(pp::Var("cloud_match"), pp::Var(""));
+    method_library.Set("cloud_sort", pp::Var(""));
+    method_library.Set("cloud_match", pp::Var(""));
   }
   virtual ~FeatureInstance() {}
 
@@ -179,16 +181,24 @@ protected:
 
     pp::VarDictionary dictionary(var);
 
-    if (!dictionary.HasKey(pp::Var("method"))) return;
-    std::string method = dictionary.Get(pp::Var("method")).AsString();
+    if (!dictionary.HasKey("method")) return;
+    std::string method = dictionary.Get("method").AsString();
 
-    if (!dictionary.HasKey(pp::Var("arguments"))) return;
-    pp::VarArray arguments(dictionary.Get(pp::Var("arguments")));
+    if (!dictionary.HasKey("arguments")) return;
+    pp::VarArray arguments(dictionary.Get("arguments"));
 
     if (method == "_interface") {
-      dictionary.Set(pp::Var("results"), method_library);
-    } else if (method == "image_import") {
-    } else if (method == "array_integral") {
+      dictionary.Set("results", method_library);
+    }
+    else if (method == "image_import") {
+      pp::Var url = arguments.Get(0);
+      pp::URLLoader loaeder(this);
+      pp::URLRequestInfo request(this);
+      request.SetURL(url);
+      request.SetMethod("Get")
+
+    }
+    else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
       float* src = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
       int i_count = arguments.Get(2).AsInt();
