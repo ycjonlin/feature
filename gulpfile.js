@@ -145,11 +145,11 @@ gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
     .pipe(shell([
       'mkdir -p <%= dst() %>',
-      '<%= bin %>/pnacl-clang++ <%= file.path %> '+
+      'time <%= bin %>/pnacl-clang++ <%= file.path %> '+
         '<%= compile.join(" ") %> -c -o <%= dst(file) %>.o',
-      '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
+      'time <%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
         '<%= dst(file) %>.o <%= link.join(" ") %>',
-      '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
+      'time <%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
         '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
     ], {
