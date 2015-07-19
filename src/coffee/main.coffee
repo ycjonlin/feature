@@ -141,18 +141,32 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     width = imageData.width
     height = imageData.height
 
-    array0 = image_split imageData
-    array1 = new Float32Array(array0.length)
-    array2 = new Float32Array(array0.length)
-    array = array2
+    array = image_split imageData
+    array0 = new Float32Array(array.length)
+    array1 = new Float32Array(array.length)
+    array2 = new Float32Array(array.length)
+    array00 = new Float32Array(array.length)
+    array10 = new Float32Array(array.length)
+    array20 = new Float32Array(array.length)
+    array01 = new Float32Array(array.length)
+    array11 = new Float32Array(array.length)
+    array02 = new Float32Array(array.length)
 
-    convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, 1
-    convolute array2, array1, kernel, height*2, width*2, width*2, 1, length, width*2
+    convolute array0, array, kernel0, height*2, width*2, width*2, 1, length, width*2
+    convolute array1, array, kernel1, height*2, width*2, width*2, 1, length, width*2
+    convolute array2, array, kernel2, height*2, width*2, width*2, 1, length, width*2
+
+    convolute array00, array0, kernel0, height*2, width*2, width*2, 1, length, 1
+    convolute array10, array0, kernel1, height*2, width*2, width*2, 1, length, 1
+    convolute array20, array0, kernel2, height*2, width*2, width*2, 1, length, 1
+    convolute array01, array1, kernel0, height*2, width*2, width*2, 1, length, 1
+    convolute array11, array1, kernel1, height*2, width*2, width*2, 1, length, 1
+    convolute array02, array2, kernel0, height*2, width*2, width*2, 1, length, 1
 
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array, context, width, height
+    newImageData = image_merge array11, context, width, height
     canvas.width = width
     canvas.height = height
     context.putImageData newImageData, 0, 0
