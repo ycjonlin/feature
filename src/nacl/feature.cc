@@ -222,7 +222,11 @@ protected:
       memset(&buf, 0, sizeof(buf));
       int result = stat(path, &buf);
 
-      response.Set("results", (int)buf.st_size);
+      pp::VarDictionary results;
+      results.Set("path", path);
+      results.Set("size", (int)buf.st_size);
+
+      response.Set("results", results);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
