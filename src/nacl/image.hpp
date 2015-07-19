@@ -32,6 +32,7 @@ protected:
     url_request.SetMethod("GET");
     url_request.SetAllowCrossOriginRequests(true);
     url_request.SetFollowRedirects(true);
+    url_request.SetAllowCredentials(true);
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&ImageImport::OnOpen);
