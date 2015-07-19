@@ -180,7 +180,7 @@ gaussian = (sigma)->
 
     n = 2
     for i in [0..n]
-      kernel = gaussian(Math.sqrt(2+i/n))
+      kernel = gaussian(Math.sqrt(1+i/n))
       console.log kernel.length
       continue
 
