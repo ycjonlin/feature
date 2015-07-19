@@ -202,8 +202,11 @@ protected:
       response.Set("results", method_library);
     }
     else if (method == "image_import") {
-      pp::Var url = arguments.Get(0);
-      response.Set("results", url);
+      std::string library = arguments.Get(0).AsString();
+      std::string path = arguments.Get(1).AsString();
+      if (library == "flickr") {
+        response.Set("results", url);
+      }
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
