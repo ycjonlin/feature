@@ -267,7 +267,7 @@ protected:
         }
       };
 
-      new ImageImportClosure(id, arguments, this);
+      new ImageImport(id, arguments, this);
     }
     else if (method == "array_integral")
     {
