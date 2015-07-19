@@ -134,7 +134,7 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
   image_load 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg', (imageData)->
     array = image_split imageData
     newImageData = image_merge array, context, imageData.width, imageData.height
-    canvas.width = imageData.width
-    canvas.height = imageData.height
-    context.putImageData imageData, 0, 0
+    canvas.width = newImageData.width
+    canvas.height = newImageData.height
+    context.putImageData newImageData, 0, 0
 )()
