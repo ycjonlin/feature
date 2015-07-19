@@ -181,7 +181,7 @@ gaussian = (sigma)->
     n = 4
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2+i/n))
-      console.log kernel.length
+      console.log Math.sqrt(2+i/n)
       continue
 
       convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
