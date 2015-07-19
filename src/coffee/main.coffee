@@ -132,16 +132,21 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
       x = (i-radius)/sigma
       kernel[i] = Math.exp(-x*x/2)
 
-    console.log kernel
+    width = imageData.width
+    height = imageData.height
+    length = kernel.length
 
-    array = image_split imageData
+    array0 = image_split imageData
+    array1 = array_convolute array0, kernel, height*2, width*2, width*2, 1, length, 1
+    array2 = array_convolute array1, kernel, height*2, width*2, width*2, 1, length, width*2
+    array = array2
 
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array, context, imageData.width, imageData.height
-    canvas.width = newImageData.width
-    canvas.height = newImageData.height
+    newImageData = image_merge array, context, width, height
+    canvas.width = width
+    canvas.height = height
     context.putImageData newImageData, 0, 0
 
     # append to document
