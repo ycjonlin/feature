@@ -34,7 +34,7 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   (void) jpeg_read_header(&cinfo, TRUE);
   (void) jpeg_start_decompress(&cinfo);
   row_stride = cinfo.output_width * cinfo.output_components;
-  image_size = cinfo.output_height * row_stride;
+  image_size = cinfo.output_height * cinfo.output_width * 4;
 
   // JS: Image Array
   pp::VarArrayBuffer array_buffer(image_size);
