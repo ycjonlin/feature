@@ -157,22 +157,21 @@ protected:
     method_library.Set("cloud_export", "");
     method_library.Set("cloud_free", "");
     // image to array
-    method_library.Set("array_srgb", "");
-    method_library.Set("array_cie_rgb", "");
-    method_library.Set("array_cie_xyz", "");
-    method_library.Set("array_grayscale", "");
-    // array to array
-    method_library.Set("array_integral", "");
-    method_library.Set("array_convolute", "");
+    method_library.Set("separate_srgb", "");
+    method_library.Set("separate_cie_rgb", "");
+    method_library.Set("separate_cie_xyz", "");
+    method_library.Set("separate_grayscale", "");
+    // calculus
+    method_library.Set("calculus_integral", "");
+    method_library.Set("calculus_convolute", "");
+    method_library.Set("calculus_differential", "");
+    // array to cloud
     method_library.Set("matrix_trace", "");
     method_library.Set("matrix_determinant", "");
     method_library.Set("matrix_gaussian", "");
     // array to cloud
-    method_library.Set("array_suppress_6", "");
-    method_library.Set("array_suppress_26", "");
-    // cloud to cloud
-    method_library.Set("cloud_sort", "");
-    method_library.Set("cloud_match", "");
+    method_library.Set("suppress_6_neighbors", "");
+    method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
     mount("https://farm1.staticflickr.com/", "/mnt/http", "httpfs", 0, "");
