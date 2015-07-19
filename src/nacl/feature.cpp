@@ -201,9 +201,9 @@ protected:
     else if (method == "image_import") {
       std::string path = arguments.Get(0).AsString();
 
-      pp::VarDictionary results;
-      results.Set("path", path.c_str());
-      response.Set("results", results);
+      URLFile &url_file = *(new URLFile(path, this));
+
+      response.Set("results", path.c_str());
       PostMessage(response);
     }
     else if (method == "array_integral") {
