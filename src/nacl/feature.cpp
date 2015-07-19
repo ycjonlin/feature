@@ -135,6 +135,7 @@ void matrix_determinant(
 
 #include "ppapi/cpp/url_loader.h"
 #include "ppapi/cpp/url_request_info.h"
+#include "ppapi/cpp/url_response_info.h"
 #include "ppapi/utility/completion_callback_factory.h"
 
 #include "url_file.hpp"
