@@ -87,6 +87,23 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
+convolute_ = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  k_count = k_count|0; k_step = k_step|0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      sum = +0.0
+      k = 0; K = J
+      while k < k_count
+        sum = +sum + +opend[K] * +oppor[k]
+        k = (k+1)|0; K = (K+1)|0
+      oppum[J] = sum
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+
 
 (()->
 
@@ -95,16 +112,12 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     sigma = 4
     length = sigma*6|1
     radius = (length-1)/2
-    kernel0 = new Float32Array(length)
-    kernel1 = new Float32Array(length)
-    kernel2 = new Float32Array(length)
+    kernel = new Float32Array(length)
     constant = 1/Math.sqrt(Math.PI*2)/sigma
     for i in [0..length-1]
       x = (i-radius)/sigma
       y = Math.exp(-x*x/2)*constant
-      kernel0[i] = y
-      kernel1[i] = -x*y
-      kernel2[i] = (x*x-1)*y
+      kernel[i] = y
 
     width = imageData.width
     height = imageData.height
@@ -116,9 +129,9 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     convolute1 = (a,b,c)->
       convolute a, b, c, height*2, width*2, width*2, 1, length, width*2
     convolute0 = (a,b,c)->
-      convolute a, b, c, height*2, width*2, width*2, 1, length, 1
-    convolute0 array1, array0, kernel0
-    convolute1 array2, array1, kernel0
+      convolute_ a, b, c, height*2, width*2, width*2, 1, length
+    convolute0 array1, array0, kernel
+    convolute1 array2, array1, kernel
 
     # create image
     canvas = document.createElement("canvas")
