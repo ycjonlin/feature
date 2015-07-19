@@ -217,6 +217,7 @@ protected:
     }
     else if (method == "image_import")
     {
+      arguments.Set("library", image_library);
       new ImageImport(id, arguments, this);
     }
     else if (method == "array_integral")
