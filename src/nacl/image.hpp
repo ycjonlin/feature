@@ -58,7 +58,7 @@ protected:
     pp::VarDictionary headers;
     std::stringstream stream(response.GetHeaders().AsString());
     std::string token;
-    while(std::getline(stream, token, "\n")) {
+    while(std::getline(stream, token, '\n')) {
       headers.Set(token, true);
     }
     results.Set("headers", headers);
