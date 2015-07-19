@@ -309,7 +309,7 @@ protected:
         array_pointer + image_size * 2, 
         array_pointer + width + image_size * 2, 
         image_pointer,
-        height, width*2, width, 1)
+        height, width*2, width, 1);
     }
   }
 };
