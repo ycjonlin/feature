@@ -14,7 +14,7 @@ public:
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&URLFile::OnOpen);
     int32_t result = url_loader.Open(url_request, on_open);
-    if (PP_ERROR_WOULDBLOCK != result)
+    if (PP_OK_COMPLETIONPENDING != result)
       on_open.Run(result);
   }
 
@@ -51,7 +51,7 @@ protected:
       = callback_factory.NewCallback(&URLFile::OnRead);
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
-    if (PP_ERROR_WOULDBLOCK != result)
+    if (PP_OK_COMPLETIONPENDING != result)
       on_read.Run(result);
   }
 };
