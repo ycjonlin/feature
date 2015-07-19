@@ -65,6 +65,7 @@ protected:
     int32_t size = std::min<int32_t>(result, sizeof(buffer));
     data.reserve(data.size()+size);
     data.insert(data.end(), buffer, buffer+size);
+    results.Set("size", (int)data.size());
 
     Read();
   }
@@ -88,7 +89,6 @@ protected:
       return;
     }
 
-    results.Set("size", (int)data.size());
     std::string extension = results.Get("extension").AsString();
 
     if (extension == ".png") {
