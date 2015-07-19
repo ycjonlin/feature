@@ -173,8 +173,9 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
     width = imageData.width
     height = imageData.height
 
-    array0 = image_split imageData
-    array1 = new Float32Array(array0.length)
+    array = image_split imageData
+    array0 = new Float32Array(array)
+    array1 = new Float32Array(array)
 
     convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, width*2
     convolute array0, array1, kernel, height*2, width*2, width*2, 1, length, 1
