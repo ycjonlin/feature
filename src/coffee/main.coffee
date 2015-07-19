@@ -34,8 +34,12 @@ image_load = (url, callback)->
   image = new Image
   image.crossOrigin = "Anonymous"
   image.onload = (event)->
-    console.log event
-    callback image, event
+    canvas = document.createElement("canvas")
+    canvas.width = image.width
+    canvas.height = image.height
+    context.drawImage image, 0, 0
+    imageData = canvas.getImageData 0, 0, image.width, image.height
+    callback imageData
   image.src = url
 
 split_cie_xyz = 
@@ -50,8 +54,8 @@ split_cie_xyz =
   document.body.appendChild(div)
   div.appendChild(canvas)
 
-  image_load 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg', (image)->
-    canvas.width = image.width
-    canvas.height = image.height
-    context.drawImage(image, 0, 0)
+  image_load 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg', (imageData)->
+    canvas.width = imageData.width
+    canvas.height = imageData.height
+    context.putImageData imageData, 0, 0
 )()
