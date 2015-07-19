@@ -158,7 +158,8 @@ gulp.task('natives', function() {
         compile: [
           '-Inacl_sdk/pepper_43/include',
           '-Inacl_sdk/pepper_43/include/pnacl',
-          '-Inacl_sdk/pepper_43/ports/include'
+          '-Inacl_sdk/pepper_43/ports/include',
+          '-g', '-O0'
         ],
         link: [
           '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
