@@ -246,7 +246,15 @@ protected:
     results.Set("url", url);
     results.Set("extension", extension);
     results.Set("size", (int)data.size());
-    results.Set("data", (int)*data.begin());
+    results.Set("magic0", (int)data[0]);
+    results.Set("magic1", (int)data[1]);
+    results.Set("magic2", (int)data[2]);
+    results.Set("magic3", (int)data[3]);
+    results.Set("magic4", (int)data[4]);
+    results.Set("magic5", (int)data[5]);
+    results.Set("magic6", (int)data[6]);
+    results.Set("magic7", (int)data[7]);
+    results.Set("magic8", (int)data[8]);
 
     if (extension == ".png") {
       PNG();
