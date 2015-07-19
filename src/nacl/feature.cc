@@ -137,6 +137,8 @@ void matrix_determinant(
 #include <sstream>
 
 #include "nacl_io/nacl_io.h"
+#include "nacl_io/osdirent.h"
+#include "nacl_io/osinttypes.h"
 
 #include <png.h>
 #include <jpeglib.h>
