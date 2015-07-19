@@ -160,4 +160,7 @@ matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
 
     matrixTrace array1, array0, height*2, width*2, width*2, 1
     div.appendChild image_element(array1, width, height)
+
+    matrixDeterminant array1, array0, height*2, width*2, width*2, 1
+    div.appendChild image_element(array1, width, height)
 )()
