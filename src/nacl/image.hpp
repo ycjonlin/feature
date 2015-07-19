@@ -90,26 +90,17 @@ protected:
       return;
     }
 
+    pp::VarDictionary image;
     if (extension == ".png") {
-      PNG();
     }
     else if (extension == ".jpeg" || extension == ".jpg") {
-      JPEG();
+      int32_t result = JPEG_Decode(&data[0], data.size(), image);
+      if (result != PP_OK) {
+        OnDone(result);
+      }
     }
     else {
       OnDone(PP_ERROR_BADRESOURCE);
-    }
-  }
-
-  void PNG() {
-    OnDone(PP_OK);
-  }
-
-  void JPEG() {
-    pp::VarDictionary image;
-    int32_t result = JPEG_Decode(&data[0], data.size(), image);
-    if (result != PP_OK) {
-      OnDone(result);
     }
 
     library.Set(url, image);
