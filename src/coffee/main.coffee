@@ -178,6 +178,8 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
+    div.appendChild image_element(array, width, height)
+
     n = 2
     for i in [0..n]
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
@@ -190,8 +192,6 @@ gaussian = (sigma)->
       div = document.createElement("div")
       div.className = "slide"
       document.body.appendChild div
-
-      div.appendChild image_element(array, width, height)
 
       matrixTrace array1, array0, height*2, width*2, width*2, 1
       div.appendChild image_element(array1, width, height)
