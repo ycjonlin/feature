@@ -72,9 +72,9 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
   while i < i_count
     j = 0; J = I
     while j < j_count
-      channel0 = +opend[_<<2|0]/+255; _ = _+1|0
-      channel1 = +opend[_<<2|0]/+255; _ = _+1|0
-      channel2 = +opend[_<<2|0]/+255; _ = _+1|0
+      channel0 = +opend[_]/+255; _ = _+1|0
+      channel1 = +opend[_]/+255; _ = _+1|0
+      channel2 = +opend[_]/+255; _ = _+1|0
       _ = _+1|0
       oppum[offset0+J|0] = channel0
       oppum[offset1+J|0] = channel1
