@@ -178,12 +178,7 @@ gulp.task('natives', function() {
               "program": {
                 "portable": {
                   "pnacl-translate": {
-                    "url": url+'.final.pexe',
-                    "optlevel": 2
-                  },
-                  "pnacl-debug": {
-                    "url": url+'.pexe',
-                    "optlevel": 0
+                    "url": url+'.final.pexe'
                   }
                 }
               }
