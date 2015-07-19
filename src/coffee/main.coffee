@@ -61,7 +61,7 @@ converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j
       oppum[_] = channel2*255|0; _ = _+1|0
       oppum[_] = 255; _ = _+1|0
       j = (j+1)|0; J = (J+j_step)|0
-    i = (_i+1)|0; I = (I+i_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
   null
 
 diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
@@ -81,7 +81,7 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
       opend[offset2+J|0] = channel2
       _ = _+1|0
       j = (j+1)|0; J = (J+j_step)|0
-    i = (_i+1)|0; I = (I+i_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
   null
 
 image_split = (image)->
