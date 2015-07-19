@@ -102,9 +102,6 @@ protected:
 
   void OnLoad(int32_t result)
   {
-    OnDone(result);
-    return;
-    
     if (result != PP_OK) {
       OnDone(result);
       return;
