@@ -160,6 +160,8 @@ protected:
     results.Set("code", result);
     response.Set("results", results);
     (*instance).PostMessage(response);
+
+    delete this;
   }
 };
 
@@ -199,7 +201,7 @@ protected:
       //
     }
     else {
-      OnDone(-1);
+      OnDone(PP_ERROR_BADRESOURCE);
     }
 
     OnDone(PP_OK);
