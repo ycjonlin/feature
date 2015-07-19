@@ -102,7 +102,7 @@ protected:
 
   void OnLoad(int32_t result)
   {
-    OnDone(PP_OK);
+    OnDone(result);
     return;
     
     if (result != PP_OK) {
@@ -111,12 +111,12 @@ protected:
     }
 
     std::string url = arguments.Get(0).AsString();
-    std::string extension = headers.Get("Content-Type").AsString();
+    std::string type = headers.Get("Content-Type").AsString();
 
     pp::VarDictionary image;
-    if (extension == ".png") {
+    if (type == "image/png") {
     }
-    else if (extension == ".jpeg" || extension == ".jpg") {
+    else if (type == "image/jpeg") {
       int32_t result = JPEG_Decode(&data[0], data.size(), image);
       if (result != PP_OK) {
         OnDone(result);
