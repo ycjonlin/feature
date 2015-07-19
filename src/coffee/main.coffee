@@ -41,9 +41,85 @@ image_load = (url, callback)->
     context.drawImage image, 0, 0
     imageData = context.getImageData 0, 0, image.width, image.height
     callback imageData
+    null
   image.src = url
+  null
 
-split_cie_xyz = 
+converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  _ = 0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      channel0 = opend[offset0+J|0]
+      channel1 = opend[offset1+J|0]
+      channel2 = opend[offset2+J|0]
+      oppum[_] = channel0*255|0; _ = _+1|0
+      oppum[_] = channel1*255|0; _ = _+1|0
+      oppum[_] = channel2*255|0; _ = _+1|0
+      oppum[_] = 255; _ = _+1|0
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (_i+1)|0; I = (I+i_step)|0
+  null
+
+diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  _ = 0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      channel0 = +oppum[_<<2|0]/+255; _ = _+1|0
+      channel1 = +oppum[_<<2|0]/+255; _ = _+1|0
+      channel2 = +oppum[_<<2|0]/+255; _ = _+1|0
+      _ = _+1|0
+      opend[offset0+J|0] = channel0
+      opend[offset1+J|0] = channel1
+      opend[offset2+J|0] = channel2
+      _ = _+1|0
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (_i+1)|0; I = (I+i_step)|0
+  null
+
+image_split = (image)->
+  array = new Float32Array(image.width*image.height*4)
+  width = image.width
+  height = image.height
+  size = width * height
+  diverge array, image.data, 
+    width, size*2, width+size*2, 
+    height, width*2, width, 1
+  array
+
+
+image_merge = (array, context, width, height)->
+  image = context.createImageData width, height
+  size = width * height
+  converge image.data, array, 
+    width, size*2, width+size*2, 
+    height, width*2, width, 1
+  image
+
+array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
+  oppum = new Float32Array(opend.length)
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  k_count = k_count|0; k_step = k_step|0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      sum = +0.0
+      k = 0; K = J
+      while k < k_count
+        sum = +sum + +opend[K] * +oppor[k]
+        k = (k+1)|0; K = (K+k_step)|0
+      oppum[J] = sum
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (_i+1)|0; I = (I+i_step)|0
 
 
 (()->
@@ -56,6 +132,8 @@ split_cie_xyz =
   div.appendChild(canvas)
 
   image_load 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg', (imageData)->
+    array = image_split imageData
+    newImageData = image_merge array, context, imageData.width, imageData.height
     canvas.width = imageData.width
     canvas.height = imageData.height
     context.putImageData imageData, 0, 0
