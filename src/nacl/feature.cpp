@@ -196,14 +196,15 @@ protected:
 
     if (method == "_interface") {
       response.Set("results", method_library);
+      PostMessage(response);
     }
     else if (method == "image_import") {
       std::string path = arguments.Get(0).AsString();
 
       pp::VarDictionary results;
       results.Set("path", path.c_str());
-
       response.Set("results", results);
+      PostMessage(response);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
@@ -213,9 +214,8 @@ protected:
       int j_count = arguments.Get(4).AsInt();
       int j_step  = arguments.Get(5).AsInt();
       array_integral(dst, src, i_count, i_step, j_count, j_step);
+      PostMessage(response);
     }
-
-    PostMessage(response);
   }
 };
 
