@@ -132,6 +132,7 @@ void matrix_determinant(
 
 #include <stdio.h>
 #include <sys/mount.h>
+#include <sys/stat.h>
 
 #include <sstream>
 
@@ -213,11 +214,15 @@ protected:
       std::string library = arguments.Get(0).AsString();
       std::string filename = arguments.Get(1).AsString();
 
-      std::ostringstream path;
-      path << "/mnt/" << library << "/" << filename;
+      std::ostringstream stream;
+      stream << "/mnt/" << library << "/" << filename;
+      const char *path = stream.str().c_str();
 
-      FILE *fp = fopen(path.str().c_str(), "rb");
-      response.Set("results", path.str().c_str());
+      struct stat buf;
+      memset(&buf, 0, sizeof(buf));
+      int result = stat(path, &buf);
+
+      response.Set("results", buf.st_size);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
