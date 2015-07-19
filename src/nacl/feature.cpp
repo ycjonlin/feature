@@ -131,7 +131,7 @@ void matrix_determinant(
 #include "ppapi/cpp/var_dictionary.h"
 
 #include <png.h>
-#include <jpeglib.h>
+#include "./jpeg.hpp"
 
 #include "ppapi/cpp/url_loader.h"
 #include "ppapi/cpp/url_request_info.h"
@@ -263,26 +263,7 @@ protected:
   }
 
   void JPEG() {
-    struct jpeg_decompress_struct cinfo;
-
-    jpeg_create_decompress(&cinfo);
-    jpeg_mem_src(&cinfo, &data[0], data.size());
-    int result = jpeg_read_header(&cinfo, TRUE);
-    results.Set("jpeg_read_header", result);
-    /*(void) jpeg_start_decompress(&cinfo);
-
-    int row_stride = cinfo.output_width * cinfo.output_components;
-    std::vector<uint8_t> image(cinfo.output_height * row_stride);
-
-    while (cinfo.output_scanline < cinfo.output_height) {
-      uint8_t *buffer_array[1];
-      buffer_array[0] = &image[cinfo.output_scanline * row_stride];
-      jpeg_read_scanlines(&cinfo, buffer_array, 1);
-    }
-
-    (void) jpeg_finish_decompress(&cinfo);
-    jpeg_destroy_decompress(&cinfo);*/
-
+    JPEG_Decode(&data[0], data.size());
     OnDone(PP_OK);
   }
 };
