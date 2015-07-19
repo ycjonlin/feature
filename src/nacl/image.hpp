@@ -60,9 +60,6 @@ protected:
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
-    OnDone(PP_OK);
-    return;
-    
     Read();
   }
 
@@ -94,6 +91,9 @@ protected:
 
   void OnLoad(int32_t result)
   {
+    OnDone(PP_OK);
+    return;
+    
     if (result != PP_OK) {
       OnDone(result);
       return;
