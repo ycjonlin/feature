@@ -151,12 +151,14 @@ public:
 protected:
   std::string id;
   pp::VarArray arguments;
+  pp::VarDictionary results;
   pp::Instance *instance;
 
   void OnDone(int32_t result) {
     pp::VarDictionary response;
     response.Set("id", id);
-    response.Set("results", result);
+    results.Set("code", result);
+    response.Set("results", results);
     (*instance).PostMessage(response);
   }
 };
