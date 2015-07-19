@@ -50,8 +50,8 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   jpeg_destroy_decompress(&cinfo);
 
   // JS: Image Object
-  image.Set("width", cinfo.output_width);
-  image.Set("height", cinfo.output_height);
+  image.Set("width", (int)cinfo.output_width);
+  image.Set("height", (int)cinfo.output_height);
   image.Set("buffer", array_buffer);
 
   return PP_OK;
