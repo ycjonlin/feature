@@ -158,12 +158,12 @@ gulp.task('natives', function() {
         compile: [
           '-Inacl_sdk/pepper_43/include',
           '-Inacl_sdk/pepper_43/ports/include',
-          '-g', '-O0'
+          '-O3'
         ],
         link: [
           '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
-          //'-Lnacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
-          '-lppapi_cpp', '-lppapi'//, '-ljpeg', '-lpng'
+          '-Lnacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
+          '-lppapi_cpp', '-lppapi', '-ljpeg', '-lpng'
         ],
         dst: function(file) {
           if (file == null)
