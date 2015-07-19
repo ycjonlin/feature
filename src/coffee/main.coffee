@@ -178,10 +178,10 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
-    n = 2
+    n = 4
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2+i/n))
-      console.log Math.ceil(Math.sqrt(2+i/n)*6)
+      console.log Math.ceil(Math.sqrt(2+i/n)*6)|1
       continue
 
       convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
