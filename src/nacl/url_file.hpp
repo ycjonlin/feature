@@ -15,7 +15,7 @@ public:
       = callback_factory.NewCallback(&URLFile::OnOpen);
     int32_t result = url_loader.Open(url_request, on_open);
     if (PP_ERROR_WOULDBLOCK != result)
-      on_open(result);
+      on_open.Run(result);
   }
 
 protected:
@@ -51,6 +51,6 @@ protected:
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
     if (PP_ERROR_WOULDBLOCK != result)
-      on_read(result);
+      on_read.Run(result);
   }
 };
