@@ -55,9 +55,7 @@ protected:
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
-    pp::VarDictionary headers;
-    std::stringstream stream(response.GetHeaders().AsString());
-    results.Set("headers", headers);
+    results.Set("headers", response.GetHeaders());
     results.Set("status_code", response.GetStatusCode());
     results.Set("status_line", response.GetStatusLine());
     if (response.GetStatusCode() != 200) {
