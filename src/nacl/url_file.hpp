@@ -16,6 +16,8 @@ public:
     url_request(instance), 
     callback_factory(this)
   {
+    response.Set("results", results);
+
     url_request.SetURL(url);
     url_request.SetMethod("GET");
 
@@ -37,6 +39,7 @@ protected:
   std::vector<uint8_t> data;
   pp::CompletionCallback on_done;
   pp::VarDictionary response;
+  pp::VarDictionary results;
   pp::Instance *instance;
 
   void OnOpen(int32_t result)
@@ -68,7 +71,7 @@ protected:
 
   void OnDone(int32_t result)
   {
-    response.Set("results", result);
+    result.Set("code", result);
     (*instance).PostMessage(response);
   }
 
