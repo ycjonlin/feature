@@ -338,11 +338,11 @@ protected:
       float *dst_pointer = (float*)dst_buffer.Map();
       float *krn_pointer = (float*)krn_buffer.Map();
 
-      array_convolute(
+      /*array_convolute(
         dst_pointer, src_pointer, krn_pointer,
         i_count, i_step, 
         j_count, j_step, 
-        k_count, k_step);
+        k_count, k_step);*/
 
       url += " calculus_convolute";
       array_library.Set(url, dst_buffer);
