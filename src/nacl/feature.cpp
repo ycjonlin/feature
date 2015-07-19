@@ -265,7 +265,7 @@ protected:
   void JPEG() {
     struct jpeg_decompress_struct cinfo;
 
-    jpeg_create_decompress(&cinfo);
+    /*jpeg_create_decompress(&cinfo);
     jpeg_mem_src(&cinfo, &data[0], data.size());
     (void) jpeg_read_header(&cinfo, TRUE);
     (void) jpeg_start_decompress(&cinfo);
@@ -280,7 +280,7 @@ protected:
     }
 
     (void) jpeg_finish_decompress(&cinfo);
-    jpeg_destroy_decompress(&cinfo);
+    jpeg_destroy_decompress(&cinfo);*/
 
     OnDone(PP_OK);
   }
