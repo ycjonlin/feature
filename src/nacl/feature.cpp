@@ -1,3 +1,71 @@
+void split_cie_rgb(
+  float *dst_r, float *dst_g, float *dst_b, int *src_i,
+  int i_count, int i_step, 
+  int j_count, int j_step) {
+  int idx = 0;
+  for (int _i=0, i=0; _i<i_count; _i+=1, i+=i_step) {
+    for (int _j=0, j=i; _j<j_count; _j+=1, j+=j_step) {
+      int color = src_i[idx];
+      dst_r[j] = (float)((color>>24)&0xff)/255;
+      dst_g[j] = (float)((color>>16)&0xff)/255;
+      dst_b[j] = (float)((color>> 8)&0xff)/255;
+      idx += 1;
+    }
+  }
+}
+
+void split_cie_rgb(
+  float *dst_r, float *dst_g, float *dst_b, int *src_i,
+  int i_count, int i_step, 
+  int j_count, int j_step) {
+  int idx = 0;
+  for (int _i=0, i=0; _i<i_count; _i+=1, i+=i_step) {
+    for (int _j=0, j=i; _j<j_count; _j+=1, j+=j_step) {
+      int color = src_i[idx];
+      dst_r[j] = linear[(color>>24)&0xff];
+      dst_g[j] = linear[(color>>16)&0xff];
+      dst_b[j] = linear[(color>> 8)&0xff];
+      idx += 1;
+    }
+  }
+}
+
+void split_cie_xyz(
+  float *dst_x, float *dst_y, float *dst_z, int *src_i,
+  int i_count, int i_step, 
+  int j_count, int j_step) {
+  int idx = 0;
+  for (int _i=0, i=0; _i<i_count; _i+=1, i+=i_step) {
+    for (int _j=0, j=i; _j<j_count; _j+=1, j+=j_step) {
+      int color = src_i[idx];
+      float r = linear[(color>>24)&0xff];
+      float g = linear[(color>>16)&0xff];
+      float b = linear[(color>> 8)&0xff];
+      dst_x[j] = 0.4124564f*r + 0.3575761f*g + 0.1804375f*b;
+      dst_y[j] = 0.2126729f*r + 0.7151522f*g + 0.0721750f*b;
+      dst_z[j] = 0.0193339f*r + 0.1191920f*g + 0.9503041f*b;
+      idx += 1;
+    }
+  }
+}
+
+void split_grayscale(
+  float *dst_g, int *src_i,
+  int i_count, int i_step, 
+  int j_count, int j_step) {
+  int idx = 0;
+  for (int _i=0, i=0; _i<i_count; _i+=1, i+=i_step) {
+    for (int _j=0, j=i; _j<j_count; _j+=1, j+=j_step) {
+      int color = src_i[idx];
+      float r = linear[(color>>24)&0xff];
+      float g = linear[(color>>16)&0xff];
+      float b = linear[(color>> 8)&0xff];
+      dst_g[j] = 0.2126*r + 0.7152*g + 0.0722*b;
+      idx += 1;
+    }
+  }
+}
+
 void array_integral(
   float *dst, float *src, 
   int i_count, int i_step, 
