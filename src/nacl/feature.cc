@@ -157,10 +157,10 @@ protected:
     method_library.Set("cloud_export", "");
     method_library.Set("cloud_free", "");
     // image to array
-    method_library.Set("separate_srgb", "");
-    method_library.Set("separate_cie_rgb", "");
-    method_library.Set("separate_cie_xyz", "");
-    method_library.Set("separate_grayscale", "");
+    method_library.Set("split_srgb", "");
+    method_library.Set("split_cie_rgb", "");
+    method_library.Set("split_cie_xyz", "");
+    method_library.Set("split_grayscale", "");
     // calculus
     method_library.Set("calculus_integral", "");
     method_library.Set("calculus_convolute", "");
@@ -193,7 +193,7 @@ protected:
 
     if (!request.HasKey("arguments")) return;
     pp::VarArray arguments(request.Get("arguments"));
-    
+
 
     if (method == "_interface") {
       response.Set("results", method_library);
