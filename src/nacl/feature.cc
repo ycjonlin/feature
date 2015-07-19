@@ -178,8 +178,9 @@ protected:
     method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
-    int _ = mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
-    method_library.Set("ok", _);
+    int ok = mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
+    method_library.Set("ok", ok);
+    method_library.Set("errorno", errno);
   }
   virtual ~FeatureInstance() {}
 
