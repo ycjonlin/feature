@@ -2,15 +2,10 @@
 
 class URLFile {
 public:
-  URLFile(
-    std::string &url, 
-    pp::CompletionCallback &on_done,
-    pp::Instance *instance) :
-    url(url),
-    on_done(on_done),
-    url_loader(instance), 
-    url_request(instance), 
-    callback_factory(this)
+  URLFile(std::string &url, pp::CompletionCallback &on_done, pp::Instance *instance) 
+    : url(url), on_done(on_done), 
+      url_loader(instance), url_request(instance), 
+      callback_factory(this)
   {
     OnCreate(PP_OK);
   }
