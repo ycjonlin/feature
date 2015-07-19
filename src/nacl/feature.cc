@@ -224,7 +224,7 @@ protected:
 
       pp::VarDictionary results;
       results.Set("args", arguments);
-      results.Set("path", path);
+      results.Set("path", path.c_str());
       //results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
