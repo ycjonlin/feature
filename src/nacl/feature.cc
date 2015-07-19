@@ -144,7 +144,7 @@ protected:
   pp::URLRequestInfo request;
 public:
   explicit URLFile(pp::Var &url, pp::Instance *instance)
-    : factory(instance), loader(instance), request(instance) {
+    : factory(this), loader(instance), request(instance) {
     request.SetURL(url);
     request.SetMethod("GET");
     request.SetRecordDownloadProgress(true);
