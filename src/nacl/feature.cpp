@@ -251,7 +251,7 @@ protected:
           pp::VarDictionary response;
           response.Set("id", id);
           response.Set("results", result);
-          PostMessage(response);
+          (*instance).PostMessage(response);
         }
       };
 
