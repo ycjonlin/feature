@@ -139,7 +139,7 @@ namespace {
 
 class URLFile {
 protected:
-  pp::CompletionCallbackFactory factory;
+  pp::CompletionCallbackFactory<URLFile> factory;
   pp::URLLoader loader;
   pp::URLRequestInfo request;
 public:
