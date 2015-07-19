@@ -57,10 +57,6 @@ protected:
     }
     pp::VarDictionary headers;
     std::stringstream stream(response.GetHeaders().AsString());
-    std::string token;
-    while(std::getline(stream, token, '\n')) {
-      //headers.Set(token, true);
-    }
     results.Set("headers", headers);
     results.Set("status_code", response.GetStatusCode());
     results.Set("status_line", response.GetStatusLine());
