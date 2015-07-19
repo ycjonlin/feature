@@ -71,7 +71,7 @@ protected:
 
   void OnDone(int32_t result)
   {
-    result.Set("code", result);
+    results.Set("code", result);
     (*instance).PostMessage(response);
   }
 
