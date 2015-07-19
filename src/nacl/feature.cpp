@@ -204,11 +204,6 @@ protected:
       std::string path = arguments.Get(0).AsString();
 
       URLFile &url_file = *(new URLFile(path, this));
-
-      pp::VarDictionary response;
-      response.Set("id", request.Get("id"));
-      response.Set("results", path.c_str());
-      PostMessage(response);
     }
     else if (method == "array_integral")
     {
