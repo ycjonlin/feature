@@ -184,7 +184,7 @@ protected:
     method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
-    nacl_io_init();
+    nacl_io_init_ppapi(instance, pp::Module::Get()->get_browser_interface());
     int flickr = mount("https://farm1.staticflickr.com/", "/flickr", "httpfs", 0, "");
     int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/cdnjs", "httpfs", 0, "");
     int local = mount("http://localhost:9001/", "/local", "httpfs", 0, "");
@@ -222,7 +222,6 @@ protected:
       stream << "/" << library << "/" << filename;
       std::string path = stream.str();
 
-      nacl_io_init();
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
       int ok = stat("/mnt/local/index.html", &buf);
