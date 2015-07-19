@@ -259,6 +259,8 @@ protected:
           else {
             OnDone(-1);
           }
+
+          OnDone(PP_OK);
         }
       };
 
