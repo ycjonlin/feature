@@ -30,6 +30,17 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
         feature.calculus_convolute args, (array_uv)->
 ###
 
+image_load = (url, callback)->
+  image = new Image
+  image.crossOrigin = "Anonymous"
+  image.onload = (event)->
+    console.log event
+    callback image, event
+  image.src = url
+
+split_cie_xyz = 
+
+
 (()->
   div = document.createElement("div")
   div.className = 'slide'
@@ -39,11 +50,8 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
   document.body.appendChild(div)
   div.appendChild(canvas)
 
-  image = new Image
-  image.crossOrigin = "Anonymous"
-  image.onload = ()->
+  image_load 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg', (image)->
     canvas.width = image.width
     canvas.height = image.height
     context.drawImage(image, 0, 0)
-  image.src = 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'
 )()
