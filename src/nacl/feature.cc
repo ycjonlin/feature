@@ -184,9 +184,8 @@ protected:
     nacl_io_init();
     int flickr = mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
     int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/mnt/cdnjs", "httpfs", 0, "");
-    method_library.Set("flickr", flickr);
-    method_library.Set("cdnjs", cdnjs);
-    method_library.Set("errno", errno);
+    method_library.Set("_flickr", flickr);
+    method_library.Set("_cdnjs", cdnjs);
   }
   virtual ~FeatureInstance() {}
 
