@@ -9,7 +9,7 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
   url = 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'
   feature.image_import [url], (image)->
     feature.split_cie_xyz [url], (raw)->
-      feature.import_export [raw], (data)->
+      feature.image_export [raw, image.width, image.height], (data)->
         canvas = document.createElement "canvas"
         canvas.width = image.width
         canvas.height = image.height
