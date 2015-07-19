@@ -131,7 +131,7 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
   document.body.appendChild(div)
   div.appendChild(canvas)
 
-  image_load 'https://farm1.staticflickr.com/194/505494059_426290217e_z.jpg', (imageData)->
+  image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
     array = image_split imageData
     newImageData = image_merge array, context, imageData.width, imageData.height
     canvas.width = newImageData.width
