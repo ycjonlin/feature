@@ -205,7 +205,7 @@ protected:
       std::string library = arguments.Get(0).AsString();
       std::string filename = arguments.Get(1).AsString();
 
-      std::ostringstream path;
+      std::stringstream path;
       path << "/mnt/" << library << "/" << filename;
 
       if (library == "flickr") {
