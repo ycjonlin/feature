@@ -93,7 +93,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
     sigma = 4
-    length = sigma*8|1
+    length = sigma*6|1
     radius = (length-1)/2
     kernel0 = new Float32Array(length)
     kernel1 = new Float32Array(length)
