@@ -39,7 +39,7 @@ protected:
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
 
-  uint8_t buffer[4096];
+  uint8_t buffer[1<<16];
   std::vector<uint8_t> data;
   pp::CompletionCallback on_done;
   pp::VarDictionary response;
