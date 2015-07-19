@@ -123,54 +123,17 @@ void matrix_determinant(
 
 // module code
 
-#include "ppapi/c/pp_errors.h"
-
 #include "ppapi/cpp/instance.h"
 #include "ppapi/cpp/module.h"
 #include "ppapi/cpp/var.h"
 #include "ppapi/cpp/var_array.h"
 #include "ppapi/cpp/var_array_buffer.h"
 #include "ppapi/cpp/var_dictionary.h"
-#include "ppapi/cpp/url_loader.h"
-#include "ppapi/cpp/url_request_info.h"
-#include "ppapi/cpp/url_response_info.h"
-#include "ppapi/utility/completion_callback_factory.h"
+
+#include <stdio.h>
+#include <sys/mount.h>
 
 namespace {
-
-class URLFile {
-protected:
-  pp::CompletionCallbackFactory<URLFile> factory;
-  pp::URLLoader loader;
-  pp::URLRequestInfo request;
-  pp::URLResponseInfo response;
-  std::string payload;
-public:
-  explicit URLFile(pp::Var &url, pp::Instance *instance)
-    : factory(this), loader(instance), request(instance) {
-    request.SetURL(url);
-    request.SetMethod("GET");
-    request.SetRecordDownloadProgress(true);
-    pp::CompletionCallback callback = 
-      factory.NewCallback(&URLFile::OnOpen);
-    loader.Open(request, callback);
-  }
-
-  void OnOpen(int32_t result) {
-    if (result != PP_OK) {
-      return;
-    }
-
-    int64_t received_bytes = 0;
-    int64_t total_bytes = 0;
-    if (loader.GetDownloadProgress(&received_bytes, &total_bytes)) {
-      if (total_bytes > 0) {
-        payload.reserve(total_bytes);
-      }
-    }
-    request.SetRecordDownloadProgress(false);
-  }
-};
 
 }  // namespace
 
@@ -210,6 +173,9 @@ protected:
     // cloud to cloud
     method_library.Set("cloud_sort", "");
     method_library.Set("cloud_match", "");
+
+    // nacl_io
+    mount("https://farm1.staticflickr.com/", "/mnt/http", "httpfs", 0, "");
   }
   virtual ~FeatureInstance() {}
 
