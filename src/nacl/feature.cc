@@ -129,8 +129,8 @@ void matrix_determinant(
 #include "ppapi/cpp/var_array.h"
 #include "ppapi/cpp/var_array_buffer.h"
 #include "ppapi/cpp/var_dictionary.h"
-#include "ppapi/cpp/var_url_loader.h"
-#include "ppapi/cpp/var_url_request_info.h"
+#include "ppapi/cpp/url_loader.h"
+#include "ppapi/cpp/url_request_info.h"
 
 namespace {
 
