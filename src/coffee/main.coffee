@@ -116,8 +116,12 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     array1 = new Float32Array(array0.length)
     array2 = new Float32Array(array0.length)
 
-    convolute array1, array0, kernel0, height*2, width*2, width*2, 1, length, width*2
-    convolute array2, array1, kernel0, height*2, width*2, width*2, 1, length, 1
+    convolute1 = (a,b,c)->
+      convolute a, b, c, height*2, width*2, width*2, 1, length, width*2
+    convolute0 = (a,b,c)->
+      convolute a, b, c, height*2, width*2, width*2, 1, length, 1
+    convolute1 array1, array0, kernel0
+    convolute0 array2, array1, kernel0
 
     # create image
     canvas = document.createElement("canvas")
