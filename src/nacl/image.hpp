@@ -43,6 +43,7 @@ protected:
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null() || response.GetStatusCode() != 200) {
+      results.Set("http_code", response.GetStatusCode());
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
