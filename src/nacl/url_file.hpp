@@ -5,8 +5,15 @@
 
 class URLFile {
 public:
-  URLFile(const std::string &url, pp::Instance *instance)
-    : url_loader(instance), url_request(instance), callback_factory(this)
+  URLFile(
+    const std::string &url, 
+    const pp::CompletionCallback &on_done, 
+    pp::Instance *instance) : 
+    url(url), 
+    on_done(on_done), 
+    url_loader(instance), 
+    url_request(instance), 
+    callback_factory(this)
   {
     url_request.SetURL(url);
     url_request.SetMethod("GET");
@@ -20,9 +27,11 @@ public:
   }
 
 protected:
-  pp::CompletionCallbackFactory<URLFile> callback_factory;
-  pp::URLLoader url_loader;
+  const pp::CompletionCallback on_done;
+  const std::string  url;
+  pp::URLLoader      url_loader;
   pp::URLRequestInfo url_request;
+  pp::CompletionCallbackFactory<URLFile> callback_factory;
   uint8_t buffer[4096];
   std::vector<uint8_t> data;
 
