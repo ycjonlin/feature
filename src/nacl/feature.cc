@@ -211,7 +211,7 @@ protected:
 
       if (library == "flickr") {
         FILE *fp = fopen(path.str().c_str(), "rb");
-        //response.Set("results", (int32_t)ftell(fp));
+        response.Set("results", (int32_t)ftell(fp));
       }
     }
     else if (method == "array_integral") {
