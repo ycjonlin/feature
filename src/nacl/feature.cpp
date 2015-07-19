@@ -1,6 +1,6 @@
 static float linear[256] = {0};
 
-void split_cie_rgb(
+void split_srgb(
   float *dst_r, float *dst_g, float *dst_b, int *src_i,
   int i_count, int i_step, 
   int j_count, int j_step) {
