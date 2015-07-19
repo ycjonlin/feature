@@ -123,18 +123,14 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
 
 
 (()->
-  div = document.createElement("div")
-  div.className = 'slide'
-  canvas = document.createElement("canvas")
-  context = canvas.getContext("2d")
-
-  document.body.appendChild(div)
-  div.appendChild(canvas)
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
+    canvas = document.createElement("canvas")
+    context = canvas.getContext("2d")
     array = image_split imageData
     newImageData = image_merge array, context, imageData.width, imageData.height
     canvas.width = newImageData.width
     canvas.height = newImageData.height
     context.putImageData newImageData, 0, 0
+    document.body.appendChild canvas
 )()
