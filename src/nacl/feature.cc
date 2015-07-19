@@ -218,14 +218,14 @@ protected:
       stream << "/mnt/" << library << "/" << filename;
       std::string path = stream.str();
 
-      //struct stat buf;
-      //memset(&buf, 0, sizeof(buf));
-      //stat(path.c_str(), &buf);
+      struct stat buf;
+      memset(&buf, 0, sizeof(buf));
+      stat(path.c_str(), &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
       results.Set("path", path.c_str());
-      //results.Set("size", (int)buf.st_size);
+      results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
     }
