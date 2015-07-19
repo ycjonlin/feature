@@ -41,5 +41,5 @@ int32_t JPEG_Decode(uint8_t *data, size_t size)
   (void) jpeg_finish_decompress(&cinfo);
   jpeg_destroy_decompress(&cinfo);
 
-  return 1;
+  return 0;
 }
