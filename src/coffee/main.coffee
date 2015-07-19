@@ -110,8 +110,8 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     console.log kernel2
     return
 
-    width = imageData.width
-    height = imageData.height
+    width = 64#imageData.width
+    height = 64#imageData.height
 
     array = image_split imageData
     array0 = new Float32Array(array.length)
