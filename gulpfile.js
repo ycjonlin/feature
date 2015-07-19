@@ -146,17 +146,17 @@ gulp.task('natives', function() {
     .pipe(shell([
       'mkdir -p <%= dst() %>',
       '<%= bin %>/pnacl-clang++ <%= file.path %> '+
-        '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
+        '<%= compile %> -c -o <%= dst(file) %>.o -g -O0',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
-        '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi -lnacl_io',
+        '<%= dst(file) %>.o -L<%= link %> -lppapi_cpp -lppapi -lnacl_io',
       '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
         '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
-        inc: 'nacl_sdk/pepper_43/include',
-        lib: 'nacl_sdk/pepper_43/lib/pnacl/Debug',
+        compile: '-Inacl_sdk/pepper_43/include -Inacl_sdk/pepper_43/ports/include',
+        link: '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
         dst: function(file) {
           if (file == null)
             return config.natives.destination;
