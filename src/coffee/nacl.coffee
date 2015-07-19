@@ -34,11 +34,11 @@ module.exports = (id, url, onload)->
   listener = document.createElement 'div'
   listener.addEventListener 'load', ((event)->
     register = (methods)->
-      for method, type of methods
-        if method[0] == '_'
-          module[method] = type
+      for key, value of methods
+        if key[0] == '_'
+          module[key] = value
         else
-          module[method] = session.create.bind session, method
+          module[key] = session.create.bind session, key
       module._ready = true
       if onload
         onload(methods)
