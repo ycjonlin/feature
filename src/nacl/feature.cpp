@@ -289,6 +289,37 @@ protected:
     {
       new ImageImport(id, arguments, image_library, this);
     }
+    else if (method == "image_export")
+    {
+      std::string url = arguments.Get(0).AsString();
+      pp::VarDictionary image(image_library.Get(url));
+
+      int width = image.Get("width").AsInt();
+      int height = image.Get("height").AsInt();
+      int image_size = width * height;
+      int array_size = image_size * 16;
+
+      pp::VarArrayBuffer src_buffer(image.Get("buffer"));
+      pp::VarArrayBuffer dst_buffer(array_size);
+
+      int   *src_pointer = (  int*)src_buffer.Map();
+      float *dst_pointer = (float*)dst_buffer.Map();
+
+      split_cie_xyz(
+        dst_pointer + width, 
+        dst_pointer + image_size * 2, 
+        dst_pointer + width + image_size * 2, 
+        src_pointer,
+        height, width * 2, width, 1);
+
+      url += " split_cie_xyz";
+      array_library.Set(url, dst_buffer);
+
+      pp::VarDictionary response;
+      response.Set("id", id);
+      response.Set("results", url);
+      PostMessage(response);
+    }
     else if (method == "split_cie_xyz")
     {
       std::string url = arguments.Get(0).AsString();
@@ -338,11 +369,11 @@ protected:
       float *dst_pointer = (float*)dst_buffer.Map();
       float *krn_pointer = (float*)krn_buffer.Map();
 
-      /*array_convolute(
+      array_convolute(
         dst_pointer, src_pointer, krn_pointer,
         i_count, i_step, 
         j_count, j_step, 
-        k_count, k_step);*/
+        k_count, k_step);
 
       url += " calculus_convolute";
       array_library.Set(url, dst_buffer);
