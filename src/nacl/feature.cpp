@@ -305,9 +305,9 @@ protected:
       float *array_pointer = (float*)array_buffer.Map();
 
       split_cie_xyz(
-        array_buffer_ptr+width, 
-        array_buffer_ptr+image_size*2, 
-        array_buffer_ptr+width+image_size*2, 
+        array_pointer + width, 
+        array_pointer + image_size * 2, 
+        array_pointer + width + image_size * 2, 
         image_pointer,
         height, width*2, width, 1)
     }
