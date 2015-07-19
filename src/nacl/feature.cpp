@@ -267,8 +267,8 @@ protected:
 
     jpeg_create_decompress(&cinfo);
     jpeg_mem_src(&cinfo, &data[0], data.size());
-    (void) jpeg_read_header(&cinfo, TRUE);
-    /* (void) jpeg_start_decompress(&cinfo);
+    /*(void) jpeg_read_header(&cinfo, TRUE);
+    (void) jpeg_start_decompress(&cinfo);
 
     int row_stride = cinfo.output_width * cinfo.output_components;
     std::vector<uint8_t> image(cinfo.output_height * row_stride);
