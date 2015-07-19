@@ -30,6 +30,8 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
         feature.calculus_convolute args, (array_uv)->
 ###
 
+config.EnableCors(new EnableCorsAttribute(Properties.Settings.Default.Cors, "", ""))
+
 image_load = (url, callback)->
   image = new Image
   image.crossOrigin = "Anonymous"
