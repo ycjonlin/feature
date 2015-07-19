@@ -96,7 +96,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
-matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
+matrixTrace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -110,7 +110,7 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
-matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
+matrixDeterminant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -129,7 +129,7 @@ matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
-matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
+matrixGaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -151,7 +151,7 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
       _uu = (+_ii * +_ - +_i * +_i) / +norm
       _vv = (+_jj * +_ - +_j * +_j) / +norm
       _uv = (+_ij * +_ - +_i * +_j) / +norm
-      oppum[J] = +0.5 + +1e3 * (+_uu * +_vv - +_uv * +_uv)
+      oppum[J] = +0.5 + +1e3 * (+_uu * +_vv - +_uv * +_uv) * +sigma
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
@@ -185,6 +185,7 @@ gaussian = (sigma)->
 
     n = 2
     for i in [0..n]
+      sigma = 2*Math.sqrt(1+3*i/n)
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
       console.log kernel.length
 
@@ -197,6 +198,6 @@ gaussian = (sigma)->
       #matrixDeterminant array1, array0, height*2, width*2, width*2, 1
       #div.appendChild image_element(array1, width, height)
 
-      matrixGaussian array1, array0, height*2, width*2, width*2, 1
+      matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
       div.appendChild image_element(array1, width, height)
 )()
