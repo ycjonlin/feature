@@ -4,7 +4,7 @@
 
 #include "jpeg.hpp"
 
-#include <stringstream>
+#include <sstream>
 
 class ImageImport : public Closure {
 public:
