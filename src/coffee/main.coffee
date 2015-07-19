@@ -96,62 +96,37 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
-matrixTrace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+measure = (trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
   i = 0; I = 0
-  while i < i_count
-    j = 0; J = I
-    while j < j_count
-      xx = +opend[J-j_step|0] - +opend[J] * +2 + +opend[J+j_step|0]
-      yy = +opend[J-i_step|0] - +opend[J] * +2 + +opend[J+i_step|0]
-      oppum[J] = +0.5 + +1e0 * (+xx + +yy) * +sigma * +sigma * +sigma * +sigma
-      j = (j+1)|0; J = (J+j_step)|0
-    i = (i+1)|0; I = (I+i_step)|0
-
-matrixDeterminant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
-  i_count = i_count|0; i_step = i_step|0
-  j_count = j_count|0; j_step = j_step|0
-  k_count = k_count|0; k_step = k_step|0
-  i = 0; I = 0
-  while i < i_count
-    j = 0; J = I
-    while j < j_count
-      xx = +opend[J-j_step|0] - +opend[J] * +2 + +opend[J+j_step|0]
-      yy = +opend[J-i_step|0] - +opend[J] * +2 + +opend[J+i_step|0]
-      xy = +0.25*(
-        +opend[J-i_step-j_step|0] -
-        +opend[J+i_step-j_step|0] -
-        +opend[J-i_step+j_step|0] +
-        +opend[J+i_step+j_step|0])
-      oppum[J] = +0.5 + +1e2 * (+xx * +yy - +xy * +xy) * +sigma * +sigma * +sigma * +sigma
-      j = (j+1)|0; J = (J+j_step)|0
-    i = (i+1)|0; I = (I+i_step)|0
-
-matrixGaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
-  i_count = i_count|0; i_step = i_step|0
-  j_count = j_count|0; j_step = j_step|0
-  k_count = k_count|0; k_step = k_step|0
-  i = 0; I = 0
+  s1_2 = +(sigma/2)
+  s2_1 = +(sigma*sigma)
+  s2_4 = +(sigma*sigma/4)
   while i < i_count
     j = 0; J = I
     while j < j_count
       _ = +opend[J]
-      _j = +0.5 * (+opend[J+j_step|0] - +opend[J-j_step|0])
-      _i = +0.5 * (+opend[J+i_step|0] - +opend[J-i_step|0])
-      _jj = +opend[J-j_step|0] - _ * +2 + +opend[J+j_step|0]
-      _ii = +opend[J-i_step|0] - _ * +2 + +opend[J+i_step|0]
-      _ij = +0.25 * (
+      _j = +s1_2 * (+opend[J+j_step|0] - +opend[J-j_step|0])
+      _i = +s1_2 * (+opend[J+i_step|0] - +opend[J-i_step|0])
+      _jj = s2_1 * (+opend[J-j_step|0] - _ * +2 + +opend[J+j_step|0])
+      _ii = s2_1 * (+opend[J-i_step|0] - _ * +2 + +opend[J+i_step|0])
+      _ij = s2_4 * (
         +opend[J+i_step+j_step|0] -
         +opend[J-i_step+j_step|0] -
         +opend[J+i_step-j_step|0] +
         +opend[J-i_step-j_step|0])
+
       norm = +_ * +_
       _uu = (+_ii * +_ - +_i * +_i) / +norm
       _vv = (+_jj * +_ - +_j * +_j) / +norm
       _uv = (+_ij * +_ - +_i * +_j) / +norm
-      oppum[J] = +0.5 + +1e1 * (+_uu * +_vv - +_uv * +_uv) * +sigma * +sigma * +sigma * +sigma
+
+      oppum[J] = +0.5 + +1e0 * (+_ii + +_jj)
+      oppum[J] = +0.5 + +1e2 * (+_ii * +_jj - +_ij * +_ij)
+      oppum[J] = +0.5 + +1e1 * (+_uu * +_vv - +_uv * +_uv)
+
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
@@ -177,6 +152,8 @@ gaussian = (sigma)->
     array = image_split imageData
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
+    array2 = new Float32Array(array.length)
+    array3 = new Float32Array(array.length)
 
     divTrace = document.createElement("div")
     divTrace.className = "slide"
@@ -187,7 +164,7 @@ gaussian = (sigma)->
     divDeterminant.className = "slide"
     document.body.appendChild divDeterminant
     divDeterminant.appendChild image_element(array, width, height)
-    
+
     divGaussian = document.createElement("div")
     divGaussian.className = "slide"
     document.body.appendChild divGaussian
@@ -202,12 +179,8 @@ gaussian = (sigma)->
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
-      matrixTrace array1, array0, sigma, height*2, width*2, width*2, 1
+      matrixTrace array1, array2, array3, array0, sigma, height*2, width*2, width*2, 1
       divTrace.appendChild image_element(array1, width, height)
-      
-      matrixDeterminant array1, array0, sigma, height*2, width*2, width*2, 1
-      divDeterminant.appendChild image_element(array1, width, height)
-
-      matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
-      divGaussian.appendChild image_element(array1, width, height)
+      divDeterminant.appendChild image_element(array2, width, height)
+      divGaussian.appendChild image_element(array3, width, height)
 )()
