@@ -25,7 +25,7 @@ protected:
       std::min<size_t>(url.rfind("."), url.length()));
     results.Set("url", url);
     results.Set("extension", extension);
-    
+
     pp::URLRequestInfo url_request(instance);
     url_request.SetURL(url);
     url_request.SetMethod("GET");
@@ -89,6 +89,7 @@ protected:
     }
 
     results.Set("size", (int)data.size());
+    std::string extension = results.Get("extension").AsString();
 
     if (extension == ".png") {
       PNG();
