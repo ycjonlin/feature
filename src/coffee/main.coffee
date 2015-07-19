@@ -147,9 +147,10 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
         +opend[J-i_step+j_step|0] -
         +opend[J+i_step-j_step|0] +
         +opend[J-i_step-j_step|0])
-      _uu = +_ii * +_ - +_i * +_i
-      _vv = +_jj * +_ - +_j * +_j
-      _uv = +_ij * +_ - +_i * +_j
+      norm = +_ * +_
+      _uu = (+_ii * +_ - +_i * +_i) / +norm
+      _vv = (+_jj * +_ - +_j * +_j) / +norm
+      _uv = (+_ij * +_ - +_i * +_j) / +norm
       oppum[J] = +0.5 + +2e4 * (+_uu * +_vv - +_uv * +_uv)
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
