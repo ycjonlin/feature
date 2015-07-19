@@ -177,8 +177,8 @@ gaussian = (sigma)->
     kernel0 = gaussian(sigma0)
     kernel1 = gaussian(sigma1)
 
-    convolute array1, array, kernel0, height*2, width*2, width*2, 1, kernel.length0, width*2
-    convolute array0, array1, kernel0, height*2, width*2, width*2, 1, kernel.length0, 1
+    convolute array1, array, kernel0, height*2, width*2, width*2, 1, kernel0.length, width*2
+    convolute array0, array1, kernel0, height*2, width*2, width*2, 1, kernel0.length, 1
 
     for i in [0..n]
       sigma = 2*Math.sqrt(1+3*i/n)
