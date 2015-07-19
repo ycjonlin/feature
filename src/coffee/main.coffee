@@ -178,7 +178,7 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
-    n = 2
+    n = 4
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2*(1+3*i/n)))
       console.log kernel.length
