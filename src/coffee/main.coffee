@@ -183,8 +183,8 @@ gaussian = (sigma)->
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
       console.log kernel.length
 
-      convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
-      convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel.length, 1
+      convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
+      convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
 
       div = document.createElement("div")
