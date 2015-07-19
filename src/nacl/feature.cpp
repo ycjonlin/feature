@@ -306,10 +306,10 @@ protected:
       float *dst_pointer = (float*)dst_buffer.Map();
 
       split_cie_xyz(
-        src_pointer + width, 
-        src_pointer + image_size * 2, 
-        src_pointer + width + image_size * 2, 
-        dst_pointer,
+        dst_pointer + width, 
+        dst_pointer + image_size * 2, 
+        dst_pointer + width + image_size * 2, 
+        src_pointer,
         height, width * 2, width, 1);
 
       url += " split_cie_xyz";
