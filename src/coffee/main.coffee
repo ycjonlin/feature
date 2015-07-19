@@ -36,13 +36,4 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
   image = new Image
   canvas = document.createElement("canvas")
   document.body.appendChild(canvas)
-  context = canvas.getContext("2d")
-
-  image.crossOrigin = "Anonymous"
-
-  image.onload = ()->
-    canvas.width = image.width
-    canvas.height = image.height
-    context.drawImage(image, 0, 0)
-  image.src = url
 )()
