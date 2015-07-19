@@ -133,6 +133,9 @@ void matrix_determinant(
 #include <png.h>
 #include <jpeglib.h>
 
+#include "ppapi/cpp/url_loader.h"
+#include "ppapi/cpp/url_request_info.h"
+#include "ppapi/utility/completion_callback_factory.h"
 #include "url_file.hpp"
 
 namespace {
