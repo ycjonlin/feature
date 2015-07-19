@@ -185,9 +185,9 @@ protected:
 
     // nacl_io
     nacl_io_init();
-    int flickr = mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
-    int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/mnt/cdnjs", "httpfs", 0, "");
-    int local = mount("", "/mnt/local", "httpfs", 0, "");
+    int flickr = mount("https://farm1.staticflickr.com/", "/flickr", "httpfs", 0, "");
+    int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/cdnjs", "httpfs", 0, "");
+    int local = mount("", "/local", "httpfs", 0, "");
     method_library.Set("_flickr", flickr);
     method_library.Set("_cdnjs", cdnjs);
     method_library.Set("_local", local);
@@ -219,7 +219,7 @@ protected:
       std::string filename = arguments.Get(1).AsString();
 
       std::ostringstream stream;
-      stream << "/mnt/" << library << "/" << filename;
+      stream << "/" << library << "/" << filename;
       std::string path = stream.str();
 
       struct stat buf;
