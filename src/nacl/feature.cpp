@@ -147,7 +147,7 @@ protected:
   std::string session;
   pp::VarArray arguments;
   pp::Instance *instance;
-  pp::CompletionCallbackFactory<ImageImportClosure>
+  pp::CompletionCallbackFactory<Closure>
     callback_factory;
 };
 
@@ -216,7 +216,7 @@ protected:
     {
       class ImageImport : public Closure {
       public:
-        ImageImportClosure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
+        ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
           : Closure(id, arguments, instance)
         {
           OnCreate(PP_OK);
@@ -231,7 +231,7 @@ protected:
 
           std::string url = arguments.Get(0).AsString();
           pp::CompletionCallback on_load =
-            callback_factory.NewCallback(&ImageImportClosure::OnLoad);
+            callback_factory.NewCallback(&ImageImport::OnLoad);
           new URLFile(url, on_load, instance);
         }
 
