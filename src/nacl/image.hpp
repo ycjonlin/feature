@@ -21,6 +21,11 @@ protected:
   void Create()
   {
     std::string url = arguments.Get(0).AsString();
+    std::string extension = url.substr(
+      std::min<size_t>(url.rfind("."), url.length()));
+    results.Set("url", url);
+    results.Set("extension", extension);
+    
     pp::URLRequestInfo url_request(instance);
     url_request.SetURL(url);
     url_request.SetMethod("GET");
@@ -31,8 +36,9 @@ protected:
       = callback_factory.NewCallback(&ImageImport::OnOpen);
     int32_t result = url_loader.Open(url_request, on_open);
 
-    if (PP_OK_COMPLETIONPENDING != result)
+    if (PP_OK_COMPLETIONPENDING != result) {
       on_open.Run(result);
+    }
   }
 
   void OnOpen(int32_t result)
@@ -43,7 +49,7 @@ protected:
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null() || response.GetStatusCode() != 200) {
-      results.Set("http_code", response.GetStatusCode());
+      results.Set("http_status_code", response.GetStatusCode());
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
@@ -82,11 +88,6 @@ protected:
       return;
     }
 
-    std::string url = arguments.Get(0).AsString();
-    std::string extension = url.substr(
-      std::min<size_t>(url.rfind("."), url.length()));
-    results.Set("url", url);
-    results.Set("extension", extension);
     results.Set("size", (int)data.size());
 
     if (extension == ".png") {
