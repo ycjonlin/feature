@@ -106,7 +106,7 @@ matrixTrace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
     while j < j_count
       xx = +opend[J-j_step|0] - +opend[J] * +2 + +opend[J+j_step|0]
       yy = +opend[J-i_step|0] - +opend[J] * +2 + +opend[J+i_step|0]
-      oppum[J] = +0.5 + +1e0 * (+xx + +yy)
+      oppum[J] = +0.5 + +1e0 * (+xx + +yy) * +sigma * +sigma * +sigma * +sigma
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
@@ -192,11 +192,11 @@ gaussian = (sigma)->
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
-      #matrixTrace array1, array0, height*2, width*2, width*2, 1
-      #div.appendChild image_element(array1, width, height)
-      
-      matrixDeterminant array1, array0, sigma, height*2, width*2, width*2, 1
+      matrixTrace array1, array0, height*2, width*2, width*2, 1
       div.appendChild image_element(array1, width, height)
+      
+      #matrixDeterminant array1, array0, sigma, height*2, width*2, width*2, 1
+      #div.appendChild image_element(array1, width, height)
 
       #matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
       #div.appendChild image_element(array1, width, height)
