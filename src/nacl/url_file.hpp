@@ -48,6 +48,7 @@ protected:
   void OnOpen(int32_t result)
   {
     logs.Set(logs.GetLength(), "on_open");
+    logs.Set(logs.GetLength(), result);
     if (result != PP_OK) {
       OnDone(result);
       return;
@@ -63,6 +64,7 @@ protected:
   void OnRead(int32_t result)
   {
     logs.Set(logs.GetLength(), "on_read");
+    logs.Set(logs.GetLength(), result);
 
     if (result == 0) {
       OnDone(result);
@@ -78,6 +80,7 @@ protected:
   void OnDone(int32_t result)
   {
     logs.Set(logs.GetLength(), "on_done");
+    logs.Set(logs.GetLength(), result);
 
     results.Set("code", result);
     (*instance).PostMessage(response);
