@@ -35,7 +35,10 @@ module.exports = (id, url, onload)->
   listener.addEventListener 'load', ((event)->
     register = (methods)->
       for method, type of methods
-        module[method] = session.create.bind session, method
+        if method[0] == '_'
+          module[method] = type
+        else
+          module[method] = session.create.bind session, method
       module._ready = true
       if onload
         onload(methods)
