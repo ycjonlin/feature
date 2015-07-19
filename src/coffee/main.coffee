@@ -32,7 +32,7 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
 
 image_load = (url, callback)->
   image = new Image
-  image.crossOrigin = "Use-Crediantial"
+  image.crossOrigin = "Anonymous"
   image.onload = (event)->
     canvas = document.createElement("canvas")
     canvas.width = image.width
