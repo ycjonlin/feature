@@ -60,7 +60,10 @@ protected:
     std::string token;
     while(std::getline(stream, token, '\n')) {
       size_t pos = token.find(": ");
-      headers.Set(token.substr(0, pos), token.substr(pos, token.size()-pos));
+      if (pos == -1) {
+        continue;
+      }
+      headers.Set(token.substr(0, pos), token.substr(pos+2, token.size()-pos-2));
     }
     results.Set("headers", headers);
     results.Set("status_code", response.GetStatusCode());
