@@ -173,10 +173,21 @@ gulp.task('natives', function() {
           return config.natives.destination+basename;
         },
         nmf: function(file) {
-          var url = path.basename(file.path, '.cc')+'.final.pexe';
-          return JSON.stringify(JSON.stringify(
-            {program: {portable: {'pnacl-translate': {url: url}}}},
-            null, 2));
+          var url = path.basename(file.path, '.cc');
+          return JSON.stringify(JSON.stringify({
+              "program": {
+                "portable": {
+                  "pnacl-translate": {
+                    "url": url+'.final.pexe',
+                    "optlevel": 2
+                  },
+                  "pnacl-debug": {
+                    "url": url+'.pexe',
+                    "optlevel": 0
+                  }
+                }
+              }
+            }, null, 2));
         }
       }
     }))
