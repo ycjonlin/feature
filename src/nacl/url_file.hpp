@@ -17,6 +17,8 @@ public:
     callback_factory(this)
   {
     response.Set("results", results);
+    results.Set("logs", logs);
+    logs.Set(logs.GetLength(), url);
 
     url_request.SetURL(url);
     url_request.SetMethod("GET");
@@ -40,6 +42,7 @@ protected:
   pp::CompletionCallback on_done;
   pp::VarDictionary response;
   pp::VarDictionary results;
+  pp::VarArray logs;
   pp::Instance *instance;
 
   void OnOpen(int32_t result)
@@ -81,6 +84,8 @@ protected:
       = callback_factory.NewCallback(&URLFile::OnRead);
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
+    
+    logs.Set(logs.GetLength(), result);
 
     if (PP_OK_COMPLETIONPENDING != result) {
       on_read.Run(result);
