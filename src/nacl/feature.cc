@@ -225,7 +225,7 @@ protected:
       //stat(path.c_str(), &buf);
       char cwd[256];
       cwd[0] = 0;
-      getcwd(cwd);
+      getcwd(cwd, 256);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
