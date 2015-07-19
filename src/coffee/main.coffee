@@ -178,7 +178,7 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
-    n = 4
+    n = 2
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2+i/n))
       console.log Math.ceil(Math.sqrt(2+i/n)*6)|1
