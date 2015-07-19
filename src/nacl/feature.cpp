@@ -128,7 +128,6 @@ void matrix_determinant(
 #include "ppapi/cpp/var.h"
 #include "ppapi/cpp/var_array.h"
 #include "ppapi/cpp/var_dictionary.h"
-
 #include "ppapi/utility/completion_callback_factory.h"
 
 class Closure {
