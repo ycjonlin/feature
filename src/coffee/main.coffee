@@ -108,7 +108,6 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     console.log kernel0
     console.log kernel1
     console.log kernel2
-    return
 
     width = 64#imageData.width
     height = 64#imageData.height
