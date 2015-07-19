@@ -132,6 +132,7 @@ void matrix_determinant(
 
 #include <stdio.h>
 #include <sys/mount.h>
+#include <sstream>
 
 #include <png.h>
 #include <jpeglib.h>
