@@ -6,7 +6,6 @@ public:
     std::string &url, 
     pp::CompletionCallback &on_done,
     pp::Instance *instance) : 
-    instance(instance),
     on_done(on_done),
     url_loader(instance), 
     url_request(instance), 
