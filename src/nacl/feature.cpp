@@ -313,7 +313,7 @@ protected:
 
       pp::VarDictionary response;
       response.Set("id", id);
-      response.Set("results", true);
+      response.Set("results", url+" split_cie_xyz");
       PostMessage(response);
     }
   }
