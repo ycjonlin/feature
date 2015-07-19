@@ -3,5 +3,5 @@
 #include "ppapi/cpp/url_response_info.h"
 
 class URLFile {
-  
-}
+
+};
