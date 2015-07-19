@@ -5,7 +5,7 @@
 class URLFile {
 public:
   URLFile(std::string url, pp::Instance *instance)
-    : loader(instance), request(instance) {
+    : loader(instance), request(instance), cc_factory(this) {
     //
   }
 
@@ -13,4 +13,5 @@ protected:
   pp::URLLoader loader;
   pp::URLRequestInfo request;
   pp::URLResponseInfo response;
+  pp::CompletionCallbackFactory<URLFile> cc_factory;
 };
