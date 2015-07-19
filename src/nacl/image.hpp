@@ -53,9 +53,9 @@ protected:
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
-    results.Set("headers", response.GetHeaders());
-    results.Set("status_code", response.GetStatusCode());
-    results.Set("status_line", response.GetStatusLine());
+    //results.Set("headers", response.GetHeaders());
+    //results.Set("status_code", response.GetStatusCode());
+    //results.Set("status_line", response.GetStatusLine());
     if (response.GetStatusCode() != 200) {
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
