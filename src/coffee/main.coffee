@@ -171,10 +171,37 @@ gaussian = (sigma)->
     divGaussian.appendChild image_element(array, width, height)
 
     n = 4
+    sigma0 = 2
+    sigma1 = Math.sqrt(12/n)
+
+    kernel0 = gaussian(sigma0)
+    kernel1 = gaussian(sigma1)
+
+    convolute array1, array, kernel0, height*2, width*2, width*2, 1, kernel.length0, width*2
+    convolute array0, array1, kernel0, height*2, width*2, width*2, 1, kernel.length0, 1
+
     for i in [0..n]
       sigma = 2*Math.sqrt(1+3*i/n)
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
       console.log kernel.length
+
+      s2 = 4*3/n
+
+      convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel1.length, width*2
+      convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel1.length, 1
+
+      measure array1, array2, array3, array0, sigma, height*2, width*2, width*2, 1
+      divTrace.appendChild image_element(array1, width, height)
+      divDeterminant.appendChild image_element(array2, width, height)
+      divGaussian.appendChild image_element(array3, width, height)
+
+    ###
+    for i in [0..n]
+      sigma = 2*Math.sqrt(1+3*i/n)
+      kernel = gaussian(2*Math.sqrt(1+3*i/n))
+      console.log kernel.length
+
+      s2 = 4*3/n
 
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
@@ -183,4 +210,5 @@ gaussian = (sigma)->
       divTrace.appendChild image_element(array1, width, height)
       divDeterminant.appendChild image_element(array2, width, height)
       divGaussian.appendChild image_element(array3, width, height)
+    ###
 )()
