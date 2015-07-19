@@ -38,7 +38,7 @@ module.exports = (id, url, onload)->
         module[method] = session.create.bind session, method
       module._ready = true
       if onload
-        onload()
+        onload(methods)
       null # no reture value
     session.create('_interface', [], register)
     null # no reture value
