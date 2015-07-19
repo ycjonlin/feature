@@ -34,7 +34,7 @@ protected:
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&URLFile::OnOpen);
-    int32_t result = url_loader.Open(url_request, on_open);
+    result = url_loader.Open(url_request, on_open);
 
     if (PP_OK_COMPLETIONPENDING != result)
       on_open.Run(result);
