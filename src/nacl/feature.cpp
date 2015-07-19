@@ -310,6 +310,11 @@ protected:
         array_pointer + width + image_size * 2, 
         image_pointer,
         height, width*2, width, 1);
+
+      pp::VarDictionary response;
+      response.Set("id", id);
+      response.Set("results", true);
+      PostMessage(response);
     }
   }
 };
