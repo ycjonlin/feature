@@ -106,7 +106,7 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
-    sigma = 4/Math.sqrt(2)
+    sigma = 4
     length = sigma*6|1
     radius = (length-1)/2
     kernel = new Float32Array(length)
