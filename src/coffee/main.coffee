@@ -125,16 +125,21 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
     sigma = 4
-    kernel = new Float32Array(sigma*8|1)
-    radius = (kernel.length-1)/2
+    length = sigma*8|1
+    radius = (length-1)/2
+    kernel0 = new Float32Array(length)
+    kernel1 = new Float32Array(length)
+    kernel2 = new Float32Array(length)
     constant = 1/Math.sqrt(Math.PI*2)/sigma
     for i in [0..kernel.length-1]
       x = (i-radius)/sigma
-      kernel[i] = Math.exp(-x*x/2)*constant
+      y = Math.exp(-x*x/2)*constant
+      kernel0[i] = y
+      kernel1[i] = -x*y
+      kernel2[i] = (x*x-1)*y
 
     width = imageData.width
     height = imageData.height
-    length = kernel.length
 
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
