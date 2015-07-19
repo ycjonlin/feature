@@ -214,7 +214,7 @@ protected:
       path << "/mnt/" << library << "/" << filename;
 
       FILE *fp = fopen(path.str().c_str(), "rb");
-      response.Set("results", path.str().c_str());
+      response.Set("results", (int)fp);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
