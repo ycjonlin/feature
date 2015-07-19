@@ -147,15 +147,13 @@ namespace {
 class Closure {
 public:
   Closure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-    : id(id), arguments(arguments), instance(instance), callback_factory(this) {
+    : id(id), arguments(arguments), instance(instance) {
     OnCreate();
   }
 protected:
   std::string id;
   pp::VarArray arguments;
   pp::Instance *instance;
-  pp::CompletionCallbackFactory<Closure>
-    callback_factory;
 
   virtual void OnCreate() = 0;
 
@@ -233,8 +231,10 @@ protected:
       class ImageImport : public Closure {
       public:
         ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-          : Closure(id, arguments, instance) {}
+          : Closure(id, arguments, instance), callback_factory(this) {}
       protected:
+        pp::CompletionCallbackFactory<ImageImport> callback_factory;
+
         void OnCreate()
         {
           std::string url = arguments.Get(0).AsString();
