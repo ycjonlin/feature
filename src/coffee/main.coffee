@@ -110,7 +110,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     array2 = new Float32Array(array0.length)
 
     convolute1 = (a,b,c)->
-      convolute a, b, c, width*2, 1, height*2, width*2, length, width*2
+      convolute a, b, c, height*2, width*2, width*2, 1, length, width*2
     convolute0 = (a,b,c)->
       convolute a, b, c, height*2, width*2, width*2, 1, length, 1
     convolute0 array1, array0, kernel
