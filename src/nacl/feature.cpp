@@ -173,7 +173,7 @@ public:
 protected:
   pp::URLLoader url_loader;
   pp::CompletionCallbackFactory<ImageImport> callback_factory;
-  
+
   uint8_t buffer[1<<16];
   std::vector<uint8_t> data;
 
@@ -245,6 +245,7 @@ protected:
       std::min<size_t>(url.rfind("."), url.length()));
     results.Set("url", url);
     results.Set("extension", extension);
+    results.Set("size", (int)data.size());
     if (extension == ".png") {
       //
     }
