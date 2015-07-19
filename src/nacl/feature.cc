@@ -182,6 +182,7 @@ protected:
 
     // nacl_io
     mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
+    mount("https://cdnjs.cloudflare.com/ajax/libs/", "/mnt/cdnjs", "httpfs", 0, "");
   }
   virtual ~FeatureInstance() {}
 
@@ -212,10 +213,8 @@ protected:
       std::ostringstream path;
       path << "/mnt/" << library << "/" << filename;
 
-      if (library == "flickr") {
-        FILE *fp = fopen(path.str().c_str(), "rb");
-        response.Set("results", path.str().c_str());
-      }
+      FILE *fp = fopen(path.str().c_str(), "rb");
+      response.Set("results", path.str().c_str());
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
