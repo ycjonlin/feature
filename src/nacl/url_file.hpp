@@ -71,7 +71,7 @@ protected:
     data.reserve(data.size()+size);
     data.insert(data.end(), buffer, buffer+size);
 
-    logs.Set(log.GetLength(), result);
+    logs.Set(logs.GetLength(), result);
 
     Read();
   }
