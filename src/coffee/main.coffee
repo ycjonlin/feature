@@ -160,7 +160,7 @@ gaussian = (sigma)->
   length = Math.ceil(sigma*6)|1
   radius = (length-1)/2
   kernel = new Float32Array(length)
-  constant = 1/Math.sqrt(Math.PI*2)*sigma
+  constant = 1/Math.sqrt(Math.PI*2)
   for i in [0..length-1]
     x = (i-radius)/sigma
     y = Math.exp(-x*x/2)*constant
