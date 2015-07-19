@@ -205,13 +205,13 @@ protected:
       std::string library = arguments.Get(0).AsString();
       std::string filename = arguments.Get(1).AsString();
 
-      std::stringstream path;
+      std::ostringstream path;
       path << "/mnt/" << library << "/" << filename;
 
       if (library == "flickr") {
         FILE *fp = fopen(path.str().c_str(), "r");
         fseek(fp, 0L, SEEK_END);
-        response.Set("results", pp::Var(ftell(fp)));
+        response.Set("results", (int32_t)ftell(fp));
       }
     }
     else if (method == "array_integral") {
