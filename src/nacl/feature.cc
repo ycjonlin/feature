@@ -215,19 +215,13 @@ protected:
       response.Set("results", method_library);
     }
     else if (method == "image_import") {
-      std::string library = arguments.Get(0).AsString();
-      std::string filename = arguments.Get(1).AsString();
-
-      std::ostringstream stream;
-      stream << "/" << library << "/" << filename;
-      std::string path = stream.str();
+      std::string path = arguments.Get(0).AsString();
 
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
-      int ok = stat("/local", &buf);
+      int ok = stat(path.c_str(), &buf);
 
       pp::VarDictionary results;
-      results.Set("args", arguments);
       results.Set("path", path.c_str());
       results.Set("ok", ok);
       results.Set("errno", errno);
