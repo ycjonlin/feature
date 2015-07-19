@@ -16,10 +16,6 @@ public:
     url_request(instance), 
     callback_factory(this)
   {
-    response.Set("results", results);
-    results.Set("logs", logs);
-    logs.Set(logs.GetLength(), url);
-
     url_request.SetURL(url);
     url_request.SetMethod("GET");
     url_request.SetProperty(PP_URLREQUESTPROPERTY_ALLOWCROSSORIGINREQUESTS, true);
@@ -43,8 +39,6 @@ protected:
   std::vector<uint8_t> data;
   pp::CompletionCallback on_done;
   pp::VarDictionary response;
-  pp::VarDictionary results;
-  pp::VarArray logs;
   pp::Instance *instance;
 
   void OnOpen(int32_t result)
@@ -71,14 +65,12 @@ protected:
     data.reserve(data.size()+size);
     data.insert(data.end(), buffer, buffer+size);
 
-    logs.Set(logs.GetLength(), result);
-
     Read();
   }
 
   void OnDone(int32_t result)
   {
-    results.Set("code", result);
+    response.Set("results", result);
     (*instance).PostMessage(response);
   }
 
