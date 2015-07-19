@@ -174,7 +174,7 @@ protected:
     method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
-    mount("https://farm1.staticflickr.com/", "/mnt/http", "httpfs", 0, "");
+    mount("https://farm1.staticflickr.com/2/", "/mnt/http", "httpfs", 0, "");
   }
   virtual ~FeatureInstance() {}
 
