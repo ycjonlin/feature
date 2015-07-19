@@ -223,14 +223,12 @@ protected:
       //struct stat buf;
       //memset(&buf, 0, sizeof(buf));
       //stat(path.c_str(), &buf);
-      char cwd[256];
-      cwd[0] = 0;
-      getcwd(cwd, 256);
+      DIR *dir = opendir("/mnt/local");
 
       pp::VarDictionary results;
       results.Set("args", arguments);
       results.Set("path", path.c_str());
-      results.Set("cwd", cwd);
+      results.Set("dir", (int)dir);
       //results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
