@@ -37,6 +37,7 @@ protected:
     int32_t result = url_loader.Open(url_request, on_open);
 
     if (PP_OK_COMPLETIONPENDING != result) {
+      results.Set("pos", 0);
       on_open.Run(result);
     }
   }
@@ -44,6 +45,7 @@ protected:
   void OnOpen(int32_t result)
   {
     if (result != PP_OK) {
+      results.Set("pos", 1);
       OnDone(result);
       return;
     }
