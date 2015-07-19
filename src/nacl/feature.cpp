@@ -181,7 +181,7 @@ protected:
 
     if (!var.is_dictionary()) return;
 
-    pp::VarDictionary request = var;
+    const pp::VarDictionary request(var);
     if (!request.HasKey("id") 
      || !request.HasKey("method") 
      || !request.HasKey("arguments")) {
