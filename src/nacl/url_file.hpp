@@ -22,6 +22,7 @@ protected:
   pp::CompletionCallbackFactory<URLFile> callback_factory;
   pp::URLLoader url_loader;
   pp::URLRequestInfo url_request;
+  uint8_t buffer[1<<20]
   std::vector<uint8_t> data;
 
   void OnOpen(int32_t result)
