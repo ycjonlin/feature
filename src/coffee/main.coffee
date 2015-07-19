@@ -129,6 +129,28 @@ matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
+matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  k_count = k_count|0; k_step = k_step|0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      _ = +opend[J]
+      _j = +0.5 * (+opend[J+j_step|0] - +opend[J-j_step|0])
+      _i = +0.5 * (+opend[J+i_step|0] - +opend[J-i_step|0])
+      _jj = +opend[J-j_step|0] - _ * +2 + +opend[J+j_step|0]
+      _ii = +opend[J-i_step|0] - _ * +2 + +opend[J+i_step|0]
+      _ij = +0.25 * (
+        +opend[J+i_step+j_step|0] -
+        +opend[J-i_step+j_step|0] -
+        +opend[J+i_step-j_step|0] +
+        +opend[J-i_step-j_step|0])
+      oppum[J] = +0.5 + +1e4 * (+xx * +yy - +xy * +xy)
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+
 
 (()->
 
@@ -162,5 +184,8 @@ matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
     div.appendChild image_element(array1, width, height)
 
     matrixDeterminant array1, array0, height*2, width*2, width*2, 1
+    div.appendChild image_element(array1, width, height)
+
+    matrixGaussian array1, array0, height*2, width*2, width*2, 1
     div.appendChild image_element(array1, width, height)
 )()
