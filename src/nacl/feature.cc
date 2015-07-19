@@ -220,7 +220,7 @@ protected:
 
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
-      stat(path.c_str(), &buf);
+      //stat(path.c_str(), &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
