@@ -146,10 +146,10 @@ namespace {
 
 class Closure {
 public:
-  Closure(std::string &session, pp::VarArray &arguments, pp::Instance *instance)
-    : session(session), arguments(arguments), instance(instance), callback_factory(this) {}
+  Closure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
+    : id(id), arguments(arguments), instance(instance), callback_factory(this) {}
 protected:
-  std::string session;
+  std::string id;
   pp::VarArray arguments;
   pp::Instance *instance;
   pp::CompletionCallbackFactory<Closure>
@@ -282,7 +282,7 @@ protected:
       //array_integral(dst, src, i_count, i_step, j_count, j_step);
 
       pp::VarDictionary response;
-      response.Set("id", request.Get("id"));
+      response.Set("session", request.Get("session"));
       PostMessage(response);
     }
   }
