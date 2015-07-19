@@ -157,7 +157,7 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
 
 
 gaussian = (sigma)->
-  length = sigma*6|1
+  length = Math.ceil(sigma*6)|1
   radius = (length-1)/2
   kernel = new Float32Array(length)
   constant = 1/Math.sqrt(Math.PI*2)/sigma
@@ -181,7 +181,7 @@ gaussian = (sigma)->
     n = 2
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2+i/n))
-      console.log Math.ceil(Math.sqrt(2+i/n)*6)|1
+      console.log kernel.length
       continue
 
       convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
