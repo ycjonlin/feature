@@ -179,7 +179,7 @@ gaussian = (sigma)->
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
-      matrixTrace array1, array2, array3, array0, sigma, height*2, width*2, width*2, 1
+      measure array1, array2, array3, array0, sigma, height*2, width*2, width*2, 1
       divTrace.appendChild image_element(array1, width, height)
       divDeterminant.appendChild image_element(array2, width, height)
       divGaussian.appendChild image_element(array3, width, height)
