@@ -113,6 +113,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     height = 128#imageData.height
 
     array = image_split imageData
+    console.log array
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
     array2 = new Float32Array(array.length)
