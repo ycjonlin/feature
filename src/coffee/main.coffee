@@ -45,7 +45,7 @@ image_load = (url, callback)->
   image.src = url
   null
 
-converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)
+converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
@@ -64,7 +64,7 @@ converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j
     i = (_i+1)|0; I = (I+i_step)|0
   null
 
-diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)
+diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
