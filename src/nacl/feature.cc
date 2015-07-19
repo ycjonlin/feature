@@ -230,7 +230,6 @@ protected:
       results.Set("args", arguments);
       results.Set("path", path.c_str());
       results.Set("size", (int)buf.st_size);
-      results.Set("inode", (int)buf.st_ino);
 
       response.Set("results", results);
     }
