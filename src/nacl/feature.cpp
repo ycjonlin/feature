@@ -338,7 +338,7 @@ protected:
       float *dst_pointer = (float*)dst_buffer.Map();
       float *krn_pointer = (float*)krn_buffer.Map();
 
-      split_cie_xyz(
+      array_convolute(
         dst_pointer, src_pointer, krn_pointer,
         i_count, i_step, 
         j_count, j_step, 
