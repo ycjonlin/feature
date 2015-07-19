@@ -178,6 +178,8 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
+      div = document.createElement("div")
+      div.className = "slide"
     div.appendChild image_element(array, width, height)
 
     n = 2
@@ -189,8 +191,6 @@ gaussian = (sigma)->
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
 
-      div = document.createElement("div")
-      div.className = "slide"
       document.body.appendChild div
 
       matrixTrace array1, array0, height*2, width*2, width*2, 1
