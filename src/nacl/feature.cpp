@@ -265,9 +265,9 @@ protected:
   void JPEG() {
     struct jpeg_decompress_struct cinfo;
 
-    /*jpeg_create_decompress(&cinfo);
+    jpeg_create_decompress(&cinfo);
     jpeg_mem_src(&cinfo, &data[0], data.size());
-    (void) jpeg_read_header(&cinfo, TRUE);
+    /*(void) jpeg_read_header(&cinfo, TRUE);
     (void) jpeg_start_decompress(&cinfo);
 
     int row_stride = cinfo.output_width * cinfo.output_components;
@@ -279,8 +279,8 @@ protected:
       jpeg_read_scanlines(&cinfo, buffer_array, 1);
     }
 
-    (void) jpeg_finish_decompress(&cinfo);
-    jpeg_destroy_decompress(&cinfo);*/
+    (void) jpeg_finish_decompress(&cinfo);*/
+    jpeg_destroy_decompress(&cinfo);
 
     OnDone(PP_OK);
   }
