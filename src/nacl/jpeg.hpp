@@ -1,4 +1,5 @@
 #include <jpeglib.h>
+#include <setjmp.h>
 
 struct my_error_mgr {
   struct jpeg_error_mgr pub;
