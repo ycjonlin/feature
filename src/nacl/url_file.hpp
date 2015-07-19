@@ -27,13 +27,14 @@ public:
   }
 
 protected:
-  const pp::CompletionCallback on_done;
   const std::string  url;
   pp::URLLoader      url_loader;
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
+  
   uint8_t buffer[4096];
   std::vector<uint8_t> data;
+  const pp::CompletionCallback on_done;
 
   void OnOpen(int32_t result)
   {
