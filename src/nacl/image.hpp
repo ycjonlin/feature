@@ -110,7 +110,7 @@ protected:
       return;
     }
 
-    std::string url = arguments.Get("url").AsString();
+    std::string url = arguments.Get(0).AsString();
     std::string extension = headers.Get("Content-Type").AsString();
 
     pp::VarDictionary image;
