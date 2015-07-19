@@ -82,10 +82,10 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       k = 0; K = J
       while k < k_count
         sum = +sum + +opend[K] * +oppor[k]
-        k = (k+1); K = (K+k_step)
+        k = (k+1)|0; K = (K+k_step)|0
       oppum[J] = sum
-      j = (j+1); J = (J+j_step)
-    i = (i+1); I = (I+i_step)
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
 
 matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
