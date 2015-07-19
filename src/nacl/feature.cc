@@ -123,6 +123,8 @@ void matrix_determinant(
 
 // module code
 
+#include "ppapi/c/pp_errors.h"
+
 #include "ppapi/cpp/instance.h"
 #include "ppapi/cpp/module.h"
 #include "ppapi/cpp/var.h"
