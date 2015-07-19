@@ -263,8 +263,8 @@ protected:
   }
 
   void JPEG() {
-    JPEG_Decode(&data[0], data.size());
-    OnDone(PP_OK);
+    int32_t result = JPEG_Decode(&data[0], data.size());
+    OnDone(result);
   }
 };
 
