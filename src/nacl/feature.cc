@@ -186,7 +186,7 @@ protected:
     // nacl_io
     nacl_io_init_ppapi(instance, pp::Module::Get()->get_browser_interface());
     int flickr = mount("https://farm1.staticflickr.com/", "/flickr", "httpfs", 0, "");
-    int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/cdnjs", "httpfs", 0, "");
+    int cdnjs = mount("https://cdnjs.com/", "/cdnjs", "httpfs", 0, "");
     int local = mount("http://localhost:9001/", "/local", "httpfs", 0, "");
     method_library.Set("_flickr", flickr);
     method_library.Set("_cdnjs", cdnjs);
