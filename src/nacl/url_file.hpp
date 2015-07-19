@@ -14,6 +14,7 @@ public:
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&URLFile::OnOpen);
     int32_t result = url_loader.Open(url_request, on_open);
+    
     if (PP_OK_COMPLETIONPENDING != result)
       on_open.Run(result);
   }
@@ -42,6 +43,10 @@ protected:
     if (result == 0) {
       return;
     }
+    int32_t size = std::min(result, sizeof(buffer));
+    data.reserve(data.size()+size);
+    data.insert(data.end(), buffer, buffer+size);
+
     Read();
   }
 
@@ -51,6 +56,7 @@ protected:
       = callback_factory.NewCallback(&URLFile::OnRead);
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
+
     if (PP_OK_COMPLETIONPENDING != result)
       on_read.Run(result);
   }
