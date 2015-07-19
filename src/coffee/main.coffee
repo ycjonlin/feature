@@ -132,5 +132,8 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
     canvas.width = newImageData.width
     canvas.height = newImageData.height
     context.putImageData newImageData, 0, 0
-    document.body.prependChild canvas
+
+    div = document.createElement("div")
+    document.body.appendChild div
+    div.appendChild canvas
 )()
