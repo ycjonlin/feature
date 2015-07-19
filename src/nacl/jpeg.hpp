@@ -38,12 +38,27 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
 
   // JS: Image Array
   pp::VarArrayBuffer array_buffer(image_size);
-  void *array_buffer_ptr = array_buffer.Map();
+  uint32_t *array_buffer_ptr = (uint32_t*)array_buffer.Map();
 
   buffer = (*cinfo.mem->alloc_sarray)
     ((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
   while (cinfo.output_scanline < cinfo.output_height) {
     (void) jpeg_read_scanlines(&cinfo, buffer, 1);
+
+    uint8_t *byte = buffer[0];
+    if (cinfo.output_components == 3) { // RGB data
+      for (int i = 0; i < width; i+=1) {
+        *array_buffer_ptr = ((byte[0])|(byte[1]<<8)|(byte[2]<<16)|0xff000000);
+        array_buffer_ptr += 1;
+        byte += 3;
+      }
+    } else { // Greyscale data
+      for (int i = 0; i < width; i+=1) {
+        *array_buffer_ptr = ((byte[0])|(byte[0]<<8)|(byte[0]<<16)|0xff000000);
+        array_buffer_ptr += 1;
+        byte += 3;
+      }
+    }
   }
 
   (void) jpeg_finish_decompress(&cinfo);
