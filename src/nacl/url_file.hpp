@@ -3,8 +3,6 @@
 #include "ppapi/cpp/url_response_info.h"
 #include "ppapi/utility/completion_callback_factory.h"
 
-#include <algorithm>
-
 class URLFile {
 public:
   URLFile(const std::string &url, pp::Instance *instance)
