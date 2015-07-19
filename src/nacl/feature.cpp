@@ -259,6 +259,7 @@ protected:
   }
 
   void PNG() {
+    OnDone(PP_OK);
   }
 
   void JPEG() {
@@ -280,6 +281,8 @@ protected:
 
     (void) jpeg_finish_decompress(&cinfo);
     jpeg_destroy_decompress(&cinfo);
+
+    OnDone(PP_OK);
   }
 };
 
