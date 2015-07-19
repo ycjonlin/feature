@@ -170,7 +170,7 @@ gaussian = (sigma)->
     document.body.appendChild divGaussian
     divGaussian.appendChild image_element(array, width, height)
 
-    n = 2
+    n = 4
     for i in [0..n]
       sigma = 2*Math.sqrt(1+3*i/n)
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
