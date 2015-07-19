@@ -105,9 +105,6 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       kernel0[i] = y
       kernel1[i] = -x*y
       kernel2[i] = (x*x-1)*y
-    console.log kernel0
-    console.log kernel1
-    console.log kernel2
 
     width = imageData.width
     height = imageData.height
