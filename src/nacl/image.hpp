@@ -32,7 +32,6 @@ protected:
     url_request.SetMethod("GET");
     url_request.SetAllowCrossOriginRequests(true);
     url_request.SetFollowRedirects(true);
-    url_request.SetAllowCredentials(true);
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&ImageImport::OnOpen);
@@ -50,6 +49,10 @@ protected:
       return;
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
+    if (response.is_null()) {
+      OnDone(PP_ERROR_FILENOTFOUND);
+      return;
+    }
     results.Set("headers", response.GetHeaders());
     results.Set("status_code", response.GetStatusCode());
     results.Set("status_line", response.GetStatusLine());
