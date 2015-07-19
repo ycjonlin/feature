@@ -45,6 +45,25 @@ image_load = (url, callback)->
   image.src = url
   null
 
+image_split = (image)->
+  array = new Float32Array(image.width*image.height*4)
+  width = image.width
+  height = image.height
+  size = width * height
+  diverge array, image.data, 
+    width, size*2, width+size*2, 
+    height, width*2, width, 1
+  array
+
+
+image_merge = (array, context, width, height)->
+  image = context.createImageData width, height
+  size = width * height
+  converge image.data, array, 
+    width, size*2, width+size*2, 
+    height, width*2, width, 1
+  image
+
 converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
@@ -83,27 +102,7 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-image_split = (image)->
-  array = new Float32Array(image.width*image.height*4)
-  width = image.width
-  height = image.height
-  size = width * height
-  diverge array, image.data, 
-    width, size*2, width+size*2, 
-    height, width*2, width, 1
-  array
-
-
-image_merge = (array, context, width, height)->
-  image = context.createImageData width, height
-  size = width * height
-  converge image.data, array, 
-    width, size*2, width+size*2, 
-    height, width*2, width, 1
-  image
-
-array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
-  oppum = new Float32Array(opend.length)
+convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -137,9 +136,12 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
     length = kernel.length
 
     array0 = image_split imageData
-    array1 = array_convolute array0, kernel, height*2, width*2, width*2, 1, length, 1
-    array2 = array_convolute array1, kernel, height*2, width*2, width*2, 1, length, width*2
+    array1 = new Float32Array(array0.length)
+    array2 = new Float32Array(array0.length)
     array = array2
+
+    convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, 1
+    convolute array2, array1, kernel, height*2, width*2, width*2, 1, length, width*2
 
     # create image
     canvas = document.createElement("canvas")
