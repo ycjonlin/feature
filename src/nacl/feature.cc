@@ -224,11 +224,13 @@ protected:
 
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
-      stat("/mnt/local/index.html", &buf);
+      int ok = stat("/mnt/local/index.html", &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
       results.Set("path", path.c_str());
+      results.Set("ok", ok);
+      results.Set("errno", errno);
       results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
