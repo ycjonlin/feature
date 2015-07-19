@@ -49,11 +49,12 @@ protected:
       return;
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
+    results.Set("status_code", response.GetStatusCode());
     if (response.is_null() || response.GetStatusCode() != 200) {
-      results.Set("http_status_code", response.GetStatusCode());
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
+    results.Set("headers", response.GetHeaders());
     Read();
   }
 
