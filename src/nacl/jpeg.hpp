@@ -14,7 +14,7 @@ my_error_exit (j_common_ptr cinfo)
   longjmp(myerr->setjmp_buffer, 1);
 }
 
-int32_t JPEG_Decode(const void *data, size_t size)
+int32_t JPEG_Decode(uint8_t *data, size_t size)
 {
   struct jpeg_decompress_struct cinfo;
   struct my_error_mgr jerr;
