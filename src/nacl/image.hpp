@@ -11,6 +11,8 @@ public:
     Create();
   }
 protected:
+  std::string url;
+  std::string extension;
   pp::VarDictionary library;
   pp::URLLoader url_loader;
   pp::CompletionCallbackFactory<ImageImport> callback_factory;
@@ -20,9 +22,8 @@ protected:
 
   void Create()
   {
-    std::string url = arguments.Get(0).AsString();
-    std::string extension = url.substr(
-      std::min<size_t>(url.rfind("."), url.length()));
+    url = arguments.Get(0).AsString();
+    extension = url.substr(std::min<size_t>(url.rfind("."), url.length()));
     results.Set("url", url);
     results.Set("extension", extension);
 
@@ -89,8 +90,6 @@ protected:
       return;
     }
 
-    std::string extension = results.Get("extension").AsString();
-
     if (extension == ".png") {
       PNG();
     }
@@ -112,7 +111,7 @@ protected:
     if (result != PP_OK) {
       OnDone(result);
     }
-    
+
     library.Set(url, image);
     OnDone(PP_OK);
   }
