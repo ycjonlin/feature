@@ -6,11 +6,12 @@
 
 class ImageImport : public Closure {
 public:
-  ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-    : Closure(id, arguments, instance), url_loader(instance), callback_factory(this) {
+  ImageImport(std::string &id, pp::VarArray &arguments, pp::VarDictionary library, pp::Instance *instance)
+    : Closure(id, arguments, instance), library(library), url_loader(instance), callback_factory(this) {
     Create();
   }
 protected:
+  pp::VarDictionary library;
   pp::URLLoader url_loader;
   pp::CompletionCallbackFactory<ImageImport> callback_factory;
 
