@@ -44,11 +44,11 @@ protected:
 
   void OnOpen(int32_t result)
   {
-    if (result != PP_OK) {
+    /*if (result != PP_OK) {
       results.Set("pos", 1);
       OnDone(result);
       return;
-    }
+    }*/
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null() || response.GetStatusCode() != 200) {
       results.Set("http_status_code", response.GetStatusCode());
