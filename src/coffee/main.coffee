@@ -182,7 +182,6 @@ gaussian = (sigma)->
     for i in [0..n]
       kernel = gaussian(Math.sqrt(2*(1+3*i/n)))
       console.log kernel.length
-      continue
 
       convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel.length, 1
