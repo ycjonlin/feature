@@ -146,9 +146,9 @@ gulp.task('natives', function() {
     .pipe(shell([
       'mkdir -p <%= dst() %>',
       '<%= bin %>/pnacl-clang++ <%= file.path %> '+
-        '<%= compile.join(' ') %> -c -o <%= dst(file) %>.o',
+        '<%= compile.join(" ") %> -c -o <%= dst(file) %>.o',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
-        '<%= dst(file) %>.o <%= link.join(' ') %>',
+        '<%= dst(file) %>.o <%= link.join(" ") %>',
       '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
         '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
