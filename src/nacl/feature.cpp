@@ -195,7 +195,7 @@ protected:
     if (extension == ".png") {
       //
     }
-    else if (extension == ".jpeg") {
+    else if (extension == ".jpeg" || extension == ".jpg") {
       //
     }
     else {
