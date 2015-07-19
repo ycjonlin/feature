@@ -37,8 +37,8 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   image_size = cinfo.output_height * cinfo.output_width * 4;
 
   // JS: Image Array
-  pp::VarArrayBuffer array_buffer(image_size);
-  uint32_t *array_buffer_ptr = (uint32_t*)array_buffer.Map();
+  pp::VarArrayBuffer image_buffer(image_size);
+  uint32_t *image_pointer = (uint32_t*)image_buffer.Map();
 
   buffer = (*cinfo.mem->alloc_sarray)
     ((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
@@ -48,14 +48,14 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
     uint8_t *byte = buffer[0];
     if (cinfo.output_components == 3) { // RGB data
       for (int i=0; i<cinfo.output_width; i+=1) {
-        *array_buffer_ptr = ((byte[0])|(byte[1]<<8)|(byte[2]<<16)|0xff000000);
-        array_buffer_ptr += 1;
+        *image_pointer = ((byte[0])|(byte[1]<<8)|(byte[2]<<16)|0xff000000);
+        image_pointer += 1;
         byte += 3;
       }
     } else { // Greyscale data
       for (int i=0; i<cinfo.output_width; i+=1) {
-        *array_buffer_ptr = ((byte[0])|(byte[0]<<8)|(byte[0]<<16)|0xff000000);
-        array_buffer_ptr += 1;
+        *image_pointer = ((byte[0])|(byte[0]<<8)|(byte[0]<<16)|0xff000000);
+        image_pointer += 1;
         byte += 1;
       }
     }
@@ -67,7 +67,7 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   // JS: Image Object
   image.Set("width", (int)cinfo.output_width);
   image.Set("height", (int)cinfo.output_height);
-  image.Set("buffer", array_buffer);
+  image.Set("buffer", image_buffer);
 
   return PP_OK;
 }
