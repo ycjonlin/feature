@@ -222,6 +222,7 @@ protected:
       stream << "/" << library << "/" << filename;
       std::string path = stream.str();
 
+      nacl_io_init();
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
       int ok = stat("/mnt/local/index.html", &buf);
