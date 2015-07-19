@@ -201,11 +201,31 @@ protected:
     }
     else if (method == "image_import")
     {
-      std::string path = arguments.Get(0).AsString();
+      std::string url = arguments.Get(0).AsString();
+
+      new URLFile(path, response, this);
+
+      int32_t result = URLFile.Load(path);
+      if (result != PP_OK) {
+        return result;
+      }
+
+      std::string extension = url.substr(
+        std::min<size_t>(url.rfind(".")+1, url.length()));
+      if (extension == "png") {
+        //
+      }
+      else if (extension == "jpeg") {
+        //
+      }
+      else {
+        //
+      }
 
       pp::VarDictionary response;
       response.Set("id", request.Get("id"));
-      new URLFile(path, response, this);
+      response.Set("results", result);
+      PostMessage(response);
     }
     else if (method == "array_integral")
     {
