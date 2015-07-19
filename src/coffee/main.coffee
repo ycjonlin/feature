@@ -39,7 +39,7 @@ image_load = (url, callback)->
     canvas.height = image.height
     context = canvas.getContext "2d"
     context.drawImage image, 0, 0
-    imageData = canvas.getImageData 0, 0, image.width, image.height
+    imageData = context.getImageData 0, 0, image.width, image.height
     callback imageData
   image.src = url
 
