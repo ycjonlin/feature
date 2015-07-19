@@ -217,7 +217,7 @@ protected:
     }
     else if (method == "image_import")
     {
-      new ImageImport(id, arguments, this);
+      new ImageImport(id, arguments, image_library, this);
     }
     else if (method == "array_integral")
     {
