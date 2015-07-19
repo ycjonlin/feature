@@ -203,7 +203,7 @@ protected:
     }
     else if (method == "image_import") {
       pp::Var url = arguments.Get(0);
-      
+      response.Set("results", url);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
