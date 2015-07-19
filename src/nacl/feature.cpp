@@ -157,7 +157,7 @@ protected:
   pp::CompletionCallbackFactory<Closure>
     callback_factory;
 
-  virtual OnCreate() = 0;
+  virtual void OnCreate() = 0;
 
   void OnDone(int32_t result) {
     pp::VarDictionary response;
