@@ -30,8 +30,6 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
         feature.calculus_convolute args, (array_uv)->
 ###
 
-config.EnableCors(new EnableCorsAttribute(Properties.Settings.Default.Cors, "", ""))
-
 image_load = (url, callback)->
   image = new Image
   image.crossOrigin = "Anonymous"
@@ -133,7 +131,7 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
   document.body.appendChild(div)
   div.appendChild(canvas)
 
-  image_load 'https://farm1.staticflickr.com/194/505494059_426290217e_z_d.jpg', (imageData)->
+  image_load 'https://farm1.staticflickr.com/194/505494059_426290217e_z.jpg', (imageData)->
     array = image_split imageData
     newImageData = image_merge array, context, imageData.width, imageData.height
     canvas.width = newImageData.width
