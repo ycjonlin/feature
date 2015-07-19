@@ -168,13 +168,16 @@ class ImageImport : public Closure {
 public:
   ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
     : Closure(id, arguments, instance), url_loader(instance), callback_factory(this) {
-    OnCreate();
+    Create();
   }
 protected:
   pp::URLLoader url_loader;
   pp::CompletionCallbackFactory<ImageImport> callback_factory;
+  
+  uint8_t buffer[1<<16];
+  std::vector<uint8_t> data;
 
-  void OnCreate()
+  void Create()
   {
     std::string url = arguments.Get(0).AsString();
     pp::URLRequestInfo url_request(instance);
@@ -185,7 +188,7 @@ protected:
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&ImageImport::OnOpen);
-    result = url_loader.Open(url_request, on_open);
+    int32_t result = url_loader.Open(url_request, on_open);
 
     if (PP_OK_COMPLETIONPENDING != result)
       on_open.Run(result);
