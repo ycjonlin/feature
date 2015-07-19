@@ -182,21 +182,25 @@ protected:
     if (!var.is_dictionary()) return;
 
     pp::VarDictionary request = var;
-    if (!request.HasKey("id")) return;
-    if (!request.HasKey("method")) return;
-    if (!request.HasKey("arguments")) return;
+    if (!request.HasKey("id") 
+     || !request.HasKey("method") 
+     || !request.HasKey("arguments")) {
+      return;
+    }
 
     std::string method = request.Get("method").AsString();
     pp::VarArray arguments(request.Get("arguments"));
 
 
-    if (method == "_interface") {
+    if (method == "_interface")
+    {
       pp::VarDictionary response;
       response.Set("id", request.Get("id"));
       response.Set("results", method_library);
       PostMessage(response);
     }
-    else if (method == "image_import") {
+    else if (method == "image_import")
+    {
       std::string path = arguments.Get(0).AsString();
 
       URLFile &url_file = *(new URLFile(path, this));
@@ -206,15 +210,16 @@ protected:
       response.Set("results", path.c_str());
       PostMessage(response);
     }
-    else if (method == "array_integral") {
-      float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
-      float* src = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(1)).Map());
+    else if (method == "array_integral")
+    {
+      std::string dst = arguments.Get(0).AsString();
+      std::string src = arguments.Get(1).AsString();
       int i_count = arguments.Get(2).AsInt();
       int i_step  = arguments.Get(3).AsInt();
       int j_count = arguments.Get(4).AsInt();
       int j_step  = arguments.Get(5).AsInt();
       array_integral(dst, src, i_count, i_step, j_count, j_step);
-      
+
       pp::VarDictionary response;
       response.Set("id", request.Get("id"));
       PostMessage(response);
