@@ -124,14 +124,27 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
 (()->
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
+
+    sigma = 4
+    kernel = new Float32Array(sigma*8|1)
+    radius = (kernel.length-1)/2
+    for i in [0..kernel.length-1]
+      x = (i-radius)/sigma
+      kernel[i] = Math.exp(-x*x/2)
+
+    console.log kernel
+
+    array = image_split imageData
+
+    # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    array = image_split imageData
     newImageData = image_merge array, context, imageData.width, imageData.height
     canvas.width = newImageData.width
     canvas.height = newImageData.height
     context.putImageData newImageData, 0, 0
 
+    # append to document
     div = document.createElement("div")
     div.className = "slide"
     document.body.appendChild div
