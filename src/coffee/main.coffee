@@ -132,9 +132,8 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
 
 erf = (x)->
-  p = 0.3275911; a1 = 0.254829592; a2 = −0.284496736; a3 = 1.421413741; a4 = −1.453152027; a5 = 1.061405429
-  t = 1/(1+p*x)
-  1-((((a5*t+a4)*t+a3)*t+a2)*t+a1)*Math.exp(-x*x)
+  t = 1/(1+0.3275911*x)
+  1-((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x)
 
 gaussian = (sigma)->
   length = Math.ceil(sigma*6)|1
