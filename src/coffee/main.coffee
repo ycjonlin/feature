@@ -137,9 +137,9 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array, context, width, height
-    canvas.width = width
-    canvas.height = height
+    newImageData = image_merge array, context, imageData.width, imageData.height
+    canvas.width = imageData.width
+    canvas.height = imageData.height
     context.putImageData newImageData, 0, 0
 
     # append to document
