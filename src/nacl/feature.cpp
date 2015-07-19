@@ -246,7 +246,7 @@ protected:
     results.Set("url", url);
     results.Set("extension", extension);
     results.Set("size", (int)data.size());
-    results.Set("data", std::string(data.begin(), data.begin()+32));
+    results.Set("data", (int)*data.begin());
 
     if (extension == ".png") {
       PNG();
