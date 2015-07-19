@@ -222,16 +222,14 @@ protected:
       stream << "/mnt/" << library << "/" << filename;
       std::string path = stream.str();
 
-      //struct stat buf;
-      //memset(&buf, 0, sizeof(buf));
-      //stat(path.c_str(), &buf);
-      DIR *dir = opendir("/mnt/local");
+      struct stat buf;
+      memset(&buf, 0, sizeof(buf));
+      stat("/mnt/local/index.html", &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
       results.Set("path", path.c_str());
-      results.Set("dir", (int)dir);
-      //results.Set("size", (int)buf.st_size);
+      results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
     }
