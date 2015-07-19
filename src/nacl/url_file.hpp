@@ -29,4 +29,7 @@ protected:
       = callback_factory.NewCallback(&URLFile::OnRead);
     //loader.ReadResponseBody(, , callback);
   }
+
+  void OnRead(int32_t result) {
+  }
 };
