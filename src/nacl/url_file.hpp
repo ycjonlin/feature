@@ -45,7 +45,7 @@ protected:
     if (result == 0) {
       return;
     }
-    int32_t size = std::min(result, sizeof(buffer));
+    int32_t size = std::min<int32_t>(result, sizeof(buffer));
     data.reserve(data.size()+size);
     data.insert(data.end(), buffer, buffer+size);
 
