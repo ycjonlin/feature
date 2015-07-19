@@ -6,6 +6,7 @@ public:
     std::string &url, 
     pp::CompletionCallback &on_done,
     pp::Instance *instance) :
+    url(url),
     on_done(on_done),
     url_loader(instance), 
     url_request(instance), 
@@ -15,6 +16,7 @@ public:
   }
 
 protected:
+  std::string url;
   pp::URLLoader url_loader;
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
