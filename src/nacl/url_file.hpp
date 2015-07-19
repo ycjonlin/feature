@@ -9,7 +9,7 @@ public:
   }
 
 protected:
-  pp::URLLoaader loader;
+  pp::URLLoader loader;
   pp::URLRequestInfo request;
   pp::URLResponseInfo response;
 };
