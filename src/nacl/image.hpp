@@ -121,6 +121,8 @@ protected:
       if (result != PP_OK) {
         OnDone(result);
       }
+      results.Set("width", image.Get("width"));
+      results.Set("height", image.Get("height"));
       library.Set(url, image);
       OnDone(PP_OK);
     }
