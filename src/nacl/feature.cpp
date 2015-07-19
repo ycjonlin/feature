@@ -237,13 +237,12 @@ protected:
     // image manipulation
     method_library.Set("image_import", "");
     method_library.Set("image_export", "");
+    method_library.Set("image_list", "");
     method_library.Set("image_free", "");
     // array manipulation
     method_library.Set("array_export", "");
+    method_library.Set("array_list", "");
     method_library.Set("array_free", "");
-    // array manipulation
-    method_library.Set("cloud_export", "");
-    method_library.Set("cloud_free", "");
     // image to array
     method_library.Set("split_srgb", "");
     method_library.Set("split_cie_rgb", "");
