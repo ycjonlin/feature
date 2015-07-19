@@ -188,6 +188,7 @@ protected:
       return;
     }
 
+    std::string id = request.Get("id").AsString();
     std::string method = request.Get("method").AsString();
     pp::VarArray arguments(request.Get("arguments"));
 
@@ -195,37 +196,66 @@ protected:
     if (method == "_interface")
     {
       pp::VarDictionary response;
-      response.Set("id", request.Get("id"));
+      response.Set("id", id);
       response.Set("results", method_library);
       PostMessage(response);
     }
     else if (method == "image_import")
     {
-      std::string url = arguments.Get(0).AsString();
+      class ImageImportClosure {
+      public:
+        ImageImportClosure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
+          : id(id), arguments(arguments), instance(instance), callback_factory(this)
+        {
+          OnCreate(PP_OK);
+        }
+      protected:
+        std::string id;
+        pp::VarArray arguments;
+        pp::Instance *instance;
+        pp::CompletionCallbackFactory<ImageImportClosure>
+          callback_factory;
 
-      new URLFile(path, response, this);
+        void OnCreate(int32_t result)
+        {
+          if (result != PP_OK) {
+            OnDone(result);
+            return;
+          }
 
-      int32_t result = URLFile.Load(path);
-      if (result != PP_OK) {
-        return result;
-      }
+          std::string url = arguments.Get(0).AsString();
+          pp::CompletionCallback on_load =
+            callback_factory.NewCallback(&ImageImportClosure::OnLoad);
+          new URLFile(url, on_load, instance);
+        }
+        void OnLoad(int32_t result)
+        {
+          if (result != PP_OK) {
+            OnDone(result);
+            return;
+          }
 
-      std::string extension = url.substr(
-        std::min<size_t>(url.rfind(".")+1, url.length()));
-      if (extension == "png") {
-        //
-      }
-      else if (extension == "jpeg") {
-        //
-      }
-      else {
-        //
-      }
+          std::string extension = url.substr(
+            std::min<size_t>(url.rfind("."), url.length()));
+          if (extension == ".png") {
+            //
+          }
+          else if (extension == ".jpeg") {
+            //
+          }
+          else {
+            OnDone(-1);
+          }
+        }
+        void OnDone(int32_t result) {
+          pp::VarDictionary response;
+          response.Set("id", id);
+          response.Set("results", result);
+          PostMessage(response);
+        }
+      };
 
-      pp::VarDictionary response;
-      response.Set("id", request.Get("id"));
-      response.Set("results", result);
-      PostMessage(response);
+      new ImageImportClosure(id, arguments, this);
     }
     else if (method == "array_integral")
     {
