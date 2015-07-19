@@ -5,7 +5,7 @@ public:
   URLFile(
     std::string &url, 
     pp::CompletionCallback &on_done,
-    pp::Instance *instance) : 
+    pp::Instance *instance) :
     on_done(on_done),
     url_loader(instance), 
     url_request(instance), 
