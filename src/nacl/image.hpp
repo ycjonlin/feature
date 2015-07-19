@@ -4,8 +4,6 @@
 
 #include "jpeg.hpp"
 
-#include <sstream>
-
 class ImageImport : public Closure {
 public:
   ImageImport(std::string &id, pp::VarArray &arguments, pp::VarDictionary &library, pp::Instance *instance)
@@ -62,6 +60,9 @@ protected:
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
+    OnDone(PP_OK);
+    return;
+    
     Read();
   }
 
