@@ -79,7 +79,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     j = 0; J = I
     while j < j_count
       sum = +0.0
-      k = 0; K = J
+      k = 0; K = J-(k_count-1)/2|0
       while k < k_count
         sum = +sum + +opend[K] * +oppor[k]
         k = (k+1)|0; K = (K+k_step)|0
