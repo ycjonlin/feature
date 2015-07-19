@@ -1,3 +1,5 @@
+static float linear[256] = {0};
+
 void split_cie_rgb(
   float *dst_r, float *dst_g, float *dst_b, int *src_i,
   int i_count, int i_step, 
