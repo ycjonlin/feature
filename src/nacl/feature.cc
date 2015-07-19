@@ -182,16 +182,21 @@ protected:
     if (!var.is_dictionary())
       return;
 
-    pp::VarDictionary dictionary(var);
+    pp::VarDictionary request(var);
+    pp::VarDictionary response;
 
-    if (!dictionary.HasKey("method")) return;
-    std::string method = dictionary.Get("method").AsString();
+    if (!request.HasKey("id")) return;
+    response.Set("id", request.Get("id"));
 
-    if (!dictionary.HasKey("arguments")) return;
-    pp::VarArray arguments(dictionary.Get("arguments"));
+    if (!request.HasKey("method")) return;
+    std::string method = request.Get("method").AsString();
+
+    if (!request.HasKey("arguments")) return;
+    pp::VarArray arguments(request.Get("arguments"));
+    
 
     if (method == "_interface") {
-      dictionary.Set("results", method_library);
+      response.Set("results", method_library);
     }
     else if (method == "image_import") {
       pp::Var url = arguments.Get(0);
@@ -207,7 +212,7 @@ protected:
       array_integral(dst, src, i_count, i_step, j_count, j_step);
     }
 
-    PostMessage(dictionary);
+    PostMessage(response);
   }
 };
 
