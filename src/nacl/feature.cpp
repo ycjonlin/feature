@@ -289,19 +289,27 @@ protected:
     {
       new ImageImport(id, arguments, image_library, this);
     }
-    else if (method == "array_integral")
+    else if (method == "split_cie_xyz")
     {
-      std::string dst = arguments.Get(0).AsString();
-      std::string src = arguments.Get(1).AsString();
-      int i_count = arguments.Get(2).AsInt();
-      int i_step  = arguments.Get(3).AsInt();
-      int j_count = arguments.Get(4).AsInt();
-      int j_step  = arguments.Get(5).AsInt();
-      //array_integral(dst, src, i_count, i_step, j_count, j_step);
+      std::string url = arguments.Get(0).AsString();
+      pp::VarDictionary image(image_library.Get(url));
 
-      pp::VarDictionary response;
-      response.Set("session", request.Get("session"));
-      PostMessage(response);
+      int width = image.Get("width").AsInt();
+      int height = image.Get("height").AsInt();
+      int image_size = width * height;
+      int array_size = image_size * 16;
+
+      pp::VarArrayBuffer image_buffer(image.Get("buffer"));
+      pp::VarArrayBuffer array_buffer(array_size);
+      int   *image_pointer = (  int*)image_buffer.Map();
+      float *array_pointer = (float*)array_buffer.Map();
+
+      split_cie_xyz(
+        array_buffer_ptr+width, 
+        array_buffer_ptr+image_size*2, 
+        array_buffer_ptr+width+image_size*2, 
+        image_pointer,
+        height, width*2, width, 1)
     }
   }
 };
