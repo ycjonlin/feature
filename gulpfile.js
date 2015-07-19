@@ -45,8 +45,8 @@ var config = {
     destination: './public/css/'
   },
   natives: {
-    source: './src/nacl/*.cc',
-    watch: './src/nacl/*.cc',
+    source: './src/nacl/*.cpp',
+    watch: './src/nacl/*.cpp',
     destination: './public/nacl/'
   },
   assets: {
@@ -157,23 +157,22 @@ gulp.task('natives', function() {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
         compile: [
           '-Inacl_sdk/pepper_43/include',
-          '-Inacl_sdk/pepper_43/include/pnacl',
           '-Inacl_sdk/pepper_43/ports/include',
           '-g', '-O0'
         ],
         link: [
           '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
           //'-Lnacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
-          '-lppapi_cpp', '-lppapi', '-lnacl_io'//, '-ljpeg', '-lpng'
+          '-lppapi_cpp', '-lppapi'//, '-ljpeg', '-lpng'
         ],
         dst: function(file) {
           if (file == null)
             return config.natives.destination;
-          var basename = path.basename(file.path, '.cc');
+          var basename = path.basename(file.path, '.cpp');
           return config.natives.destination+basename;
         },
         nmf: function(file) {
-          var url = path.basename(file.path, '.cc');
+          var url = path.basename(file.path, '.cpp');
           return JSON.stringify(JSON.stringify({
               "program": {
                 "portable": {
