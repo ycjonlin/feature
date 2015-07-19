@@ -162,7 +162,6 @@ gulp.task('natives', function() {
         ],
         link: [
           '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
-          '-Lnacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
           '-lppapi_cpp', '-lppapi'
         ],
         dst: function(file) {
