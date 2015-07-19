@@ -62,7 +62,6 @@ protected:
       }
       std::string key = token.substr(0, pos);
       std::string value = token.substr(pos+2, token.size()-pos-2);
-      std::transform(key.begin(), key.end(), key.begin(), ::tolower);
       headers.Set(key, value);
     }
     results.Set("headers", headers);
@@ -109,7 +108,12 @@ protected:
     }
 
     std::string url = arguments.Get(0).AsString();
-    std::string type = headers.Get("content-type").AsString();
+    std::string type;
+    if (headers.HasKey("Content-Type")) {
+      type = headers.Get("Content-Type").AsString();
+    } else if (headers.HasKey("content-type")) {
+      type = headers.Get("content-type").AsString();
+    }
 
     if (type == "image/jpeg") {
       pp::VarDictionary image;
