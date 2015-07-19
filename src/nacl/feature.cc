@@ -214,8 +214,8 @@ protected:
 
       if (library == "flickr") {
         FILE *fp = fopen(path.str().c_str(), "rb");
-        //fseek(fp, 0L, SEEK_END);
-        response.Set("results", path.str().c_str());
+        fseek(fp, 0L, SEEK_END);
+        response.Set("results", (int32_t)ftell(fp));
       }
     }
     else if (method == "array_integral") {
