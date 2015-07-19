@@ -3,6 +3,29 @@
 #include "ppapi/cpp/url_response_info.h"
 #include "ppapi/utility/completion_callback_factory.h"
 
+class PostCallback {
+public:
+  pp::Var message;
+  pp::CompletionCallback on_done;
+
+  PostCallback(
+    pp::Var message,
+    pp::Instance *instance) :
+    message(message), 
+    instance(instance), 
+    callback_factory(this) {
+    on_done = callback_factory.NewCallback(&URLFile::OnDone);
+  }
+
+protected:
+  pp::Instance *instance;
+  pp::CompletionCallbackFactory<PostCallback> callback_factory;
+
+  void OnDone(int32_t result) {
+    instance->PostMessage(message);
+  }
+};
+
 class URLFile {
 public:
   URLFile(
@@ -31,7 +54,7 @@ protected:
   pp::URLLoader      url_loader;
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
-  
+
   uint8_t buffer[4096];
   std::vector<uint8_t> data;
   const pp::CompletionCallback on_done;
@@ -39,10 +62,12 @@ protected:
   void OnOpen(int32_t result)
   {
     if (result != PP_OK) {
+      on_done.Run(result);
       return;
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null() || response.GetStatusCode() != 200) {
+      on_done.Run(result);
       return;
     }
     Read();
@@ -51,6 +76,7 @@ protected:
   void OnRead(int32_t result)
   {
     if (result == 0) {
+      on_done.Run(result);
       return;
     }
     int32_t size = std::min<int32_t>(result, sizeof(buffer));
