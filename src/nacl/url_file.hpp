@@ -3,37 +3,15 @@
 #include "ppapi/cpp/url_response_info.h"
 #include "ppapi/utility/completion_callback_factory.h"
 
-class PostCallback {
-public:
-  pp::Var message;
-  pp::CompletionCallback on_done;
-
-  PostCallback(
-    pp::Var message,
-    pp::Instance *instance) :
-    message(message), 
-    instance(instance), 
-    callback_factory(this) {
-    on_done = callback_factory.NewCallback(&PostCallback::OnDone);
-  }
-
-protected:
-  pp::Instance *instance;
-  pp::CompletionCallbackFactory<PostCallback> callback_factory;
-
-  void OnDone(int32_t result) {
-    instance->PostMessage(message);
-  }
-};
-
 class URLFile {
 public:
   URLFile(
     std::string &url, 
-    pp::CompletionCallback &on_done, 
+    pp::VarDictionary response,
     pp::Instance *instance) : 
+    instance(instance),
+    response(response),
     url(url), 
-    on_done(on_done), 
     url_loader(instance), 
     url_request(instance), 
     callback_factory(this)
@@ -50,24 +28,26 @@ public:
   }
 
 protected:
-  std::string        url;
-  pp::URLLoader      url_loader;
+  std::string url;
+  pp::URLLoader url_loader;
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
 
   uint8_t buffer[4096];
   std::vector<uint8_t> data;
   pp::CompletionCallback on_done;
+  pp::VarDictionary response;
+  pp::Instance *instance;
 
   void OnOpen(int32_t result)
   {
     if (result != PP_OK) {
-      on_done.Run(result);
+      OnDone(result);
       return;
     }
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null() || response.GetStatusCode() != 200) {
-      on_done.Run(result);
+      OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
     Read();
@@ -76,7 +56,7 @@ protected:
   void OnRead(int32_t result)
   {
     if (result == 0) {
-      on_done.Run(result);
+      OnDone(result);
       return;
     }
     int32_t size = std::min<int32_t>(result, sizeof(buffer));
@@ -84,6 +64,12 @@ protected:
     data.insert(data.end(), buffer, buffer+size);
 
     Read();
+  }
+
+  void OnDone(int32_t result)
+  {
+    response.Set("results", result);
+    (*instance).PostMessage(response);
   }
 
   void Read()
