@@ -134,6 +134,29 @@ void matrix_determinant(
 
 namespace {
 
+class URLFile {
+protected:
+  pp::CompletionCallbackFactory factory;
+  pp::URLLoader loader;
+  pp::URLRequestInfo request;
+public:
+  explicit URLFile(pp::Var &url, pp::Instance *instance)
+    : factory(instance), loader(instance), request(instance) {
+    request.SetURL(url);
+    request.SetMethod("GET");
+    request.SetRecordDownloadProgress(true);
+    pp::CompletionCallback callback = 
+      factory.NewCallback(&URLFile::OnOpen);
+    loader.Open(request, callback);
+  }
+
+  void OnOpen(int32_t result) {
+    if (result != PP_OK) {
+      return;
+    }
+  }
+};
+
 }  // namespace
 
 class FeatureInstance : public pp::Instance {
@@ -192,11 +215,7 @@ protected:
     }
     else if (method == "image_import") {
       pp::Var url = arguments.Get(0);
-      pp::URLLoader loaeder(this);
-      pp::URLRequestInfo request(this);
-      request.SetURL(url);
-      request.SetMethod("Get");
-
+      
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
