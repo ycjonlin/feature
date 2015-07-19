@@ -5,14 +5,28 @@
 
 class URLFile {
 public:
-  URLFile(std::string url, pp::Instance *instance)
-    : loader(instance), request(instance), cc_factory(this) {
-    //
+  URLFile(const std::string &url, pp::Instance *instance)
+    : loader(instance), request(instance), callback_factory(this) {
+    request.SetURL(url);
+    request.SetMethod("GET");
+    pp::CompletionCallback callback
+      = callback_factory.NewCallback(&URLFile::OnOpen);
+    loader.Open(request, callback);
   }
 
 protected:
   pp::URLLoader loader;
   pp::URLRequestInfo request;
   pp::URLResponseInfo response;
-  pp::CompletionCallbackFactory<URLFile> cc_factory;
+  pp::CompletionCallbackFactory<URLFile> callback_factory;
+
+  void OnOpen(int32_t result) {
+    response = loader.GetResponseInfo();
+    if (response.GetStatusCode() != 200) {
+      return;
+    }
+    pp::CompletionCallback callback
+      = callback_factory.NewCallback(&URLFile::OnRead);
+    //loader.ReadResponseBody(, , callback);
+  }
 };
