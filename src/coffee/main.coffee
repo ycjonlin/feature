@@ -1,2 +1,2 @@
 feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
-  console.log feature
+  feature.image_import '505494059_ed850a8b0a_o_d.jpg'
