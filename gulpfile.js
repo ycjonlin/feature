@@ -146,17 +146,24 @@ gulp.task('natives', function() {
     .pipe(shell([
       'mkdir -p <%= dst() %>',
       '<%= bin %>/pnacl-clang++ <%= file.path %> '+
-        '<%= compile %> -c -o <%= dst(file) %>.o -g -O0',
+        '<%= compile.join(' ') %> -c -o <%= dst(file) %>.o',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
-        '<%= dst(file) %>.o -L<%= link %> -lppapi_cpp -lppapi -lnacl_io',
+        '<%= dst(file) %>.o <%= link.join(' ') %>',
       '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
         '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
     ], {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
-        compile: '-Inacl_sdk/pepper_43/include -Inacl_sdk/pepper_43/ports/include',
-        link: '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
+        compile: [
+          '-Inacl_sdk/pepper_43/include -Inacl_sdk/pepper_43/ports/include',
+          '-g', '-O0'
+        ],
+        link: [
+          '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
+          '-Inacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
+          '-lppapi_cpp', '-lppapi', '-lnacl_io'
+        ],
         dst: function(file) {
           if (file == null)
             return config.natives.destination;
