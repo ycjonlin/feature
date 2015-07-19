@@ -216,11 +216,11 @@ protected:
 
       std::ostringstream stream;
       stream << "/mnt/" << library << "/" << filename;
-      const char *path = stream.str().c_str();
+      std::string path = stream.str();
 
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
-      int result = stat(path, &buf);
+      int result = stat(path.c_str(), &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
