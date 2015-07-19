@@ -59,11 +59,13 @@ protected:
     std::stringstream stream(response.GetHeaders().AsString());
     std::string token;
     while(std::getline(stream, token, '\n')) {
-      size_t pos = token.find(": ");
+      size_t pos0 = token.find(": ");
       if (pos == -1) {
         continue;
       }
-      headers.Set(token.substr(0, pos), token.substr(pos+2, token.size()-pos-2));
+      std::string key = token.substr(0, pos);
+      std::string value = token.substr(pos+2, token.size()-pos-2);
+      headers.Set(key, value);
     }
     results.Set("headers", headers);
     results.Set("status_code", response.GetStatusCode());
