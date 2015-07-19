@@ -171,31 +171,34 @@ gaussian = (sigma)->
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
-    kernel = gaussian(4)
-
     width = imageData.width
     height = imageData.height
 
     array = image_split imageData
-    array0 = new Float32Array(array)
-    array1 = new Float32Array(array)
+    array0 = new Float32Array(array.length)
+    array1 = new Float32Array(array.length)
 
-    convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
-    convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
+    n = 4
+    for i in [0..n]
+      kernel = gaussian(Math.sqrt(2+i/n))
+      console.log kernel.length
+
+      convolute array0, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
+      convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
 
-    div = document.createElement("div")
-    div.className = "slide"
-    document.body.appendChild div
+      div = document.createElement("div")
+      div.className = "slide"
+      document.body.appendChild div
 
-    div.appendChild image_element(array, width, height)
+      div.appendChild image_element(array, width, height)
 
-    matrixTrace array1, array0, height*2, width*2, width*2, 1
-    div.appendChild image_element(array1, width, height)
+      matrixTrace array1, array0, height*2, width*2, width*2, 1
+      div.appendChild image_element(array1, width, height)
 
-    matrixDeterminant array1, array0, height*2, width*2, width*2, 1
-    div.appendChild image_element(array1, width, height)
+      matrixDeterminant array1, array0, height*2, width*2, width*2, 1
+      div.appendChild image_element(array1, width, height)
 
-    matrixGaussian array1, array0, height*2, width*2, width*2, 1
-    div.appendChild image_element(array1, width, height)
+      matrixGaussian array1, array0, height*2, width*2, width*2, 1
+      div.appendChild image_element(array1, width, height)
 )()
