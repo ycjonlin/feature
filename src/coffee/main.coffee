@@ -1,6 +1,15 @@
 feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
-  log = (data)-> console.log data
-  log data
-  feature.image_import ['https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'], log
-  feature.image_import ['/images/505494059_ed850a8b0a_o.jpg'], log
+  console.log data
+  url = 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'
+  feature.image_import [url], (data)->
+    console.log data
+    feature.split_cie_xyz, [url], (data)->
+      console.log data
+      feature.calculus_convolute, [url], (data)->
+        console.log data
+        feature.calculus_convolute, [url], (data)->
+          console.log data
+          feature.merge_cie_xyz, [url], (data)->
+            console.log data
+
 
