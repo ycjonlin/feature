@@ -54,5 +54,5 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   image.Set("height", cinfo.output_height);
   image.Set("buffer", array_buffer);
 
-  return 0;
+  return PP_OK;
 }
