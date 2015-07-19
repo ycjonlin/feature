@@ -142,6 +142,8 @@ protected:
   pp::CompletionCallbackFactory<URLFile> factory;
   pp::URLLoader loader;
   pp::URLRequestInfo request;
+  pp::URLResponseInfo response;
+  std::string data;
 public:
   explicit URLFile(pp::Var &url, pp::Instance *instance)
     : factory(this), loader(instance), request(instance) {
@@ -157,6 +159,17 @@ public:
     if (result != PP_OK) {
       return;
     }
+
+    int64_t received_bytes = 0;
+    int64_t total_bytes = 0;
+    if (loader.GetDownloadProgress(&received_bytes, &total_bytes)) {
+      if (total_bytes > 0) {
+        response.reserve(total_bytes);
+      }
+    }
+    url_request_.SetRecordDownloadProgress(false);
+
+    ReadBody();
   }
 };
 
