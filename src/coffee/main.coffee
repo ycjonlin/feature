@@ -118,7 +118,7 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
         k = (k+1)|0; K = (K+k_step)|0
       oppum[J] = sum
       j = (j+1)|0; J = (J+j_step)|0
-    i = (_i+1)|0; I = (I+i_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
 
 
 (()->
