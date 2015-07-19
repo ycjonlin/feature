@@ -14,7 +14,7 @@ public:
     message(message), 
     instance(instance), 
     callback_factory(this) {
-    on_done = callback_factory.NewCallback(&URLFile::OnDone);
+    on_done = callback_factory.NewCallback(&PostCallback::OnDone);
   }
 
 protected:
