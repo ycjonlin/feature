@@ -185,8 +185,10 @@ protected:
     nacl_io_init();
     int flickr = mount("https://farm1.staticflickr.com/", "/mnt/flickr", "httpfs", 0, "");
     int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/mnt/cdnjs", "httpfs", 0, "");
+    int local = mount("", "/mnt/local", "httpfs", 0, "");
     method_library.Set("_flickr", flickr);
     method_library.Set("_cdnjs", cdnjs);
+    method_library.Set("_local", local);
   }
   virtual ~FeatureInstance() {}
 
@@ -218,14 +220,18 @@ protected:
       stream << "/mnt/" << library << "/" << filename;
       std::string path = stream.str();
 
-      struct stat buf;
-      memset(&buf, 0, sizeof(buf));
+      //struct stat buf;
+      //memset(&buf, 0, sizeof(buf));
       //stat(path.c_str(), &buf);
+      char cwd[256];
+      cwd[0] = 0;
+      getcwd(cwd);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
       results.Set("path", path.c_str());
-      results.Set("size", (int)buf.st_size);
+      results.Set("cwd", cwd);
+      //results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
     }
