@@ -125,7 +125,7 @@ matrixDeterminant = (oppum, opend, i_count, i_step, j_count, j_step)->
         +opend[J+i_step-j_step|0] -
         +opend[J-i_step+j_step|0] +
         +opend[J+i_step+j_step|0])
-      oppum[J] = +0.5 + +1e2 * (+xx * +yy - +xy * +xy)
+      oppum[J] = +0.5 + +1e1 * (+xx * +yy - +xy * +xy)
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
