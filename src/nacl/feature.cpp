@@ -178,11 +178,10 @@ protected:
   virtual ~FeatureInstance() {}
 
   virtual void HandleMessage(const pp::Var& var) {
-    if (!var.is_dictionary())
-      return;
+    pp::VarDictionary request, response;
 
-    pp::VarDictionary request(var);
-    pp::VarDictionary response;
+    if (!var.is_dictionary()) return;
+    request = var;
 
     if (!request.HasKey("id")) return;
     response.Set("id", request.Get("id"));
