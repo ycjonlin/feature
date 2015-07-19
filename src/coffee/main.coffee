@@ -40,10 +40,9 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
 
   image.crossOrigin = "Anonymous"
 
-  image.onload = function() {
-      canvas.width = image.width
-      canvas.height = image.height
-      context.drawImage(image, 0, 0)
-  }
+  image.onload = ()->
+    canvas.width = image.width
+    canvas.height = image.height
+    context.drawImage(image, 0, 0)
   image.src = url
 )()
