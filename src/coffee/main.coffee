@@ -156,19 +156,22 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
 
 
+gaussian = (sigma)->
+  length = sigma*6|1
+  radius = (length-1)/2
+  kernel = new Float32Array(length)
+  constant = 1/Math.sqrt(Math.PI*2)/sigma
+  for i in [0..length-1]
+    x = (i-radius)/sigma
+    y = Math.exp(-x*x/2)*constant
+    kernel[i] = y
+  kernel
+
 (()->
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
-    sigma = 4
-    length = sigma*6|1
-    radius = (length-1)/2
-    kernel = new Float32Array(length)
-    constant = 1/Math.sqrt(Math.PI*2)/sigma
-    for i in [0..length-1]
-      x = (i-radius)/sigma
-      y = Math.exp(-x*x/2)*constant
-      kernel[i] = y
+    kernel = gaussian(4)
 
     width = imageData.width
     height = imageData.height
@@ -177,8 +180,8 @@ matrixGaussian = (oppum, opend, i_count, i_step, j_count, j_step)->
     array0 = new Float32Array(array)
     array1 = new Float32Array(array)
 
-    convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, width*2
-    convolute array0, array1, kernel, height*2, width*2, width*2, 1, length, 1
+    convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
+    convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
 
     div = document.createElement("div")
