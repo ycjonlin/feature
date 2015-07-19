@@ -5,7 +5,7 @@
 class URLFile {
 public:
   URLFile(std::string url, pp::Instance *instance)
-    : loader(instance), request(instance), response(instance) {
+    : loader(instance), request(instance) {
     //
   }
 
