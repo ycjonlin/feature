@@ -148,7 +148,7 @@ gulp.task('natives', function() {
       '<%= bin %>/pnacl-clang++ <%= file.path %> '+
         '-I<%= inc %> -c -o <%= dst(file) %>.o -g -O3',
       '<%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
-        '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi',
+        '<%= dst(file) %>.o -L<%= lib %> -lppapi_cpp -lppapi -lnacl_io',
       '<%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
         '-o <%= dst(file) %>.final.pexe',
       'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
