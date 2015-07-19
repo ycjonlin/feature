@@ -177,7 +177,7 @@ protected:
     method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
-    //mount("https://farm1.staticflickr.com/2/", "/mnt/flickr", "httpfs", 0, "");
+    mount("https://farm1.staticflickr.com/2/", "/mnt/flickr", "httpfs", 0, "");
   }
   virtual ~FeatureInstance() {}
 
@@ -203,9 +203,15 @@ protected:
     }
     else if (method == "image_import") {
       std::string library = arguments.Get(0).AsString();
-      std::string path = arguments.Get(1).AsString();
+      std::string filename = arguments.Get(1).AsString();
+
+      std::ostringstream path;
+      path << "/mnt/" << library << "/" << filename;
+
       if (library == "flickr") {
-        response.Set("results", "flickr123");
+        FILE *fp = fopen(path.str().c_str(), "r");
+        fseek(fp, 0L, SEEK_END);
+        response.Set("results", pp::Var(ftell(fp)));
       }
     }
     else if (method == "array_integral") {
