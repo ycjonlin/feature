@@ -147,13 +147,24 @@ namespace {
 class Closure {
 public:
   Closure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-    : id(id), arguments(arguments), instance(instance), callback_factory(this) {}
+    : id(id), arguments(arguments), instance(instance), callback_factory(this) {
+    OnCreate();
+  }
 protected:
   std::string id;
   pp::VarArray arguments;
   pp::Instance *instance;
   pp::CompletionCallbackFactory<Closure>
     callback_factory;
+
+  virtual OnCreate() = 0;
+
+  void OnDone(int32_t result) {
+    pp::VarDictionary response;
+    response.Set("id", id);
+    response.Set("results", result);
+    (*instance).PostMessage(response);
+  }
 };
 
 class FeatureInstance : public pp::Instance {
@@ -220,20 +231,9 @@ protected:
     else if (method == "image_import")
     {
       class ImageImport : public Closure {
-      public:
-        ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-          : Closure(id, arguments, instance)
-        {
-          OnCreate(PP_OK);
-        }
       protected:
-        void OnCreate(int32_t result)
+        void OnCreate()
         {
-          if (result != PP_OK) {
-            OnDone(result);
-            return;
-          }
-
           std::string url = arguments.Get(0).AsString();
           pp::CompletionCallback on_load =
             callback_factory.NewCallback(&ImageImport::OnLoad);
@@ -259,13 +259,6 @@ protected:
           else {
             OnDone(-1);
           }
-        }
-
-        void OnDone(int32_t result) {
-          pp::VarDictionary response;
-          response.Set("id", id);
-          response.Set("results", result);
-          (*instance).PostMessage(response);
         }
       };
 
