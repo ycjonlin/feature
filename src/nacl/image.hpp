@@ -3,7 +3,6 @@
 #include "ppapi/cpp/url_response_info.h"
 
 #include "jpeg.hpp"
-#include <setjmp.h>
 
 class ImageImport : public Closure {
 public:
