@@ -30,8 +30,8 @@ protected:
     pp::URLRequestInfo url_request(instance);
     url_request.SetURL(url);
     url_request.SetMethod("GET");
-    url_request.SetProperty(PP_URLREQUESTPROPERTY_ALLOWCROSSORIGINREQUESTS, true);
-    url_request.SetProperty(PP_URLREQUESTPROPERTY_FOLLOWREDIRECTS, true);
+    url_request.SetAllowCrossOriginRequests(true);
+    url_request.SetFollowRedirects(true);
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&ImageImport::OnOpen);
