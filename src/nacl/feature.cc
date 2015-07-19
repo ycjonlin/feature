@@ -130,16 +130,6 @@ void matrix_determinant(
 #include "ppapi/cpp/var_array_buffer.h"
 #include "ppapi/cpp/var_dictionary.h"
 
-#include <stdio.h>
-#include <sys/mount.h>
-#include <sys/stat.h>
-
-#include <sstream>
-
-#include "nacl_io/nacl_io.h"
-#include "nacl_io/osdirent.h"
-#include "nacl_io/osinttypes.h"
-
 #include <png.h>
 #include <jpeglib.h>
 
@@ -182,15 +172,6 @@ protected:
     // array to cloud
     method_library.Set("suppress_6_neighbors", "");
     method_library.Set("suppress_26_neighbors", "");
-
-    // nacl_io
-    nacl_io_init_ppapi(instance, pp::Module::Get()->get_browser_interface());
-    int flickr = mount("https://farm1.staticflickr.com/", "/flickr", "httpfs", 0, "");
-    int cdnjs = mount("https://cdnjs.com/", "/cdnjs", "httpfs", 0, "");
-    int local = mount("http://localhost:9001/", "/local", "httpfs", 0, "");
-    method_library.Set("_flickr", flickr);
-    method_library.Set("_cdnjs", cdnjs);
-    method_library.Set("_local", local);
   }
   virtual ~FeatureInstance() {}
 
@@ -217,15 +198,8 @@ protected:
     else if (method == "image_import") {
       std::string path = arguments.Get(0).AsString();
 
-      struct stat buf;
-      memset(&buf, 0, sizeof(buf));
-      int ok = stat(path.c_str(), &buf);
-
       pp::VarDictionary results;
       results.Set("path", path.c_str());
-      results.Set("ok", ok);
-      results.Set("errno", errno);
-      results.Set("size", (int)buf.st_size);
 
       response.Set("results", results);
     }
