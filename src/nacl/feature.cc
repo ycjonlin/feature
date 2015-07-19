@@ -132,7 +132,10 @@ void matrix_determinant(
 
 #include <stdio.h>
 #include <sys/mount.h>
+
 #include <sstream>
+
+#include "nacl_io/nacl_io.h"
 
 #include <png.h>
 #include <jpeglib.h>
