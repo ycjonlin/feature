@@ -222,7 +222,7 @@ protected:
       memset(&buf, 0, sizeof(buf));
       int result = stat(path, &buf);
 
-      response.Set("results", buf.st_size);
+      response.Set("results", (int)buf.st_size);
     }
     else if (method == "array_integral") {
       float* dst = static_cast<float*>(pp::VarArrayBuffer(arguments.Get(0)).Map());
