@@ -205,7 +205,7 @@ protected:
       std::string library = arguments.Get(0).AsString();
       std::string path = arguments.Get(1).AsString();
       if (library == "flickr") {
-        response.Set("results", url);
+        response.Set("results", pp::Var(url));
       }
     }
     else if (method == "array_integral") {
