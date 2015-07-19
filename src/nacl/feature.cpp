@@ -161,6 +161,47 @@ protected:
   }
 };
 
+class ImageImport : public Closure {
+public:
+  ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
+    : Closure(id, arguments, instance), callback_factory(this) {
+    OnCreate();
+  }
+protected:
+  pp::CompletionCallbackFactory<ImageImport> callback_factory;
+
+  void OnCreate()
+  {
+    std::string url = arguments.Get(0).AsString();
+    pp::CompletionCallback on_load =
+      callback_factory.NewCallback(&ImageImport::OnLoad);
+    new URLFile(url, on_load, instance);
+  }
+
+  void OnLoad(int32_t result)
+  {
+    if (result != PP_OK) {
+      OnDone(result);
+      return;
+    }
+
+    std::string url = arguments.Get(0).AsString();
+    std::string extension = url.substr(
+      std::min<size_t>(url.rfind("."), url.length()));
+    if (extension == ".png") {
+      //
+    }
+    else if (extension == ".jpeg") {
+      //
+    }
+    else {
+      OnDone(-1);
+    }
+
+    OnDone(PP_OK);
+  }
+};
+
 class FeatureInstance : public pp::Instance {
 protected:
   pp::VarDictionary method_library;
@@ -224,47 +265,6 @@ protected:
     }
     else if (method == "image_import")
     {
-      class ImageImport : public Closure {
-      public:
-        ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-          : Closure(id, arguments, instance), callback_factory(this) {
-          OnCreate();
-        }
-      protected:
-        pp::CompletionCallbackFactory<ImageImport> callback_factory;
-
-        void OnCreate()
-        {
-          std::string url = arguments.Get(0).AsString();
-          pp::CompletionCallback on_load =
-            callback_factory.NewCallback(&ImageImport::OnLoad);
-          new URLFile(url, on_load, instance);
-        }
-
-        void OnLoad(int32_t result)
-        {
-          if (result != PP_OK) {
-            OnDone(result);
-            return;
-          }
-
-          std::string url = arguments.Get(0).AsString();
-          std::string extension = url.substr(
-            std::min<size_t>(url.rfind("."), url.length()));
-          if (extension == ".png") {
-            //
-          }
-          else if (extension == ".jpeg") {
-            //
-          }
-          else {
-            OnDone(-1);
-          }
-
-          OnDone(PP_OK);
-        }
-      };
-
       new ImageImport(id, arguments, this);
     }
     else if (method == "array_integral")
