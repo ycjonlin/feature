@@ -301,7 +301,8 @@ protected:
 
       pp::VarArrayBuffer image_buffer(image.Get("buffer"));
       pp::VarArrayBuffer array_buffer(array_size);
-      int   *image_pointer = (  int*)image_buffer.Map();
+
+      int   *image_pointer = (  int*)image_buffer.Map()
       float *array_pointer = (float*)array_buffer.Map();
 
       split_cie_xyz(
@@ -309,11 +310,43 @@ protected:
         array_pointer + image_size * 2, 
         array_pointer + width + image_size * 2, 
         image_pointer,
-        height, width*2, width, 1);
+        height, width * 2, width, 1);
+
+      url += " split_cie_xyz";
+      array_library.Set(url, array_buffer);
 
       pp::VarDictionary response;
       response.Set("id", id);
-      response.Set("results", url+" split_cie_xyz");
+      response.Set("results", url);
+      PostMessage(response);
+    }
+    else if (method == "calculus_convolute")
+    {
+      int i_count = arguments.Get(2).AsInt();
+      int i_step = arguments.Get(3).AsInt();
+      int j_count = arguments.Get(4).AsInt();
+      int j_step = arguments.Get(5).AsInt();
+      int k_count = arguments.Get(6).AsInt();
+      int k_step = arguments.Get(7).AsInt();
+
+      std::string url = arguments.Get(0).AsString();
+      pp::VarArrayBuffer src_buffer(array_library.Get(url));
+      pp::VarArrayBuffer dst_buffer(src_buffer.ByteLength());
+      pp::VarArrayBuffer krn_buffer(arguments.Get(1));
+
+      float *src_pointer = (float*)src_buffer.Map();
+      float *dst_pointer = (float*)dst_buffer.Map();
+      float *krn_pointer = (float*)krn_buffer.Map();
+
+      split_cie_xyz(
+        dst_pointer, src_pointer, krn_pointer,
+        i_count, i_step, 
+        j_count, j_step, 
+        k_count, k_step);
+
+      pp::VarDictionary response;
+      response.Set("id", id);
+      response.Set("results", url+" calculus_convolute");
       PostMessage(response);
     }
   }
