@@ -113,7 +113,6 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     height = 128#imageData.height
 
     array = image_split imageData
-    console.log array
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
     array2 = new Float32Array(array.length)
@@ -138,7 +137,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array00, context, width, height
+    newImageData = image_merge array, context, width, height
     canvas.width = width
     canvas.height = height
     context.putImageData newImageData, 0, 0
