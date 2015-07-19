@@ -125,10 +125,12 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
     convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, width*2
     convolute array0, array1, kernel, height*2, width*2, width*2, 1, length, 1
 
+    matrixTrace array1, array0, height*2, width*2, width*2, 1
+
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array0, context, imageData.width, imageData.height
+    newImageData = image_merge array1, context, imageData.width, imageData.height
     canvas.width = imageData.width
     canvas.height = imageData.height
     context.putImageData newImageData, 0, 0
