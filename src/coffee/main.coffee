@@ -131,7 +131,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     kernel1 = new Float32Array(length)
     kernel2 = new Float32Array(length)
     constant = 1/Math.sqrt(Math.PI*2)/sigma
-    for i in [0..kernel.length-1]
+    for i in [0..length-1]
       x = (i-radius)/sigma
       y = Math.exp(-x*x/2)*constant
       kernel0[i] = y
