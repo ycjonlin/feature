@@ -3,6 +3,8 @@
 #include "ppapi/cpp/url_response_info.h"
 #include "ppapi/utility/completion_callback_factory.h"
 
+#include <algorithm>
+
 class URLFile {
 public:
   URLFile(const std::string &url, pp::Instance *instance)
@@ -14,7 +16,7 @@ public:
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&URLFile::OnOpen);
     int32_t result = url_loader.Open(url_request, on_open);
-    
+
     if (PP_OK_COMPLETIONPENDING != result)
       on_open.Run(result);
   }
