@@ -45,7 +45,7 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
   while (cinfo.output_scanline < cinfo.output_height) {
     (void) jpeg_read_scanlines(&cinfo, buffer, 1);
 
-    /*uint8_t *byte = buffer[0];
+    uint8_t *byte = buffer[0];
     if (cinfo.output_components == 3) { // RGB data
       for (int i=0; i<cinfo.output_width; i+=1) {
         *array_buffer_ptr = ((byte[0])|(byte[1]<<8)|(byte[2]<<16)|0xff000000);
@@ -58,7 +58,7 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
         array_buffer_ptr += 1;
         byte += 1;
       }
-    }*/
+    }
   }
 
   (void) jpeg_finish_decompress(&cinfo);
