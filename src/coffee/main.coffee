@@ -123,8 +123,6 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
     array1 = new Float32Array(array0.length)
 
     convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, width*2
-    convolute array0, array1, kernel, height*2, width*2, width*2, 1, length, width*2
-    convolute array1, array0, kernel, height*2, width*2, width*2, 1, length, 1
     convolute array0, array1, kernel, height*2, width*2, width*2, 1, length, 1
 
     # create image
