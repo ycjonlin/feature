@@ -195,9 +195,9 @@ gaussian = (sigma)->
       #matrixTrace array1, array0, height*2, width*2, width*2, 1
       #div.appendChild image_element(array1, width, height)
       
-      #matrixDeterminant array1, array0, height*2, width*2, width*2, 1
-      #div.appendChild image_element(array1, width, height)
-
-      matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
+      matrixDeterminant array1, array0, height*2, width*2, width*2, 1
       div.appendChild image_element(array1, width, height)
+
+      #matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
+      #div.appendChild image_element(array1, width, height)
 )()
