@@ -156,7 +156,8 @@ gulp.task('natives', function() {
       templateData: {
         bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
         compile: [
-          '-Inacl_sdk/pepper_43/include -Inacl_sdk/pepper_43/ports/include'
+          '-Inacl_sdk/pepper_43/include',
+          '-Inacl_sdk/pepper_43/ports/include'
         ],
         link: [
           '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
