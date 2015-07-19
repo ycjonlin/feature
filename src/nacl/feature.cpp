@@ -160,8 +160,6 @@ protected:
     results.Set("code", result);
     response.Set("results", results);
     (*instance).PostMessage(response);
-
-    delete this;
   }
 };
 
