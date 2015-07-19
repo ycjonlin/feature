@@ -231,6 +231,9 @@ protected:
     else if (method == "image_import")
     {
       class ImageImport : public Closure {
+      public:
+        ImageImport(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
+          : Closure(id, arguments, instance) {}
       protected:
         void OnCreate()
         {
