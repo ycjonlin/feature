@@ -59,7 +59,7 @@ protected:
     std::stringstream stream(response.GetHeaders().AsString());
     std::string token;
     while(std::getline(stream, token, '\n')) {
-      size_t pos0 = token.find(": ");
+      size_t pos = token.find(": ");
       if (pos == -1) {
         continue;
       }
