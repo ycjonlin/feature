@@ -178,10 +178,20 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
-    div = document.createElement("div")
-    div.className = "slide"
-    document.body.appendChild div
-    div.appendChild image_element(array, width, height)
+    divTrace = document.createElement("div")
+    divTrace.className = "slide"
+    document.body.appendChild divTrace
+    divTrace.appendChild image_element(array, width, height)
+
+    divDeterminant = document.createElement("div")
+    divDeterminant.className = "slide"
+    document.body.appendChild divDeterminant
+    divDeterminant.appendChild image_element(array, width, height)
+    
+    divGaussian = document.createElement("div")
+    divGaussian.className = "slide"
+    document.body.appendChild divGaussian
+    divGaussian.appendChild image_element(array, width, height)
 
     n = 2
     for i in [0..n]
@@ -193,11 +203,11 @@ gaussian = (sigma)->
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
       matrixTrace array1, array0, sigma, height*2, width*2, width*2, 1
-      div.appendChild image_element(array1, width, height)
+      divTrace.appendChild image_element(array1, width, height)
       
       matrixDeterminant array1, array0, sigma, height*2, width*2, width*2, 1
-      div.appendChild image_element(array1, width, height)
+      divDeterminant.appendChild image_element(array1, width, height)
 
       matrixGaussian array1, array0, sigma, height*2, width*2, width*2, 1
-      div.appendChild image_element(array1, width, height)
+      divGaussian.appendChild image_element(array1, width, height)
 )()
