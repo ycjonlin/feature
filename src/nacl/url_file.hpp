@@ -22,6 +22,8 @@ public:
 
     url_request.SetURL(url);
     url_request.SetMethod("GET");
+    url_request.SetProperty(PP_URLREQUESTPROPERTY_ALLOWCROSSORIGINREQUESTS, true);
+    url_request.SetProperty(PP_URLREQUESTPROPERTY_FOLLOWREDIRECTS, true);
 
     pp::CompletionCallback on_open
       = callback_factory.NewCallback(&URLFile::OnOpen);
