@@ -129,12 +129,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     radius = (kernel.length-1)/2
     for i in [0..kernel.length-1]
       x = (i-radius)/sigma
-      kernel[i] = Math.exp(-x*x/2)
-
-    sum = 0
-    for i in [0..kernel.length-1]
-      sum += kernel[i]
-    console.log sum
+      kernel[i] = Math.exp(-x*x/2)/sigma
 
     width = imageData.width
     height = imageData.height
