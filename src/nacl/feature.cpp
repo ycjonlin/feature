@@ -178,22 +178,21 @@ protected:
   virtual ~FeatureInstance() {}
 
   virtual void HandleMessage(const pp::Var& var) {
-    pp::VarDictionary request, response;
 
     if (!var.is_dictionary()) return;
-    request = var;
 
+    pp::VarDictionary request = var;
     if (!request.HasKey("id")) return;
-    response.Set("id", request.Get("id"));
-
     if (!request.HasKey("method")) return;
-    std::string method = request.Get("method").AsString();
-
     if (!request.HasKey("arguments")) return;
+
+    std::string method = request.Get("method").AsString();
     pp::VarArray arguments(request.Get("arguments"));
 
 
     if (method == "_interface") {
+      pp::VarDictionary response;
+      response.Set("id", request.Get("id"));
       response.Set("results", method_library);
       PostMessage(response);
     }
@@ -202,6 +201,8 @@ protected:
 
       URLFile &url_file = *(new URLFile(path, this));
 
+      pp::VarDictionary response;
+      response.Set("id", request.Get("id"));
       response.Set("results", path.c_str());
       PostMessage(response);
     }
@@ -213,6 +214,9 @@ protected:
       int j_count = arguments.Get(4).AsInt();
       int j_step  = arguments.Get(5).AsInt();
       array_integral(dst, src, i_count, i_step, j_count, j_step);
+      
+      pp::VarDictionary response;
+      response.Set("id", request.Get("id"));
       PostMessage(response);
     }
   }
