@@ -97,7 +97,7 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
     while j < j_count
       xx = +opend[J-j_step|0] - +opend[J] * +2 + +opend[J+j_step|0]
       yy = +opend[J-i_step|0] - +opend[J] * +2 + +opend[J+i_step|0]
-      oppum[J] = xx+yy
+      oppum[J] = xx+yy+0.5
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
