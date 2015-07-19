@@ -299,11 +299,11 @@ protected:
       int image_size = width * height;
       int array_size = image_size * 16;
 
-      pp::VarArrayBuffer image_buffer(image.Get("buffer"));
-      pp::VarArrayBuffer array_buffer(array_size);
+      pp::VarArrayBuffer src_buffer(image.Get("buffer"));
+      pp::VarArrayBuffer dst_buffer(array_size);
 
-      int   *image_pointer = (  int*)image_buffer.Map()
-      float *array_pointer = (float*)array_buffer.Map();
+      int   *src_pointer = (  int*)src_buffer.Map();
+      float *dst_pointer = (float*)dst_buffer.Map();
 
       split_cie_xyz(
         array_pointer + width, 
@@ -313,7 +313,7 @@ protected:
         height, width * 2, width, 1);
 
       url += " split_cie_xyz";
-      array_library.Set(url, array_buffer);
+      array_library.Set(url, dst_buffer);
 
       pp::VarDictionary response;
       response.Set("id", id);
@@ -344,9 +344,12 @@ protected:
         j_count, j_step, 
         k_count, k_step);
 
+      url += " calculus_convolute";
+      array_library.Set(url, dst_buffer);
+
       pp::VarDictionary response;
       response.Set("id", id);
-      response.Set("results", url+" calculus_convolute");
+      response.Set("results", url);
       PostMessage(response);
     }
   }
