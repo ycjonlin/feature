@@ -52,7 +52,7 @@ protected:
     results.Set("headers", response.GetHeaders());
     results.Set("status_code", response.GetStatusCode());
     results.Set("status_line", response.GetStatusLine());
-    if (response.is_null() || response.GetStatusCode() != 200) {
+    if (response.GetStatusCode() != 200) {
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
