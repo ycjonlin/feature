@@ -1,4 +1,4 @@
-static float linear[256] = {0};
+static float linear[256] = {0.0f};
 
 void split_cie_rgb(
   float *dst_r, float *dst_g, float *dst_b, int *src_i,
