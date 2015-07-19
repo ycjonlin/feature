@@ -110,20 +110,17 @@ protected:
     std::string url = arguments.Get(0).AsString();
     std::string type = headers.Get("Content-Type").AsString();
 
-    pp::VarDictionary image;
-    if (type == "image/png") {
-    }
-    else if (type == "image/jpeg") {
+    if (type == "image/jpeg") {
+      pp::VarDictionary image;
       int32_t result = JPEG_Decode(&data[0], data.size(), image);
       if (result != PP_OK) {
         OnDone(result);
       }
+      library.Set(url, image);
+      OnDone(PP_OK);
     }
     else {
       OnDone(PP_ERROR_BADRESOURCE);
     }
-
-    library.Set(url, image);
-    OnDone(PP_OK);
   }
 };
