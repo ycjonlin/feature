@@ -71,8 +71,8 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
   null
 
 convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
-  i_count = i_count|0; i_step = i_step|0
-  j_count = j_count|0; j_step = j_step|0
+  i_count = i_count-k_count+1|0; i_step = i_step|0
+  j_count = j_count-k_count+1|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
   i = 0; I = 0
   while i < i_count
