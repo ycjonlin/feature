@@ -212,7 +212,7 @@ protected:
       if (library == "flickr") {
         FILE *fp = fopen(path.str().c_str(), "rb");
         //fseek(fp, 0L, SEEK_END);
-        response.Set("results", static_cast<int32_t>(fp));
+        response.Set("results", (int32_t)fp);
       }
     }
     else if (method == "array_integral") {
