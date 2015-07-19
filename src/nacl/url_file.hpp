@@ -7,11 +7,8 @@ class URLFile {
 public:
   URLFile(
     std::string &url, 
-    pp::VarDictionary response,
     pp::Instance *instance) : 
     instance(instance),
-    response(response),
-    url(url), 
     url_loader(instance), 
     url_request(instance), 
     callback_factory(this)
@@ -30,16 +27,12 @@ public:
   }
 
 protected:
-  std::string url;
   pp::URLLoader url_loader;
   pp::URLRequestInfo url_request;
   pp::CompletionCallbackFactory<URLFile> callback_factory;
 
   uint8_t buffer[1<<16];
   std::vector<uint8_t> data;
-  pp::CompletionCallback on_done;
-  pp::VarDictionary response;
-  pp::Instance *instance;
 
   void OnOpen(int32_t result)
   {
@@ -70,8 +63,6 @@ protected:
 
   void OnDone(int32_t result)
   {
-    response.Set("results", result);
-    (*instance).PostMessage(response);
   }
 
   void Read()
