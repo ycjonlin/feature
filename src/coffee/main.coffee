@@ -106,7 +106,7 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
 
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
-    sigma = 4
+    sigma = 4/Math.sqrt(2)
     length = sigma*6|1
     radius = (length-1)/2
     kernel = new Float32Array(length)
@@ -121,19 +121,16 @@ matrixTrace = (oppum, opend, i_count, i_step, j_count, j_step)->
 
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
-    array2 = new Float32Array(array0.length)
 
-    convolute1 = (a,b,c)->
-      convolute a, b, c, height*2, width*2, width*2, 1, length, width*2
-    convolute0 = (a,b,c)->
-      convolute a, b, c, height*2, width*2, width*2, 1, length, 1
-    convolute0 array1, array0, kernel
-    convolute1 array2, array1, kernel
+    convolute0 array1, array0, kernel, height*2, width*2, width*2, 1, length, width*2
+    convolute0 array0, array1, kernel, height*2, width*2, width*2, 1, length, width*2
+    convolute1 array1, array0, kernel, height*2, width*2, width*2, 1, length, 1
+    convolute1 array0, array1, kernel, height*2, width*2, width*2, 1, length, 1
 
     # create image
     canvas = document.createElement("canvas")
     context = canvas.getContext("2d")
-    newImageData = image_merge array2, context, imageData.width, imageData.height
+    newImageData = image_merge array0, context, imageData.width, imageData.height
     canvas.width = imageData.width
     canvas.height = imageData.height
     context.putImageData newImageData, 0, 0
