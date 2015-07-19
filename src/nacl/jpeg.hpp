@@ -56,7 +56,7 @@ int32_t JPEG_Decode(uint8_t *data, size_t length, pp::VarDictionary &image)
       for (int i=0; i<cinfo.output_width; i+=1) {
         *array_buffer_ptr = ((byte[0])|(byte[0]<<8)|(byte[0]<<16)|0xff000000);
         array_buffer_ptr += 1;
-        byte += 3;
+        byte += 1;
       }
     }
   }
