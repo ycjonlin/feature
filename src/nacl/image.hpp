@@ -107,7 +107,13 @@ protected:
   }
 
   void JPEG() {
-    int32_t result = JPEG_Decode(&data[0], data.size());
-    OnDone(result);
+    pp::VarDictionary image;
+    int32_t result = JPEG_Decode(&data[0], data.size(), image);
+    if (result != PP_OK) {
+      OnDone(result);
+    }
+    
+    library.Set(url, image);
+    OnDone(PP_OK);
   }
 };
