@@ -195,7 +195,7 @@ protected:
       pp::URLLoader loaeder(this);
       pp::URLRequestInfo request(this);
       request.SetURL(url);
-      request.SetMethod("Get")
+      request.SetMethod("Get");
 
     }
     else if (method == "array_integral") {
