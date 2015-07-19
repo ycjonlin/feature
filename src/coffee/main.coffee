@@ -96,7 +96,7 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
-measure = (trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
+measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -123,6 +123,7 @@ measure = (trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       _vv = (+_jj * +_ - +_j * +_j) / +norm
       _uv = (+_ij * +_ - +_i * +_j) / +norm
 
+      blr[J] = +_
       trc[J] = +0.5 + +1e0 * (+_ii + +_jj)
       det[J] = +0.5 + +1e2 * (+_ii * +_jj - +_ij * +_ij)
       gau[J] = +0.5 + +1e1 * (+_uu * +_vv - +_uv * +_uv)
@@ -154,6 +155,12 @@ gaussian = (sigma)->
     array1 = new Float32Array(array.length)
     array2 = new Float32Array(array.length)
     array3 = new Float32Array(array.length)
+    array4 = new Float32Array(array.length)
+
+    divBlur = document.createElement("div")
+    divBlur.className = "slide"
+    document.body.appendChild divBlur
+    divBlur.appendChild image_element(array, width, height)
 
     divTrace = document.createElement("div")
     divTrace.className = "slide"
@@ -190,10 +197,11 @@ gaussian = (sigma)->
       convolute array1, array0, kernel, height*2, width*2, width*2, 1, kernel1.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel1.length, 1
 
-      measure array1, array2, array3, array0, sigma, height*2, width*2, width*2, 1
-      divTrace.appendChild image_element(array1, width, height)
-      divDeterminant.appendChild image_element(array2, width, height)
-      divGaussian.appendChild image_element(array3, width, height)
+      measure array1, array2, array3, array4, array0, sigma, height*2, width*2, width*2, 1
+      divBlur.appendChild image_element(array1, width, height)
+      divTrace.appendChild image_element(array2, width, height)
+      divDeterminant.appendChild image_element(array3, width, height)
+      divGaussian.appendChild image_element(array4, width, height)
 
     ###
     for i in [0..n]
