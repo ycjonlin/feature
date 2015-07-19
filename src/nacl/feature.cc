@@ -224,7 +224,7 @@ protected:
 
       struct stat buf;
       memset(&buf, 0, sizeof(buf));
-      int ok = stat("/mnt/local/index.html", &buf);
+      int ok = stat(NULL, &buf);
 
       pp::VarDictionary results;
       results.Set("args", arguments);
