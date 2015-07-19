@@ -133,6 +133,9 @@ void matrix_determinant(
 #include <stdio.h>
 #include <sys/mount.h>
 
+#include <png.h>
+#include <jpeglib.h>
+
 namespace {
 
 }  // namespace
@@ -174,7 +177,7 @@ protected:
     method_library.Set("suppress_26_neighbors", "");
 
     // nacl_io
-    mount("https://farm1.staticflickr.com/2/", "/mnt/flickr", "httpfs", 0, "");
+    //mount("https://farm1.staticflickr.com/2/", "/mnt/flickr", "httpfs", 0, "");
   }
   virtual ~FeatureInstance() {}
 
