@@ -48,14 +48,14 @@ protected:
       OnDone(result);
       return;
     }
-    OnDone(PP_OK);
-    return;
-    
     pp::URLResponseInfo response = url_loader.GetResponseInfo();
     if (response.is_null()) {
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
+    OnDone(PP_OK);
+    return;
+    
     results.Set("headers", response.GetHeaders());
     results.Set("status_code", response.GetStatusCode());
     results.Set("status_line", response.GetStatusLine());
