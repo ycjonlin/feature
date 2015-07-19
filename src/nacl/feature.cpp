@@ -148,6 +148,7 @@ class Closure {
 public:
   Closure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
     : id(id), arguments(arguments), instance(instance) {}
+  virtual ~Closure() {}
 protected:
   std::string id;
   pp::VarArray arguments;
@@ -160,6 +161,8 @@ protected:
     results.Set("code", result);
     response.Set("results", results);
     (*instance).PostMessage(response);
+
+    delete this;
   }
 };
 
