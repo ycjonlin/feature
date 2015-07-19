@@ -127,9 +127,10 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     sigma = 4
     kernel = new Float32Array(sigma*8|1)
     radius = (kernel.length-1)/2
+    constant = 1/Math.sqrt(Math.PI*2)/sigma
     for i in [0..kernel.length-1]
       x = (i-radius)/sigma
-      kernel[i] = Math.exp(-x*x/2)/sigma
+      kernel[i] = Math.exp(-x*x/2)*constant
 
     width = imageData.width
     height = imageData.height
