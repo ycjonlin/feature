@@ -134,6 +134,7 @@ array_convolute = (opend, oppor, i_count, i_step, j_count, j_step, k_count, k_st
     context.putImageData newImageData, 0, 0
 
     div = document.createElement("div")
+    div.className = "slide"
     document.body.appendChild div
     div.appendChild canvas
 )()
