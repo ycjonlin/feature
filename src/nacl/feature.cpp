@@ -224,7 +224,7 @@ protected:
   void Read()
   {
     pp::CompletionCallback on_read
-      = callback_factory.NewCallback(&URLFile::OnRead);
+      = callback_factory.NewCallback(&ImageImport::OnRead);
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
 
