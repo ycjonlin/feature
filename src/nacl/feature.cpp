@@ -247,6 +247,7 @@ protected:
             return;
           }
 
+          std::string url = arguments.Get(0).AsString();
           std::string extension = url.substr(
             std::min<size_t>(url.rfind("."), url.length()));
           if (extension == ".png") {
