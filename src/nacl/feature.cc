@@ -185,7 +185,7 @@ protected:
     int cdnjs = mount("https://cdnjs.cloudflare.com/ajax/libs/", "/mnt/cdnjs", "httpfs", 0, "");
     method_library.Set("flickr", flickr);
     method_library.Set("cdnjs", cdnjs);
-    method_library.Set("errorno", errorno);
+    method_library.Set("errno", errno);
   }
   virtual ~FeatureInstance() {}
 
