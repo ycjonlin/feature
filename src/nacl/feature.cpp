@@ -133,9 +133,9 @@ void matrix_determinant(
 #include <png.h>
 #include <jpeglib.h>
 
-namespace {
-
 #include "url_file.hpp"
+
+namespace {
 
 }  // namespace
 
