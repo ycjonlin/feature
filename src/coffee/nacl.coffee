@@ -47,6 +47,7 @@ module.exports = (id, url, onload)->
     null # no reture value
   ), true
   listener.addEventListener 'message', ((event)->
+    console.log event.data.results
     callback = session.release(event.data.id)
     if callback
       callback event.data.results
