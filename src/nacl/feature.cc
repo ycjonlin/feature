@@ -210,9 +210,9 @@ protected:
       path << "/mnt/" << library << "/" << filename;
 
       if (library == "flickr") {
-        //FILE *fp = fopen(path.str().c_str(), "rb");
+        FILE *fp = fopen(path.str().c_str(), "rb");
         //fseek(fp, 0L, SEEK_END);
-        response.Set("results", path.str().c_str());
+        response.Set("results", (fp ? 0 : 1));
       }
     }
     else if (method == "array_integral") {
