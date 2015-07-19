@@ -57,7 +57,8 @@ protected:
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
 
-    if (PP_OK_COMPLETIONPENDING != result)
+    if (PP_OK_COMPLETIONPENDING != result) {
       on_read.Run(result);
+    }
   }
 };
