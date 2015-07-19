@@ -31,18 +31,19 @@ feature = require('./nacl') 'feature', 'nacl/feature.nmf', (data)->
 ###
 
 (()->
-  url = 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'
-
-  image = new Image
+  div = document.createElement("div")
+  div.className = 'slide'
   canvas = document.createElement("canvas")
-  document.body.appendChild(canvas)
   context = canvas.getContext("2d")
 
-  image.crossOrigin = "Anonymous"
+  document.body.appendChild(div)
+  div.appendChild(canvas)
 
+  image = new Image
+  image.crossOrigin = "Anonymous"
   image.onload = ()->
     canvas.width = image.width
     canvas.height = image.height
     context.drawImage(image, 0, 0)
-  image.src = url
+  image.src = 'https://farm1.staticflickr.com/194/505494059_ed850a8b0a_o_d.jpg'
 )()
