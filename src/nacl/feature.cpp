@@ -246,7 +246,6 @@ protected:
     results.Set("url", url);
     results.Set("extension", extension);
     results.Set("size", (int)data.size());
-    results.Set("data", (int)*&data[0]);
 
     if (extension == ".png") {
       PNG();
