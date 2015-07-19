@@ -139,6 +139,18 @@ namespace {
 
 }  // namespace
 
+class Closure {
+public:
+  Closure(std::string &session, pp::VarArray &arguments, pp::Instance *instance)
+    : session(session), arguments(arguments), instance(instance), callback_factory(this) {}
+protected:
+  std::string session;
+  pp::VarArray arguments;
+  pp::Instance *instance;
+  pp::CompletionCallbackFactory<ImageImportClosure>
+    callback_factory;
+};
+
 class FeatureInstance : public pp::Instance {
 protected:
   pp::VarDictionary method_library;
@@ -202,20 +214,14 @@ protected:
     }
     else if (method == "image_import")
     {
-      class ImageImportClosure {
+      class ImageImport : public Closure {
       public:
         ImageImportClosure(std::string &id, pp::VarArray &arguments, pp::Instance *instance)
-          : id(id), arguments(arguments), instance(instance), callback_factory(this)
+          : Closure(id, arguments, instance)
         {
           OnCreate(PP_OK);
         }
       protected:
-        std::string id;
-        pp::VarArray arguments;
-        pp::Instance *instance;
-        pp::CompletionCallbackFactory<ImageImportClosure>
-          callback_factory;
-
         void OnCreate(int32_t result)
         {
           if (result != PP_OK) {
@@ -228,6 +234,7 @@ protected:
             callback_factory.NewCallback(&ImageImportClosure::OnLoad);
           new URLFile(url, on_load, instance);
         }
+
         void OnLoad(int32_t result)
         {
           if (result != PP_OK) {
@@ -247,6 +254,7 @@ protected:
             OnDone(-1);
           }
         }
+
         void OnDone(int32_t result) {
           pp::VarDictionary response;
           response.Set("id", id);
