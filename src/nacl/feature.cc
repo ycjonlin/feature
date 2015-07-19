@@ -223,6 +223,7 @@ protected:
       int result = stat(path, &buf);
 
       pp::VarDictionary results;
+      results.Set("args", arguments);
       results.Set("path", path);
       results.Set("size", (int)buf.st_size);
 
