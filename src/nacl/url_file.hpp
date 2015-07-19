@@ -49,8 +49,6 @@ protected:
 
   void OnOpen(int32_t result)
   {
-    logs.Set(logs.GetLength(), "on_open");
-    logs.Set(logs.GetLength(), result);
     if (result != PP_OK) {
       OnDone(result);
       return;
@@ -65,9 +63,6 @@ protected:
 
   void OnRead(int32_t result)
   {
-    logs.Set(logs.GetLength(), "on_read");
-    logs.Set(logs.GetLength(), result);
-
     if (result == 0) {
       OnDone(result);
       return;
@@ -76,14 +71,13 @@ protected:
     data.reserve(data.size()+size);
     data.insert(data.end(), buffer, buffer+size);
 
+    logs.Set(log.GetLength(), result);
+
     Read();
   }
 
   void OnDone(int32_t result)
   {
-    logs.Set(logs.GetLength(), "on_done");
-    logs.Set(logs.GetLength(), result);
-
     results.Set("code", result);
     (*instance).PostMessage(response);
   }
@@ -94,8 +88,6 @@ protected:
       = callback_factory.NewCallback(&URLFile::OnRead);
     int32_t result = url_loader.ReadResponseBody(
       buffer, sizeof(buffer), on_read);
-
-    logs.Set(logs.GetLength(), result);
 
     if (PP_OK_COMPLETIONPENDING != result) {
       on_read.Run(result);
