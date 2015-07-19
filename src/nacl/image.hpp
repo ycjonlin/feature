@@ -60,9 +60,6 @@ protected:
       OnDone(PP_ERROR_FILENOTFOUND);
       return;
     }
-    OnDone(PP_OK);
-    return;
-    
     Read();
   }
 
