@@ -190,6 +190,8 @@ protected:
     std::string url = arguments.Get(0).AsString();
     std::string extension = url.substr(
       std::min<size_t>(url.rfind("."), url.length()));
+    results.Set("url", url);
+    results.Set("extension", extension);
     if (extension == ".png") {
       //
     }
