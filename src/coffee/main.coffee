@@ -34,9 +34,9 @@ image_split = (image)->
     height, stribe, width, 1
   while width >= 1 and height >= 1
     console.log width, height
-    width >>= 1; height >>= 1
     downsize array, array,
       height, stribe, width, 1
+    width >>= 1; height >>= 1
   array
 
 image_merge = (array, context, width, height)->
@@ -127,8 +127,8 @@ downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
     while j < j_count
       sum = +0.0
       oppum[J] = 0.25*(
-        oppum[J<<1]+oppum[J<<1+i_step+j_step]+
-        oppum[J<<1+i_step]+oppum[J<<1+j_step])
+        opend[J<<1]+opend[J<<1+i_step+j_step]+
+        opend[J<<1+i_step]+opend[J<<1+j_step])
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
   null
