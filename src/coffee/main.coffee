@@ -300,6 +300,7 @@ gaussian = (sigma)->
     for level in [0..levels]
       kernel = kernelList[level]
       radius = kernel.length>>1
+      console.log level, kernel.length
 
       array = blurList[level].subarray(radius*(width*2+1))
       array_convolute array1, array0, kernel, 
@@ -316,6 +317,7 @@ gaussian = (sigma)->
       div.className = 'container'
 
       for level in [0..levels]
+        console.log level
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
 
