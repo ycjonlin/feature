@@ -288,9 +288,22 @@ gaussian = (sigma)->
     width = imageData.width
     height = imageData.height
 
-    array = image_split imageData
-    array0 = new Float32Array(array.length)
+    array0 = image_split imageData
     array1 = new Float32Array(array.length)
+    arrayList = new Float32Array(array.length) for i in [0..n]
+
+    n = 4
+    for i in [0..n]
+      sigma = pow(2, 1+i/n)
+      kernel = gaussian(sigma)
+      radius = kernel.length>>1
+      console.log kernel.length
+
+      array_convolute array1, array0, kernel, 
+        height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
+      array_convolute arrayList[i], array1, kernel, 
+        height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
+
 
     page = document.getElementsByClassName("page")[0]
 
@@ -298,23 +311,12 @@ gaussian = (sigma)->
 
       div = document.createElement("div")
       div.className = 'container'
-      div.appendChild image_element(array, width, height)
 
-      n = 4
       for i in [0..n]
-        sigma = pow(2, 1+i/n)
-        kernel = gaussian(sigma)
-        radius = kernel.length>>1
         console.log kernel.length
-
-        array_convolute array1, array, kernel, 
-          height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-        array_convolute array0, array1, kernel, 
-          height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
-
-        measure array1.subarray(radius*(width*2+1)), array0, sigma, 
+        measure array0.subarray(radius*(width*2+1)), arrayList[i], sigma, 
           height*2-radius*2, width*2, width*2-radius*2, 1
-        div.appendChild image_element(array1, width, height)
+        div.appendChild image_element(array0, width, height)
 
       page.appendChild div
 )()
