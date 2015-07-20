@@ -309,19 +309,17 @@ gaussian = (sigma)->
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
-    page = document.getElementsByClassName("page")[0]
-
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
-
-      div = document.createElement("div")
-      div.className = 'container'
 
       for level in [0..levels]
         console.log level
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
 
+      page = document.getElementsByClassName("page")[0]
+      div = document.createElement("div")
+      div.className = 'container'
+      for level in [0..levels]
         div.appendChild image_element(measureList[level], width, height)
-
       page.appendChild div
 )()
