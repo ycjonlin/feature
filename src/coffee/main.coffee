@@ -52,6 +52,7 @@ element = (surface, width, height)->
     surface1 = new Float32Array(surface0.length)
     blurList = (new Float32Array(surface0.length) for level in [0..levels+1])
     measureList = (new Float32Array(surface0.length) for level in [0..levels+1])
+    keypointList = (new Int32Array(surface0.length>>4) for level in [0..levels+1])
 
     for level in [0..levels+1]
       kernel = kernelList[level]
