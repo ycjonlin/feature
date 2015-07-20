@@ -147,6 +147,7 @@ gaussian = (sigma)->
     x1 = (i+1-radius)/sigma/Math.sqrt(2)
     y = (erf(x1)-erf(x0))/2
     kernel[i] = y
+  console.log kernel
   kernel
 
 (()->
