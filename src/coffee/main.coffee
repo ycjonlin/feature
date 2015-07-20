@@ -289,8 +289,8 @@ gaussian = (sigma)->
     height = imageData.height
 
     array0 = image_split imageData
-    array1 = new Float32Array(array.length)
-    arrayList = new Float32Array(array.length) for i in [0..n]
+    array1 = new Float32Array(array0.length)
+    arrayList = new Float32Array(array0.length) for i in [0..n]
 
     n = 4
     for i in [0..n]
