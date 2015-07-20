@@ -62,7 +62,7 @@ module.exports =
         f21 = opend2[J+j_step]
         f22 = opend2[J+j_step+i_step]
 
-        sign = 
+        signs = 
           sign(d01-e11) + 
           sign(d10-e11) + sign(d11-e11) + sign(d12-e11) + 
           sign(d21-e11) + 
