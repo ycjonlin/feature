@@ -306,7 +306,7 @@ gaussian = (sigma)->
         array0 = new Float32Array(array.length)
         array1 = new Float32Array(array.length)
 
-        array_convolute array1.subarray(radius*width), array, kernel, 
+        array_convolute array1.subarray(radius*width*2), array, kernel, 
           height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
         array_convolute array0.subarray(radius), array1, kernel, 
           height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
