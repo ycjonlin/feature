@@ -294,15 +294,17 @@ gaussian = (sigma)->
     array1 = new Float32Array(array0.length)
     arrayList = new Float32Array(array0.length) for i in [0..levels]
 
-    for index in [0..levels]
-      sigma = pow(2, 1+index/levels)
+    for level in [0..levels]
+      sigma = pow(2, 1+level/levels)
       kernel = gaussian(sigma)
       radius = kernel.length>>1
-      console.log index, kernel.length
+      console.log level, kernel.length
+
+      array = arrayList[level].subarray(radius*(width*2+1))
 
       array_convolute array1, array0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-      array_convolute arrayList[index], array1, kernel, 
+      array_convolute array, array1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
@@ -313,9 +315,9 @@ gaussian = (sigma)->
       div = document.createElement("div")
       div.className = 'container'
 
-      for i in [0..levels]
-        measure array0.subarray(radius*(width*2+1)), arrayList[i], sigma, 
-          height*2-radius*2, width*2, width*2-radius*2, 1
+      for level in [0..levels]
+        measure array0, arrayList[level], sigma, 
+          height*2, width*2, width*2, 1
         div.appendChild image_element(array0, width, height)
 
       page.appendChild div
