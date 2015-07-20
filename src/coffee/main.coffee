@@ -52,7 +52,7 @@ gaussian = (sigma)->
       array = blurList[level].subarray(radius*(width*2+1))
       Surface.convolute array1, array0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-      array_convolute array, array1, kernel, 
+      Surface.convolute array, array1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
