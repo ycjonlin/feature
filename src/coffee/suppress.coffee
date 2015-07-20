@@ -16,7 +16,7 @@ module.exports =
         e21 = opend1[J+j_step]
         e22 = opend1[J+j_step+i_step]
 
-        if e01 < e11
+        if (e01 < e11) and (e21 < e11)
           oppum[total] = J
           total += 1
         ###
