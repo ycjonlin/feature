@@ -3,7 +3,6 @@ sqrt = Math.sqrt
 exp = Math.exp
 abs = Math.abs
 ceil = Math.ceil
-floor = Math.floor
 pow = Math.pow
 pi = Math.PI
 tau = pi*2
