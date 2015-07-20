@@ -344,6 +344,8 @@ gaussian = (sigma)->
 
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
+      console.log '---'
+
       for level in [0..levels]
         kernel = kernelList[level]
         radius = kernel.length>>1
