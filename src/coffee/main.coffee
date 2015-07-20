@@ -123,6 +123,7 @@ flatten = (oppum, opend, i_count, i_step, j_count, j_step)->
     j = 0; J = I
     while j < j_count
       channel = opend[J]
+      channel = if channel > 0.0031308 then 1.055*pow(channel, 1/2.4) else 12.92*channel
       oppum[_] = channel*255|0; _ = _+1|0
       oppum[_] = channel*255|0; _ = _+1|0
       oppum[_] = channel*255|0; _ = _+1|0
