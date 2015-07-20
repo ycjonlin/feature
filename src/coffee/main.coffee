@@ -120,7 +120,7 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       _j  = fround(s1_2 * (e21 - e01))
       _i  = fround(s1_2 * (e12 - e10))
       _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
-      _ii = fround(s2_1 * (e10 - e11 - e12 + e12))
+      _ii = fround(s2_1 * (e10 - e11 - e11 + e12))
       _ij = fround(s2_4 * (e00 - e02 - e20 + e22))
 
       ###
