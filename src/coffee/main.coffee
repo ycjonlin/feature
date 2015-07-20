@@ -324,17 +324,13 @@ suppress_18_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count,
       f22 = opend2[J+j_step+i_step]
 
       signs =
-                        sign(d01-e11) + 
-        sign(d10-e11) + sign(d11-e11) + sign(d12-e11) +
-                        sign(d21-e11) + 
+        sign(d01-e11) + sign(d10-e11) + sign(d11-e11) + sign(d12-e11) + sign(d21-e11) + 
 
         sign(e00-e11) + sign(e01-e11) + sign(e02-e11) +
         sign(e10-e11) +                 sign(e12-e11) +
         sign(e20-e11) + sign(e21-e11) + sign(e22-e11) +
 
-                        sign(f01-e11) + 
-        sign(f10-e11) + sign(f11-e11) + sign(f12-e11) +
-                        sign(f21-e11)
+        sign(f01-e11) + sign(f10-e11) + sign(f11-e11) + sign(f12-e11) + sign(f21-e11)
 
       if signs == -18 or signs == 18
         total += 1
