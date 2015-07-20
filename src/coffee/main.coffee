@@ -268,6 +268,7 @@ measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
 
 suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
   total = 0
+  count = 0
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
@@ -289,10 +290,11 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, 
 
       if isFinite(e11)
         console.log e11
+        count += 1
+        if count == 256
+          return total
       if signs == -6 or signs == 6
         total += 1
-      if J > 1024
-        return
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
