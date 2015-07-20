@@ -190,8 +190,8 @@ gaussian = (sigma)->
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
       console.log kernel.length
 
-      convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel1.length, width*2
-      convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel1.length, 1
+      convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
+      convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
 
       measure array1, array2, array3, array4, array0, sigma, height*2, width*2, width*2, 1
       divBlur.appendChild image_element(array1, width, height)
