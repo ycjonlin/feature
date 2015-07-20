@@ -83,12 +83,13 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
   i_count = i_count-k_count+1|0; i_step = i_step|0
   j_count = j_count-k_count+1|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
-  i = 0; I = 0
+  radius = k_count>>1
+  i = 0; I = radius*k_step|0
   while i < i_count
     j = 0; J = I
     while j < j_count
       sum = +0.0
-      k = 0; K = J
+      k = 0; K = J-radius*k_step|0
       while k < k_count
         sum = +sum + +opend[K] * +oppor[k]
         k = (k+1)|0; K = (K+k_step)|0
