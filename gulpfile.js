@@ -143,7 +143,7 @@ gulp.task('styles', function() {
 
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
-    .pipe(shell([
+    /*.pipe(shell([
       'mkdir -p <%= dst() %>',
       'time <%= bin %>/pnacl-clang++ <%= file.path %> '+
         '<%= compile.join(" ") %> -c -o <%= dst(file) %>.o',
@@ -184,7 +184,7 @@ gulp.task('natives', function() {
             }, null, 2));
         }
       }
-    }))
+    }))*/
     .on('error', handleError);
 
   return pipeline;
