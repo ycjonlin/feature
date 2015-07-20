@@ -64,7 +64,7 @@ module.exports =
 
         sign = d01 < e11
 
-        if \
+        if (
           sign == (d01<e11) and 
           sign == (d10<e11) and sign == (d11<e11) and sign == (d12<e11) and 
           sign == (d21<e11) and
@@ -76,6 +76,7 @@ module.exports =
           sign == (f01<e11) and 
           sign == (f10<e11) and sign == (f11<e11) and sign == (f12<e11) and 
           sign == (f21<e11)
+        )
           oppum[total] = J
           total += 1
 
