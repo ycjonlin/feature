@@ -36,7 +36,7 @@ gaussian = (sigma)->
     sigmaList = (pow(2, 1+level/levels) for level in [0..levels])
     kernelList = (gaussian(sigmaList[level]) for level in [0..levels])
 
-    array0 = Image.split imageData
+    array0 = Image.extract imageData
     array1 = new Float32Array(array0.length)
     blurList = (new Float32Array(array0.length) for level in [0..levels])
     measureList = (new Float32Array(array0.length) for level in [0..levels])
