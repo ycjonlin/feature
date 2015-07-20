@@ -288,13 +288,14 @@ gaussian = (sigma)->
     width = imageData.width
     height = imageData.height
 
+    levels = 4
+
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
-    arrayList = new Float32Array(array0.length) for i in [0..n]
+    arrayList = new Float32Array(array0.length) for i in [0..level]
 
-    n = 4
-    for i in [0..n]
-      sigma = pow(2, 1+i/n)
+    for i in [0..levels]
+      sigma = pow(2, 1+i/levels)
       kernel = gaussian(sigma)
       radius = kernel.length>>1
       console.log i, kernel.length
