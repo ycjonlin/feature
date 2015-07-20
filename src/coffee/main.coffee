@@ -292,15 +292,15 @@ gaussian = (sigma)->
 
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
-    arrayList = (new Float32Array(array0.length) for level in [0..levels])
+    blurList = (new Float32Array(array0.length) for level in [0..levels])
+    measureList = (new Float32Array(array0.length) for level in [0..levels])
 
     for level in [0..levels]
       sigma = pow(2, 1+level/levels)
       kernel = gaussian(sigma)
       radius = kernel.length>>1
 
-      array = arrayList[level].subarray(radius*(width*2+1))
-
+      array = blurList[level].subarray(radius*(width*2+1))
       array_convolute array1, array0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
       array_convolute array, array1, kernel, 
@@ -316,10 +316,9 @@ gaussian = (sigma)->
 
       for level in [0..levels]
         sigma = pow(2, 1+level/levels)
-        array = new Float32Array(array0.length)
-        measure array, arrayList[level], sigma, 
+        measure measureList[level], blurList[level], sigma, 
           height*2, width*2, width*2, 1
-        div.appendChild image_element(array, width, height)
+        div.appendChild image_element(measureList[level], width, height)
 
       page.appendChild div
 )()
