@@ -30,12 +30,12 @@ image_split = (image)->
   height = image.height
   stribe = width * 2
   halfpage = height * stribe
-  diverge array, image.data, 
+  array_diverge array, image.data, 
     width, halfpage, width+halfpage, 
     height, stribe, width, 1
   while width >= 1 and height >= 1
     console.log width, height
-    downsize array, array,
+    array_downsize array, array,
       height, stribe, width, 1
     width >>= 1; height >>= 1
   array
@@ -43,7 +43,7 @@ image_split = (image)->
 image_merge = (array, context, width, height)->
   image = context.createImageData width, height
   size = width * height
-  converge image.data, array, 
+  array_converge image.data, array, 
     width, size*2, width+size*2, 
     height, width*2, width, 1
   image
@@ -51,7 +51,7 @@ image_merge = (array, context, width, height)->
 image_press = (array, context, width, height)->
   image = context.createImageData width*2, height*2
   size = width * height
-  flatten image.data, array, 
+  array_flatten image.data, array, 
     height*2, width*2, width*2, 1
   image
 
@@ -69,7 +69,7 @@ for i in [0..255]
   c = i/255
   linear[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
 
-diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
+array_diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
@@ -89,7 +89,7 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
+array_converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
@@ -114,7 +114,7 @@ converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-flatten = (oppum, opend, i_count, i_step, j_count, j_step)->
+array_flatten = (oppum, opend, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
@@ -132,7 +132,7 @@ flatten = (oppum, opend, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
+array_downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
@@ -148,7 +148,7 @@ downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
+array_convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
   i_count = i_count-k_count+1|0; i_step = i_step|0
   j_count = j_count-k_count+1|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
@@ -167,10 +167,22 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
+measure_constant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
-  k_count = k_count|0; k_step = k_step|0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+
+      oppum[J] = opend[J]
+
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+
+measure_trace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
   s1_2 = fround(sigma/2)
   s2_1 = fround(sigma*sigma)
@@ -181,9 +193,60 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
 
       e00 = e10; e01 = e11; e02 = e12
       e10 = e20; e11 = e21; e12 = e22
-      e20 = opend[J-i_step+j_step]
+      e20 = opend[J+j_step-i_step]
       e21 = opend[J+j_step]
-      e22 = opend[J+i_step+j_step]
+      e22 = opend[J+j_step+i_step]
+
+      _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
+      _ii = fround(s2_1 * (e10 - e11 - e11 + e12))
+
+      oppum[J] = 0.5 + 1e0 * (_ii + _jj)
+
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+
+measure_determinant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  i = 0; I = 0
+  s1_2 = fround(sigma/2)
+  s2_1 = fround(sigma*sigma)
+  s2_4 = fround(sigma*sigma/4)
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+
+      e00 = e10; e01 = e11; e02 = e12
+      e10 = e20; e11 = e21; e12 = e22
+      e20 = opend[J+j_step-i_step]
+      e21 = opend[J+j_step]
+      e22 = opend[J+j_step+i_step]
+
+      _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
+      _ii = fround(s2_1 * (e10 - e11 - e11 + e12))
+      _ij = fround(s2_4 * (e00 - e02 - e20 + e22))
+
+      oppum[J] = 0.5 + 2e1 * (_ii * _jj - _ij * _ij)
+
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+
+measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  i = 0; I = 0
+  s1_2 = fround(sigma/2)
+  s2_1 = fround(sigma*sigma)
+  s2_4 = fround(sigma*sigma/4)
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+
+      e00 = e10; e01 = e11; e02 = e12
+      e10 = e20; e11 = e21; e12 = e22
+      e20 = opend[J+j_step-i_step]
+      e21 = opend[J+j_step]
+      e22 = opend[J+j_step+i_step]
 
       _   = e11
       _j  = fround(s1_2 * (e21 - e01))
@@ -197,10 +260,7 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       _vv = fround(norm * (_jj * _ - _j * _j))
       _uv = fround(norm * (_ij * _ - _i * _j))
 
-      blr[J] = _
-      trc[J] = 0.5 + 1e0 * (_ii + _jj)
-      det[J] = 0.5 + 2e1 * (_ii * _jj - _ij * _ij)
-      gau[J] = 0.5 + 1e0 * (_uu * _vv - _uv * _uv)
+      oppum[J] = 0.5 + 1e0 * (_uu * _vv - _uv * _uv)
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
@@ -261,8 +321,10 @@ gaussian = (sigma)->
       sigma = 2*sqrt(1+3*i/n)
       kernel = gaussian(2*sqrt(1+3*i/n))
 
-      convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
-      convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
+      array_convolute array1, array, kernel, 
+        height*2, width*2, width*2, 1, kernel.length, width*2
+      array_convolute array0, array1, kernel, 
+        height*2, width*2, width*2, 1, kernel.length, 1
 
       measure array1, array2, array3, array4, array0, sigma, height*2, width*2, width*2, 1
       divBlur.appendChild image_element(array1, width, height)
