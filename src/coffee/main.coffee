@@ -38,7 +38,6 @@ image_split = (image)->
       height, stribe, width, 1
   array
 
-
 image_merge = (array, context, width, height)->
   image = context.createImageData width, height
   size = width * height
@@ -47,14 +46,40 @@ image_merge = (array, context, width, height)->
     height, width*2, width, 1
   image
 
+image_press = (array, context, width, height)->
+  image = context.createImageData width*2, height*2
+  size = width * height
+  flatten image.data, array, 
+    height*2, width*2, width*2, 1
+  image
+
 image_element = (array, width, height)->
   canvas = document.createElement("canvas")
   context = canvas.getContext("2d")
-  imageData = image_merge array, context, width, height
+  imageData = image_press array, context, width, height
   canvas.width = width
   canvas.height = height
   context.putImageData imageData, 0, 0
   canvas
+
+diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  _ = 0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      channel0 = +opend[_]/+255; _ = _+1|0
+      channel1 = +opend[_]/+255; _ = _+1|0
+      channel2 = +opend[_]/+255; _ = _+1|0
+      _ = _+1|0
+      oppum[offset0+J|0] = channel0
+      oppum[offset1+J|0] = channel1
+      oppum[offset2+J|0] = channel2
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+  null
 
 converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
@@ -75,7 +100,7 @@ converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
+flatten = (oppum, opend, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   _ = 0
@@ -83,13 +108,11 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
   while i < i_count
     j = 0; J = I
     while j < j_count
-      channel0 = +opend[_]/+255; _ = _+1|0
-      channel1 = +opend[_]/+255; _ = _+1|0
-      channel2 = +opend[_]/+255; _ = _+1|0
-      _ = _+1|0
-      oppum[offset0+J|0] = channel0
-      oppum[offset1+J|0] = channel1
-      oppum[offset2+J|0] = channel2
+      channel = opend[J]
+      oppum[_] = channel*255|0; _ = _+1|0
+      oppum[_] = channel*255|0; _ = _+1|0
+      oppum[_] = channel*255|0; _ = _+1|0
+      oppum[_] = 255; _ = _+1|0
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
   null
