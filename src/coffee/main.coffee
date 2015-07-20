@@ -113,7 +113,7 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       e00 = e10; e01 = e11; e02 = e12
       e10 = e20; e11 = e21; e12 = e22
       e20 = opend[J-i_step+j_step]
-      e21 = opend[J       +j_step]
+      e21 = opend[J+j_step]
       e22 = opend[J+i_step+j_step]
 
       _   = e11
@@ -122,6 +122,19 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
       _ii = fround(s2_1 * (e10 - e11 - e12 + e12))
       _ij = fround(s2_4 * (e00 - e02 - e20 + e22))
+
+      ###
+      _   = opend[J]
+      _j  = fround(s1_2 * (opend[J+j_step] - opend[J-j_step]))
+      _i  = fround(s1_2 * (opend[J+i_step] - opend[J-i_step]))
+      _jj = fround(s2_1 * (opend[J-j_step] - _ - _ + opend[J+j_step]))
+      _ii = fround(s2_1 * (opend[J-i_step] - _ - _ + opend[J+i_step]))
+      _ij = fround(s2_4 * (
+        opend[J+i_step+j_step] -
+        opend[J-i_step+j_step] -
+        opend[J+i_step-j_step] +
+        opend[J-i_step-j_step]))
+      ###
 
       norm = fround(1 / (_ * _))
       _uu = fround((_ii * _ - _i * _i) * norm)
