@@ -65,9 +65,9 @@ element = (surface, width, height)->
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
-    for measure in [Measure.constant, Measure.trace, Measure.determinant, Measure.gaussian]
+    for name, measure of Measure
 
-      console.log '---'
+      console.log '---', name
 
       for level in [0..levels]
         measure measureList[level], blurList[level], sigmaList[level], 
