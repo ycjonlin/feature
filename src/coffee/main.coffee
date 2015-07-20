@@ -287,10 +287,11 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, 
         sign(opend0[J]-e11) + 
         sign(opend2[J]-e11)
 
-      console.log signs
+      if isFinite(signs)
+        console.log signs
       if signs == -6 or signs == 6
         total += 1
-      if J > 64
+      if J > 256
         return
 
       j = (j+1)|0; J = (J+j_step)|0
