@@ -400,7 +400,7 @@ gaussian = (sigma)->
         radius = kernel.length>>1
         console.log level, kernel.length
 
-        total = suppress_6_neighbor null
+        total = suppress_6_neighbor null,
           measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
         console.log level, total
@@ -410,7 +410,7 @@ gaussian = (sigma)->
         radius = kernel.length>>1
         console.log level, kernel.length
         
-        total = suppress_26_neighbor null
+        total = suppress_26_neighbor null,
           measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
         console.log level, total
