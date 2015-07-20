@@ -27,12 +27,15 @@ image_split = (image)->
   array = new Float32Array(image.width*image.height*4)
   width = image.width
   height = image.height
-  size = width * height
+  stribe = width*2
+  shift = height * stribe
   diverge array, image.data, 
-    width, size*2, width+size*2, 
-    height, width*2, width, 1
-  downsize array, array,
-    height>>1, width*2, width>>1, 1
+    width, shift, width+shift, 
+    height, stribe, width, 1
+  while width >= 1 and height >= 1
+    width >>= 1; height >>= 1
+    downsize array, array,
+      height, stribe, width, 1
   array
 
 
