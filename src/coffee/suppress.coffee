@@ -1,3 +1,4 @@
+sign = Math.sign
 
 suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
   total = 0
