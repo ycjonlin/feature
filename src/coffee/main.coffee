@@ -126,9 +126,10 @@ downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
     j = 0; J = I
     while j < j_count
       sum = +0.0
+      K = J<<1
       oppum[J] = 0.25*(
-        opend[J<<1]+opend[J<<1+i_step+j_step]+
-        opend[J<<1+i_step]+opend[J<<1+j_step])
+        opend[K]+opend[K+i_step+j_step]+
+        opend[K+i_step]+opend[K+j_step])
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
   null
