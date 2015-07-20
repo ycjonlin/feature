@@ -50,9 +50,9 @@ gaussian = (sigma)->
       console.log level, kernel.length
 
       surface = blurList[level].subarray(radius*(width*2+1))
-      Surface.convolute array1, surface0, kernel, 
+      Surface.convolute surface1, surface0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-      Surface.convolute surface, array1, kernel, 
+      Surface.convolute surface, surface1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
