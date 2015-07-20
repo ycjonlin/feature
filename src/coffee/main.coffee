@@ -398,22 +398,20 @@ gaussian = (sigma)->
       for level in [1..levels-1]
         kernel = kernelList[level]
         radius = kernel.length>>1
-        console.log level, kernel.length
 
         total = suppress_6_neighbor null,
           measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
-        console.log level, total
+        console.log level, kernel.length, total
 
       for level in [1..levels-1]
         kernel = kernelList[level]
         radius = kernel.length>>1
-        console.log level, kernel.length
         
         total = suppress_26_neighbor null,
           measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
-        console.log level, total
+        console.log level, kernel.length, total
 
       page = document.getElementsByClassName("page")[0]
       div = document.createElement("div")
