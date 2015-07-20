@@ -102,8 +102,8 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
   i = 0; I = 0
-  s1_2 = +(sigma/2)
-  s2_1 = +(sigma*sigma)
+  s1_2 = Math.fround(sigma/2)
+  s2_1 = Math.fround(sigma*sigma)
   s2_4 = Math.fround(sigma*sigma/4)
   while i < i_count
     j = 0; J = I
@@ -148,7 +148,6 @@ gaussian = (sigma)->
     x1 = (i+1-radius)/sigma/Math.sqrt(2)
     y = (erf(x1)-erf(x0))/2
     kernel[i] = y
-  console.log kernel
   kernel
 
 (()->
@@ -189,7 +188,6 @@ gaussian = (sigma)->
     for i in [0..n]
       sigma = 2*Math.sqrt(1+3*i/n)
       kernel = gaussian(2*Math.sqrt(1+3*i/n))
-      console.log kernel.length
 
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
