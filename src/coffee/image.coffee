@@ -53,6 +53,9 @@ element = (array, width, height)->
   context.putImageData imageData, 0, 0
   canvas
 
-module.exports = {
+module.exports = 
   load: load
-}
+  split: split
+  merge: merge
+  press: press
+  element: element
