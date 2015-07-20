@@ -34,7 +34,6 @@ image_split = (image)->
     width, halfpage, width+halfpage, 
     height, stribe, width, 1
   while width >= 1 and height >= 1
-    console.log width, height
     array_downsize array, array,
       height, stribe, width, 1
     width >>= 1; height >>= 1
@@ -311,5 +310,5 @@ gaussian = (sigma)->
 
         measure array1, array0, sigma, height*2, width*2, width*2, 1
         div.appendChild image_element(array1, width, height)
-        
+
 )()
