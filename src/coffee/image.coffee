@@ -45,12 +45,3 @@ module.exports =
     Surface.flatten image.data, array, 
       height*2, width*2, width*2, 1
     image
-
-  element: (array, width, height)->
-    canvas = document.createElement("canvas")
-    context = canvas.getContext("2d")
-    imageData = image_merge array, context, width, height
-    canvas.width = imageData.width
-    canvas.height = imageData.height
-    context.putImageData imageData, 0, 0
-    canvas
