@@ -1,3 +1,4 @@
+Surface = require './surface'
 
 module.exports = 
   load: (url, callback)->
