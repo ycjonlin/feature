@@ -29,6 +29,15 @@ gaussian = (sigma)->
     kernel[i] = y
   kernel
 
+element = (surface, width, height)->
+  canvas = document.createElement("canvas")
+  context = canvas.getContext("2d")
+  imageData = Image.compact surface, context, width, height
+  canvas.width = imageData.width
+  canvas.height = imageData.height
+  context.putImageData imageData, 0, 0
+  canvas
+
 (()->
   Image.load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
@@ -86,6 +95,6 @@ gaussian = (sigma)->
       div = document.createElement("div")
       div.className = 'container'
       for level in [0..levels]
-        div.appendChild Image.element(measureList[level], width, height)
+        div.appendChild element(measureList[level], width, height)
       page.appendChild div
 )()
