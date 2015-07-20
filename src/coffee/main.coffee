@@ -75,7 +75,7 @@ element = (surface, width, height)->
           height*2, width*2, width*2, 1
 
       for level in [1..levels]
-        total = Suppress.neighbor_26 keypointList[level],
+        total = Suppress.neighbor_18 keypointList[level],
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
         console.log level, total
