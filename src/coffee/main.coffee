@@ -314,7 +314,7 @@ gaussian = (sigma)->
       div.className = 'container'
 
       for i in [0..levels]
-        console.log kernel.length
+        console.log i
         measure array0.subarray(radius*(width*2+1)), arrayList[i], sigma, 
           height*2-radius*2, width*2, width*2-radius*2, 1
         div.appendChild image_element(array0, width, height)
