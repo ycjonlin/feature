@@ -289,7 +289,14 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, border, i_count, i_step, j
         sign(opend2[J]-e11)
 
       if signs == -6 or signs == 6
-        total += 1
+        _i_count = i_count; _j_count = j_count
+        while _i_count >= i and _j_count >= j
+          _i_count >>= 1; _j_count >>= 1
+        _i = i; _i -= i_count if _i > _i_count
+        _j = j; _j -= j_count if _j > _j_count
+        if _i < border or _i_count-_i <= border or
+           _j < border or _j_count-_j <= border
+          total += 1
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
