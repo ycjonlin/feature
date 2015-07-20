@@ -299,7 +299,7 @@ gaussian = (sigma)->
 
       div = document.createElement("div")
       div.appendChild image_element(array, width, height)
-      ###
+
       n = 4
       for i in [0..n]
         sigma = 2*sqrt(1+3*i/n)
@@ -312,7 +312,6 @@ gaussian = (sigma)->
 
         measure array1, array0, sigma, height*2, width*2, width*2, 1
         div.appendChild image_element(array1, width, height)
-      ###
       
       page.appendChild div
 )()
