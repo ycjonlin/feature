@@ -312,7 +312,7 @@ gaussian = (sigma)->
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       for level in [0..levels]
-        console.log level
+        console.log level, sigmaList[level]
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
 
