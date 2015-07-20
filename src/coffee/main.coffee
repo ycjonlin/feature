@@ -199,8 +199,8 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
 
       blr[J] = _
       trc[J] = 0.5 + 1e0 * (_ii + _jj)
-      det[J] = 0.5 + 1e2 * (_ii * _jj - _ij * _ij)
-      gau[J] = 0.5 + 1e1 * (_uu * _vv - _uv * _uv)
+      det[J] = 0.5 + 1e1 * (_ii * _jj - _ij * _ij)
+      gau[J] = 0.5 + 1e0 * (_uu * _vv - _uv * _uv)
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
