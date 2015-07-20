@@ -308,7 +308,7 @@ gaussian = (sigma)->
 
         array_convolute array1.subarray(radius*width*2), array, kernel, 
           height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-        array_convolute array0, array1, kernel, 
+        array_convolute array0.subarray(radius*width*2), array1, kernel, 
           height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
         measure array1, array0, sigma, height*2, width*2, width*2, 1
