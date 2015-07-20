@@ -302,7 +302,7 @@ gaussian = (sigma)->
 
       n = 4
       for i in [0..n]
-        sigma = 2*sqrt(1+3*i/n)
+        sigma = pow(2, 1+i/n)
         kernel = gaussian(sigma)
         radius = kernel.length>>1
 
