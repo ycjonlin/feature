@@ -305,7 +305,7 @@ gaussian = (sigma)->
         sigma = pow(2, 1+i/n)
         kernel = gaussian(sigma)
         radius = kernel.length>>1
-        console.log radius
+        console.log kernel.length
 
         array_convolute array1, array, kernel, 
           height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
