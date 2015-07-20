@@ -288,11 +288,6 @@ suppress_6_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step)
         sign(opend0[J]-e11) + 
         sign(opend2[J]-e11)
 
-      if isFinite(e11)
-        console.log e20, e21, e22
-        count += 1
-        if count == 1<<20
-          return total
       if signs == -6 or signs == 6
         total += 1
 
