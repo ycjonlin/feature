@@ -39,20 +39,20 @@ gaussian = (sigma)->
     sigmaList = (pow(2, 1+level/levels) for level in [0..levels])
     kernelList = (gaussian(sigmaList[level]) for level in [0..levels])
 
-    array0 = Image.extract imageData
-    array1 = new Float32Array(array0.length)
-    blurList = (new Float32Array(array0.length) for level in [0..levels])
-    measureList = (new Float32Array(array0.length) for level in [0..levels])
+    surface0 = Image.extract imageData
+    surface1 = new Float32Array(surface0.length)
+    blurList = (new Float32Array(surface0.length) for level in [0..levels])
+    measureList = (new Float32Array(surface0.length) for level in [0..levels])
 
     for level in [0..levels]
       kernel = kernelList[level]
       radius = kernel.length>>1
       console.log level, kernel.length
 
-      array = blurList[level].subarray(radius*(width*2+1))
-      Surface.convolute array1, array0, kernel, 
+      surface = blurList[level].subarray(radius*(width*2+1))
+      Surface.convolute array1, surface0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-      Surface.convolute array, array1, kernel, 
+      Surface.convolute surface, array1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
