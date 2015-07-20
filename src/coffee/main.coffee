@@ -267,10 +267,10 @@ measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   null
 
 suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+  total = 0
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
-  total = 0
   while i < i_count
     j = 0; J = I
     while j < j_count
