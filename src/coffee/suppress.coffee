@@ -76,15 +76,15 @@ module.exports =
           (f21<e11)
         ) or (
           (d01>e11) and 
-          (d10>e11) and (d11>=e11) and (d12>=e11) and 
+          (d10>e11) and (d11>e11) and (d12>e11) and 
           (d21>e11) and
 
-          (e00>e11) and (e01>=e11) and (e02>=e11) and 
-          (e10>e11) and               (e12>=e11) and 
-          (e20>e11) and (e21>=e11) and (e22>=e11) and
+          (e00>e11) and (e01>e11) and (e02>e11) and 
+          (e10>e11) and               (e12>e11) and 
+          (e20>e11) and (e21>e11) and (e22>e11) and
 
           (f01>e11) and 
-          (f10>e11) and (f11>=e11) and (f12>=e11) and 
+          (f10>e11) and (f11>e11) and (f12>e11) and 
           (f21>e11))
           oppum[total] = J
           total += 1
