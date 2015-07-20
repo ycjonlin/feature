@@ -3,6 +3,7 @@ sqrt = Math.sqrt
 exp = Math.exp
 log = Math.log
 abs = Math.abs
+sign = Math.sign
 ceil = Math.ceil
 floor = Math.floor
 pow = Math.pow
@@ -177,12 +178,12 @@ measure_constant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
+  null
 
 measure_trace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
-  s1_2 = fround(sigma/2)
   s2_1 = fround(sigma*sigma)
   s2_4 = fround(sigma*sigma/4)
   while i < i_count
@@ -202,12 +203,12 @@ measure_trace = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
+  null
 
 measure_determinant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   i = 0; I = 0
-  s1_2 = fround(sigma/2)
   s2_1 = fround(sigma*sigma)
   s2_4 = fround(sigma*sigma/4)
   while i < i_count
@@ -228,6 +229,7 @@ measure_determinant = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
+  null
 
 measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
@@ -262,6 +264,35 @@ measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
+  null
+
+suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  i = 0; I = 0
+  total = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+
+      e00 = e10; e01 = e11; e02 = e12
+      e10 = e20; e11 = e21; e12 = e22
+      e20 = opend1[J+j_step-i_step]
+      e21 = opend1[J+j_step]
+      e22 = opend1[J+j_step+i_step]
+
+      signs =
+        sign(e01-e11) + sign(e21-e11) +
+        sign(e10-e11) + sign(e12-e11) +
+        sign(opend0[J]-e11) + 
+        sign(opend2[J]-e11)
+
+      if signs == -6 or signs == 6
+        total += 1
+
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+  total
 
 erf = (x)->
   t = 1/(1+0.3275911*abs(x))
@@ -281,8 +312,6 @@ gaussian = (sigma)->
   kernel
 
 (()->
-
-
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
     width = imageData.width
@@ -312,9 +341,15 @@ gaussian = (sigma)->
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       for level in [0..levels]
-        console.log level, sigmaList[level]
+        kernel = kernelList[level]
+        radius = kernel.length>>1
+        console.log level, kernel.length
+
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
+        if level >= 2
+          suppress_6_neighbor measureList[level-2], measureList[level-1], measureList[level],
+            height*2, width*2, width*2, 1
 
       page = document.getElementsByClassName("page")[0]
       div = document.createElement("div")
