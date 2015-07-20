@@ -266,7 +266,7 @@ measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-suppress_6_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+suppress_6_neighbor = (oppum, opend0, opend1, opend2, border, i_count, i_step, j_count, j_step)->
   total = 0
   count = 0
   i_count = i_count|0; i_step = i_step|0
@@ -295,7 +295,7 @@ suppress_6_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step)
     i = (i+1)|0; I = (I+i_step)|0
   total
 
-suppress_26_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+suppress_26_neighbor = (oppum, opend0, opend1, opend2, border, i_count, i_step, j_count, j_step)->
   total = 0
   count = 0
   i_count = i_count|0; i_step = i_step|0
@@ -396,14 +396,22 @@ gaussian = (sigma)->
           height*2, width*2, width*2, 1
 
       for level in [1..levels-1]
-        total = suppress_6_neighbor \
-          measureList[level-1], measureList[level], measureList[level+1],
+        kernel = kernelList[level]
+        radius = kernel.length>>1
+        console.log level, kernel.length
+
+        total = suppress_6_neighbor null
+          measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
         console.log level, total
 
       for level in [1..levels-1]
-        total = suppress_26_neighbor \
-          measureList[level-1], measureList[level], measureList[level+1],
+        kernel = kernelList[level]
+        radius = kernel.length>>1
+        console.log level, kernel.length
+        
+        total = suppress_26_neighbor null
+          measureList[level-1], measureList[level], measureList[level+1], radius+1,
           height*2, width*2, width*2, 1
         console.log level, total
 
