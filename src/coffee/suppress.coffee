@@ -20,7 +20,7 @@ module.exports =
         e21 = opend1[J1]
         e22 = opend1[J2]
 
-        if (d01<e11) and (
+        if (e01<e11) and (
           (e01<e11) and (e21<e11) and 
           (e10<e11) and (e12<e11) and 
           (opend0[J]<e11) and (opend2[J]<e11)
