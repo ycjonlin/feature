@@ -155,10 +155,10 @@ array_convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_coun
   while i < i_count
     j = 0; J = I
     while j < j_count
-      sum = +0.0
+      sum = fround(0.0)
       k = 0; K = J|0
       while k < k_count
-        sum = +sum + +opend[K] * +oppor[k]
+        sum = fround(sum + opend[K] * oppor[k])
         k = (k+1)|0; K = (K+k_step)|0
       oppum[J] = sum
       j = (j+1)|0; J = (J+j_step)|0
