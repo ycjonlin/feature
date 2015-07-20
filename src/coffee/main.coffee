@@ -296,6 +296,7 @@ gaussian = (sigma)->
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       div = document.createElement("div")
+      document.body.appendChild div
       div.appendChild image_element(array, width, height)
 
       n = 4
@@ -311,5 +312,4 @@ gaussian = (sigma)->
         measure array1, array0, sigma, height*2, width*2, width*2, 1
         div.appendChild image_element(array1, width, height)
         
-      document.body.appendChild div
 )()
