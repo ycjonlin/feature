@@ -85,8 +85,7 @@ module.exports =
 
           (f01>=e11) and 
           (f10>=e11) and (f11>=e11) and (f12>=e11) and 
-          (f21>=e11)
-        )
+          (f21>=e11))
           oppum[total] = J
           total += 1
 
