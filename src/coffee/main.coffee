@@ -97,33 +97,34 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
+fround = Math.fround
 measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
   k_count = k_count|0; k_step = k_step|0
   i = 0; I = 0
-  s1_2 = Math.fround(sigma/2)
-  s2_1 = Math.fround(sigma*sigma)
-  s2_4 = Math.fround(sigma*sigma/4)
+  s1_2 = fround(sigma/2)
+  s2_1 = fround(sigma*sigma)
+  s2_4 = fround(sigma*sigma/4)
   while i < i_count
     j = 0; J = I
     while j < j_count
 
       _   = opend[J]
-      _j  = Math.fround(s1_2 * (opend[J+j_step] - opend[J-j_step]))
-      _i  = Math.fround(s1_2 * (opend[J+i_step] - opend[J-i_step]))
-      _jj = Math.fround(s2_1 * (opend[J-j_step] - _ - _ + opend[J+j_step]))
-      _ii = Math.fround(s2_1 * (opend[J-i_step] - _ - _ + opend[J+i_step]))
-      _ij = Math.fround(s2_4 * (
+      _j  = fround(s1_2 * (opend[J+j_step] - opend[J-j_step]))
+      _i  = fround(s1_2 * (opend[J+i_step] - opend[J-i_step]))
+      _jj = fround(s2_1 * (opend[J-j_step] - _ - _ + opend[J+j_step]))
+      _ii = fround(s2_1 * (opend[J-i_step] - _ - _ + opend[J+i_step]))
+      _ij = fround(s2_4 * (
         opend[J+i_step+j_step] -
         opend[J-i_step+j_step] -
         opend[J+i_step-j_step] +
         opend[J-i_step-j_step]))
 
-      norm = Math.fround(1 / (_ * _))
-      _uu = Math.fround((_ii * _ - _i * _i) * norm)
-      _vv = Math.fround((_jj * _ - _j * _j) * norm)
-      _uv = Math.fround((_ij * _ - _i * _j) * norm)
+      norm = fround(1 / (_ * _))
+      _uu = fround((_ii * _ - _i * _i) * norm)
+      _vv = fround((_jj * _ - _j * _j) * norm)
+      _uv = fround((_ij * _ - _i * _j) * norm)
 
       blr[J] = _
       trc[J] = 0.5 + 1e0 * (_ii + _jj)
