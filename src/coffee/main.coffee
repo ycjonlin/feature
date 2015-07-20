@@ -1,4 +1,5 @@
 Image = require './image'
+console.log Image
 
 fround = Math.fround
 sqrt = Math.sqrt
