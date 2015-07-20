@@ -104,7 +104,7 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   i = 0; I = 0
   s1_2 = +(sigma/2)
   s2_1 = +(sigma*sigma)
-  s2_4 = +(sigma*sigma/4)
+  s2_4 = Math.fround(sigma*sigma/4)
   while i < i_count
     j = 0; J = I
     while j < j_count
