@@ -1,4 +1,4 @@
-###
+/*
 (function() {
   var worker = new Worker('worker.js');
 
@@ -15,7 +15,7 @@
     self.postMessage(event.data);
   }, false);
 })();
-###
+*/
 
 interface = new Interface(self);
 interface.method(method_1);
