@@ -119,10 +119,10 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
         +opend[J+i_step-j_step|0] +
         +opend[J-i_step-j_step|0])
 
-      norm = +_ * +_
-      _uu = (+_ii * +_ - +_i * +_i) / +norm
-      _vv = (+_jj * +_ - +_j * +_j) / +norm
-      _uv = (+_ij * +_ - +_i * +_j) / +norm
+      norm = +1 / (+_ * +_)
+      _uu = (+_ii * +_ - +_i * +_i) * +norm
+      _vv = (+_jj * +_ - +_j * +_j) * +norm
+      _uv = (+_ij * +_ - +_i * +_j) * +norm
 
       blr[J] = +_
       trc[J] = +0.5 + +1e0 * (+_ii + +_jj)
