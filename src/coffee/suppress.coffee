@@ -130,7 +130,7 @@ module.exports =
         f21 = opend2[J1]
         f22 = opend2[J2]
 
-        if (d0<e11) and (
+        if (d00<e11) and (
           (d00<e11) and (d01<e11) and (d02<e11) and
           (d10<e11) and (d11<e11) and (d12<e11) and
           (d20<e11) and (d21<e11) and (d22<e11) and
