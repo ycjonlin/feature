@@ -139,7 +139,7 @@ erf = (x)->
 
 gaussian = (sigma)->
   length = Math.ceil(sigma*6)|1
-  radius = (length-1)/2
+  radius = length/2
   kernel = new Float32Array(length)
   constant = 1/Math.sqrt(Math.PI*2)/sigma
   for i in [0..length-1]
