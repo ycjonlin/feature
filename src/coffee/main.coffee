@@ -392,10 +392,6 @@ gaussian = (sigma)->
       console.log '---'
 
       for level in [0..levels]
-        kernel = kernelList[level]
-        radius = kernel.length>>1
-        console.log level, kernel.length
-
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
 
