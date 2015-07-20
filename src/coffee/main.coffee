@@ -316,6 +316,7 @@ gaussian = (sigma)->
       div.className = 'container'
 
       for level in [0..levels]
+        sigma = pow(2, 1+level/levels)
         measure array0, arrayList[level], sigma, 
           height*2, width*2, width*2, 1
         div.appendChild image_element(array0, width, height)
