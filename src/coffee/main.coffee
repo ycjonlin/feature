@@ -298,7 +298,6 @@ gaussian = (sigma)->
       sigma = pow(2, 1+level/levels)
       kernel = gaussian(sigma)
       radius = kernel.length>>1
-      console.log level, kernel.length
 
       array = arrayList[level].subarray(radius*(width*2+1))
 
