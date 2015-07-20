@@ -17,9 +17,9 @@ module.exports =
         e22 = opend1[J+j_step+i_step]
 
         if \
-          (e01 < e11) == (e21 < e11) == 
-          (e10 < e11) == (e12 < e11) == 
-          (opend0[J] < e11) == (opend2[J] < e11)
+          ((((((e01 < e11) == (e21 < e11)) == 
+          (e10 < e11)) == (e12 < e11)) == 
+          (opend0[J] < e11)) == (opend2[J] < e11))
           oppum[total] = J
           total += 1
         ###
