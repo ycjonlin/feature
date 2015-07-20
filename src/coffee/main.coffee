@@ -100,9 +100,15 @@ converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j
       channel0 = opend[offset0+J|0]
       channel1 = opend[offset1+J|0]
       channel2 = opend[offset2+J|0]
-      oppum[_] = channel0*255|0; _ = _+1|0
-      oppum[_] = channel1*255|0; _ = _+1|0
-      oppum[_] = channel2*255|0; _ = _+1|0
+      value0 = +3.2406*channel0-1.5372*channel1-0.4986*channel2
+      value1 = -0.9689*channel0+1.8758*channel2+0.0415*channel2
+      value2 = +0.0557*channel0-0.2040*channel3+1.0570*channel2
+      value0 = if value0 > 0.0031308 then 1.055*pow(value0, 1/2.4) else 12.92*value0
+      value1 = if value1 > 0.0031308 then 1.055*pow(value1, 1/2.4) else 12.92*value1
+      value2 = if value2 > 0.0031308 then 1.055*pow(value2, 1/2.4) else 12.92*value2
+      oppum[_] = value0*255|0; _ = _+1|0
+      oppum[_] = value1*255|0; _ = _+1|0
+      oppum[_] = value2*255|0; _ = _+1|0
       oppum[_] = 255; _ = _+1|0
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
