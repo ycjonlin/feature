@@ -347,7 +347,7 @@ gaussian = (sigma)->
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
         if level >= 2
-          total suppress_6_neighbor measureList[level-2], measureList[level-1], measureList[level],
+          total = suppress_6_neighbor measureList[level-2], measureList[level-1], measureList[level],
             height*2, width*2, width*2, 1
           console.log level, kernel.length, total
 
