@@ -287,6 +287,8 @@ gaussian = (sigma)->
 
     width = imageData.width
     height = imageData.height
+    width2 = width*2
+    height2 = height*2
 
     array = image_split imageData
     array0 = new Float32Array(array.length)
@@ -305,15 +307,16 @@ gaussian = (sigma)->
         sigma = pow(2, 1+i/n)
         kernel = gaussian(sigma)
         radius = kernel.length>>1
+        radius2 = radius*2
         console.log kernel.length
 
         array_convolute array1, array, kernel, 
-          height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
+          height2-radius2, width2, width2, 1, kernel.length, width2
         array_convolute array0, array1, kernel, 
-          height*2, width*2, width*2-radius*2, 1, kernel.length, 1
+          height2, width2, width2-radius2, 1, kernel.length, 1
 
-        measure array1.subarray(radius*(width*2+1)), array0, sigma, 
-          height*2, width*2, width*2, 1
+        measure array1.subarray(radius*(width2+1)), array0, sigma, 
+          height2, width2, width2, 1
         div.appendChild image_element(array1, width, height)
 
       page.appendChild div
