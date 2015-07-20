@@ -293,6 +293,7 @@ gaussian = (sigma)->
     array1 = new Float32Array(array.length)
 
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
+      console.log measure
 
       div = document.createElement("div")
       document.body.appendChild div
