@@ -66,7 +66,7 @@ module.exports =
         f21 = opend2[J1]
         f22 = opend2[J2]
 
-        if (d01<e11) and (
+        if if (d01<e11) then (
           (d01<e11) and 
           (d10<e11) and (d11<e11) and (d12<e11) and 
           (d21<e11) and
@@ -78,7 +78,7 @@ module.exports =
           (f01<e11) and 
           (f10<e11) and (f11<e11) and (f12<e11) and 
           (f21<e11)
-        ) or (
+        ) else (
           (d01>e11) and 
           (d10>e11) and (d11>e11) and (d12>e11) and 
           (d21>e11) and
