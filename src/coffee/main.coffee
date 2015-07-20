@@ -292,7 +292,7 @@ gaussian = (sigma)->
 
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
-    arrayList = new Float32Array(array0.length) for level in [0..levels]
+    arrayList = (new Float32Array(array0.length) for level in [0..levels])
 
     for level in [0..levels]
       sigma = pow(2, 1+level/levels)
