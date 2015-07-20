@@ -58,7 +58,7 @@ image_press = (array, context, width, height)->
 image_element = (array, width, height)->
   canvas = document.createElement("canvas")
   context = canvas.getContext("2d")
-  imageData = image_press array, context, width, height
+  imageData = image_merge array, context, width, height
   canvas.width = width*2
   canvas.height = height*2
   context.putImageData imageData, 0, 0
