@@ -266,7 +266,7 @@ measure_gaussian = (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
   null
 
-suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+suppress_6_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
   total = 0
   count = 0
   i_count = i_count|0; i_step = i_step|0
