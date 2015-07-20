@@ -310,7 +310,7 @@ gaussian = (sigma)->
 
     page = document.getElementsByClassName("page")[0]
 
-    for measure in [measure_constant]#, measure_trace, measure_determinant, measure_gaussian]
+    for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       div = document.createElement("div")
       div.className = 'container'
