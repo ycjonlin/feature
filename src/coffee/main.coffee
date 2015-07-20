@@ -307,9 +307,9 @@ suppress_26_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step
 
       d00 = d10; d01 = d11; d02 = d12
       d10 = d20; d11 = d21; d12 = d22
-      d20 = opend1[J+j_step-i_step]
-      d21 = opend1[J+j_step]
-      d22 = opend1[J+j_step+i_step]
+      d20 = opend0[J+j_step-i_step]
+      d21 = opend0[J+j_step]
+      d22 = opend0[J+j_step+i_step]
 
       e00 = e10; e01 = e11; e02 = e12
       e10 = e20; e11 = e21; e12 = e22
@@ -319,9 +319,9 @@ suppress_26_neighbor = (opend0, opend1, opend2, i_count, i_step, j_count, j_step
 
       f00 = f10; f01 = f11; f02 = f12
       f10 = f20; f11 = f21; f12 = f22
-      f20 = opend1[J+j_step-i_step]
-      f21 = opend1[J+j_step]
-      f22 = opend1[J+j_step+i_step]
+      f20 = opend2[J+j_step-i_step]
+      f21 = opend2[J+j_step]
+      f22 = opend2[J+j_step+i_step]
 
       signs =
         sign(d00-e11) + sign(d01-e11) + sign(d02-e11) +
