@@ -44,7 +44,7 @@ element = (surface, width, height)->
     width = imageData.width
     height = imageData.height
 
-    levels = 4
+    levels = 2
     sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
     kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
 
