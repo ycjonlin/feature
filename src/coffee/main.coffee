@@ -5,6 +5,7 @@ log = Math.log
 abs = Math.abs
 ceil = Math.ceil
 floor = Math.floor
+pow = Math.pow
 pi = Math.PI
 tau = pi*2
 
