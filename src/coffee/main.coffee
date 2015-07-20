@@ -446,6 +446,12 @@ gaussian = (sigma)->
         console.log level, total
 
       for level in [1..levels-1]
+        total = suppress_18_neighbor null,
+          measureList[level-1], measureList[level], measureList[level+1], 
+          height*2, width*2, width*2, 1
+        console.log level, total
+
+      for level in [1..levels-1]
         total = suppress_26_neighbor null,
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
