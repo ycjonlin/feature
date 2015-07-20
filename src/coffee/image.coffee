@@ -22,11 +22,11 @@ module.exports =
     height = image.height
     stribe = width * 2
     halfpage = height * stribe
-    array_diverge array, image.data, 
+    Surface.diverge array, image.data, 
       width, halfpage, width+halfpage, 
       height, stribe, width, 1
     while width >= 1 and height >= 1
-      array_downsize array, array,
+      Surface.downsize array, array,
         height, stribe, width, 1
       width >>= 1; height >>= 1
     array
@@ -34,7 +34,7 @@ module.exports =
   merge: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
-    array_converge image.data, array, 
+    Surface.converge image.data, array, 
       width, size*2, width+size*2, 
       height, width*2, width, 1
     image
@@ -42,7 +42,7 @@ module.exports =
   press: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
-    array_flatten image.data, array, 
+    Surface.flatten image.data, array, 
       height*2, width*2, width*2, 1
     image
 
