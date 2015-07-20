@@ -108,6 +108,7 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   while i < i_count
     j = 0; J = I
     while j < j_count
+      ###
       _   = +opend[J]
       _j  = +s1_2 * +(+opend[J+j_step|0] - +opend[J-j_step|0])
       _i  = +s1_2 * +(+opend[J+i_step|0] - +opend[J-i_step|0])
@@ -118,6 +119,17 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
         +opend[J-i_step+j_step|0] -
         +opend[J+i_step-j_step|0] +
         +opend[J-i_step-j_step|0])
+      ###
+      _   = opend[J]
+      _j  = s1_2 * (opend[J+j_step|0] - opend[J-j_step|0])
+      _i  = s1_2 * (opend[J+i_step|0] - opend[J-i_step|0])
+      _jj = s2_1 * (opend[J-j_step|0] - _ - _ + opend[J+j_step|0])
+      _ii = s2_1 * (opend[J-i_step|0] - _ - _ + opend[J+i_step|0])
+      _ij = s2_4 * (
+        opend[J+i_step+j_step|0] -
+        opend[J-i_step+j_step|0] -
+        opend[J+i_step-j_step|0] +
+        opend[J-i_step-j_step|0])
 
       norm = +1 / (+_ * +_)
       _uu = (+_ii * +_ - +_i * +_i) * +norm
