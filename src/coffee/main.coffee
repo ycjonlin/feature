@@ -300,7 +300,6 @@ gaussian = (sigma)->
       radius = kernel.length>>1
       console.log level, kernel.length
 
-      console.log arrayList
       array = arrayList[level].subarray(radius*(width*2+1))
 
       array_convolute array1, array0, kernel, 
