@@ -62,20 +62,20 @@ module.exports =
         f21 = opend2[J+j_step]
         f22 = opend2[J+j_step+i_step]
 
-        signs =
-          sign(d01-e11) + 
-          sign(d10-e11) + sign(d11-e11) + sign(d12-e11) + 
-          sign(d21-e11) + 
+        sign = d01 < e11
 
-          sign(e00-e11) + sign(e01-e11) + sign(e02-e11) +
-          sign(e10-e11) +                 sign(e12-e11) +
-          sign(e20-e11) + sign(e21-e11) + sign(e22-e11) +
+        if \
+          sign == (d01<e11) and 
+          sign == (d10<e11) and sign == (d11<e11) and sign == (d12<e11) and 
+          sign == (d21<e11) and
 
-          sign(f01-e11) + 
-          sign(f10-e11) + sign(f11-e11) + sign(f12-e11) + 
-          sign(f21-e11)
+          sign == (e00<e11) and sign == (e01<e11) and sign == (e02<e11) and 
+          sign == (e10<e11) and                       sign == (e12<e11) and 
+          sign == (e20<e11) and sign == (e21<e11) and sign == (e22<e11) and
 
-        if signs == -18 or signs == 18
+          sign == (f01<e11) and 
+          sign == (f10<e11) and sign == (f11<e11) and sign == (f12<e11) and 
+          sign == (f21<e11)
           oppum[total] = J
           total += 1
 
