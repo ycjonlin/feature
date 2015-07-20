@@ -16,6 +16,12 @@ module.exports =
         e21 = opend1[J+j_step]
         e22 = opend1[J+j_step+i_step]
 
+        if (e01 < e11) == (e21 < e11) == 
+          (e10 < e11) == (e12 < e11) == 
+          (opend0[J] < e11) == (opend2[J] < e11)
+          oppum[total] = J
+          total += 1
+        ###
         signs =
           sign(e01-e11) + sign(e21-e11) +
           sign(e10-e11) + sign(e12-e11) +
@@ -25,6 +31,7 @@ module.exports =
         if signs == -6 or signs == 6
           oppum[total] = J
           total += 1
+        ###
 
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
