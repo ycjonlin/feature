@@ -86,6 +86,6 @@ gaussian = (sigma)->
       div = document.createElement("div")
       div.className = 'container'
       for level in [0..levels]
-        div.appendChild image_element(measureList[level], width, height)
+        div.appendChild Image.element(measureList[level], width, height)
       page.appendChild div
 )()
