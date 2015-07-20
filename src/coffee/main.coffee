@@ -31,7 +31,7 @@ image_split = (image)->
   diverge array, image.data, 
     width, size*2, width+size*2, 
     height, width*2, width, 1
-  downsize array, array
+  downsize array, array,
     height>>1, width*2, width>>1, 1
   array
 
