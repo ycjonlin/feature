@@ -289,6 +289,8 @@ gaussian = (sigma)->
     height = imageData.height
 
     levels = 4
+    sigmaList = (pow(2, 1+level/levels) for level in [0..levels])
+    kernelList = (gaussian(sigmaList[level]) for level in [0..levels])
 
     array0 = image_split imageData
     array1 = new Float32Array(array0.length)
@@ -296,8 +298,7 @@ gaussian = (sigma)->
     measureList = (new Float32Array(array0.length) for level in [0..levels])
 
     for level in [0..levels]
-      sigma = pow(2, 1+level/levels)
-      kernel = gaussian(sigma)
+      kernel = kernelList[level]
       radius = kernel.length>>1
 
       array = blurList[level].subarray(radius*(width*2+1))
@@ -315,9 +316,9 @@ gaussian = (sigma)->
       div.className = 'container'
 
       for level in [0..levels]
-        sigma = pow(2, 1+level/levels)
-        measure measureList[level], blurList[level], sigma, 
+        measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
+
         div.appendChild image_element(measureList[level], width, height)
 
       page.appendChild div
