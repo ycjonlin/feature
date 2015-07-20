@@ -62,7 +62,7 @@ module.exports =
         f21 = opend2[J+j_step]
         f22 = opend2[J+j_step+i_step]
 
-        sign = d01 < e11
+        sign = (d01<e11)
 
         if (
           sign == (d01<e11) and 
