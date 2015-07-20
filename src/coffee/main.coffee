@@ -290,8 +290,6 @@ gaussian = (sigma)->
     height = imageData.height
 
     array = image_split imageData
-    array0 = new Float32Array(array.length)
-    array1 = new Float32Array(array.length)
 
     page = document.getElementsByClassName("page")[0]
 
@@ -305,6 +303,9 @@ gaussian = (sigma)->
         sigma = 2*sqrt(1+3*i/n)
         kernel = gaussian(sigma)
         radius = kernel.length>>1
+        
+        array0 = new Float32Array(array.length)
+        array1 = new Float32Array(array.length)
 
         array_convolute array1, array, kernel, 
           height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
