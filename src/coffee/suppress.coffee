@@ -10,13 +10,25 @@ module.exports =
       j = 0; J = I
       while j < j_count
 
+        J1 = (J+j_step)|0
+        J0 = (J1-i_step)|0
+        J2 = (J1+i_step)|0
+
         e00 = e10; e01 = e11; e02 = e12
         e10 = e20; e11 = e21; e12 = e22
-        e20 = opend1[J+j_step-i_step]
-        e21 = opend1[J+j_step]
-        e22 = opend1[J+j_step+i_step]
+        e20 = opend1[J0]
+        e21 = opend1[J1]
+        e22 = opend1[J2]
 
-        if (((e01 < e11) == (e21 < e11)) == (e10 < e11)) == (e12 < e11)
+        if (d01<e11) and (
+          (e01<e11) and (e21<e11) and 
+          (e10<e11) and (e12<e11) and 
+          (opend0[J]<e11) and (opend2[J]<e11)
+        ) or (
+          (e01>e11) and (e21>e11) and 
+          (e10>e11) and (e12>e11) and 
+          (opend0[J]>e11) and (opend2[J]>e11)
+        )
           oppum[total] = J
           total += 1
         ###
