@@ -110,8 +110,8 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
     j = 0; J = I
     while j < j_count
 
-      e00 = e10, e01 = e11, e02 = e12
-      e10 = e20, e11 = e21, e12 = e22
+      e00 = e10; e01 = e11; e02 = e12
+      e10 = e20; e11 = e21; e12 = e22
       e20 = opend[J-i_step+j_step]
       e21 = opend[J       +j_step]
       e22 = opend[J+i_step+j_step]
