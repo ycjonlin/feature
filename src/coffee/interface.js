@@ -51,7 +51,7 @@ function _return(serial, result) {
 function _call(identifier, callback, argument) {
   var serial = this.callback.length;
   this.callback[serial] = callback;
-  this.channel.postMessage([serial, id, argument]);
+  this.channel.postMessage([serial, identifier, argument]);
 }
 
 function _object_factory() {
