@@ -31,6 +31,8 @@ image_split = (image)->
   diverge array, image.data, 
     width, size*2, width+size*2, 
     height, width*2, width, 1
+  downsize array, array
+    height>>1, width*2, width>>1, 1
   array
 
 
@@ -85,6 +87,21 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
       oppum[offset0+J|0] = channel0
       oppum[offset1+J|0] = channel1
       oppum[offset2+J|0] = channel2
+      j = (j+1)|0; J = (J+j_step)|0
+    i = (i+1)|0; I = (I+i_step)|0
+  null
+
+downsize = (oppum, opend, i_count, i_step, j_count, j_step)->
+  i_count = i_count|0; i_step = i_step|0
+  j_count = j_count|0; j_step = j_step|0
+  i = 0; I = 0
+  while i < i_count
+    j = 0; J = I
+    while j < j_count
+      sum = +0.0
+      oppum[J] = 0.25*(
+        oppum[J<<1]+oppum[J<<1+i_step+j_step]+
+        oppum[J<<1+i_step]+oppum[J<<1+j_step])
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
   null
