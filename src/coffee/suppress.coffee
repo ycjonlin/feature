@@ -3,7 +3,6 @@ sign = Math.sign
 module.exports = 
   neighbor_6: (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
     total = 0
-    count = 0
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
     i = 0; I = 0
@@ -24,6 +23,7 @@ module.exports =
           sign(opend2[J]-e11)
 
         if signs == -6 or signs == 6
+          oppum[total] = J
           total += 1
 
         j = (j+1)|0; J = (J+j_step)|0
@@ -32,7 +32,6 @@ module.exports =
 
   neighbor_18: (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
     total = 0
-    count = 0
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
     i = 0; I = 0
@@ -68,6 +67,7 @@ module.exports =
           sign(f01-e11) + sign(f10-e11) + sign(f11-e11) + sign(f12-e11) + sign(f21-e11)
 
         if signs == -18 or signs == 18
+          oppum[total] = J
           total += 1
 
         j = (j+1)|0; J = (J+j_step)|0
@@ -76,7 +76,6 @@ module.exports =
 
   neighbor_26: (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
     total = 0
-    count = 0
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
     i = 0; I = 0
@@ -116,6 +115,7 @@ module.exports =
           sign(f20-e11) + sign(f21-e11) + sign(f22-e11)
 
         if signs == -26 or signs == 26
+          oppum[total] = J
           total += 1
 
         j = (j+1)|0; J = (J+j_step)|0
