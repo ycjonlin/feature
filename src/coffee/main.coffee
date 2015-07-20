@@ -110,20 +110,20 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
     while j < j_count
 
       _   = opend[J]
-      _j  = s1_2 * (opend[J+j_step] - opend[J-j_step])
-      _i  = s1_2 * (opend[J+i_step] - opend[J-i_step])
-      _jj = s2_1 * (opend[J-j_step] - _ - _ + opend[J+j_step])
-      _ii = s2_1 * (opend[J-i_step] - _ - _ + opend[J+i_step])
-      _ij = s2_4 * (
+      _j  = Math.fround(s1_2 * (opend[J+j_step] - opend[J-j_step]))
+      _i  = Math.fround(s1_2 * (opend[J+i_step] - opend[J-i_step]))
+      _jj = Math.fround(s2_1 * (opend[J-j_step] - _ - _ + opend[J+j_step]))
+      _ii = Math.fround(s2_1 * (opend[J-i_step] - _ - _ + opend[J+i_step]))
+      _ij = Math.fround(s2_4 * (
         opend[J+i_step+j_step] -
         opend[J-i_step+j_step] -
         opend[J+i_step-j_step] +
-        opend[J-i_step-j_step])
+        opend[J-i_step-j_step]))
 
-      norm = 1 / (_ * _)
-      _uu = (_ii * _ - _i * _i) * norm
-      _vv = (_jj * _ - _j * _j) * norm
-      _uv = (_ij * _ - _i * _j) * norm
+      norm = Math.fround(1 / (_ * _))
+      _uu = Math.fround((_ii * _ - _i * _i) * norm)
+      _vv = Math.fround((_jj * _ - _j * _j) * norm)
+      _uv = Math.fround((_ij * _ - _i * _j) * norm)
 
       blr[J] = _
       trc[J] = 0.5 + 1e0 * (_ii + _jj)
