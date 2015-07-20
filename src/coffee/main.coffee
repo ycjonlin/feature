@@ -291,7 +291,7 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, 
       if isFinite(e11)
         console.log e11
         count += 1
-        if count == 256
+        if count == 1<<10
           return total
       if signs == -6 or signs == 6
         total += 1
