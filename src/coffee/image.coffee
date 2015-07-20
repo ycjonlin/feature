@@ -16,13 +16,13 @@ module.exports =
     image.src = url
     null
 
-  split: (image)->
+  extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
     width = image.width
     height = image.height
     stribe = width * 2
     halfpage = height * stribe
-    Surface.diverge array, image.data, 
+    Surface.extract array, image.data, 
       width, halfpage, width+halfpage, 
       height, stribe, width, 1
     while width >= 1 and height >= 1
@@ -31,15 +31,15 @@ module.exports =
       width >>= 1; height >>= 1
     array
 
-  merge: (array, context, width, height)->
+  compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
-    Surface.converge image.data, array, 
+    Surface.compact image.data, array, 
       width, size*2, width+size*2, 
       height, width*2, width, 1
     image
 
-  press: (array, context, width, height)->
+  flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
     Surface.flatten image.data, array, 
