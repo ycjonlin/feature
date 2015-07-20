@@ -241,6 +241,7 @@ gaussian = (sigma)->
     document.body.appendChild divGaussian
     divGaussian.appendChild image_element(array, width, height)
 
+    return
     n = 4
     for i in [0..n]
       sigma = 2*sqrt(1+3*i/n)
