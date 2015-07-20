@@ -313,7 +313,7 @@ gaussian = (sigma)->
           height*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
         measure array1.subarray(radius*(width*2+1)), array0, sigma, 
-          height*2, width*2, width*2, 1
+          height*2-radius*2, width*2, width*2-radius*2, 1
         div.appendChild image_element(array1, width, height)
 
       page.appendChild div
