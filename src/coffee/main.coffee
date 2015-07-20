@@ -283,6 +283,7 @@ gaussian = (sigma)->
 
 (()->
 
+
   image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
     width = imageData.width
@@ -292,10 +293,26 @@ gaussian = (sigma)->
     array0 = new Float32Array(array.length)
     array1 = new Float32Array(array.length)
 
+    page = document.getElementsByClassName("page")[0]
+
     for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       div = document.createElement("div")
-      document.body.appendChild div
       div.appendChild image_element(array, width, height)
+      ###
+      n = 4
+      for i in [0..n]
+        sigma = 2*sqrt(1+3*i/n)
+        kernel = gaussian(2*sqrt(1+3*i/n))
 
+        array_convolute array1, array, kernel, 
+          height*2, width*2, width*2, 1, kernel.length, width*2
+        array_convolute array0, array1, kernel, 
+          height*2, width*2, width*2, 1, kernel.length, 1
+
+        measure array1, array0, sigma, height*2, width*2, width*2, 1
+        div.appendChild image_element(array1, width, height)
+      ###
+      
+      page.appendChild div
 )()
