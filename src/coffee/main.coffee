@@ -1,4 +1,7 @@
 Image = require './image'
+Surface = require './surface'
+Measure = require './measure'
+Suppress = require './suppress'
 
 fround = Math.fround
 sqrt = Math.sqrt
@@ -47,13 +50,13 @@ gaussian = (sigma)->
       console.log level, kernel.length
 
       array = blurList[level].subarray(radius*(width*2+1))
-      array_convolute array1, array0, kernel, 
+      Surface.convolute array1, array0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
       array_convolute array, array1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
-    for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
+    for measure in [Measure.constant, Measure.trace, Measure.determinant, Measure.gaussian]
 
       console.log '---'
 
@@ -62,19 +65,19 @@ gaussian = (sigma)->
           height*2, width*2, width*2, 1
 
       for level in [1..levels-1]
-        total = suppress_6_neighbor null,
+        total = Suppress.neighbor_8 null,
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
         console.log level, total
 
       for level in [1..levels-1]
-        total = suppress_18_neighbor null,
+        total = Suppress.neighbor_18 null,
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
         console.log level, total
 
       for level in [1..levels-1]
-        total = suppress_26_neighbor null,
+        total = Suppress.neighbor_26 null,
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
         console.log level, total
