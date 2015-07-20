@@ -133,10 +133,9 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
 
 erf = (x)->
-  if x < 0
-    return -erf(-x)
-  t = 1/(1+0.3275911*x)
-  1-((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x)
+  t = 1/(1+0.3275911*Math.abs(x))
+  y = 1-((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x)
+  if x > 0 then y else -y
 
 gaussian = (sigma)->
   length = Math.ceil(sigma*6)|1
