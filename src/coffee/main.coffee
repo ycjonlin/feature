@@ -57,7 +57,7 @@ image_press = (array, context, width, height)->
 image_element = (array, width, height)->
   canvas = document.createElement("canvas")
   context = canvas.getContext("2d")
-  imageData = image_press array, context, width, height
+  imageData = image_merge array, context, width, height
   canvas.width = imageData.width
   canvas.height = imageData.height
   context.putImageData imageData, 0, 0
@@ -294,7 +294,7 @@ gaussian = (sigma)->
 
     page = document.getElementsByClassName("page")[0]
 
-    for measure in [measure_constant]#, measure_trace, measure_determinant, measure_gaussian]
+    for measure in [measure_constant, measure_trace, measure_determinant, measure_gaussian]
 
       div = document.createElement("div")
       div.className = 'container'
@@ -312,7 +312,8 @@ gaussian = (sigma)->
         array_convolute array0, array1, kernel, 
           height*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
-        measure array1.subarray(radius*(width*2+1)), array0, sigma, height*2, width*2, width*2, 1
+        measure array1.subarray(radius*(width*2+1)), array0, sigma, 
+          height*2, width*2, width*2, 1
         div.appendChild image_element(array1, width, height)
 
       page.appendChild div
