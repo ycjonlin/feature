@@ -129,9 +129,6 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
       det[J] = +0.5 + +1e2 * (+_ii * +_jj - +_ij * +_ij)
       gau[J] = +0.5 + +1e1 * (+_uu * +_vv - +_uv * +_uv)
 
-      if i % 16 == 0 or j % 16 == 0
-        blr[J] = trc[J] = det[J] = gau[J] = 0
-
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
 
