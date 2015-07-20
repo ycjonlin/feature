@@ -289,7 +289,7 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, 
         sign(opend2[J]-e11)
 
       if isFinite(e11)
-        console.log e11
+        console.log e20, e21, e22
         count += 1
         if count == 1<<20
           return total
