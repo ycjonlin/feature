@@ -1,3 +1,13 @@
+fround = Math.fround
+sqrt = Math.sqrt
+exp = Math.exp
+log = Math.log
+abs = Math.abs
+ceil = Math.ceil
+floor = Math.floor
+pi = Math.PI
+tau = pi*2
+
 image_load = (url, callback)->
   image = new Image
   image.crossOrigin = "Anonymous"
@@ -33,13 +43,13 @@ image_merge = (array, context, width, height)->
   image
 
 image_element = (array, width, height)->
-    canvas = document.createElement("canvas")
-    context = canvas.getContext("2d")
-    imageData = image_merge array, context, width, height
-    canvas.width = width
-    canvas.height = height
-    context.putImageData imageData, 0, 0
-    canvas
+  canvas = document.createElement("canvas")
+  context = canvas.getContext("2d")
+  imageData = image_merge array, context, width, height
+  canvas.width = width
+  canvas.height = height
+  context.putImageData imageData, 0, 0
+  canvas
 
 converge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
@@ -96,8 +106,8 @@ convolute = (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_s
       oppum[J] = sum
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
+  null
 
-fround = Math.fround
 measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
   i_count = i_count|0; i_step = i_step|0
   j_count = j_count|0; j_step = j_step|0
@@ -137,18 +147,18 @@ measure = (blr, trc, det, gau, opend, sigma, i_count, i_step, j_count, j_step)->
     i = (i+1)|0; I = (I+i_step)|0
 
 erf = (x)->
-  t = 1/(1+0.3275911*Math.abs(x))
+  t = 1/(1+0.3275911*abs(x))
   y = 1-((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x)
   if x > 0 then y else -y
 
 gaussian = (sigma)->
-  length = Math.ceil(sigma*6)|1
+  length = ceil(sigma*6)|1
   radius = length/2
   kernel = new Float32Array(length)
-  constant = 1/Math.sqrt(Math.PI*2)/sigma
+  constant = 1/sqrt(tau)/sigma
   for i in [0..length-1]
-    x0 = (i-radius)/sigma/Math.sqrt(2)
-    x1 = (i+1-radius)/sigma/Math.sqrt(2)
+    x0 = (i-radius)/sigma/sqrt(2)
+    x1 = (i+1-radius)/sigma/sqrt(2)
     y = (erf(x1)-erf(x0))/2
     kernel[i] = y
   kernel
@@ -189,8 +199,8 @@ gaussian = (sigma)->
 
     n = 4
     for i in [0..n]
-      sigma = 2*Math.sqrt(1+3*i/n)
-      kernel = gaussian(2*Math.sqrt(1+3*i/n))
+      sigma = 2*sqrt(1+3*i/n)
+      kernel = gaussian(2*sqrt(1+3*i/n))
 
       convolute array1, array, kernel, height*2, width*2, width*2, 1, kernel.length, width*2
       convolute array0, array1, kernel, height*2, width*2, width*2, 1, kernel.length, 1
