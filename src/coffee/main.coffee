@@ -347,13 +347,15 @@ gaussian = (sigma)->
       for level in [0..levels]
         kernel = kernelList[level]
         radius = kernel.length>>1
+        console.log level, kernel.length
 
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
-        if level >= 2
-          total = suppress_6_neighbor measureList[level-2], measureList[level-1], measureList[level],
-            height*2, width*2, width*2, 1
-          console.log level, kernel.length, total
+
+      for level in [1..levels-1]
+        total = suppress_6_neighbor measureList[level-1], measureList[level], measureList[level+1],
+          height*2, width*2, width*2, 1
+        console.log level, total
 
       page = document.getElementsByClassName("page")[0]
       div = document.createElement("div")
