@@ -81,9 +81,10 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
       channel1 = linear[opend[_]]; _ = _+1|0
       channel2 = linear[opend[_]]; _ = _+1|0
       _ = _+1|0
-      oppum[offset0+J|0] = channel0
-      oppum[offset1+J|0] = channel1
-      oppum[offset2+J|0] = channel2
+      oppum[offset0+J|0] = 0.4124*channel0+0.3576*channel1+0.1805*channel2
+      oppum[offset1+J|0] = 0.2126*channel0+0.7152*channel1+0.0722*channel2
+      oppum[offset2+J|0] = 0.0193*channel0+0.1192*channel1+0.9505*channel2
+
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
   null
