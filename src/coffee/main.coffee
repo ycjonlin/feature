@@ -44,16 +44,16 @@ element = (surface, width, height)->
     width = imageData.width
     height = imageData.height
 
-    levels = 4+2
-    sigmaList = (pow(2, 1+(level-1)/(levels-2)) for level in [0..levels-1])
-    kernelList = (gaussian(sigmaList[level]) for level in [0..levels-1])
+    levels = 4
+    sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
+    kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
 
     surface0 = Image.extract imageData
     surface1 = new Float32Array(surface0.length)
-    blurList = (new Float32Array(surface0.length) for level in [0..levels-1])
-    measureList = (new Float32Array(surface0.length) for level in [0..levels-1])
+    blurList = (new Float32Array(surface0.length) for level in [0..levels+1])
+    measureList = (new Float32Array(surface0.length) for level in [0..levels+1])
 
-    for level in [0..levels-1]
+    for level in [0..levels+1]
       kernel = kernelList[level]
       radius = kernel.length>>1
       console.log level, kernel.length
@@ -69,11 +69,11 @@ element = (surface, width, height)->
 
       console.log '---', name
 
-      for level in [0..levels-1]
+      for level in [0..levels+1]
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
 
-      for level in [1..levels-2]
+      for level in [1..levels]
         total = Suppress.neighbor_18 null,
           measureList[level-1], measureList[level], measureList[level+1], 
           height*2, width*2, width*2, 1
