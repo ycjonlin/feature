@@ -287,8 +287,11 @@ suppress_6_neighbor = (oppum, opend0, opend1, opend2, i_count, i_step, j_count, 
         sign(opend0[J]-e11) + 
         sign(opend2[J]-e11)
 
+      console.log signs
       if signs == -6 or signs == 6
         total += 1
+      if J > 64
+        return
 
       j = (j+1)|0; J = (J+j_step)|0
     i = (i+1)|0; I = (I+i_step)|0
@@ -347,8 +350,7 @@ gaussian = (sigma)->
         measure measureList[level], blurList[level], sigmaList[level], 
           height*2, width*2, width*2, 1
         if level >= 2
-          total = suppress_6_neighbor 
-            measureList[level-2], measureList[level-1], measureList[level],
+          total = suppress_6_neighbor measureList[level-2], measureList[level-1], measureList[level],
             height*2, width*2, width*2, 1
           console.log level, kernel.length, total
 
