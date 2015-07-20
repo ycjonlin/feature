@@ -23,6 +23,11 @@ image_load = (url, callback)->
   image.src = url
   null
 
+linear = new Float32Array(256)
+for i in [0..255]
+  c = i/255
+  linear[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
+
 image_split = (image)->
   array = new Float32Array(image.width * image.height * 4)
   width = image.width
@@ -71,9 +76,9 @@ diverge = (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_
   while i < i_count
     j = 0; J = I
     while j < j_count
-      channel0 = +opend[_]/+255; _ = _+1|0
-      channel1 = +opend[_]/+255; _ = _+1|0
-      channel2 = +opend[_]/+255; _ = _+1|0
+      channel0 = fround(opend[_]/255); _ = _+1|0
+      channel1 = fround(opend[_]/255); _ = _+1|0
+      channel2 = fround(opend[_]/255); _ = _+1|0
       _ = _+1|0
       oppum[offset0+J|0] = channel0
       oppum[offset1+J|0] = channel1
