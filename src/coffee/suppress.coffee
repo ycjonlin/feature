@@ -31,17 +31,6 @@ module.exports =
         )
           oppum[total] = J
           total += 1
-        ###
-        signs =
-          sign(e01-e11) + sign(e21-e11) +
-          sign(e10-e11) + sign(e12-e11) +
-          sign(opend0[J]-e11) + 
-          sign(opend2[J]-e11)
-
-        if signs == -6 or signs == 6
-          oppum[total] = J
-          total += 1
-        ###
 
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
@@ -137,20 +126,31 @@ module.exports =
         f21 = opend2[J+j_step]
         f22 = opend2[J+j_step+i_step]
 
-        signs =
-          sign(d00-e11) + sign(d01-e11) + sign(d02-e11) +
-          sign(d10-e11) + sign(d11-e11) + sign(d12-e11) +
-          sign(d20-e11) + sign(d21-e11) + sign(d22-e11) +
+        if (d0<e11) and (
+          (d00<e11) and (d01<e11) and (d02<e11) and
+          (d10<e11) and (d11<e11) and (d12<e11) and
+          (d20<e11) and (d21<e11) and (d22<e11) and
 
-          sign(e00-e11) + sign(e01-e11) + sign(e02-e11) +
-          sign(e10-e11) +                 sign(e12-e11) +
-          sign(e20-e11) + sign(e21-e11) + sign(e22-e11) +
+          (e00<e11) and (e01<e11) and (e02<e11) and
+          (e10<e11) and               (e12<e11) and
+          (e20<e11) and (e21<e11) and (e22<e11) and
 
-          sign(f00-e11) + sign(f01-e11) + sign(f02-e11) +
-          sign(f10-e11) + sign(f11-e11) + sign(f12-e11) +
-          sign(f20-e11) + sign(f21-e11) + sign(f22-e11)
+          (f00<e11) and (f01<e11) and (f02<e11) and
+          (f10<e11) and (f11<e11) and (f12<e11) and
+          (f20<e11) and (f21<e11) and (f22<e11)
+        ) or (
+          (d00>e11) and (d01>e11) and (d02>e11) and
+          (d10>e11) and (d11>e11) and (d12>e11) and
+          (d20>e11) and (d21>e11) and (d22>e11) and
 
-        if signs == -26 or signs == 26
+          (e00>e11) and (e01>e11) and (e02>e11) and
+          (e10>e11) and               (e12>e11) and
+          (e20>e11) and (e21>e11) and (e22>e11) and
+
+          (f00>e11) and (f01>e11) and (f02>e11) and
+          (f10>e11) and (f11>e11) and (f12>e11) and
+          (f20>e11) and (f21>e11) and (f22>e11)
+        )
           oppum[total] = J
           total += 1
 
