@@ -1,3 +1,5 @@
+Image = require './image'
+
 fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
@@ -25,7 +27,7 @@ gaussian = (sigma)->
   kernel
 
 (()->
-  image_load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
+  Image.load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
 
     width = imageData.width
     height = imageData.height
