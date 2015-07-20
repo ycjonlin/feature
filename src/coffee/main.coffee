@@ -143,8 +143,9 @@ gaussian = (sigma)->
   kernel = new Float32Array(length)
   constant = 1/Math.sqrt(Math.PI*2)/sigma
   for i in [0..length-1]
-    x = (i-radius)/sigma
-    y = Math.exp(-x*x/2)*constant
+    x0 = (i-radius)/sigma/Math.sqrt(2)
+    x1 = (i+1-radius)/sigma/Math.sqrt(2)
+    y = (erf(x1)-erf(x0))/2
     kernel[i] = y
   kernel
 
