@@ -24,15 +24,16 @@ image_load = (url, callback)->
   null
 
 image_split = (image)->
-  array = new Float32Array(image.width*image.height*4)
+  array = new Float32Array(image.width * image.height * 4)
   width = image.width
   height = image.height
-  stribe = width*2
-  shift = height * stribe
+  stribe = width * 2
+  halfpage = height * stribe
   diverge array, image.data, 
-    width, shift, width+shift, 
+    width, halfpage, width+halfpage, 
     height, stribe, width, 1
   while width >= 1 and height >= 1
+    console.log width, height
     width >>= 1; height >>= 1
     downsize array, array,
       height, stribe, width, 1
