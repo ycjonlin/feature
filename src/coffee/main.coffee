@@ -302,7 +302,7 @@ gaussian = (sigma)->
 
       array_convolute array1, array0, kernel, 
         height*2-radius*2, width*2, width*2, 1, kernel.length, width*2
-      array_convolute arrayList[i], array1, kernel, 
+      array_convolute arrayList[index], array1, kernel, 
         height*2-radius*2, width*2, width*2-radius*2, 1, kernel.length, 1
 
 
