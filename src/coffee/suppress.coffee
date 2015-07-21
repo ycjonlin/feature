@@ -1,6 +1,6 @@
 
 module.exports = 
-  neighbor_18: (oppum, opend0, opend1, opend2, count0, step0, count1, step1)->
+  neighbor_18: (oppum, opend0, opend1, opend2, count1, step1, count0, step0)->
     total = 0
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
