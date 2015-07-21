@@ -159,7 +159,7 @@ element = (surface, width, height)->
           h1  = i1
 
           context.save()
-          context.setTransform h00, h01, h0, h10, h11, h1
+          context.setTransform h00, h01, h10, h11, h0, h1
 
           context.beginPath()
           context.arc 0, 0, 2, 0, tau
