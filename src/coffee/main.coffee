@@ -151,10 +151,10 @@ element = (surface, width, height)->
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
           ###
-          h00 = 1<<scalue
+          h00 = 1<<scale
           h01 = 0
           h10 = 0
-          h11 = 1<<scalue
+          h11 = 1<<scale
           h0  = i0
           h1  = i1
 
