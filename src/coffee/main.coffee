@@ -117,36 +117,39 @@ element = (surface, width, height)->
 
           color = 0; scale = -1
           if k < 0 then k = -k; color |= 4
-          i0 = (k/j_count)|0; i1 = i_count
-          j0 = (k%j_count)|0; j1 = j_count
-          while i1 >= i0 and j1 >= j0
-            i1 >>= 1; j1 >>= 1; scale += 1
-          if i0 >= i1 then i0 -= i1; color |= 2
-          if j0 >= j1 then j0 -= j1; color |= 1
+          i0 = (k/j_count)|0; n0 = i_count
+          i1 = (k%j_count)|0; n1 = j_count
+          while n0 >= i0 and n1 >= i1
+            n0 >>= 1; n1 >>= 1; scale += 1
+          if i0 >= n0 then i0 -= n0; color |= 2
+          if i1 >= n1 then i1 -= n1; color |= 1
 
-          if i0 < border or i0 >= i1-border or 
-             j0 < border or j0 >= j1-border
+          if i0 < border or i0 >= n0-border or 
+             i1 < border or i1 >= n1-border
             continue
+
+          i0 <<= scale
+          i1 <<= scale
 
           k0 = k-i_count; k1 = k; k2 = k+i_count
           e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
           e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
           e20 = surface[k2-1]; e21 = surface[k2]; e22 = surface[k2+1]
 
-          f00 = e11
-          f10 = fround(s1_2*(e21-e01))
-          f01 = fround(s1_2*(e12-e10))
-          f20 = fround(s2_1*(e01+e21-e11-e11))
-          f11 = fround(s2_4*(e00+e22-e02-e20))
-          f02 = fround(s2_1*(e10+e12-e11-e11))
-          
-          norm = 1/(f00*f00)
-          g20 = (f20*f00-f10*f10)*norm
-          g11 = (f11*f00-f01*f10)*norm
-          g02 = (f02*f00-f01*f01)*norm
-          g01 = f01/f00-g11*i0-g02*j0
-          g10 = f10/f00-g20*i0-g11*j0
-          g00 = 2*log(f00)
+          f00 = fround(s2_1*(e01+e21-e11-e11))
+          f01 = fround(s2_4*(e00+e22-e02-e20))
+          f11 = fround(s2_1*(e10+e12-e11-e11))
+          f0  = fround(s1_2*(e21-e01))
+          f1  = fround(s1_2*(e12-e10))
+          f   = e11
+
+          norm = 1/(f*f)
+          g00 = (f00*f-f0*f0)*norm
+          g01 = (f01*f-f0*f1)*norm
+          g11 = (f11*f-f1*f1)*norm
+          g0  = (f0/f-g00*i0-g01*i1)
+          g1  = (f1/f-g01*i0-g11*i1)
+          g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
 
           context.beginPath()
           context.arc j0<<scale, i0<<scale, 2<<scale, 0, tau
