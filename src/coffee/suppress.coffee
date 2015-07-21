@@ -36,7 +36,7 @@ module.exports =
             (e11>opend2[offset0-step1]) and (e11>opend2[offset0+step1])
           )
         )
-          oppum[total] = if sign then -J else J
+          oppum[total] = if sign then -offset0 else offset0
           total += 1
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
