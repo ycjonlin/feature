@@ -130,7 +130,7 @@ element = (surface, width, height)->
 
           i0 <<= scale
           i1 <<= scale
-
+          ###
           k0 = k-i_count; k1 = k; k2 = k+i_count
           e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
           e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
@@ -150,9 +150,9 @@ element = (surface, width, height)->
           g0  = (f0/f-g00*i0-g01*i1)
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
-
+          ###
           context.beginPath()
-          context.arc i0<<scale, i1<<scale, 2<<scale, 0, tau
+          context.arc i0, i1, 2<<scale, 0, tau
           context.fillStyle = colorList[color]
           context.fill()
 
