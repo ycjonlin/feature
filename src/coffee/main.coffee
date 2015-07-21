@@ -111,9 +111,9 @@ element = (surface, width, height)->
         for index in extreme
 
           color = 0; scale = -1
-          if k < 0 then k = -k; color |= 4
-          i0 = (k%count0)|0; n0 = count0
-          i1 = (k/count0)|0; n1 = count1
+          if index < 0 then index = -index; color |= 4
+          i0 = (index%count0)|0; n0 = count0
+          i1 = (index/count0)|0; n1 = count1
           while n0 >= i0 and n1 >= i1
             n0 >>= 1; n1 >>= 1; scale += 1
           if i0 >= n0 then i0 -= n0; color |= 2
