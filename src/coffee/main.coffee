@@ -151,19 +151,12 @@ element = (surface, width, height)->
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
 
-          h00 = g00
-          h01 = g01*g01/g00
-          h11 = g11-h01
-          h0  = g0*g0/g00
-          h1  = (g1-g0*g01/g00)**2/h11
-          h   = g-h0-h1
-
-          console.log h00, h01, h11, h0, h1, h
+          console.log g00, g01, g11, g0, g1, g
           if offset > 1024
             break
 
           context.save()
-          context.setTransform h00, h01, h01, h11, h0, h1
+          #context.setTransform h00, h01, h01, h11, h0, h1
 
           context.beginPath()
           context.arc 0, 0, 2, 0, tau
