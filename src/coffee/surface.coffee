@@ -79,9 +79,7 @@ module.exports =
       while j < j_count
         sum = fround(0.0)
         K = J<<1
-        oppum[J] = fround(0.25*(
-          opend[K]+opend[K+i_step+j_step]+
-          opend[K+i_step]+opend[K+j_step]))
+        oppum[J] = fround(0.25*(opend[K]+opend[K+i_step]+opend[K+j_step]+opend[K+i_step+j_step]))
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
     null

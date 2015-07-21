@@ -25,11 +25,9 @@ module.exports =
       j = 0; J = I
       while j < j_count
 
-        e00 = e10; e01 = e11; e02 = e12
-        e10 = e20; e11 = e21; e12 = e22
-        e20 = opend[J+j_step-i_step]
-        e21 = opend[J+j_step]
-        e22 = opend[J+j_step+i_step]
+        e00 = e10; e10 = e20; e20 = opend[J+j_step-i_step]
+        e01 = e11; e11 = e21; e21 = opend[J+j_step]
+        e02 = e12; e12 = e22; e22 = opend[J+j_step+i_step]
 
         _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
         _ii = fround(s2_1 * (e10 - e11 - e11 + e12))
@@ -49,12 +47,10 @@ module.exports =
     while i < i_count
       j = 0; J = I
       while j < j_count
-
-        e00 = e10; e01 = e11; e02 = e12
-        e10 = e20; e11 = e21; e12 = e22
-        e20 = opend[J+j_step-i_step]
-        e21 = opend[J+j_step]
-        e22 = opend[J+j_step+i_step]
+        
+        e00 = e10; e10 = e20; e20 = opend[J+j_step-i_step]
+        e01 = e11; e11 = e21; e21 = opend[J+j_step]
+        e02 = e12; e12 = e22; e22 = opend[J+j_step+i_step]
 
         _jj = fround(s2_1 * (e01 - e11 - e11 + e21))
         _ii = fround(s2_1 * (e10 - e11 - e11 + e12))
@@ -77,11 +73,9 @@ module.exports =
       j = 0; J = I
       while j < j_count
 
-        e00 = e10; e01 = e11; e02 = e12
-        e10 = e20; e11 = e21; e12 = e22
-        e20 = opend[J+j_step-i_step]
-        e21 = opend[J+j_step]
-        e22 = opend[J+j_step+i_step]
+        e00 = e10; e10 = e20; e20 = opend[J+j_step-i_step]
+        e01 = e11; e11 = e21; e21 = opend[J+j_step]
+        e02 = e12; e12 = e22; e22 = opend[J+j_step+i_step]
 
         _   = e11
         _j  = fround(s1_2 * (e21 - e01))
