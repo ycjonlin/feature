@@ -158,6 +158,10 @@ element = (surface, width, height)->
           h1  = (g1-g0*g01/g00)**2/h11
           h   = g-h0-h1
 
+          console.log h00, h01, h11, h0, h1, h
+          if index > 1024
+            break
+
           context.save()
           context.setTransform h00, h01, h01, h11, h0, h1
 
