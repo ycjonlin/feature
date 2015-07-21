@@ -29,8 +29,8 @@ module.exports =
         e01 = e11; e11 = e21; e21 = opend1[offset0+step0]
         e02 = e12; e12 = e22; e22 = opend1[offset0+step0+step1]
 
-          f00 = fround(s2_1*(e01+e21-e11-e11))
-          f11 = fround(s2_1*(e10+e12-e11-e11))
+        f00 = fround(s2_1*(e01+e21-e11-e11))
+        f11 = fround(s2_1*(e10+e12-e11-e11))
 
         oppum[J] = 0.5 + 1e0 * (f00+f11)
 
