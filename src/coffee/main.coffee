@@ -150,10 +150,15 @@ element = (surface, width, height)->
           g0  = (f0/f-g00*i0-g01*i1)
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
-
-          context.setTransform h00, h01, h0, h10, h11, h1
           ###
+          h00 = 1<<scale
+          h01 = 0
+          h11 = 1<<scale
+          h0  = i0
+          h1  = i1
+
           context.beginPath()
+          context.setTransform h00, h01, h0, h10, h11, h1
           context.arc 0, 0, 2, 0, tau
           context.fillStyle = colorList[color]
           context.fill()
