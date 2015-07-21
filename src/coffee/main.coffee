@@ -143,13 +143,12 @@ element = (surface, width, height)->
           f1  = fround(s1_2*(e12-e10))
           f   = e11
 
-          norm = 1/(f*f)
-          g00 = (f00*f-f0*f0)*norm
-          g01 = (f01*f-f0*f1)*norm
-          g11 = (f11*f-f1*f1)*norm
-          g0  = (f0/f-g00*i0-g01*i1)
-          g1  = (f1/f-g01*i0-g11*i1)
-          g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
+          g00 = (f00*f-f0*f0)
+          g01 = (f01*f-f0*f1)
+          g11 = (f11*f-f1*f1)
+          g0  = (f0*f-g00*i0-g01*i1)
+          g1  = (f1*f-g01*i0-g11*i1)
+          g   = 2*f**2*log(f)-(f0*f-g0)*i0-(f1*f-g1)*i1
 
           console.log g00, g01, g11, g0, g1, g
           if offset > 1024
