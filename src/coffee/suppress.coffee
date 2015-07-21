@@ -1,44 +1,44 @@
 
 module.exports = 
-  neighbor_18: (oppum, opend0, opend1, opend2, i_count, i_step, j_count, j_step)->
+  neighbor_18: (oppum, opend0, opend1, opend2, count0, step0, count1, step1)->
     total = 0
-    i_count = i_count|0; i_step = i_step|0
-    j_count = j_count|0; j_step = j_step|0
-    i = 0; I = 0
-    while i < i_count
-      j = 0; J = I
-      while j < j_count
+    count0 = count0|0; step0 = step0|0
+    count1 = count1|0; step1 = step1|0
+    index1 = 0; offset1 = 0
+    while index1 < count1
+      index0 = 0; offset0 = offset1
+      while index0 < count0
 
-        e00 = e10; e10 = e20; e20 = opend1[J+j_step-i_step]
-        e01 = e11; e11 = e21; e21 = opend1[J+j_step]
-        e02 = e12; e12 = e22; e22 = opend1[J+j_step+i_step]
+        e00 = e10; e10 = e20; e20 = opend1[offset0+step0-step1]
+        e01 = e11; e11 = e21; e21 = opend1[offset0+step0]
+        e02 = e12; e12 = e22; e22 = opend1[offset0+step0+step1]
 
         sign = e11<e01
         if (sign and (
             (e11<e00) and (e11<e01) and (e11<e02) and 
             (e11<e10) and               (e11<e12) and 
             (e11<e20) and (e11<e21) and (e11<e22) and 
-            (e11<opend0[J]) and 
-            (e11<opend0[J-i_step]) and (e11<opend0[J+i_step]) and 
-            (e11<opend0[J-j_step]) and (e11<opend0[J+j_step]) and 
-            (e11<opend2[J]) and 
-            (e11<opend2[J-i_step]) and (e11<opend2[J+i_step]) and 
-            (e11<opend2[J-j_step]) and (e11<opend2[J+j_step])
+            (e11<opend0[offset0]) and 
+            (e11<opend0[offset0-step0]) and (e11<opend0[offset0+step0]) and 
+            (e11<opend0[offset0-step1]) and (e11<opend0[offset0+step1]) and 
+            (e11<opend2[offset0]) and 
+            (e11<opend2[offset0-step0]) and (e11<opend2[offset0+step0]) and 
+            (e11<opend2[offset0-step1]) and (e11<opend2[offset0+step1])
           ) or (
             (e11>e00) and (e11>e01) and (e11>e02) and 
             (e11>e10) and               (e11>e12) and 
             (e11>e20) and (e11>e21) and (e11>e22) and 
-            (e11>opend0[J]) and 
-            (e11>opend0[J-i_step]) and (e11>opend0[J+i_step]) and 
-            (e11>opend0[J-j_step]) and (e11>opend0[J+j_step]) and 
-            (e11>opend2[J]) and 
-            (e11>opend2[J-i_step]) and (e11>opend2[J+i_step]) and 
-            (e11>opend2[J-j_step]) and (e11>opend2[J+j_step])
+            (e11>opend0[offset0]) and 
+            (e11>opend0[offset0-step0]) and (e11>opend0[offset0+step0]) and 
+            (e11>opend0[offset0-step1]) and (e11>opend0[offset0+step1]) and 
+            (e11>opend2[offset0]) and 
+            (e11>opend2[offset0-step0]) and (e11>opend2[offset0+step0]) and 
+            (e11>opend2[offset0-step1]) and (e11>opend2[offset0+step1])
           )
         )
           oppum[total] = if sign then -J else J
           total += 1
 
-        j = (j+1)|0; J = (J+j_step)|0
-      i = (i+1)|0; I = (I+i_step)|0
+        index0 = (index0+1)|0; offset0 = (offset0+step0)|0
+      index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     total
