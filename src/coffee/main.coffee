@@ -6,6 +6,7 @@ Suppress = require './suppress'
 fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
+log = Math.log
 abs = Math.abs
 ceil = Math.ceil
 pow = Math.pow
