@@ -15,7 +15,7 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  trace: (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+  trace: (oppum, opend, sigma, count0, step0, count1, step1)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
     count0 = count0|0; step0 = step0|0
