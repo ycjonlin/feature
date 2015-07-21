@@ -150,7 +150,7 @@ element = (surface, width, height)->
           g1  = (f1*f-g01*i0-g11*i1)
           g   = 2*f**2*log(f)-(f0*f-g0)*i0-(f1*f-g1)*i1
 
-          console.log i0, i1, s, g00, g01, g11, g0, g1, g
+          console.log i0, i1, s1_1, g00, g01, g11, g0, g1, g
           if offset > 1<<12
             break
 
