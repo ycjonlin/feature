@@ -25,9 +25,9 @@ module.exports =
       index0 = 0; offset0 = offset1
       while index0 < count0
 
-        e00 = e10; e10 = e20; e20 = opend1[offset0+step0-step1]
-        e01 = e11; e11 = e21; e21 = opend1[offset0+step0]
-        e02 = e12; e12 = e22; e22 = opend1[offset0+step0+step1]
+        e00 = e10; e10 = e20; e20 = opend[offset0+step0-step1]
+        e01 = e11; e11 = e21; e21 = opend[offset0+step0]
+        e02 = e12; e12 = e22; e22 = opend[offset0+step0+step1]
 
         f00 = fround(s2_1*(e01+e21-e11-e11))
         f11 = fround(s2_1*(e10+e12-e11-e11))
