@@ -155,8 +155,8 @@ element = (surface, width, height)->
           h01 = 0
           h10 = 0
           h11 = 1
-          h0  = i0
-          h1  = i1
+          h0  = -i0
+          h1  = -i1
 
           context.beginPath()
           context.setTransform h00, h01, h0, h10, h11, h1
