@@ -45,8 +45,8 @@ element = (surface, width, height)->
     width = imageData.width
     height = imageData.height
 
-    i_count = height*2
-    j_count = width*2
+    count1 = height*2
+    count0 = width*2
 
     levels = 4
     sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
@@ -64,11 +64,11 @@ element = (surface, width, height)->
       radius = kernel.length>>1
       console.log level, kernel.length
 
-      surface = surfaceList[level].subarray(radius*(j_count+1))
+      surface = surfaceList[level].subarray(radius*(count0+1))
       Surface.convolute surface1, surface0, kernel, 
-        i_count-radius*2, j_count, j_count, 1, kernel.length, j_count
+        count1-radius*2, count0, count0, 1, kernel.length, count0
       Surface.convolute surface, surface1, kernel, 
-        i_count-radius*2, j_count, j_count-radius*2, 1, kernel.length, 1
+        count1-radius*2, count0, count0-radius*2, 1, kernel.length, 1
 
     colorList = [
       'rgba(0,0,0, 0.25)',
@@ -86,12 +86,12 @@ element = (surface, width, height)->
 
       for level in [0..levels+1]
         measure measureList[level], surfaceList[level], sigmaList[level], 
-          i_count, j_count, j_count, 1
+          count1, count0, count0, 1
 
       for level in [1..levels]
         countList[level] = Suppress.neighbor_18 extremeList[level],
           measureList[level-1], measureList[level], measureList[level+1], 
-          i_count, j_count, j_count, 1
+          count1, count0, count0, 1
         console.log level, countList[level]
 
       canvas = document.createElement("canvas")
@@ -117,8 +117,8 @@ element = (surface, width, height)->
 
           color = 0; scale = -1
           if k < 0 then k = -k; color |= 4
-          i0 = (k%j_count)|0; n0 = j_count
-          i1 = (k/j_count)|0; n1 = i_count
+          i0 = (k%count0)|0; n0 = count0
+          i1 = (k/count0)|0; n1 = count1
           while n0 >= i0 and n1 >= i1
             n0 >>= 1; n1 >>= 1; scale += 1
           if i0 >= n0 then i0 -= n0; color |= 2
