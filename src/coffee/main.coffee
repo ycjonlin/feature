@@ -108,7 +108,6 @@ element = (surface, width, height)->
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
-        console.log extreme.length
         for offset in extreme
 
           color = 0; scale = -1
