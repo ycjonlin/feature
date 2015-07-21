@@ -61,7 +61,7 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  gaussian: (oppum, opend, sigma, i_count, i_step, j_count, j_step)->
+  gaussian: (oppum, opend, sigma, count0, step0, count1, step1)->
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
