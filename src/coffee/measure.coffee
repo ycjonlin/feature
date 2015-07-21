@@ -1,7 +1,7 @@
 fround = Math.fround
 
 module.exports = 
-  constant: (oppum, opend, sigma, count0, step0, count1, step1)->
+  constant: (oppum, opend, sigma, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     index1 = 0; offset1 = 0
@@ -15,7 +15,7 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  trace: (oppum, opend, sigma, count0, step0, count1, step1)->
+  trace: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
@@ -37,7 +37,7 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  determinant: (oppum, opend, sigma, count0, step0, count1, step1)->
+  determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
     count0 = count0|0; step0 = step0|0
@@ -61,7 +61,7 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  gaussian: (oppum, opend, sigma, count0, step0, count1, step1)->
+  gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
