@@ -117,8 +117,8 @@ element = (surface, width, height)->
 
           color = 0; scale = -1
           if k < 0 then k = -k; color |= 4
-          i0 = (k/j_count)|0; n0 = i_count
-          i1 = (k%j_count)|0; n1 = j_count
+          i0 = (k%j_count)|0; n0 = j_count
+          i1 = (k/j_count)|0; n1 = i_count
           while n0 >= i0 and n1 >= i1
             n0 >>= 1; n1 >>= 1; scale += 1
           if i0 >= n0 then i0 -= n0; color |= 2
@@ -152,7 +152,7 @@ element = (surface, width, height)->
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
 
           context.beginPath()
-          context.arc j0<<scale, i0<<scale, 2<<scale, 0, tau
+          context.arc i0<<scale, i1<<scale, 2<<scale, 0, tau
           context.fillStyle = colorList[color]
           context.fill()
 
