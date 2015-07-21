@@ -104,7 +104,7 @@ element = (surface, width, height)->
       for level in [0..levels]
         continue if countList[level] == 0
         surface = surfaceList[level]
-        extreme = extremeList[level]
+        extreme = extremeList[level].subarray(0, countList[level])
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
