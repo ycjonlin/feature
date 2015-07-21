@@ -108,8 +108,7 @@ element = (surface, width, height)->
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
-        for index in [0..countList[level]-1]
-          k = extreme[index]
+        for index in extreme
 
           color = 0; scale = -1
           if k < 0 then k = -k; color |= 4
