@@ -32,7 +32,7 @@ module.exports =
         f00 = fround(s2_1*(e01+e21-e11-e11))
         f11 = fround(s2_1*(e10+e12-e11-e11))
 
-        oppum[J] = 0.5 + 1e0 * (f00+f11)
+        oppum[offset0] = 0.5 + 1e0 * (f00+f11)
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
