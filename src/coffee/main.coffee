@@ -139,13 +139,13 @@ element = (surface, width, height)->
           f20 = fround(s2_1*(e01+e21-e11-e11))
           f11 = fround(s2_4*(e00+e22-e02-e20))
           f02 = fround(s2_1*(e10+e12-e11-e11))
-
+          
           norm = 1/(f00*f00)
           g20 = (f20*f00-f10*f10)*norm
           g11 = (f11*f00-f01*f10)*norm
           g02 = (f02*f00-f01*f01)*norm
-          g01 = f01/f00-g01*i0-g01*j0
-          g10 = f10/f00-g10*i0-g10*j0
+          g01 = f01/f00-g11*i0-g02*j0
+          g10 = f10/f00-g20*i0-g11*j0
           g00 = 2*log(f00)
 
           context.beginPath()
