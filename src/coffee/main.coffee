@@ -108,10 +108,6 @@ element = (surface, width, height)->
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
-        s1_2 = fround(sigma/2)
-        s2_1 = fround(sigma*sigma)
-        s2_4 = fround(sigma*sigma/4)
-
         for index in [0..countList[level]-1]
           k = extreme[index]
 
@@ -130,12 +126,16 @@ element = (surface, width, height)->
 
           i0 <<= scale
           i1 <<= scale
-          s = 1<<scale
-          ###
+          
           k0 = k-i_count; k1 = k; k2 = k+i_count
           e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
           e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
           e20 = surface[k2-1]; e21 = surface[k2]; e22 = surface[k2+1]
+
+          s1_1 = fround(sigma*(1<<scale))
+          s1_2 = fround(s1_1/2)
+          s2_1 = fround(s1_1*s1_1)
+          s2_4 = fround(s2_1/4)
 
           f00 = fround(s2_1*(e01+e21-e11-e11))
           f01 = fround(s2_4*(e00+e22-e02-e20))
@@ -151,16 +151,16 @@ element = (surface, width, height)->
           g0  = (f0/f-g00*i0-g01*i1)
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
-          ###
-          h00 = s
-          h01 = 0
-          h10 = 0
-          h11 = s
-          h0  = i0
-          h1  = i1
+
+          h00 = g00
+          h01 = g01*g01/g00
+          h11 = g11-h01
+          h0  = g0*g0/g00
+          h1  = (g1-g0*g01/g00)**2/h11
+          h   = g-h0-h1
 
           context.save()
-          context.setTransform h00, h01, h10, h11, h0, h1
+          context.setTransform h00, h01, h01, h11, h0, h1
 
           context.beginPath()
           context.arc 0, 0, 2, 0, tau
