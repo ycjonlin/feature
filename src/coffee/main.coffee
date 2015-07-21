@@ -108,12 +108,12 @@ element = (surface, width, height)->
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
-        for index in extreme
+        for offset in extreme
 
           color = 0; scale = -1
-          if index < 0 then index = -index; color |= 4
-          i0 = (index%count0)|0; n0 = count0
-          i1 = (index/count0)|0; n1 = count1
+          if offset < 0 then offset = -offset; color |= 4
+          i0 = (offset%count0)|0; n0 = count0
+          i1 = (offset/count0)|0; n1 = count1
           while n0 >= i0 and n1 >= i1
             n0 >>= 1; n1 >>= 1; scale += 1
           if i0 >= n0 then i0 -= n0; color |= 2
@@ -126,10 +126,10 @@ element = (surface, width, height)->
           i0 <<= scale
           i1 <<= scale
           
-          k0 = k-count0; k1 = k; k2 = k+count0
-          e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
-          e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
-          e20 = surface[k2-1]; e21 = surface[k2]; e22 = surface[k2+1]
+          offset0 = offset-count0; offset1 = offset; offset2 = offset+count0
+          e00 = surface[offset0-1]; e01 = surface[offset0]; e02 = surface[offset0+1]
+          e10 = surface[offset1-1]; e11 = surface[offset1]; e12 = surface[offset1+1]
+          e20 = surface[offset2-1]; e21 = surface[offset2]; e22 = surface[offset2+1]
 
           s1_1 = fround(sigma*(1<<scale))
           s1_2 = fround(s1_1/2)
