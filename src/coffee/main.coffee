@@ -87,7 +87,6 @@ element = (surface, width, height)->
       for level in [0..levels+1]
         measure measureList[level], surfaceList[level], sigmaList[level], 
           i_count, j_count, j_count, 1
-        console.log level
 
       for level in [1..levels]
         countList[level] = Suppress.neighbor_18 extremeList[level],
