@@ -87,6 +87,7 @@ element = (surface, width, height)->
       for level in [0..levels+1]
         measure measureList[level], surfaceList[level], sigmaList[level], 
           i_count, j_count, j_count, 1
+        console.log level
 
       for level in [1..levels]
         countList[level] = Suppress.neighbor_18 extremeList[level],
@@ -150,9 +151,11 @@ element = (surface, width, height)->
           g0  = (f0/f-g00*i0-g01*i1)
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
+
+          context.setTransform h00, h01, h0, h10, h11, h1
           ###
           context.beginPath()
-          context.arc i0, i1, 2<<scale, 0, tau
+          context.arc 0, 0, 2, 0, tau
           context.fillStyle = colorList[color]
           context.fill()
 
