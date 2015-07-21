@@ -127,7 +127,7 @@ element = (surface, width, height)->
           i0 <<= scale
           i1 <<= scale
           
-          k0 = k-i_count; k1 = k; k2 = k+i_count
+          k0 = k-count0; k1 = k; k2 = k+count0
           e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
           e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
           e20 = surface[k2-1]; e21 = surface[k2]; e22 = surface[k2+1]
