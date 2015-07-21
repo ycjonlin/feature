@@ -128,16 +128,24 @@ element = (surface, width, height)->
             continue
 
           k0 = k-i_count; k1 = k; k2 = k+i_count
-          e00 = surface[k0-j_count]; e01 = surface[k0]; e02 = surface[k0+j_count]
-          e10 = surface[k1-j_count]; e11 = surface[k1]; e12 = surface[k1+j_count]
-          e20 = surface[k2-j_count]; e21 = surface[k2]; e22 = surface[k2+j_count]
+          e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
+          e10 = surface[k1-1]; e11 = surface[k1]; e12 = surface[k1+1]
+          e20 = surface[k2-1]; e21 = surface[k2]; e22 = surface[k2+1]
 
-          _   = e11
-          _j  = fround(s1_2*(e21-e01))
-          _i  = fround(s1_2*(e12-e10))
-          _jj = fround(s2_1*(e01+e21-e11-e11))
-          _ii = fround(s2_1*(e10+e12-e11-e11))
-          _ij = fround(s2_4*(e00+e22-e02-e20))
+          f00 = e11
+          f10 = fround(s1_2*(e21-e01))
+          f01 = fround(s1_2*(e12-e10))
+          f20 = fround(s2_1*(e01+e21-e11-e11))
+          f11 = fround(s2_4*(e00+e22-e02-e20))
+          f02 = fround(s2_1*(e10+e12-e11-e11))
+
+          norm = 1/(f00*f00)
+          g20 = (f20*f00-f10*f10)*norm
+          g11 = (f11*f00-f01*f10)*norm
+          g02 = (f02*f00-f01*f01)*norm
+          g01 = f01/f00-g01*i0-g01*j0
+          g10 = f10/f00-g10*i0-g10*j0
+          g00 = 2*log(f00)
 
           context.beginPath()
           context.arc j0<<scale, i0<<scale, 2<<scale, 0, tau
