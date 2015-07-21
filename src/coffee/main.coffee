@@ -154,6 +154,7 @@ element = (surface, width, height)->
           h00 = 1<<scale
           h01 = 0
           h11 = 1<<scale
+          h10 = 0
           h0  = i0
           h1  = i1
 
