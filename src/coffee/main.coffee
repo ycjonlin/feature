@@ -151,7 +151,7 @@ element = (surface, width, height)->
           g   = 2*f**2*log(f)-(f0*f-g0)*i0-(f1*f-g1)*i1
 
           console.log g00, g01, g11, g0, g1, g
-          if offset > 1024
+          if offset > 1<<16
             break
 
           context.save()
