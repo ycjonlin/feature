@@ -130,6 +130,7 @@ element = (surface, width, height)->
 
           i0 <<= scale
           i1 <<= scale
+          s = 1<<scale
           ###
           k0 = k-i_count; k1 = k; k2 = k+i_count
           e00 = surface[k0-1]; e01 = surface[k0]; e02 = surface[k0+1]
@@ -151,10 +152,10 @@ element = (surface, width, height)->
           g1  = (f1/f-g01*i0-g11*i1)
           g   = 2*log(f)-(f0/f-g0)*i0-(f1/f-g1)*i1
           ###
-          h00 = 1<<scale
+          h00 = s
           h01 = 0
           h10 = 0
-          h11 = 1<<scale
+          h11 = s
           h0  = i0
           h1  = i1
 
