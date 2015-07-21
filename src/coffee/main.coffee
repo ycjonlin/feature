@@ -159,7 +159,7 @@ element = (surface, width, height)->
           h   = g-h0-h1
 
           console.log h00, h01, h11, h0, h1, h
-          if index > 1024
+          if offset > 1024
             break
 
           context.save()
