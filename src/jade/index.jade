@@ -80,7 +80,11 @@ html
           h1 Measure
           .col-sm-4
             h2 Gaussian
-            h3 $$I_{xx}+I_{yy}$$
+            h3 $$
+              | \begin{vmatrix} I_{xx} & I_x \\ I_x & I \end{vmatrix}
+              | \begin{vmatrix} I_{yy} & I_y \\ I_y & I \end{vmatrix} - 
+              | \begin{vmatrix} I_{xy} & I_x \\ I_y & I \end{vmatrix}^2
+              | $$
           .col-sm-4
             h2 Laplacian
             h3 $$I_{xx}+I_{yy}$$
