@@ -159,8 +159,6 @@ module.exports =
       _q = new Matrix(q,q0,q1,0,q00,q01,0,0,q11)
       _p = new Matrix(p,p0,p1,0,p00,p01,0,0,p11)
       fn = (x0,x1)-> fround(exp(_g.norm(1,x0,x1)/2))
-      console.log fround((fn(x0+1e-6,x1)-F)*1e6), f0, g0
-      if offset > 1<<16 then return
 
       F   = fn(x0,x1)
       F0  = fround((fn(x0+1e-6,x1)-F)*1e6)
@@ -169,6 +167,9 @@ module.exports =
       F01 = fround((fn(x0+1e-4,x1+1e-4)+F-fn(x0+1e-4,x1)-fn(x0,x1+1e-4))*1e8)
       F11 = fround((fn(x0,x1+1e-4)+fn(x0,x1-1e-4)-F-F)*1e8)
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
+      
+      console.log F0, f0, g0
+      if offset > 1<<16 then return
 
       #_F.compare(_f)
       #_q.transpose().multiply(_h).multiply(_q).compare(_g)
