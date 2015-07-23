@@ -1,4 +1,4 @@
-fround = Math.fround
+fround = (x)->x#Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
 log = Math.log
@@ -167,7 +167,7 @@ module.exports =
       F01 = fround((fn(x0+1e-4,x1+1e-4)+F-fn(x0+1e-4,x1)-fn(x0,x1+1e-4))*1e8)
       F11 = fround((fn(x0,x1+1e-4)+fn(x0,x1-1e-4)-F-F)*1e8)
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
-      
+
       console.log F0, f0, g0
       if offset > 1<<16 then return
 
