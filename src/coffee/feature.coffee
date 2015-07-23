@@ -55,7 +55,7 @@ class Matrix
 
   compare: ($)->
     scale = 1<<16
-    Math.max \
+    error = Math.max \
       abs(((@m00/$.m00+$.m00/@m00)-2)*scale)|0,
       abs(((@m01/$.m01+$.m01/@m01)-2)*scale)|0,
       abs(((@m02/$.m02+$.m02/@m02)-2)*scale)|0,
@@ -65,10 +65,12 @@ class Matrix
       abs(((@m20/$.m20+$.m20/@m20)-2)*scale)|0,
       abs(((@m21/$.m21+$.m21/@m21)-2)*scale)|0,
       abs(((@m22/$.m22+$.m22/@m22)-2)*scale)|0
+    if error != 0
+      console.log 'error'
 
   identity: ()->
     scale = 1<<16
-    Math.max \
+    = error Math.max \
       abs((@m00-1)*scale)|0,
       abs((@m01-0)*scale)|0,
       abs((@m02-0)*scale)|0,
@@ -77,7 +79,9 @@ class Matrix
       abs((@m12-0)*scale)|0,
       abs((@m20-0)*scale)|0,
       abs((@m21-0)*scale)|0,
-      abs((@m22-1)*scale)|0,
+      abs((@m22-1)*scale)|0
+    if error != 0
+      console.log 'error'
 
 module.exports = 
   gaussian: (context, opend, opper, sigma, border, count0, count1)->
