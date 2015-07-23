@@ -161,8 +161,7 @@ module.exports =
 
       #_q.transpose().multiply(_h).multiply(_q).compare(_g)
       #_p.multiply(_q).identity()
-      #console.log _q
-
+      
       # transformation-lize
       m00 = s1_1
       m10 = 0
