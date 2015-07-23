@@ -169,8 +169,8 @@ module.exports =
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
 
       #_F.compare(_f)
-      _q.transpose().multiply(_h).multiply(_q).compare(_g)
-      #_p.multiply(_q).identity()
+      #_q.transpose().multiply(_h).multiply(_q).compare(_g)
+      _p.multiply(_q).identity()
 
       # transformation-lize
       m00 = s1_1
