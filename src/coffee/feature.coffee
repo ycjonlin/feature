@@ -118,7 +118,7 @@ module.exports =
       f11 = fround(s2_1*(e10+e12-e11-e11))
       f0  = fround(s1_2*(e21-e01))
       f1  = fround(s1_2*(e12-e10))
-      f   = 0#fround(e11)
+      f   = 1#fround(e11)
 
       # gaussian: f(x) ~ exp(1/2 x'[]g[,]x[])
       norm = fround(1/(f*f))
