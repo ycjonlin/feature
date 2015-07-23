@@ -174,7 +174,8 @@ module.exports =
       m00 = s1_1
       m10 = 0
       m01 = 0
-      m11 = o0
+      m11 = s1_1
+      m0 = o0
       m1 = o1
 
       context.save()
