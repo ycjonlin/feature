@@ -34,9 +34,9 @@ class Matrix
     )
 
   norm: (x0, x1, x2)-> (
-    @m00*x0*x1+@m01*x0*x1+@m02*x0*x2+
-    @m10*x1*x1+@m11*x1*x1+@m12*x1*x2+
-    @m20*x2*x1+@m21*x2*x1+@m22*x2*x2)
+    @m00*x0*x0+@m01*x0*x1+@m02*x0*x2+
+    @m10*x1*x0+@m11*x1*x1+@m12*x1*x2+
+    @m20*x2*x0+@m21*x2*x1+@m22*x2*x2)
 
   multiply: ($)->
     new Matrix(
@@ -159,7 +159,7 @@ module.exports =
       _q = new Matrix(q,q0,q1,0,q00,q01,0,0,q11)
       _p = new Matrix(p,p0,p1,0,p00,p01,0,0,p11)
       fn = (x0,x1)-> fround(exp(_g.norm(1,x0,x1)/2))
-      console.log fn(0, 0), f
+      console.log fn(x0, x1), f
       if offset > 1<<16 then break
 
       F   = fn(x0,x1)
