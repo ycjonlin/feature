@@ -150,7 +150,7 @@ module.exports =
       p1  = fround(norm*( q0*q01-q1*q00))
       p00 = fround(norm*(  q*q11))
       p01 = fround(norm*( -q*q01))
-      p11 =fround( norm*(  q*q00))
+      p11 = fround(norm*(  q*q00))
 
       _i = new Matrix(1,0,0,0,1,0,0,0,1)
       _h = new Matrix(h,0,0,0,h00,0,0,0,h11)
