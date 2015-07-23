@@ -168,8 +168,8 @@ module.exports =
       F11 = fround((fn(x0,x1+1e-4)+fn(x0,x1-1e-4)-F-F)*1e8)
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
 
-      _F.compare(_f)
-      #_q.transpose().multiply(_h).multiply(_q).compare(_g)
+      #_F.compare(_f)
+      _q.transpose().multiply(_h).multiply(_q).compare(_g)
       #_p.multiply(_q).identity()
 
       # transformation-lize
