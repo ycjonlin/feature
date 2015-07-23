@@ -105,8 +105,8 @@ module.exports =
       e10 = opend[offset1-1]; e11 = opend[offset1]; e12 = opend[offset1+1]
       e20 = opend[offset2-1]; e21 = opend[offset2]; e22 = opend[offset2+1]
 
-      x0 = fround(i0<<scale)
-      x1 = fround(i1<<scale)
+      x0 = 0#fround(i0<<scale)
+      x1 = 0#fround(i1<<scale)
       s1_1 = fround(sigma*(1<<scale))
       s1_2 = fround(s1_1/2)
       s2_1 = fround(s1_1*s1_1)
