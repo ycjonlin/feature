@@ -159,12 +159,8 @@ module.exports =
       _q = new Matrix(q,q0,q1,0,q00,q01,0,0,q11)
       _p = new Matrix(p,p0,p1,0,p00,p01,0,0,p11)
 
-      _q.transpose().multiply(_h).multiply(_q).compare(_g)
-      _p.multiply(_q).identity()
-
-      #console.log _p, h, h00, h11
-      if h > 0 and h00 > 0 and h11 > 0
-        console.log '+++'
+      #_q.transpose().multiply(_h).multiply(_q).compare(_g)
+      #_p.multiply(_q).identity()
 
       # transformation-lize
       m00 = s1_1
