@@ -66,7 +66,7 @@ class Matrix
       (abs((@m21/$.m21+$.m21/@m21)-2)*scale)|0,
       (abs((@m22/$.m22+$.m22/@m22)-2)*scale)|0
     if error != 0
-      console.log error
+      console.log @, $
 
   identity: ()->
     scale = 1<<16
