@@ -65,7 +65,7 @@ class Matrix
     if ((abs((@m20/$.m20+$.m20/@m20)-2)*scale)|0) != 0 then error += 1000
     if ((abs((@m21/$.m21+$.m21/@m21)-2)*scale)|0) != 0 then error += 5000
     if ((abs((@m22/$.m22+$.m22/@m22)-2)*scale)|0) != 0 then error += 10000
-    if error != 0
+    if error != 7000000
       console.log 'error'
 
   identity: ()->
