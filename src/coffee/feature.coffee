@@ -161,13 +161,13 @@ module.exports =
       fn = (x0,x1)-> fround(exp(_g.norm(1,x0,x1)/2))
 
       F   = fn(x0,x1)
-      F0  = fround((fn(x0+1e-8,x1)-F)*1e8)
+      F0  = fround((fn(x0+1e-6,x1)-F)*1e6)
       F1  = fround((fn(x0,x1+1e-6)-F)*1e6)
       F00 = fround((fn(x0+1e-4,x1)+fn(x0-1e-4,x1)-F-F)*1e8)
       F01 = fround((fn(x0+1e-4,x1+1e-4)+F-fn(x0+1e-4,x1)-fn(x0,x1+1e-4))*1e8)
       F11 = fround((fn(x0,x1+1e-4)+fn(x0,x1-1e-4)-F-F)*1e8)
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
-
+      
       console.log F0, f0, g0
       if offset > 1<<16 then return
 
