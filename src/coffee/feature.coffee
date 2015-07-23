@@ -135,6 +135,7 @@ module.exports =
       if o0<0 or o0>count0 or o1<0 or o1>count1
         console.log 'error'
 
+      ###
       # square root: g[,] = q'[,]h[,]q[,]
       $v  = g
       h   = fround(sign($v))
@@ -158,7 +159,6 @@ module.exports =
       p01 = fround(norm*( -q*q01))
       p11 = fround(norm*(  q*q00))
 
-      ###
       _i = new Matrix(1,0,0,0,1,0,0,0,1)
       _h = new Matrix(h,0,0,0,h00,0,0,0,h11)
       _f = new Matrix(f,f0,f1,f0,f00,f01,f1,f01,f11)
@@ -174,9 +174,8 @@ module.exports =
       m00 = s1_1
       m10 = 0
       m01 = 0
-      m11 = s1_1
-      m0 = x0
-      m1 = x1
+      m11 = o0
+      m1 = o1
 
       context.save()
       context.setTransform m00, m10, m01, m11, m0, m1
