@@ -129,6 +129,9 @@ module.exports =
       g1  = fround(f1/f-g01*x0-g11*x1)
       g   = fround(2*log(f)-(f0/f+g0)*x0-(f1/f+g1)*x1)
 
+      norm = fround(1/(g01*g01-g00*g11))
+      console.log (g0*g11-g1*g01)*norm, (-g0*g01-g1*g00)*norm
+
       # square root: g[,] = q'[,]h[,]q[,]
       $v  = g
       h   = fround(sign($v))
@@ -152,6 +155,7 @@ module.exports =
       p01 = fround(norm*( -q*q01))
       p11 = fround(norm*(  q*q00))
 
+      ###
       _i = new Matrix(1,0,0,0,1,0,0,0,1)
       _h = new Matrix(h,0,0,0,h00,0,0,0,h11)
       _f = new Matrix(f,f0,f1,f0,f00,f01,f1,f01,f11)
@@ -161,6 +165,7 @@ module.exports =
 
       #_q.transpose().multiply(_h).multiply(_q).compare(_g)
       #_p.multiply(_q).identity()
+      ###
       
       # transformation-lize
       m00 = s1_1
