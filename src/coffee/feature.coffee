@@ -152,7 +152,7 @@ module.exports =
       p01 = fround(norm*( -q*q01))
       p11 = fround(norm*(  q*q00))
 
-      console.log p+p0*x0+p1*x1+p00*x0*x0+p01*x0*x1+p11*x1*x1
+      console.log q + q0*x0 + q1*x1 + q00*x0*x0 + q01*x0*x1 + q11*x1*x1
 
       ###
       _i = new Matrix(1,0,0,0,1,0,0,0,1)
