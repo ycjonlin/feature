@@ -55,7 +55,7 @@ class Matrix
 
   compare: ($)->
     scale = 1<<16
-    error = 700000
+    error = 7000000
     if ((abs((@m00/$.m00+$.m00/@m00)-2)*scale)|0) != 0 then error += 1
     if ((abs((@m01/$.m01+$.m01/@m01)-2)*scale)|0) != 0 then error += 5
     if ((abs((@m02/$.m02+$.m02/@m02)-2)*scale)|0) != 0 then error += 10
