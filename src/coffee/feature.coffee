@@ -55,17 +55,17 @@ class Matrix
 
   compare: ($)->
     scale = 1<<16
-    error = 7000000
-    if ((abs((@m00/$.m00+$.m00/@m00)-2)*scale)|0) != 0 then error += 1
-    if ((abs((@m01/$.m01+$.m01/@m01)-2)*scale)|0) != 0 then error += 5
-    if ((abs((@m02/$.m02+$.m02/@m02)-2)*scale)|0) != 0 then error += 10
-    if ((abs((@m10/$.m10+$.m10/@m10)-2)*scale)|0) != 0 then error += 50
-    if ((abs((@m11/$.m11+$.m11/@m11)-2)*scale)|0) != 0 then error += 100
-    if ((abs((@m12/$.m12+$.m12/@m12)-2)*scale)|0) != 0 then error += 500
-    if ((abs((@m20/$.m20+$.m20/@m20)-2)*scale)|0) != 0 then error += 1000
-    if ((abs((@m21/$.m21+$.m21/@m21)-2)*scale)|0) != 0 then error += 5000
-    if ((abs((@m22/$.m22+$.m22/@m22)-2)*scale)|0) != 0 then error += 10000
-    if error != 7000000
+    error = Math.max \
+      (abs((@m00/$.m00+$.m00/@m00)-2)*scale)|0,
+      (abs((@m01/$.m01+$.m01/@m01)-2)*scale)|0,
+      (abs((@m02/$.m02+$.m02/@m02)-2)*scale)|0,
+      (abs((@m10/$.m10+$.m10/@m10)-2)*scale)|0,
+      (abs((@m11/$.m11+$.m11/@m11)-2)*scale)|0,
+      (abs((@m12/$.m12+$.m12/@m12)-2)*scale)|0,
+      (abs((@m20/$.m20+$.m20/@m20)-2)*scale)|0,
+      (abs((@m21/$.m21+$.m21/@m21)-2)*scale)|0,
+      (abs((@m22/$.m22+$.m22/@m22)-2)*scale)|0
+    if error != 0
       console.log 'error'
 
   identity: ()->
