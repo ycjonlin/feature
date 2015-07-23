@@ -70,7 +70,7 @@ class Matrix
 
   identity: ()->
     scale = 1<<16
-    = error Math.max \
+    error = Math.max \
       abs((@m00-1)*scale)|0,
       abs((@m01-0)*scale)|0,
       abs((@m02-0)*scale)|0,
