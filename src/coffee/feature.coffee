@@ -1,4 +1,4 @@
-fround = (x)->x#Math.fround
+fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
 log = Math.log
