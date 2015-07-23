@@ -130,7 +130,10 @@ module.exports =
       g   = fround(2*log(f)-(f0/f+g0)*x0-(f1/f+g1)*x1)
 
       norm = fround(1/(g01*g01-g00*g11))
-      console.log (g0*g11-g1*g01)*norm, (-g0*g01-g1*g00)*norm
+      o0 = (g0*g11-g1*g01)*norm
+      o1 = (-g0*g01-g1*g00)*norm
+      if o0<0 or o0>count0 or o1<0 or o1>count1
+        console.log 'error'
 
       # square root: g[,] = q'[,]h[,]q[,]
       $v  = g
