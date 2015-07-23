@@ -163,6 +163,7 @@ module.exports =
       _q.transpose().multiply(_h).multiply(_q).compare(_g)
       _p.multiply(_q).identity()
       ###
+      console.log p0, p1
 
       # transformation-lize
       m00 = s1_1
