@@ -131,7 +131,7 @@ module.exports =
 
       norm = fround(1/(g01*g01-g00*g11))
       o0 = (g0*g11-g1*g01)*norm
-      o1 = (-g0*g01-g1*g00)*norm
+      o1 = (-g0*g01+g1*g00)*norm
       if o0<0 or o0>count0 or o1<0 or o1>count1
         console.log 'error'
 
