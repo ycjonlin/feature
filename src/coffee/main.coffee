@@ -2,12 +2,14 @@ Image = require './image'
 Surface = require './surface'
 Measure = require './measure'
 Suppress = require './suppress'
+Feature = require './feature'
 
 fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
 log = Math.log
 abs = Math.abs
+sign = Math.sign
 ceil = Math.ceil
 pow = Math.pow
 pi = Math.PI
@@ -70,17 +72,6 @@ element = (surface, width, height)->
       Surface.convolute surface, surface1, kernel, 
         count1-radius*2, count0, count0-radius*2, 1, kernel.length, 1
 
-    colorList = [
-      'rgba(0,0,0, 0.25)',
-      'rgba(255,0,0, 0.25)',
-      'rgba(0,255,0, 0.25)',
-      'rgba(0,0,255, 0.25)',
-      'rgba(255,255,255, 0.25)',
-      'rgba(0,255,255, 0.25)',
-      'rgba(255,0,255, 0.25)',
-      'rgba(255,255,0, 0.25)',
-    ]
-
     for name, measure of Measure
       console.log name
 
@@ -108,61 +99,7 @@ element = (surface, width, height)->
         border = (kernelList[level].length>>1)+1
         sigma = sigmaList[level]
 
-        for offset in extreme
-
-          color = 0; scale = -1
-          if offset < 0 then offset = -offset; color |= 4
-          i0 = (offset%count0)|0; n0 = count0
-          i1 = (offset/count0)|0; n1 = count1
-          while n0 >= i0 and n1 >= i1
-            n0 >>= 1; n1 >>= 1; scale += 1
-          if i0 >= n0 then i0 -= n0; color |= 2
-          if i1 >= n1 then i1 -= n1; color |= 1
-
-          if i0 < border or i0 >= n0-border or 
-             i1 < border or i1 >= n1-border
-            continue
-
-          i0 <<= scale
-          i1 <<= scale
-          
-          offset0 = offset-count0; offset1 = offset; offset2 = offset+count0
-          e00 = surface[offset0-1]; e01 = surface[offset0]; e02 = surface[offset0+1]
-          e10 = surface[offset1-1]; e11 = surface[offset1]; e12 = surface[offset1+1]
-          e20 = surface[offset2-1]; e21 = surface[offset2]; e22 = surface[offset2+1]
-
-          s1_1 = fround(sigma*(1<<scale))
-          s1_2 = fround(s1_1/2)
-          s2_1 = fround(s1_1*s1_1)
-          s2_4 = fround(s2_1/4)
-
-          f00 = fround(s2_1*(e01+e21-e11-e11))
-          f01 = fround(s2_4*(e00+e22-e02-e20))
-          f11 = fround(s2_1*(e10+e12-e11-e11))
-          f0  = fround(s1_2*(e21-e01))
-          f1  = fround(s1_2*(e12-e10))
-          f   = e11
-
-          g00 = (f00*f-f0*f0)
-          g01 = (f01*f-f0*f1)
-          g11 = (f11*f-f1*f1)
-          g0  = (f0*f-g00*i0-g01*i1)
-          g1  = (f1*f-g01*i0-g11*i1)
-          g   = 2*f**2*log(f)-(f0*f-g0)*i0-(f1*f-g1)*i1
-
-          console.log i0, i1, g0, g1
-          if offset > 1<<12
-            break
-
-          context.save()
-          #context.setTransform h00, h01, h01, h11, h0, h1
-
-          context.beginPath()
-          context.arc 0, 0, 2, 0, tau
-          context.fillStyle = colorList[color]
-          context.fill()
-
-          context.restore()
+        Feature.gaussian context, surface, extreme, sigma, border, count0, count1
 
       page = document.getElementsByClassName("page")[0]
       slide = document.createElement("div")
