@@ -168,7 +168,7 @@ module.exports =
       F11 = fround((fn(x0,x1+1e-4)+fn(x0,x1-1e-4)-F-F)*1e8)
       _F = new Matrix(F,F0,F1,F0,F00,F01,F1,F01,F11)
 
-      console.log F00, f00
+      console.log F01, f01
       if offset > 1<<16 then return
 
       #_F.compare(_f)
