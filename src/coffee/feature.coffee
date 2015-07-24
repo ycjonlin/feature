@@ -134,7 +134,11 @@ module.exports =
       o1 = (g1*g00-g0*g01)*norm
       if o0<0 or o0>count0 or o1<0 or o1>count1
         console.log 'error'
-      og = (g+g00*o0*o0+g11*o1*o1)/2+g0*o0+g1*o1+g01*o0*o1
+      #og = (g+g00*o0*o0+g11*o1*o1)/2+g0*o0+g1*o1+g01*o0*o1
+
+      trc = (g00+g11)/2
+      det = g00*g11-g01*g01
+      l0 = trc-sqrt(trc*trc-det)
 
       ###
       # square root: g[,] = q'[,]h[,]q[,]
