@@ -138,7 +138,12 @@ module.exports =
 
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
-      l0 = trc-sqrt(trc*trc-det)
+      dif = sqrt(trc*trc-det)
+      l0 = trc-dif
+      l1 = trc+dif
+
+      g00-l0 g01
+      g01 g11-l1
 
       ###
       # square root: g[,] = q'[,]h[,]q[,]
