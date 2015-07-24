@@ -134,6 +134,7 @@ module.exports =
       o1 = (g1*g00-g0*g01)*norm
       if o0<0 or o0>count0 or o1<0 or o1>count1
         console.log 'error'
+      og = (g+g00*o0*o0+g11*o1*o1)/2+g0*o0+g1*o1+g01*o0*o1
 
       ###
       # square root: g[,] = q'[,]h[,]q[,]
@@ -179,7 +180,9 @@ module.exports =
       m1 = o1
 
       context.save()
-      context.setTransform m00, m10, m01, m11, m0, m1
+      #context.setTransform m00, m10, m01, m11, m0, m1
+      context.scale s1_1, s1_1
+      context.translate o0, o1
 
       context.beginPath()
       context.arc 0, 0, 1, 0, tau
