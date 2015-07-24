@@ -181,8 +181,8 @@ module.exports =
 
       context.save()
       #context.setTransform m00, m10, m01, m11, m0, m1
-      context.scale s1_1, s1_1
       context.translate o0, o1
+      context.scale s1_1, s1_1
 
       context.beginPath()
       context.arc 0, 0, 1, 0, tau
