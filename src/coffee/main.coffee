@@ -67,23 +67,22 @@ element = (surface, width, height)->
       console.log level, kernel.length
 
       surface = surfaceList[level].subarray(radius*(count0+1))
-      Surface.convolute surface1, surface0, kernel, 
+      Surface.convolute surface1, surface0, kernel,
         count1-radius*2, count0, count0, 1, kernel.length, count0
-      Surface.convolute surface, surface1, kernel, 
+      Surface.convolute surface, surface1, kernel,
         count1-radius*2, count0, count0-radius*2, 1, kernel.length, 1
 
     for name, measure of Measure
       console.log name
 
       for level in [0..levels+1]
-        measure measureList[level], surfaceList[level], sigmaList[level], 
+        measure measureList[level], surfaceList[level], sigmaList[level],
           count1, count0, count0, 1
 
       for level in [1..levels]
         countList[level] = Suppress.neighbor_18 extremeList[level],
-          measureList[level-1], measureList[level], measureList[level+1], 
+          measureList[level-1], measureList[level], measureList[level+1],
           count1, count0, count0, 1
-        console.log level, countList[level]
 
       canvas = document.createElement("canvas")
       canvas.width = width

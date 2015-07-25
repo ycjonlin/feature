@@ -2,6 +2,9 @@ fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
 log = Math.log
+cos = Math.cos
+sin = Math.sin
+atan2 = Math.atan2
 abs = Math.abs
 sign = Math.sign
 ceil = Math.ceil
@@ -9,25 +12,26 @@ pow = Math.pow
 pi = Math.PI
 tau = pi*2
 
+alpha = 1/16
 colorList = [
-  'rgba(0,0,0, 0.25)',
-  'rgba(255,0,0, 0.25)',
-  'rgba(0,255,0, 0.25)',
-  'rgba(0,0,255, 0.25)',
-  'rgba(255,255,255, 0.25)',
-  'rgba(0,255,255, 0.25)',
-  'rgba(255,0,255, 0.25)',
-  'rgba(255,255,0, 0.25)',
+  'rgba(0,0,0,'+alpha+')',
+  'rgba(255,0,0,'+alpha+')',
+  'rgba(0,255,0,'+alpha+')',
+  'rgba(0,0,255,'+alpha+')',
+  'rgba(255,255,255,'+alpha+')',
+  'rgba(0,255,255,'+alpha+')',
+  'rgba(255,0,255,'+alpha+')',
+  'rgba(255,255,0,'+alpha+')',
 ]
 
-class Matrix
+class Matrix3
   constructor: (
     @m00, @m01, @m02,
     @m10, @m11, @m12,
     @m20, @m21, @m22)->
 
   transpose: ()->
-    new Matrix(
+    new Matrix3(
       @m00, @m10, @m20,
       @m01, @m11, @m21,
       @m02, @m12, @m22,
@@ -39,7 +43,7 @@ class Matrix
     @m20*x2*x0+@m21*x2*x1+@m22*x2*x2)
 
   multiply: ($)->
-    new Matrix(
+    new Matrix3(
       @m00*$.m00+@m01*$.m10+@m02*$.m20,
       @m00*$.m01+@m01*$.m11+@m02*$.m21,
       @m00*$.m02+@m01*$.m12+@m02*$.m22,
@@ -83,8 +87,50 @@ class Matrix
     if error != 0
       console.log 'error'
 
-module.exports = 
+class Matrix2
+  constructor: (
+    @m00, @m01,
+    @m10, @m11)->
+
+  transpose: ()->
+    new Matrix2(
+      @m00, @m10,
+      @m01, @m11,
+    )
+
+  norm: (x0, x1)-> (
+    @m00*x0*x0+@m01*x0*x1+
+    @m10*x1*x0+@m11*x1*x1)
+
+  multiply: ($)->
+    new Matrix2(
+      @m00*$.m00+@m01*$.m10, @m00*$.m01+@m01*$.m11,
+      @m10*$.m00+@m11*$.m10, @m10*$.m01+@m11*$.m11,
+    )
+
+  compare: ($)->
+    scale = 1<<16
+    error = Math.max \
+      (abs((@m00/$.m00+$.m00/@m00)-2)*scale)|0,
+      (abs((@m01/$.m01+$.m01/@m01)-2)*scale)|0,
+      (abs((@m10/$.m10+$.m10/@m10)-2)*scale)|0,
+      (abs((@m11/$.m11+$.m11/@m11)-2)*scale)|0
+    if error != 0
+      console.log 'error'
+
+  identity: ()->
+    scale = 1<<16
+    error = Math.max \
+      abs((@m00-1)*scale)|0,
+      abs((@m01-0)*scale)|0,
+      abs((@m10-0)*scale)|0,
+      abs((@m11-1)*scale)|0
+    if error != 0
+      console.log 'error'
+
+module.exports =
   gaussian: (context, opend, opper, sigma, border, count0, count1)->
+    total = [0,0,0]
     for offset in opper
 
       color = 0; scale = -1
@@ -96,10 +142,10 @@ module.exports =
       if i0 >= n0 then i0 -= n0; color |= 2
       if i1 >= n1 then i1 -= n1; color |= 1
 
-      if i0 < border or i0 >= n0-border or 
+      if i0 < border or i0 >= n0-border or
          i1 < border or i1 >= n1-border
         continue
-      
+
       offset0 = offset-count0; offset1 = offset; offset2 = offset+count0
       e00 = opend[offset0-1]; e01 = opend[offset0]; e02 = opend[offset0+1]
       e10 = opend[offset1-1]; e11 = opend[offset1]; e12 = opend[offset1+1]
@@ -118,7 +164,7 @@ module.exports =
       f11 = fround(s2_1*(e10+e12-e11-e11))
       f0  = fround(s1_2*(e21-e01))
       f1  = fround(s1_2*(e12-e10))
-      f   = 1#fround(e11)
+      f   = fround(e11)
 
       # gaussian: f(x) ~ exp(1/2 x'[]g[,]x[])
       norm = fround(1/(f*f))
@@ -128,22 +174,6 @@ module.exports =
       g0  = fround(f0/f-g00*x0-g01*x1)
       g1  = fround(f1/f-g01*x0-g11*x1)
       g   = fround(2*log(f)-(f0/f+g0)*x0-(f1/f+g1)*x1)
-
-      norm = fround(1/(g01*g01-g00*g11))
-      o0 = (g0*g11-g1*g01)*norm
-      o1 = (g1*g00-g0*g01)*norm
-      if o0<0 or o0>count0 or o1<0 or o1>count1
-        console.log 'error'
-      #og = (g+g00*o0*o0+g11*o1*o1)/2+g0*o0+g1*o1+g01*o0*o1
-
-      trc = (g00+g11)/2
-      det = g00*g11-g01*g01
-      dif = sqrt(trc*trc-det)
-      l0 = trc-dif
-      l1 = trc+dif
-
-      g00-l0 g01
-      g01 g11-l1
 
       ###
       # square root: g[,] = q'[,]h[,]q[,]
@@ -178,8 +208,7 @@ module.exports =
 
       #_q.transpose().multiply(_h).multiply(_q).compare(_g)
       #_p.multiply(_q).identity()
-      ###
-      
+
       # transformation-lize
       m00 = s1_1
       m10 = 0
@@ -187,11 +216,37 @@ module.exports =
       m11 = s1_1
       m0 = o0
       m1 = o1
+      ###
+
+      trc = (g00+g11)/2
+      det = g00*g11-g01*g01
+      dif = sqrt(trc*trc-det)
+      l0 = trc-dif
+      l1 = trc+dif
+
+      if det > 0
+        if trc > 0
+          total[0] += 1
+        else
+          total[2] += 1
+      else
+        total[1] += 1
+
+      norm = fround(1/(g01*g01-g00*g11))
+      o0 = fround(norm*(g0*g11-g1*g01))
+      o1 = fround(norm*(g1*g00-g0*g01))
+      if o0 < 0 or o0 >= count0
+        console.log 'error'
+
+      t = atan2(2*g01, g11-g00)/2
+
+      r0 = 1/sqrt(abs(l0))
+      r1 = 1/sqrt(abs(l1))
 
       context.save()
-      #context.setTransform m00, m10, m01, m11, m0, m1
       context.translate o0, o1
-      context.scale s1_1, s1_1
+      context.rotate -t
+      context.scale r0, r1
 
       context.beginPath()
       context.arc 0, 0, 1, 0, tau
@@ -199,3 +254,4 @@ module.exports =
       context.fill()
 
       context.restore()
+    console.log total
