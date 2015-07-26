@@ -1,17 +1,13 @@
 Image = require './image'
-Surface = require './surface'
-Measure = require './measure'
-Suppress = require './suppress'
-Feature = require './feature'
+Task = require('./library') require './task'
 
 fround = Math.fround
 sqrt = Math.sqrt
 exp = Math.exp
-log = Math.log
-abs = Math.abs
-sign = Math.sign
-ceil = Math.ceil
 pow = Math.pow
+abs = Math.abs
+atan2 = Math.atan2
+ceil = Math.ceil
 pi = Math.PI
 tau = pi*2
 
@@ -32,80 +28,61 @@ gaussian = (sigma)->
     kernel[i] = y
   kernel
 
-element = (surface, width, height)->
-  canvas = document.createElement("canvas")
-  context = canvas.getContext("2d")
-  imageData = Image.compact surface, context, width, height
-  canvas.width = imageData.width
-  canvas.height = imageData.height
-  context.putImageData imageData, 0, 0
-  canvas
+alpha = 1/16
+colorList = [
+  null,
+  'rgba(255,0,0,'+alpha+')',
+  'rgba(0,255,0,'+alpha+')',
+  'rgba(0,0,255,'+alpha+')',
+  null,
+  'rgba(0,255,255,'+alpha+')',
+  'rgba(255,0,255,'+alpha+')',
+  'rgba(255,255,0,'+alpha+')',
+]
 
-(()->
-  Image.load 'https://farm1.staticflickr.com/194/505494059_426290217e.jpg', (imageData)->
+url = 'https://farm1.staticflickr.com/363/19779866589_a6b28069ef_n.jpg'
+Image.load url, (imageData)->
+  image = Image.extract imageData
+  size = image.length
+  width = imageData.width
+  height = imageData.height
 
-    width = imageData.width
-    height = imageData.height
+  levels = 4
+  sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
+  kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
+  imageList = (null for level in [0..levels+1])
 
-    count1 = height*2
-    count0 = width*2
+  Task.__barrier__ null
+  for level in [0..levels+1]
+    Task.convolute [kernelList[level], image, width, height], level, (image, level)->
+      imageList[level] = image
+  Task.__barrier__ null
+  for method in ['trace', 'determinant', 'gaussian']
+    canvas = document.createElement('canvas')
+    context = canvas.getContext('2d')
+    canvas.width = width
+    canvas.height = height
+    results = document.getElementById('results')
+    results.appendChild canvas
+    Task.feature [method, imageList, kernelList, sigmaList, width, height], context, (keypoints, context)->
+      context.globalCompositeOperation = 'multiply'
+      for offset in [0..keypoints.length-1] by 6
 
-    levels = 4
-    sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
-    kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
+        u0 = keypoints[offset+0]
+        u1 = keypoints[offset+1]
+        t = keypoints[offset+2]
+        r0 = keypoints[offset+3]
+        r1 = keypoints[offset+4]
+        color = keypoints[offset+5]|0
 
-    surface0 = Image.extract imageData
-    surface1 = new Float32Array(surface0.length)
-    surfaceList = (new Float32Array(surface0.length) for level in [0..levels+1])
-    measureList = (new Float32Array(surface0.length) for level in [0..levels+1])
-    extremeList = (new Int32Array(surface0.length>>4) for level in [0..levels+1])
-    countList = (0 for level in [0..levels+1])
+        context.save()
+        context.translate u0, u1
+        context.rotate t
+        context.scale r0, r1
+        context.beginPath()
+        context.arc 0, 0, 1, 0, tau
+        context.fillStyle = colorList[color]
+        context.fill()
+        context.restore()
 
-    for level in [0..levels+1]
-      kernel = kernelList[level]
-      radius = kernel.length>>1
-      console.log level, kernel.length
-
-      surface = surfaceList[level].subarray(radius*(count0+1))
-      Surface.convolute surface1, surface0, kernel,
-        count1-radius*2, count0, count0, 1, kernel.length, count0
-      Surface.convolute surface, surface1, kernel,
-        count1-radius*2, count0, count0-radius*2, 1, kernel.length, 1
-
-    for name, measure of Measure
-      console.log name
-
-      for level in [0..levels+1]
-        measure measureList[level], surfaceList[level], sigmaList[level],
-          count1, count0, count0, 1
-
-      for level in [1..levels]
-        countList[level] = Suppress.neighbor_18 extremeList[level],
-          measureList[level-1], measureList[level], measureList[level+1],
-          count1, count0, count0, 1
-
-      canvas = document.createElement("canvas")
-      canvas.width = width
-      canvas.height = height
-
-      context = canvas.getContext("2d")
-      context.globalCompositeOperation = "multiply"
-
-      for level in [0..levels]
-        continue if countList[level] == 0
-        surface = surfaceList[level]
-        extreme = extremeList[level].subarray(0, countList[level])
-        border = (kernelList[level].length>>1)+1
-        sigma = sigmaList[level]
-
-        Feature.gaussian context, surface, extreme, sigma, border, count0, count1
-
-      page = document.getElementsByClassName("page")[0]
-      slide = document.createElement("div")
-      slide.className = 'slide'
-      container = document.createElement("div")
-      container.className = 'container'
-      page.appendChild slide
-      slide.appendChild container
-      container.appendChild canvas
-)()
+  Task.__barrier__ null

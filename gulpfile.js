@@ -44,11 +44,11 @@ var config = {
     watch: './src/stylus/*.styl',
     destination: './public/css/'
   },
-  natives: {
+  /*natives: {
     source: './src/nacl/*.cpp',
     watch: './src/nacl/*.{cpp,hpp}',
     destination: './public/nacl/'
-  },
+  },*/
   assets: {
     source: './src/assets/**/*.*',
     watch: './src/assets/**/*.*',
@@ -140,10 +140,10 @@ gulp.task('styles', function() {
     match: '**/*.css'
   }));
 });
-
+/*
 gulp.task('natives', function() {
   var pipeline = gulp.src(config.natives.source)
-    /*.pipe(shell([
+    .pipe(shell([
       'mkdir -p <%= dst() %>',
       'time <%= bin %>/pnacl-clang++ <%= file.path %> '+
         '<%= compile.join(" ") %> -c -o <%= dst(file) %>.o',
@@ -184,12 +184,12 @@ gulp.task('natives', function() {
             }, null, 2));
         }
       }
-    }))*/
+    }))
     .on('error', handleError);
 
   return pipeline;
 });
-
+*/
 gulp.task('assets', function() {
   return gulp.src(config.assets.source)
     .pipe(gulp.dest(config.assets.destination));
@@ -208,7 +208,7 @@ gulp.task('server', function() {
 gulp.task('watch', function() {
   gulp.watch(config.templates.watch, ['templates']);
   gulp.watch(config.styles.watch, ['styles']);
-  gulp.watch(config.natives.watch, ['natives']);
+  //gulp.watch(config.natives.watch, ['natives']);
   gulp.watch(config.assets.watch, ['assets']);
 
   var bundle = watchify(browserify(browserifyConfig));
@@ -224,7 +224,7 @@ gulp.task('watch', function() {
   }).emit('update');
 });
 
-var buildTasks = ['templates', 'styles', 'natives', 'assets'];
+var buildTasks = ['templates', 'styles', /*'natives', */'assets'];
 
 gulp.task('revision', buildTasks.concat(['scripts']), function() {
   return gulp.src(config.revision.source, {base: config.revision.base})

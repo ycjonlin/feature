@@ -1,0 +1,110 @@
+doctype html
+html
+  head
+    title Feature Detection
+    link(rel='stylesheet', href='css/style.css')
+    script(type='text/x-mathjax-config')
+      | MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    script(src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML')
+  body
+    ul.navigation
+      li.active
+      li
+      li
+      li
+      li
+      li
+      li
+    .page
+      .slide
+        .container
+          h1 Preprocessing
+      .slide
+        .container
+          h1 Color Space
+          .col-sm-4.col-sm-offset-2
+            h2 Linear
+          .col-sm-4
+            h2 Gamma
+          .col-sm-12
+            h3 $$C_{gamma} = \left(\frac{C_{linear}+0.055}{1.055}\right)^{2.4}$$
+          .col-sm-4
+            h2 CIE XYZ
+            h3 $$
+              | \begin{bmatrix}
+              | 1 & 2 & 3 \\
+              | 1 & 2 & 3 \\
+              | 1 & 2 & 3 \\
+              | \end{bmatrix}
+              | \begin{bmatrix} R \\ G \\ B \end{bmatrix}
+              | $$
+          .col-sm-4
+            h2 CIE RGB
+            h3 $$
+              | \begin{bmatrix} R \\ G \\ B \end{bmatrix}
+              | $$
+          .col-sm-4
+            h2 Grayscale
+            h3 $$
+              | \begin{bmatrix} 0.2126 \\ 0.7152 \\ 0.0722 \end{bmatrix}^{\top}
+              | \begin{bmatrix} R \\ G \\ B \end{bmatrix}
+              | $$
+      .slide
+        .container
+          h1 Gaussian
+          .row
+            .col-sm-4
+              h2 Exact
+              h3 $$G_{k\sigma}(x) = N_{k\sigma}(x)$$
+            .col-sm-4
+              h2 Iterative (SIFT)
+              h3 $$G_{k\sigma}(x) = N_{\sigma}(x) * G_{(k-1)\sigma}(x)$$
+            .col-sm-4
+              h2 Flattened (SURF)
+              h3 $$G_{k\sigma}(x) = R_{k\sigma}(x)$$
+      .slide
+        .container
+          h1 Differential
+          .row
+            .col-sm-4
+              h2 Differential
+              h3 $$\frac{\mathrm{d}}{\mathrm{d}x} G_{k\sigma}(x)$$
+            .col-sm-4
+              h2 Substraction (SIFT)
+              h3 $$aG_{(k+1)\sigma}(x)-bG_{k\sigma}(x)$$
+            .col-sm-4
+              h2 Substraction (SURF)
+              h3 $$\sum_{i} c_i G_{k\sigma}(x - d_i)$$
+      .slide
+        .container
+          h1 Measure
+          .col-sm-4
+            h2 Gaussian
+            h3 $$
+              | \begin{vmatrix} I_{xx} & I_x \\ I_x & I \end{vmatrix}
+              | \begin{vmatrix} I_{yy} & I_y \\ I_y & I \end{vmatrix} -
+              | \begin{vmatrix} I_{xy} & I_x \\ I_y & I \end{vmatrix}^2
+              | $$
+          .col-sm-4
+            h2 Laplacian
+            h3 $$I_{xx}+I_{yy}$$
+          .col-sm-4
+            h2 Harris
+            h3 $$\langle I_{x}^2 \rangle \langle I_{y}^2 \rangle - \langle I_{x}I_{y} \rangle ^2$$
+      .slide
+        .container
+          h1 Selection
+          .col-sm-4.col-sm-offset-2
+            h2 6-Neighbor
+          .col-sm-4
+            h2 26-Neighbor
+      .slide
+        .container
+          h1 Descriptor
+          .col-sm-4
+            h2 Gaussian
+          .col-sm-4
+            h2 Gradient(SIFT)
+          .col-sm-4
+            h2 Gradient(SURF)
+    script(src='js/bundle.js')
