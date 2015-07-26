@@ -12,18 +12,6 @@ pow = Math.pow
 pi = Math.PI
 tau = pi*2
 
-alpha = 1/16
-colorList = [
-  'rgba(0,0,0,'+alpha+')',
-  'rgba(255,0,0,'+alpha+')',
-  'rgba(0,255,0,'+alpha+')',
-  'rgba(0,0,255,'+alpha+')',
-  'rgba(255,255,255,'+alpha+')',
-  'rgba(0,255,255,'+alpha+')',
-  'rgba(255,0,255,'+alpha+')',
-  'rgba(255,255,0,'+alpha+')',
-]
-
 class Matrix3
   constructor: (
     @m00, @m01, @m02,
@@ -128,20 +116,33 @@ class Matrix2
     if error != 0
       console.log 'error'
 
+alpha = 1/16
+colorList = [
+  null,
+  'rgba(255,0,0,'+alpha+')',
+  'rgba(0,255,0,'+alpha+')',
+  'rgba(0,0,255,'+alpha+')',
+  null,
+  'rgba(0,255,255,'+alpha+')',
+  'rgba(255,0,255,'+alpha+')',
+  'rgba(255,255,0,'+alpha+')',
+]
+
 module.exports =
-  gaussian: (context, opend, opper, sigma, border, count0, count1)->
-    total = [0,0,0]
+  gaussian: (oppum, opend, opper, sigma, border, count0, count1)->
+    total = 0
     for offset in opper
 
       color = 0; scale = -1
-      if offset < 0 then offset = -offset; color |= 4
       i0 = (offset%count0)|0; n0 = count0
       i1 = (offset/count0)|0; n1 = count1
+      if i0 == 0 or i1 == 0
+        continue
+
       while n0 >= i0 and n1 >= i1
         n0 >>= 1; n1 >>= 1; scale += 1
       if i0 >= n0 then i0 -= n0; color |= 2
       if i1 >= n1 then i1 -= n1; color |= 1
-
       if i0 < border or i0 >= n0-border or
          i1 < border or i1 >= n1-border
         continue
@@ -173,50 +174,7 @@ module.exports =
       g11 = fround(norm*(f11*f-f1*f1))
       g0  = fround(f0/f-g00*x0-g01*x1)
       g1  = fround(f1/f-g01*x0-g11*x1)
-      g   = fround(2*log(f)-(f0/f+g0)*x0-(f1/f+g1)*x1)
-
-      ###
-      # square root: g[,] = q'[,]h[,]q[,]
-      $v  = g
-      h   = fround(sign($v))
-      q   = fround(sqrt(abs($v)))
-      q0  = fround(g0*h/q)
-      q1  = fround(g1*h/q)
-      $v  = fround(g00-h*q0*q0)
-      h00 = fround(sign($v))
-      q00 = fround(sqrt(abs($v)))
-      q01 = fround((g01-h*q0*q1)*h00/q00)
-      $v  = fround(g11-h*q1*q1-h00*q01*q01)
-      h11 = fround(sign($v))
-      q11 = fround(sqrt(abs($v)))
-
-      # inverse: p[,]q[,] = 1[,]
-      norm = fround(1/(q*q00*q11))
-      p   = fround(norm*(q00*q11))
-      p0  = fround(norm*(-q0*q11))
-      p1  = fround(norm*( q0*q01-q1*q00))
-      p00 = fround(norm*(  q*q11))
-      p01 = fround(norm*( -q*q01))
-      p11 = fround(norm*(  q*q00))
-
-      _i = new Matrix(1,0,0,0,1,0,0,0,1)
-      _h = new Matrix(h,0,0,0,h00,0,0,0,h11)
-      _f = new Matrix(f,f0,f1,f0,f00,f01,f1,f01,f11)
-      _g = new Matrix(g,g0,g1,g0,g00,g01,g1,g01,g11)
-      _q = new Matrix(q,q0,q1,0,q00,q01,0,0,q11)
-      _p = new Matrix(p,p0,p1,0,p00,p01,0,0,p11)
-
-      #_q.transpose().multiply(_h).multiply(_q).compare(_g)
-      #_p.multiply(_q).identity()
-
-      # transformation-lize
-      m00 = s1_1
-      m10 = 0
-      m01 = 0
-      m11 = s1_1
-      m0 = o0
-      m1 = o1
-      ###
+      g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
 
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
@@ -224,34 +182,56 @@ module.exports =
       l0 = trc-dif
       l1 = trc+dif
 
-      if det > 0
-        if trc > 0
-          total[0] += 1
-        else
-          total[2] += 1
-      else
-        total[1] += 1
-
       norm = fround(1/(g01*g01-g00*g11))
-      o0 = fround(norm*(g0*g11-g1*g01))
-      o1 = fround(norm*(g1*g00-g0*g01))
-      if o0 < 0 or o0 >= count0
-        console.log 'error'
+      u0 = fround(norm*(g0*g11-g1*g01))
+      u1 = fround(norm*(g1*g00-g0*g01))
+      t = atan2(-g01-g01, g00-g11)/2
+      r = s2_1*sqrt(abs(l0*l1))
+      r0 = 1/sqrt(abs(l0/r))
+      r1 = 1/sqrt(abs(l1/r))
 
-      t = atan2(2*g01, g11-g00)/2
+      oppum[total+0] = u0
+      oppum[total+1] = u1
+      oppum[total+2] = t
+      oppum[total+3] = r0
+      oppum[total+4] = r1
+      oppum[total+5] = color
+      total += 6
 
-      r0 = 1/sqrt(abs(l0))
-      r1 = 1/sqrt(abs(l1))
+    total
 
-      context.save()
-      context.translate o0, o1
-      context.rotate -t
-      context.scale r0, r1
+###
+# square root: g[,] = q'[,]h[,]q[,]
+$v  = g
+h   = fround(sign($v))
+q   = fround(sqrt(abs($v)))
+q0  = fround(g0*h/q)
+q1  = fround(g1*h/q)
+$v  = fround(g00-h*q0*q0)
+h00 = fround(sign($v))
+q00 = fround(sqrt(abs($v)))
+q01 = fround((g01-h*q0*q1)*h00/q00)
+$v  = fround(g11-h*q1*q1-h00*q01*q01)
+h11 = fround(sign($v))
+q11 = fround(sqrt(abs($v)))
 
-      context.beginPath()
-      context.arc 0, 0, 1, 0, tau
-      context.fillStyle = colorList[color]
-      context.fill()
+# inverse: p[,]q[,] = 1[,]
+norm = fround(1/(q*q00*q11))
+p   = fround(norm*(q00*q11))
+p0  = fround(norm*(-q0*q11))
+p1  = fround(norm*( q0*q01-q1*q00))
+p00 = fround(norm*(  q*q11))
+p01 = fround(norm*( -q*q01))
+p11 = fround(norm*(  q*q00))
 
-      context.restore()
-    console.log total
+_i = new Matrix(1,0,0,0,1,0,0,0,1)
+_h = new Matrix(h,0,0,0,h00,0,0,0,h11)
+_f = new Matrix(f,f0,f1,f0,f00,f01,f1,f01,f11)
+_g = new Matrix(g,g0,g1,g0,g00,g01,g1,g01,g11)
+_q = new Matrix(q,q0,q1,0,q00,q01,0,0,q11)
+_p = new Matrix(p,p0,p1,0,p00,p01,0,0,p11)
+
+#_q.transpose().multiply(_h).multiply(_q).compare(_g)
+#_p.multiply(_q).identity()
+
+###
