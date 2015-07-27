@@ -28,6 +28,15 @@ gaussian = (sigma)->
     kernel[i] = y
   kernel
 
+newCanvas = (width, height)->
+  canvas = document.createElement('canvas')
+  context = canvas.getContext('2d')
+  canvas.width = width
+  canvas.height = height
+  results = document.getElementById('results')
+  results.appendChild canvas
+  context
+
 alpha = 1/16
 colorList = [
   null,
@@ -40,49 +49,51 @@ colorList = [
   'rgba(255,255,0,'+alpha+')',
 ]
 
-url = 'https://farm1.staticflickr.com/363/19779866589_a6b28069ef_n.jpg'
+url = 'https://farm4.staticflickr.com/3755/19651424679_aa20a63dba_b.jpg'
+console.log url
 Image.load url, (imageData)->
   image = Image.extract imageData
   size = image.length
   width = imageData.width
   height = imageData.height
 
-  levels = 4
+  levels = 2
   sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
   kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
   imageList = (null for level in [0..levels+1])
 
   Task.__barrier__ null
   for level in [0..levels+1]
-    Task.convolute [kernelList[level], image, width, height], level, (image, level)->
-      imageList[level] = image
+    context = newCanvas width, height
+    Task.convolute [kernelList[level], image, width, height],
+      [level, context], (image, [level, context])->
+        imageData = Image.compact image, context, width, height
+        context.putImageData imageData, 0, 0
+        imageList[level] = image
   Task.__barrier__ null
   for method in ['trace', 'determinant', 'gaussian']
-    canvas = document.createElement('canvas')
-    context = canvas.getContext('2d')
-    canvas.width = width
-    canvas.height = height
-    results = document.getElementById('results')
-    results.appendChild canvas
-    Task.feature [method, imageList, kernelList, sigmaList, width, height], context, (keypoints, context)->
-      context.globalCompositeOperation = 'multiply'
-      for offset in [0..keypoints.length-1] by 6
+    context = newCanvas width, height
+    Task.feature [method, imageList, kernelList, sigmaList, width, height],
+      context, (keypoints, context)->
+        console.log keypoints.length/6
+        context.globalCompositeOperation = 'multiply'
+        for offset in [0..keypoints.length-1] by 6
 
-        u0 = keypoints[offset+0]
-        u1 = keypoints[offset+1]
-        t = keypoints[offset+2]
-        r0 = keypoints[offset+3]
-        r1 = keypoints[offset+4]
-        color = keypoints[offset+5]|0
+          u0 = keypoints[offset+0]
+          u1 = keypoints[offset+1]
+          th = keypoints[offset+2]
+          r0 = keypoints[offset+3]
+          r1 = keypoints[offset+4]
+          color = keypoints[offset+5]|0
 
-        context.save()
-        context.translate u0, u1
-        context.rotate t
-        context.scale r0, r1
-        context.beginPath()
-        context.arc 0, 0, 1, 0, tau
-        context.fillStyle = colorList[color]
-        context.fill()
-        context.restore()
+          context.save()
+          context.translate u0, u1
+          context.rotate th
+          context.scale r0, r1
+          context.beginPath()
+          context.arc 0, 0, 1, 0, tau
+          context.fillStyle = colorList[color]
+          context.fill()
+          context.restore()
 
   Task.__barrier__ null
