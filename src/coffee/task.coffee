@@ -10,13 +10,14 @@ module.exports =
     radius = kernel.length>>1
     image0 = image
     image1 = new Float32Array(image.length)
+    image2 = new Float32Array(image.length)
 
     Surface.convolute image1, image0, kernel,
       count1-radius*2, count0, count0, 1, kernel.length, count0
-    Surface.convolute image0, image1, kernel,
+    Surface.convolute image2.subarray((count0+1)*radius), image1, kernel,
       count1-radius*2, count0, count0-radius*2, 1, kernel.length, 1
 
-    image0
+    image2
 
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
@@ -34,22 +35,23 @@ module.exports =
 
     # suppress
     countTotal = 0
-    countList = (0 for level in [0..levels+1])
-    extremeList = (new Int32Array(size>>4) for level in [0..levels+1])
+    countList = (0 for level in [0..levels])
+    extremeList = (new Int32Array(size>>2) for level in [0..levels])
     for level in [1..levels]
       measure0 = measureList[level-1]
       measure1 = measureList[level]
       measure2 = measureList[level+1]
       extreme = extremeList[level]
+      border = (kernelList[level].length>>1)+1
       count = Suppress.neighbor_6 extreme,
-        measure0, measure1, measure2, count1, count0, count0, 1
+        measure0, measure1, measure2, border, count1, count0, count0, 1
       countTotal += count
       countList[level] = count
 
     # describe
-    featureList = new Float32Array(countTotal*6)
+    featureList = new Float32Array(countTotal*3)
     feature = featureList
-    for level in [1..levels]
+    for level in [0..levels]
       continue if countList[level] == 0
       image = imageList[level]
       extreme = extremeList[level].subarray(0, countList[level])

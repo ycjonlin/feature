@@ -48,7 +48,7 @@ module.exports = (module_, concurrency_=4)->
         delete registry_[action_.serial_]
         latency_ = Date.now()-interval_
         interval_ = interval_+latency_
-        console.log '__barrier__', latency_+'ms'
+        console.log latency_+'ms', '__barrier__'
         if register_.callback_
           register_.callback_()
     null
