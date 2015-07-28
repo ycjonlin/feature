@@ -58,7 +58,7 @@ module.exports =
       border = (kernelList[level].length>>1)+1
       sigma = sigmaList[level]
       offset = Feature.gaussian feature,
-        image, extreme, sigma, border, count0, count1
+        image, extreme, sigma, count0, count1
       feature = feature.subarray(offset)
 
     featureList.subarray(0, featureList.length-feature.length)
