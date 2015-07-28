@@ -13,7 +13,7 @@ pi = Math.PI
 tau = pi*2
 
 module.exports =
-  gaussian: (oppum, opend, opper, sigma, border, count0, count1)->
+  gaussian: (oppum, opend, opper, sigma, count0, count1)->
     total = 0
     for offset, i in opper by 2
       fields = opper[i+1]
