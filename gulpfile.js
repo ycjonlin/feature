@@ -95,6 +95,12 @@ gulp.task('scripts', function() {
   return pipeline.pipe(gulp.dest(config.scripts.destination));
 });
 
+gulp.task('documents', function() {
+  return gulp.src("./src/coffee/*.coffee")
+    .pipe(docco())
+    .pipe(gulp.dest('./doc'));
+});
+
 gulp.task('templates', function() {
   var pipeline = gulp.src(config.templates.source)
   .pipe(jade({
