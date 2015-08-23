@@ -4,6 +4,7 @@
 var bootstrap = require('bootstrap-styl');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
+var docco = require('gulp-docco');
 var duration = require('gulp-duration');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
