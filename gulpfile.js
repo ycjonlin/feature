@@ -101,9 +101,9 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('documents', function() {
-  return gulp.src("./src/coffee/*.coffee")
+  return gulp.src(config.documents.source)
     .pipe(docco())
-    .pipe(gulp.dest('./doc'));
+    .pipe(gulp.dest(config.documents.destination));
 });
 
 gulp.task('templates', function() {
