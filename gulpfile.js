@@ -28,6 +28,11 @@ var production = process.env.NODE_ENV === 'production';
 
 var config = {
   destination: './public',
+  documents: {
+    source: './src/coffee/*.coffee',
+    watch: './src/coffee/*.coffee',
+    destination: './doc/'
+  },
   scripts: {
     source: './src/coffee/main.coffee',
     extensions: ['.coffee'],
