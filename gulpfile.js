@@ -8,6 +8,7 @@ var duration = require('gulp-duration');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var jade = require('gulp-jade');
+var jsdoc = require('gulp-jsdoc');
 var notifier = require('node-notifier');
 var path = require('path');
 var prefix = require('gulp-autoprefixer');
