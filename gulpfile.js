@@ -236,7 +236,7 @@ gulp.task('watch', function() {
   }).emit('update');
 });
 
-var buildTasks = ['templates', 'styles', /*'natives', */'assets'];
+var buildTasks = ['documents', 'templates', 'styles', /*'natives', */'assets'];
 
 gulp.task('revision', buildTasks.concat(['scripts']), function() {
   return gulp.src(config.revision.source, {base: config.revision.base})
