@@ -46,8 +46,8 @@ module.exports =
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
     #### suppress
-    countTotal = 0
-    countList = (0 for level in [0..levels])
+    extremeCountTotal = 0
+    extremeCountList = (0 for level in [0..levels])
     extremeList = (new Int32Array(size>>2) for level in [0..levels])
     for level in [1..levels]
       measure0 = measureList[level-1]
@@ -57,16 +57,16 @@ module.exports =
       border = (kernelList[level].length>>1)+1
       count = Suppress.neighbor_6 extreme,
         measure0, measure1, measure2, border, count1, count0, count0, 1
-      countTotal += count
-      countList[level] = count
+      extremeCountTotal += count
+      extremeCountList[level] = count
 
     #### describe
-    featureList = new Float32Array(countTotal*3)
+    featureList = new Float32Array(extremeCountTotal*3)
     feature = featureList
     for level in [0..levels]
-      continue if countList[level] == 0
+      continue if extremeCountList[level] == 0
       image = imageList[level]
-      extreme = extremeList[level].subarray(0, countList[level])
+      extreme = extremeList[level].subarray(0, extremeCountList[level])
       border = (kernelList[level].length>>1)+1
       sigma = sigmaList[level]
       offset = Feature.gaussian feature,
