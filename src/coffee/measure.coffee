@@ -4,8 +4,8 @@ module.exports =
 
   # trace
   # --
-  #
-  
+  # Retrieve the trace of Hessian matrix from a Float32Array object.
+
   trace: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     count0 = (count0-2)|0; step0 = step0|0
