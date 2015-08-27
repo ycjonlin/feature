@@ -3,8 +3,8 @@
 Surface = require './surface'
 
 module.exports = 
-  # Load Image
-  # ----------
+  # Load
+  # ----
   # Load image from url and then call the callback function
   load: (url, callback)->
     image = new Image
@@ -21,6 +21,8 @@ module.exports =
     image.src = url
     null
 
+  # Extract
+  # -------
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
     width = image.width
