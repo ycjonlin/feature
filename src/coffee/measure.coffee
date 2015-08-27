@@ -64,7 +64,7 @@ module.exports =
 
   # gaussian
   # --
-  #
+  # Retrieve the __determinant of Gaussian matrix__ from a Float32Array object.
   
   gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
