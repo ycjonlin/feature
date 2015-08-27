@@ -70,7 +70,7 @@ module.exports =
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
-    # Prevent index overflow with save us a lot of time due to index clampping
+    # Prevent index overflow with save us a lot of time due to index clamping.
     count0 = (count0-2)|0; step0 = step0|0
     count1 = (count1-2)|0; step1 = step1|0
     offset = (step0+step1)|0
