@@ -25,7 +25,7 @@ module.exports =
 
   # extract
   # --
-  # Convert the 3-colored ImageData object into a 1-componented Float32Array object.
+  # Convert the ImageData object into a Float32Array object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image)->
@@ -45,7 +45,8 @@ module.exports =
 
   # compact
   # --
-  # 
+  # Merge the 3 major color planes of a 
+  # For more detail, see Surface.extract() and Surface.downsize().
 
   compact: (array, context, width, height)->
     image = context.createImageData width, height
