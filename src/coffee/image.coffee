@@ -7,6 +7,7 @@ module.exports =
   # --
   # Load image data from the url address. Turn it into an ImageData object.
   # Then, call the callback function with it as argument.
+  
   load: (url, callback)->
     image = new Image
     image.crossOrigin = "Anonymous"
@@ -25,7 +26,7 @@ module.exports =
   # extract
   # --
   # Convert the ImageData object into a Float32Array object.
-  
+
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
     width = image.width
@@ -43,6 +44,7 @@ module.exports =
 
   # compact
   # --
+
   compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
@@ -53,6 +55,7 @@ module.exports =
 
   # flatten
   # --
+
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
