@@ -8,7 +8,7 @@ module.exports =
   # convolute
   # --
   # Convolute a Float32Array object with a Float32Array kernel both lengthwise and crosswise.
-  # Return a new Float32Array with result.
+  # Return a new Float32Array with result. For more detail, see Surface.convolute().
 
   convolute: (kernel, image, width, height)->
     count1 = height*2
