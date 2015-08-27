@@ -4,7 +4,7 @@ module.exports =
 
   # trace
   # --
-  # Retrieve the __trace of Hessian matrix__ from a Float32Array object in another Float32Array object.
+  # Retrieve the __trace of Hessian matrix__ from a Float32Array object in a new Float32Array object.
 
   trace: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
@@ -33,7 +33,7 @@ module.exports =
 
   # determinant
   # --
-  # Retrieve the __determinant of Hessian matrix__ from a Float32Array object in another Float32Array object.
+  # Retrieve the __determinant of Hessian matrix__ from a Float32Array object in a new Float32Array object.
   
   determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
@@ -64,7 +64,7 @@ module.exports =
 
   # gaussian
   # --
-  # Retrieve the __determinant of Gaussian matrix__ from a Float32Array object in another Float32Array object.
+  # Retrieve the __determinant of Gaussian matrix__ from a Float32Array object in a new Float32Array object.
   
   gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
