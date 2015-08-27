@@ -5,8 +5,8 @@ Surface = require './surface'
 module.exports = 
   # load
   # --
-  # Load image data from the url address. Turn it into an ImageData object.
-  # Then, send it to the callback function.
+  # Load image data from a url address. Turn it into an ImageData object.
+  # Then, send it to a callback function.
 
   load: (url, callback)->
     image = new Image
@@ -25,7 +25,7 @@ module.exports =
 
   # extract
   # --
-  # Convert the ImageData object into a Float32Array object.
+  # Convert a ImageData object into a Float32Array object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image)->
@@ -45,7 +45,7 @@ module.exports =
 
   # compact
   # --
-  # Merge the 3 major color planes of a 
+  # Merge the 3 major color planes of a Float32Array object into a ImageData object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
   compact: (array, context, width, height)->
