@@ -1,4 +1,4 @@
-# Image library implements functions that retrieve and manipulate image file with HTML5 interface. 
+# Image library implements functions that retrieve and manipulate image file with the HTML5 standard. 
 
 Surface = require './surface'
 
