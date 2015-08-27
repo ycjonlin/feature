@@ -31,6 +31,10 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
+  # determinant
+  # --
+  #
+  
   determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
@@ -58,6 +62,10 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
+  # gaussian
+  # --
+  #
+  
   gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
