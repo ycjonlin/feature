@@ -23,7 +23,7 @@ module.exports =
     null
 
   # extract
-  # -------
+  # --
   # Convert the ImageData object into a Float32Array object.
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
@@ -41,7 +41,7 @@ module.exports =
     array
 
   # compact
-  # ----
+  # --
   compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
@@ -51,7 +51,7 @@ module.exports =
     image
 
   # flatten
-  # ----
+  # --
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
