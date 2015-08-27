@@ -4,6 +4,10 @@ Suppress = require './suppress'
 Feature = require './feature'
 
 module.exports =
+
+  # convolute
+  # --
+  
   convolute: (kernel, image, width, height)->
     count1 = height*2
     count0 = width*2
@@ -19,6 +23,10 @@ module.exports =
 
     image2
 
+
+  # feature
+  # --
+  
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2
