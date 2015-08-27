@@ -1,4 +1,4 @@
-# Surface library provides functions that manipulate Float32Array objects.
+# Surface library provides basic functions that manipulate Float32Array objects.
 # 
 
 fround = Math.fround
