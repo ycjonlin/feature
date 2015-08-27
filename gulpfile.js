@@ -218,6 +218,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('watch', function() {
+  gulp.watch(config.documents.watch, ['documents']);
   gulp.watch(config.templates.watch, ['templates']);
   gulp.watch(config.styles.watch, ['styles']);
   //gulp.watch(config.natives.watch, ['natives']);
