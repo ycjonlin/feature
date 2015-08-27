@@ -1,6 +1,4 @@
-###
-Image library implements function that allow 
-###
+# Image library implements function that allow 
 
 Surface = require './surface'
 
