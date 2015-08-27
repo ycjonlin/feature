@@ -97,7 +97,7 @@ module.exports =
   # downsize
   # --
   # Shrink the last 3 sub-places of a 1-componented Float32Array object 
-  # onto the first sub-plane of another Float32Array object (could also be the same one).
+  # onto the first sub-plane of another Float32Array object. (could also be the same one)
 
   downsize: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
@@ -116,7 +116,7 @@ module.exports =
   # convolute
   # --
   # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel 
-  # onto another 1-componented Float32Array object (should not be the same one).
+  # onto another 1-componented Float32Array object. (should not be the same one)
 
   convolute: (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
     i_count = i_count|0; i_step = i_step|0
