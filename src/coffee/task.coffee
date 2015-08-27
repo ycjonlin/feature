@@ -28,6 +28,7 @@ module.exports =
 
   # feature
   # --
+  # Retrieve feature points from an Float32Array sandwidth slice of an filter pyramid.
   
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
