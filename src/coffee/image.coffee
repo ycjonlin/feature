@@ -5,7 +5,8 @@ Surface = require './surface'
 module.exports = 
   # load
   # ----
-  # Load image data from a url address and turn it into an ImageData object.
+  # Load image data from the url address, and turn it into an ImageData object.
+  # Then, call the callback function.
   load: (url, callback)->
     image = new Image
     image.crossOrigin = "Anonymous"
