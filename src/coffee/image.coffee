@@ -44,6 +44,7 @@ module.exports =
 
   # compact
   # --
+  # 
 
   compact: (array, context, width, height)->
     image = context.createImageData width, height
