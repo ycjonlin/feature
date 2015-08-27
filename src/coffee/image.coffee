@@ -45,8 +45,8 @@ module.exports =
 
   # compact
   # --
-  # Merge the 3 major color planes of a Float32Array object into a ImageData object.
-  # For more detail, see Surface.extract() and Surface.downsize().
+  # Merge the 3 major color planes of a Float32Array object into 3 color channels of a ImageData object.
+  # For more detail, see Surface.compact().
 
   compact: (array, context, width, height)->
     image = context.createImageData width, height
@@ -58,6 +58,8 @@ module.exports =
 
   # flatten
   # --
+  # Flatten a Float32Array object into a ImageData object.
+  # For more detail, see Surface.compact().
 
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
