@@ -3,7 +3,7 @@
 Surface = require './surface'
 
 module.exports = 
-  # Load
+  # load
   # ----
   # Load image from url and then call the callback function
   load: (url, callback)->
@@ -21,7 +21,7 @@ module.exports =
     image.src = url
     null
 
-  # Extract
+  # extract
   # -------
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
@@ -38,6 +38,8 @@ module.exports =
       width >>= 1; height >>= 1
     array
 
+  # compact
+  # ----
   compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
@@ -46,6 +48,8 @@ module.exports =
       height, width*2, width, 1
     image
 
+  # flatten
+  # ----
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
