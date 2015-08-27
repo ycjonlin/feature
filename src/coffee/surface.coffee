@@ -13,7 +13,7 @@ module.exports =
 
   # extract
   # --
-  # Convert a 3-componented Uint8Array-like object into a 1-componented Float32Array object.
+  # Convert a 3-componented Uint8Array object into a 1-componented Float32Array object.
   # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
   # blue-channel data of the original object, respectively.
 
@@ -40,7 +40,7 @@ module.exports =
   
   # compact
   # --
-  # Convert a 1-componented Float32Array object into a 3-componented Uint8Array-like object.
+  # Convert a 1-componented Float32Array object into a 3-componented Uint8Array object.
   # It's basically the opposite of Surface.extract(). Only the last 3 sub-planes of the argument object
   # is filled in the red-, green-, blue-channel of the result object.
 
@@ -72,7 +72,7 @@ module.exports =
   
   # flatten
   # --
-  # Convert a 1-componented Float32Array object into a 3-componented Uint8Array-like object.
+  # Convert a 1-componented Float32Array object into a 3-componented Uint8Array object.
   # The single-channeled data of the original object is copyed into all 3 channels of the result object, 
   # creating a grayscale complete image.
 
@@ -96,6 +96,7 @@ module.exports =
   
   # downsize
   # --
+  # Shrink the last 3 sub-places of a 1-componented Float32Array object
 
   downsize: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
