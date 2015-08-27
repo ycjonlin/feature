@@ -72,6 +72,9 @@ module.exports =
   
   # flatten
   # --
+  # Convert a 1-componented Float32Array object into a 3-componented Uint8Array-like object.
+  # The single-channeled data of the original object is copyed into all 3 channels of the result object, 
+  # creating a grayscale complete image.
 
   flatten: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
