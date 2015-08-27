@@ -45,7 +45,7 @@ module.exports =
 
   # compact
   # --
-  # MAp the 3 major color planes of a Float32Array object into 3 color channels of a ImageData object.
+  # Map the 3 major color planes of a Float32Array object into 3 color channels of a ImageData object.
   # For more detail, see Surface.compact().
 
   compact: (array, context, width, height)->
