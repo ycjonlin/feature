@@ -24,7 +24,7 @@ module.exports =
 
   # extract
   # -------
-  # Convert the ImageData object into a Float32Array object
+  # Convert the ImageData object into a Float32Array object.
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
     width = image.width
