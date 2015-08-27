@@ -41,7 +41,6 @@ module.exports =
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
-    #console.log 'suppress', total
     total
 
   neighbor_18: (oppum, opend0, opend1, opend2, border, count1, step1, count0, step0)->
@@ -99,5 +98,4 @@ module.exports =
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
-    #console.log 'suppress', total
     total
