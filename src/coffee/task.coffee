@@ -37,6 +37,7 @@ module.exports =
     size = imageList[0].length
 
     ##### measure
+    # 
     measureList = (new Float32Array(size) for level in [0..levels+1])
     for level in [0..levels+1]
       measure = measureList[level]
