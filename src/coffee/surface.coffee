@@ -7,7 +7,7 @@ for i in [0..255]
   linear[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
 
 module.exports =
-  
+
   # extract
   # --
 
@@ -30,6 +30,10 @@ module.exports =
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
     null
+
+  
+  # compact
+  # --
 
   compact: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
@@ -56,6 +60,10 @@ module.exports =
       i = (i+1)|0; I = (I+i_step)|0
     null
 
+  
+  # flatten
+  # --
+
   flatten: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
@@ -73,6 +81,9 @@ module.exports =
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
     null
+  
+  # downsize
+  # --
 
   downsize: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
@@ -87,6 +98,9 @@ module.exports =
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
     null
+
+  # convolute
+  # --
 
   convolute: (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
     i_count = i_count|0; i_step = i_step|0
