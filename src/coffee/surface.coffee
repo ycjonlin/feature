@@ -3,6 +3,11 @@
 fround = Math.fround
 pow = Math.pow
 
+linearToCurve = new Float32Array(256)
+for i in [0..255]
+  c = i/255
+  linearToCurve[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
+
 module.exports =
 
   # extract
@@ -16,12 +21,9 @@ module.exports =
     while i < i_count
       j = 0; J = I
       while j < j_count
-        channel0 = linear[opend[_]]; _ = _+1|0
-        channel1 = linear[opend[_]]; _ = _+1|0
-        channel2 = linear[opend[_]]; _ = _+1|0
-        channel0 = if channel0 > 0.04045 then pow((channel0+0.055)/1.055, 2.4) else channel0/12.92
-        channel1 = if channel1 > 0.04045 then pow((channel1+0.055)/1.055, 2.4) else channel1/12.92
-        channel2 = if channel2 > 0.04045 then pow((channel2+0.055)/1.055, 2.4) else channel2/12.92
+        channel0 = linearToCurve[opend[_]]; _ = _+1|0
+        channel1 = linearToCurve[opend[_]]; _ = _+1|0
+        channel2 = linearToCurve[opend[_]]; _ = _+1|0
         _ = _+1|0
         oppum[offset0+J|0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
         oppum[offset1+J|0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
