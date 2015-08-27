@@ -1,5 +1,5 @@
 # Surface library provides basic functions that manipulate Float32Array objects.
-# All function are written in
+# All functions are written in a index-free fashion.
 
 fround = Math.fround
 pow = Math.pow
