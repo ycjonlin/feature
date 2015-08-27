@@ -1,3 +1,7 @@
+###
+Image library implements function that allow 
+###
+
 Surface = require './surface'
 
 module.exports = 
