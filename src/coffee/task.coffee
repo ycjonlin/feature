@@ -45,7 +45,7 @@ module.exports =
       sigma = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
-    # suppress
+    ##### suppress
     countTotal = 0
     countList = (0 for level in [0..levels])
     extremeList = (new Int32Array(size>>2) for level in [0..levels])
@@ -60,7 +60,7 @@ module.exports =
       countTotal += count
       countList[level] = count
 
-    # describe
+    ##### describe
     featureList = new Float32Array(countTotal*3)
     feature = featureList
     for level in [0..levels]
