@@ -59,7 +59,7 @@ module.exports =
   # flatten
   # --
   # Map a Float32Array object into a same-sized grayscale ImageData object.
-  # For more detail, see Surface.compact().
+  # For more detail, see Surface.flatten().
 
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
