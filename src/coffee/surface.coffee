@@ -100,5 +100,4 @@ module.exports =
         oppum[J] = sum
         j = (j+1)|0; J = (J+j_step)|0
       i = (i+1)|0; I = (I+i_step)|0
-    #console.log 'convolute', i_count, i_step, j_count, j_step, k_count, k_step
     null
