@@ -60,7 +60,7 @@ module.exports =
       countTotal += count
       countList[level] = count
 
-    ##### describe
+    #### describe
     featureList = new Float32Array(countTotal*3)
     feature = featureList
     for level in [0..levels]
