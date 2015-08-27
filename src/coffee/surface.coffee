@@ -41,8 +41,8 @@ module.exports =
   # compact
   # --
   # Convert a 1-componented Float32Array object into a 3-componented Uint8Array-like object.
-  # It's basically the opposite of Surface.extract(). The result object is half in size both
-  # lengthwise and crosswise. Only the 
+  # It's basically the opposite of Surface.extract(). Only the last 3 sub-planes of the argument object
+  # is filled in the red-, green-, blue-channel of the result object.
 
   compact: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
