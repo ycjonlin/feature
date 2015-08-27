@@ -7,6 +7,10 @@ for i in [0..255]
   linear[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
 
 module.exports =
+  
+  # extract
+  # --
+
   extract: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
