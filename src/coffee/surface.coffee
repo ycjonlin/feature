@@ -13,6 +13,7 @@ module.exports =
 
   # extract
   # --
+  # Convert a 3-componented Uint8Array-like object into a 1-componented Float32Array
 
   extract: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
