@@ -3,11 +3,6 @@
 fround = Math.fround
 pow = Math.pow
 
-linear = new Float32Array(256)
-for i in [0..255]
-  c = i/255
-  linear[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
-
 module.exports =
 
   # extract
