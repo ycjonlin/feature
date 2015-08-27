@@ -24,7 +24,6 @@ module.exports =
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
-    #console.log 'measure', sigma
     null
 
   determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
@@ -52,7 +51,6 @@ module.exports =
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
-    #console.log 'measure', sigma
     null
 
   gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
@@ -89,5 +87,4 @@ module.exports =
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
-    #console.log 'measure', sigma
     null
