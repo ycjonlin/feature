@@ -13,7 +13,7 @@ module.exports =
 
   # extract
   # --
-  # Convert a 3-componented Uint8Array-like object into a 1-componented Float32Array object.
+  # Convert a 3-componented Uint8Array-like object into a 1-componented 4-subplaned Float32Array object.
   # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
   # blue-channel data of the original object, respectively.
 
