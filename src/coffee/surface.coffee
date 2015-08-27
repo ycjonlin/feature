@@ -13,7 +13,9 @@ module.exports =
 
   # extract
   # --
-  # Convert a 3-componented Uint8Array-like object into a 1-componented Float32Array
+  # Convert a 3-componented Uint8Array-like object into a 1-componented Float32Array object.
+  # The result object is 4 times bigger than the argument object, and it's separated into 4
+  # equal plane, which are filled with 0s, red channel, green channel, and blue channel respectively.
 
   extract: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
