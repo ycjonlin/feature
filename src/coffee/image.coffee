@@ -1,4 +1,4 @@
-# Image library implements functions that retrieve and manipulate ImageData object. 
+# Image library provides functions that retrieve and manipulate ImageData object. 
 
 Surface = require './surface'
 
@@ -25,7 +25,7 @@ module.exports =
 
   # extract
   # --
-  # Convert a ImageData object into a 4-times-big Float32Array object.
+  # Convert a ImageData object into a 4-times-as-big Float32Array object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image)->
