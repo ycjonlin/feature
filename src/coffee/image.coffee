@@ -3,6 +3,8 @@
 Surface = require './surface'
 
 module.exports = 
+  # Load Image
+  # ----------
   # Load image from url and then call the callback function
   load: (url, callback)->
     image = new Image
