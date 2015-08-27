@@ -6,8 +6,8 @@ module.exports =
   # load
   # --
   # Load image data from the url address. Turn it into an ImageData object.
-  # Then, call the callback function with it as argument.
-  
+  # Then, send it to the callback function.
+
   load: (url, callback)->
     image = new Image
     image.crossOrigin = "Anonymous"
