@@ -26,6 +26,7 @@ module.exports =
   # extract
   # --
   # Convert the 3-colored ImageData object into a 1-componented Float32Array object.
+  # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image)->
     array = new Float32Array(image.width * image.height * 4)
