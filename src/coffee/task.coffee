@@ -36,7 +36,7 @@ module.exports =
     levels = imageList.length-2
     size = imageList[0].length
 
-    ##### measure
+    #### measure
     # Use the specified 
     measureList = (new Float32Array(size) for level in [0..levels+1])
     for level in [0..levels+1]
@@ -45,7 +45,7 @@ module.exports =
       sigma = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
-    ##### suppress
+    #### suppress
     countTotal = 0
     countList = (0 for level in [0..levels])
     extremeList = (new Int32Array(size>>2) for level in [0..levels])
