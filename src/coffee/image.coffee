@@ -25,7 +25,7 @@ module.exports =
 
   # extract
   # --
-  # Convert a ImageData object into a Float32Array object.
+  # Convert a ImageData object into a 4-times-bigger Float32Array object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image)->
