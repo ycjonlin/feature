@@ -8,7 +8,6 @@ module.exports =
 
   trace: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
-    # Prevent index clamping with save us a lot of execution time.
     count0 = (count0-2)|0; step0 = step0|0
     count1 = (count1-2)|0; step1 = step1|0
     offset = (step0+step1)|0
@@ -39,7 +38,6 @@ module.exports =
   determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
-    # Prevent index clamping with save us a lot of execution time.
     count0 = (count0-2)|0; step0 = step0|0
     count1 = (count1-2)|0; step1 = step1|0
     offset = (step0+step1)|0
@@ -72,7 +70,6 @@ module.exports =
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
-    # Prevent index clamping with save us a lot of execution time.
     count0 = (count0-2)|0; step0 = step0|0
     count1 = (count1-2)|0; step1 = step1|0
     offset = (step0+step1)|0
