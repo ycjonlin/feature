@@ -96,7 +96,7 @@ module.exports =
   
   # downsize
   # --
-  # Shrink the last 3 sub-places of a 1-componented Float32Array object
+  # Shrink the last 3 sub-places of a 1-componented Float32Array object onto its first sub-plance.
 
   downsize: (oppum, opend, i_count, i_step, j_count, j_step)->
     i_count = i_count|0; i_step = i_step|0
