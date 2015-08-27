@@ -33,7 +33,7 @@ module.exports =
 
   # determinant
   # --
-  #
+  # Retrieve the __determinant of Hessian matrix__ from a Float32Array object.
   
   determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
