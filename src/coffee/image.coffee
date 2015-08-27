@@ -3,6 +3,7 @@
 Surface = require './surface'
 
 module.exports = 
+  # load image from url and then call the callback function
   load: (url, callback)->
     image = new Image
     image.crossOrigin = "Anonymous"
