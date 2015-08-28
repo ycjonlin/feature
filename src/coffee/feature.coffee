@@ -59,6 +59,7 @@ module.exports =
       oppum[total+4] = g1
       oppum[total+5] = g
       total += 6
+      
       ###
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
