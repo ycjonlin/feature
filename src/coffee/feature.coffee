@@ -51,6 +51,14 @@ module.exports =
       g0  = fround(f0/f-g00*x0-g01*x1)
       g1  = fround(f1/f-g01*x0-g11*x1)
       g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
+
+      oppum[total+0] = g00
+      oppum[total+1] = g01
+      oppum[total+2] = g11
+      oppum[total+3] = g0
+      oppum[total+4] = g1
+      oppum[total+5] = g
+      total += 6
       ###
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
