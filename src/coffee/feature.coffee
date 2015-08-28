@@ -30,10 +30,6 @@ module.exports =
 
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
-      s1_1 = fround(sigma*(1<<scale))
-      s1_2 = fround(s1_1/2)
-      s2_1 = fround(s1_1*s1_1)
-      s2_4 = fround(s2_1/4)
 
       # taylerian: f(x) ~ x'[]f[,]x[]
       f00 = fround(s2_1*(e01+e21-e11-e11))
@@ -59,8 +55,13 @@ module.exports =
       oppum[total+4] = g1
       oppum[total+5] = g
       total += 6
-      
+
       ###
+      s1_1 = fround(sigma*(1<<scale))
+      s1_2 = fround(s1_1/2)
+      s2_1 = fround(s1_1*s1_1)
+      s2_4 = fround(s2_1/4)
+      
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
       dif = sqrt(trc*trc-det)
