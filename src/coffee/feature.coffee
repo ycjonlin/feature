@@ -51,7 +51,7 @@ module.exports =
       g0  = fround(f0/f-g00*x0-g01*x1)
       g1  = fround(f1/f-g01*x0-g11*x1)
       g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
-
+      ###
       trc = (g00+g11)/2
       det = g00*g11-g01*g01
       dif = sqrt(trc*trc-det)
@@ -73,5 +73,5 @@ module.exports =
       oppum[total+4] = r1
       oppum[total+5] = color
       total += 6
-
+      ###
     total
