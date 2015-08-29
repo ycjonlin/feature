@@ -28,11 +28,11 @@ module.exports =
       e10 = opend[offset1-1]; e11 = opend[offset1]; e12 = opend[offset1+1]
       e20 = opend[offset2-1]; e21 = opend[offset2]; e22 = opend[offset2+1]
 
-      x0 = fround(i0<<scale)
-      x1 = fround(i1<<scale)
-      s1 = fround(sigma*(1<<scale))
-      s2 = s1*s1
-
+      s = fround(sigma*(1<<scale))
+      t0 = 
+      t1 = 
+      x0 = fround(s*i0+t0)
+      x1 = fround(s*i1+t1)
       # taylerian: f(x) ~ x'[]f[,]x[]
       f00 = fround((e01+e21-e11-e11)*s2)
       f01 = fround((e00+e22-e02-e20)*s2/4)
