@@ -57,33 +57,4 @@ module.exports =
       oppum[total+4] = g1*s1
       oppum[total+5] = g
       total += 6
-
-      ###
-      s1_1 = fround(sigma*(1<<scale))
-      s1_2 = fround(s1_1/2)
-      s2_1 = fround(s1_1*s1_1)
-      s2_4 = fround(s2_1/4)
-
-      trc = (g00+g11)/2
-      det = g00*g11-g01*g01
-      dif = sqrt(trc*trc-det)
-      l0 = trc-dif
-      l1 = trc+dif
-
-      norm = fround(1/(g01*g01-g00*g11))
-      u0 = fround(norm*(g0*g11-g1*g01))
-      u1 = fround(norm*(g1*g00-g0*g01))
-      t = atan2(-g01-g01, g00-g11)/2
-      r = s2_1*sqrt(abs(l0*l1))
-      r0 = 1/sqrt(abs(l0/r))
-      r1 = 1/sqrt(abs(l1/r))
-
-      oppum[total+0] = u0
-      oppum[total+1] = u1
-      oppum[total+2] = t
-      oppum[total+3] = r0
-      oppum[total+4] = r1
-      oppum[total+5] = color
-      total += 6
-      ###
     total
