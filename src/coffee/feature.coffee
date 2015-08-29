@@ -50,11 +50,11 @@ module.exports =
       g1  = fround(f1/f-g01*x0-g11*x1)
       g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
 
-      oppum[total+0] = s2*g00
-      oppum[total+1] = s2*g01
-      oppum[total+2] = s2*g11
-      oppum[total+3] = s1*g0
-      oppum[total+4] = s1*g1
+      oppum[total+0] = g00*s2
+      oppum[total+1] = g01*s2
+      oppum[total+2] = g11*s2
+      oppum[total+3] = g0*s1
+      oppum[total+4] = g1*s1
       oppum[total+5] = g
       total += 6
 
