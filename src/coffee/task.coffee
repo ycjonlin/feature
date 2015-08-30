@@ -43,7 +43,7 @@ module.exports =
 
     #### surface measurement
     # Use the specified measuring function
-    measureList = ()
+    measureList = []
     for level in levelListWithFloorAndCeiling
       measure = new Float32Array(size)
       image   = imageList[level]
