@@ -82,9 +82,9 @@ Image.load url, (imageData)->
           g00 = keypoints[offset+0]
           g01 = keypoints[offset+1]
           g11 = keypoints[offset+2]
-          g0 = keypoints[offset+3]
-          g1 = keypoints[offset+4]
-          color = keypoints[offset+5]|0
+          g0  = keypoints[offset+3]
+          g1  = keypoints[offset+4]
+          g   = keypoints[offset+5]
 
           trc = (g00+g11)/2
           det = g00*g11-g01*g01
@@ -106,7 +106,7 @@ Image.load url, (imageData)->
           context.scale r0, r1
           context.beginPath()
           context.arc 0, 0, 2, 0, tau
-          context.fillStyle = colorList[color]
+          context.fillStyle = colorList[0]
           context.fill()
           context.restore()
 
