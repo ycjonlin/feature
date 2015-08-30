@@ -3,6 +3,8 @@ Measure = require './measure'
 Extreme = require './extreme'
 Feature = require './feature'
 
+colorList = [0..5]
+
 module.exports =
 
   # convolute
@@ -46,9 +48,9 @@ module.exports =
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
     #### non-extremum suppression
-    extremeCountTotal = (0 for color in [0..5])
-    extremeCountList = ((0 for color in [0..5]) for level in [0..levels])
     extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
+    extremeCountList = ((0 for color in colorList) for level in [0..levels])
+    extremeCountTotal = (0 for color in colorList)
     for level in [1..levels]
       measure0 = measureList[level-1]
       measure1 = measureList[level]
@@ -57,11 +59,12 @@ module.exports =
       border   = (kernelList[level].length>>1)+1
       count    = Extreme.neighbor_6 extreme,
         measure0, measure1, measure2, border, count1, count0, count0, 1
-      extremeCountTotal += count
-      extremeCountList[level] = count
+      for color in colorList
+        extremeCountList[level][color] = count[color]
+        extremeCountTotal[color] += count[color]
 
     #### describe
-    featureList = (new Float32Array(extremeCountTotal*3) for color in [0..7])
+    featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
     for level in [0..levels]
       continue if extremeCountList[level] == 0
       image   = imageList[level]
