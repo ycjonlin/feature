@@ -39,11 +39,9 @@ newCanvas = (width, height)->
 
 alpha = 1/16
 colorList = [
-  'rgba(0,0,0,'+alpha+')',
   'rgba(255,0,0,'+alpha+')',
   'rgba(0,255,0,'+alpha+')',
   'rgba(0,0,255,'+alpha+')',
-  'rgba(255,255,255,'+alpha+')',
   'rgba(0,255,255,'+alpha+')',
   'rgba(255,0,255,'+alpha+')',
   'rgba(255,255,0,'+alpha+')',
