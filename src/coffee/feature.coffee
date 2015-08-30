@@ -59,14 +59,14 @@ module.exports =
       norm = fround(1/(g01*g01-g00*g11))
       u0 = fround(norm*(g0*g11-g1*g01))
       u1 = fround(norm*(g1*g00-g0*g01))
-      t = atan2(-g01-g01, g00-g11)/2
+      th = atan2(-g01-g01, g00-g11)/2
       lg = sqrt(abs(l0*l1))
       r0 = sqrt(abs(lg/l0))
       r1 = sqrt(abs(lg/l1))
 
       oppum[total+0] = u0
       oppum[total+1] = u1
-      oppum[total+2] = t
+      oppum[total+2] = th
       oppum[total+3] = r0
       oppum[total+4] = r1
       oppum[total+5] = color
