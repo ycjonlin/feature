@@ -41,11 +41,11 @@ module.exports =
       f   = fround(e11)
 
       # gaussian: f(x) ~ exp(1/2 x'[]g[,]x[])
-      norm = fround((s*s)/(f*f))
+      norm = fround(1/(s*s*f*f))
       g00 = fround(norm*(f*f00-f0*f0))
       g01 = fround(norm*(f*f01-f0*f1))
       g11 = fround(norm*(f*f11-f1*f1))
-      norm = fround(s/f)
+      norm = fround(1/(s*f))
       g0 = fround(norm*f0-(g00*x0+g01*x1))
       g1 = fround(norm*f1-(g01*x0+g11*x1))
       g = fround(log(f)-((norm*f0+g0)*x0+(norm*f1+g1)*x1)/2)
