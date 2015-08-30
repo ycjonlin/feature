@@ -44,7 +44,7 @@ module.exports =
     #### surface measurement
     # Use the specified measuring function
     measureList = []
-    for level in [0..levels-1]
+    for level in levelListWithTop
       measure = new Float32Array(size)
       image   = imageList[level]
       sigma   = sigmaList[level]
@@ -55,9 +55,9 @@ module.exports =
     extremeListList = []
     extremeOffsetListList = []
     extremeOffsetTotalList = (0 for color in colorList)
-    for level in levelList
+    for level in levelListWithoutTop
       extremeList = (new Int32Array(size>>4) for color in colorList)
-      measure0    = measureList[level-1]
+      measure0    = measureList[if level > 0 then level-1 else 0]
       measure1    = measureList[level]
       measure2    = measureList[level+1]
       border      = borderList[level]
@@ -68,7 +68,7 @@ module.exports =
 
     #### keypoint description
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
-    for level in levelList
+    for level in levelListWithoutTop
       image  = imageList[level]
       border = borderList[level]
       for color in colorList
