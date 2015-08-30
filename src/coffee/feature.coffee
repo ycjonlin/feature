@@ -15,7 +15,6 @@ tau = pi*2
 module.exports =
   gaussian: (oppumList, opend, opper, count0, count1)->
     totalList = (0 for color in [1..oppumList.length])
-    console.log totalList
     for offset, i in opper by 2
       fields = opper[i+1]
 
@@ -60,4 +59,5 @@ module.exports =
       oppum[total+4] = g1
       oppum[total+5] = g
       totalList[color] = total+6
+    console.log totalList
     totalList
