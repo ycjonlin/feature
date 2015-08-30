@@ -46,9 +46,12 @@ module.exports =
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
     #### non-extremum suppression
-    extremeCountTotal = 0
-    extremeCountList = (0 for level in [0..levels])
-    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
+    extremeCountTotal = 
+      (new Int32Array(size>>4) for color in [0..5])
+    extremeCountList = (
+      (new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
+    extremeList = (
+      (new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
     for level in [1..levels]
       measure0 = measureList[level-1]
       measure1 = measureList[level]
