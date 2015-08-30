@@ -28,33 +28,51 @@ module.exports =
       e10 = opend[offset1-1]; e11 = opend[offset1]; e12 = opend[offset1+1]
       e20 = opend[offset2-1]; e21 = opend[offset2]; e22 = opend[offset2+1]
 
-      s = fround(sigma*(1<<scale))
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
+      s1_1 = fround(sigma*(1<<scale))
+      s1_2 = fround(s1_1/2)
+      s2_1 = fround(s1_1*s1_1)
+      s2_4 = fround(s2_1/4)
 
       # taylerian: f(x) ~ x'[]f[,]x[]
-      f00 = fround((e01+e21-e11-e11))
-      f01 = fround((e00+e22-e02-e20)/4)
-      f11 = fround((e10+e12-e11-e11))
-      f0  = fround((e21-e01)/2)
-      f1  = fround((e12-e10)/2)
+      f00 = fround(s2_1*(e01+e21-e11-e11))
+      f01 = fround(s2_4*(e00+e22-e02-e20))
+      f11 = fround(s2_1*(e10+e12-e11-e11))
+      f0  = fround(s1_2*(e21-e01))
+      f1  = fround(s1_2*(e12-e10))
       f   = fround(e11)
 
       # gaussian: f(x) ~ exp(1/2 x'[]g[,]x[])
-      norm = fround((s*s)/(f*f))
-      g00 = fround(norm*(f*f00-f0*f0))
-      g01 = fround(norm*(f*f01-f0*f1))
-      g11 = fround(norm*(f*f11-f1*f1))
-      norm = fround(s/f)
-      g0 = fround(norm*f0-(g00*x0+g01*x1))
-      g1 = fround(norm*f1-(g01*x0+g11*x1))
-      g = fround(log(f)-((norm*f0+g0)*x0+(norm*f1+g1)*x1)/2)
+      norm = fround(1/(f*f))
+      g00 = fround(norm*(f00*f-f0*f0))
+      g01 = fround(norm*(f01*f-f0*f1))
+      g11 = fround(norm*(f11*f-f1*f1))
+      g0  = fround(f0/f-g00*x0-g01*x1)
+      g1  = fround(f1/f-g01*x0-g11*x1)
+      g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
+      
+      ###
+      trc = (g00+g11)/2
+      det = g00*g11-g01*g01
+      dif = sqrt(trc*trc-det)
+      l0 = trc-dif
+      l1 = trc+dif
 
-      oppum[total+0] = g00
-      oppum[total+1] = g01
-      oppum[total+2] = g11
-      oppum[total+3] = g0
-      oppum[total+4] = g1
-      oppum[total+5] = g
+      norm = fround(1/(g01*g01-g00*g11))
+      u0 = fround(norm*(g0*g11-g1*g01))
+      u1 = fround(norm*(g1*g00-g0*g01))
+      t = atan2(-g01-g01, g00-g11)/2
+      r = s2_1*sqrt(abs(l0*l1))
+      r0 = 1/sqrt(abs(l0/r))
+      r1 = 1/sqrt(abs(l1/r))
+
+      oppum[total+0] = u0
+      oppum[total+1] = u1
+      oppum[total+2] = t
+      oppum[total+3] = r0
+      oppum[total+4] = r1
+      oppum[total+5] = color
       total += 6
+      ###
     total
