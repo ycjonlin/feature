@@ -45,7 +45,6 @@ module.exports =
           if i0 >= border and i0 < n0-border and
              i1 >= border and i1 < n1-border
             if color != lastColor
-              console.log 'change color'
               totalList[lastColor] = total
               oppum = oppumList[color]
               total = totalList[color]
