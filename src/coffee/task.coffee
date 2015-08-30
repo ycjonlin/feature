@@ -35,24 +35,25 @@ module.exports =
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2
-    levelList = [0..imageList.length-2]
-    levelAndCapList = [0..imageList.length-1]
+    levelList = [1..imageList.length-2]
+    levelListF = [0..imageList.length-2]
+    levelListFC = [0..imageList.length-1]
     size = imageList[0].length
 
     #### surface measurement
     # Use the specified measuring function
-    measureList = (new Float32Array(size) for level in levelAndCapList)
-    for level in levelAndCapList
+    measureList = (new Float32Array(size) for level in levelListFC)
+    for level in levelListFC
       measure = measureList[level]
       image = imageList[level]
       sigma = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
     #### non-extremum suppression
-    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in levelList)
-    extremeCountList = ((0 for color in colorList) for level in levelList)
+    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in levelListF)
+    extremeCountList = ((0 for color in colorList) for level in levelListF)
     extremeCountTotal = (0 for color in colorList)
-    for level in [1..levels]
+    for level in levelList
       measure0 = measureList[level-1]
       measure1 = measureList[level]
       measure2 = measureList[level+1]
@@ -66,7 +67,7 @@ module.exports =
 
     #### keypoint description
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
-    for level in levelList
+    for level in levelListF
       image   = imageList[level]
       border  = (kernelList[level].length>>1)+1
       for color in colorList
