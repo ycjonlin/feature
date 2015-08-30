@@ -55,6 +55,6 @@ module.exports =
       oppum[total+2] = g11
       oppum[total+3] = g0
       oppum[total+4] = g1
-      oppum[total+5] = color
+      oppum[total+5] = g
       total += 6
     total
