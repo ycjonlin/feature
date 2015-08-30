@@ -39,8 +39,8 @@ module.exports =
             n0 >>= 1; n1 >>= 1; scale += 1
           # color
           color = if sign then -1 else 2
-          if i0 >= n0 then i0 -= n0; color |= 2
-          if i1 >= n1 then i1 -= n1; color |= 1
+          if i0 >= n0 then i0 -= n0; color += 2
+          if i1 >= n1 then i1 -= n1; color += 1
           console.log i0, i1, color
           # border
           if i0 >= border and i0 < n0-border and
