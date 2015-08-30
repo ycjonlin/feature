@@ -59,5 +59,4 @@ module.exports =
       oppum[total+4] = g1
       oppum[total+5] = g
       totalList[color] = total+6
-    console.log totalList
     totalList
