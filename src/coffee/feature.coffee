@@ -30,17 +30,15 @@ module.exports =
 
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
-      s1_1 = fround(1<<scale)
-      s1_2 = fround(s1_1/2)
-      s2_1 = fround(s1_1*s1_1)
-      s2_4 = fround(s2_1/4)
+      s1 = fround(1<<scale)
+      s2 = fround(1<<scale<<scale)
 
       # taylerian: f(x) ~ x'[]f[,]x[]
-      f00 = fround(s2_1*(e01+e21-e11-e11))
-      f01 = fround(s2_4*(e00+e22-e02-e20))
-      f11 = fround(s2_1*(e10+e12-e11-e11))
-      f0  = fround(s1_2*(e21-e01))
-      f1  = fround(s1_2*(e12-e10))
+      f00 = fround(s2*(e01+e21-e11-e11))
+      f01 = fround(s2*(e00+e22-e02-e20)/4)
+      f11 = fround(s2*(e10+e12-e11-e11))
+      f0  = fround(s1*(e21-e01)/2)
+      f1  = fround(s1*(e12-e10)/2)
       f   = fround(e11)
 
       # gaussian: f(x) ~ exp(1/2 x'[]g[,]x[])
