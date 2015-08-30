@@ -13,8 +13,8 @@ pi = Math.PI
 tau = pi*2
 
 module.exports =
-  gaussian: (oppumList, opend, opper, count0, count1)->
-    totalList = (0 for color in [1..oppumList.length])
+  gaussian: (oppum, opend, opper, count0, count1)->
+    total = 0
     for offset, i in opper by 2
       fields = opper[i+1]
 
@@ -50,13 +50,11 @@ module.exports =
       g1  = fround(f1/f-(g01*x0+g11*x1))
       g   = fround(log(f)-((f0/f+g0)*x0+(f1/f+g1)*x1)/2)
 
-      oppum = oppumList[color]
-      total = totalList[color]
       oppum[total+0] = g00
       oppum[total+1] = g01
       oppum[total+2] = g11
       oppum[total+3] = g0
       oppum[total+4] = g1
       oppum[total+5] = g
-      totalList[color] = total+6
-    totalList
+      total += 6
+    total
