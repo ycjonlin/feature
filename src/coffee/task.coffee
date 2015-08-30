@@ -53,17 +53,16 @@ module.exports =
       measureList.push measure
 
     #### non-extremum suppression
-    extremeList = []
-    extremeOffsetList = []
-    extremeOffsetTotal = (0 for color in colorList)
+    extremeListList = []
+    extremeOffsetListList = []
+    extremeOffsetTotalList = (0 for color in colorList)
     for level in levelList
-      measure0 = measureList[level-1]
-      measure1 = measureList[level]
-      measure2 = measureList[level+1]
-      extreme  = (new Int32Array(size>>4) for color in colorList)
-      border   = (kernelList[level].length>>1)+1
-      offsetList = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
-                                      border, count1, count0, count0, 1
+      extremeList = (new Int32Array(size>>4) for color in colorList)
+      measure0    = measureList[level-1]
+      measure1    = measureList[level]
+      measure2    = measureList[level+1]
+      border      = borderList[level]
+      offsetList  = Extreme.neighbor_6 extreme, measure0, measure1, measure2, border, count1, count0, count0, 1
       for color in colorList
         extremeCountList[level][color] = offsetList[color]
         extremeCountTotal[color] += offsetList[color]
