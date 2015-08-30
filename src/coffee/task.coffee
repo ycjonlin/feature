@@ -53,9 +53,9 @@ module.exports =
       measure0 = measureList[level-1]
       measure1 = measureList[level]
       measure2 = measureList[level+1]
-      extreme = extremeList[level]
-      border = (kernelList[level].length>>1)+1
-      count = Suppress.neighbor_6 extreme,
+      extreme  = extremeList[level]
+      border   = (kernelList[level].length>>1)+1
+      count    = Suppress.neighbor_6 extreme,
         measure0, measure1, measure2, border, count1, count0, count0, 1
       extremeCountTotal += count
       extremeCountList[level] = count
@@ -65,12 +65,11 @@ module.exports =
     feature = featureList
     for level in [0..levels]
       continue if extremeCountList[level] == 0
-      image = imageList[level]
+      image   = imageList[level]
       extreme = extremeList[level].subarray(0, extremeCountList[level])
-      border = (kernelList[level].length>>1)+1
-      sigma = sigmaList[level]
-      offset = Feature.gaussian feature,
-        image, extreme, count0, count1
+      border  = (kernelList[level].length>>1)+1
+      sigma   = sigmaList[level]
+      offset  = Feature.gaussian feature, image, extreme, count0, count1
       feature = feature.subarray(offset)
 
     featureList.subarray(0, featureList.length-feature.length)
