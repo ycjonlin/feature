@@ -57,8 +57,8 @@ module.exports =
       measure2 = measureList[level+1]
       extreme  = extremeList[level]
       border   = (kernelList[level].length>>1)+1
-      count    = Extreme.neighbor_6 extreme,
-        measure0, measure1, measure2, border, count1, count0, count0, 1
+      count    = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
+                                    border, count1, count0, count0, 1
       for color in colorList
         extremeCountList[level][color] = count[color]
         extremeCountTotal[color] += count[color]
