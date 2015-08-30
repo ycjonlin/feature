@@ -96,9 +96,9 @@ Image.load url, (imageData)->
           u0 = fround(norm*(g0*g11-g1*g01))
           u1 = fround(norm*(g1*g00-g0*g01))
           th = atan2(-g01-g01, g00-g11)/2
-          lm = sqrt(abs(l0*l1))
-          r0 = sqrt(abs(lm/l0))
-          r1 = sqrt(abs(lm/l1))
+          lg = sqrt(abs(l0*l1))
+          r0 = sqrt(abs(lg/l0))
+          r1 = sqrt(abs(lg/l1))
 
           color = 0
 
