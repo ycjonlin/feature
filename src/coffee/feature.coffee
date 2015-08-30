@@ -30,7 +30,7 @@ module.exports =
 
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
-      s1_1 = fround((1<<scale))
+      s1_1 = fround(sigma*(1<<scale))
       s1_2 = fround(s1_1/2)
       s2_1 = fround(s1_1*s1_1)
       s2_4 = fround(s2_1/4)
