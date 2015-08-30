@@ -105,7 +105,7 @@ Image.load url, (imageData)->
           context.save()
           context.translate u0, u1
           context.rotate th
-          context.scale r0, r1
+          #context.scale r0, r1
           context.beginPath()
           context.arc 0, 0, 1, 0, tau
           context.fillStyle = colorList[color]
