@@ -56,9 +56,9 @@ module.exports =
       g01 = fround(norm*(f*f01-f0*f1))
       g11 = fround(norm*(f*f11-f1*f1))
       norm = fround(s/f)
-      g0  = fround(norm*f0-g00*x0-g01*x1)
-      g1  = fround(norm*f1-g01*x0-g11*x1)
-      g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
+      g0 = fround(norm*f0-(g00*x0+g01*x1))
+      g1 = fround(norm*f1-(g01*x0+g11*x1))
+      g = fround(log(f)-((norm*f0+g0)*x0+(norm*f1+g1)*x1)/2)
 
       oppum[total+0] = g00
       oppum[total+1] = g01
