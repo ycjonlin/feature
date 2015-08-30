@@ -39,7 +39,7 @@ module.exports =
     levelAndCapList = [0..imageList.length-1]
     size = imageList[0].length
 
-    #### measure
+    #### measurement
     # Use the specified measuring function
     measureList = (new Float32Array(size) for level in levelAndCapList)
     for level in levelAndCapList
@@ -64,7 +64,7 @@ module.exports =
         extremeCountList[level][color] = count[color]
         extremeCountTotal[color] += count[color]
 
-    #### describe
+    #### keypoint description
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
     for level in levelList
       image   = imageList[level]
