@@ -35,9 +35,10 @@ module.exports =
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2
-    levelList = [1..imageList.length-2]
-    levelListWithFloor = [0..imageList.length-2]
-    levelListWithFloorAndCeiling = [0..imageList.length-1]
+    levels = imageList.length-1
+    levelList = [1..levels-1]
+    levelListWithFloor = [0..levels-1]
+    levelListWithFloorAndCeiling = [0..levels]
     size = imageList[0].length
 
     #### surface measurement
