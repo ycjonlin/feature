@@ -1,7 +1,6 @@
 
 module.exports =
   neighbor_6: (oppumList, opend0, opend1, opend2, border, count1, step1, count0, step0)->
-    totalList = (0 for color in [1..oppum.length])
     lastColor = 0
     oppum = oppumList[lastColor]
     total = totalList[lastColor]
