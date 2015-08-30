@@ -75,7 +75,6 @@ Image.load url, (imageData)->
     context = newCanvas width, height
     Task.feature [method, imageList, kernelList, sigmaList, width, height],
       context, (keypoints, context)->
-        return
         console.log keypoints.length/6
         context.globalCompositeOperation = 'multiply'
         for offset in [0..keypoints.length-1] by 6
