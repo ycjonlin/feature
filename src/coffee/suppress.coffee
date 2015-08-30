@@ -26,6 +26,7 @@ module.exports =
             (e11>opend0[offset0]) and (e11>opend2[offset0])
           )
         )
+          # index
           i0 = index0|0; n0 = count0
           i1 = index1|0; n1 = count1
           # scale
