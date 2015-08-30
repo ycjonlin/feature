@@ -37,6 +37,7 @@ module.exports =
           color = if sign then 0 else 4
           if i0 >= n0 then i0 -= n0; color |= 2
           if i1 >= n1 then i1 -= n1; color |= 1
+          # border
           if i0 >= border and i0 < n0-border and
              i1 >= border and i1 < n1-border
             oppum[total+0] = offset0
