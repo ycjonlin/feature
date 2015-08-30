@@ -55,11 +55,11 @@ module.exports =
     extremeCountList = ((0 for color in colorList) for level in levelListWithFloor)
     extremeCountTotal = (0 for color in colorList)
     for level in levelList
-      measure0 = measureList[level-1]
-      measure1 = measureList[level]
-      measure2 = measureList[level+1]
-      extreme  = extremeList[level]
-      border   = (kernelList[level].length>>1)+1
+      measure0  = measureList[level-1]
+      measure1  = measureList[level]
+      measure2  = measureList[level+1]
+      extreme   = extremeList[level]
+      border    = (kernelList[level].length>>1)+1
       countList = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
                                      border, count1, count0, count0, 1
       for color in colorList
@@ -69,13 +69,12 @@ module.exports =
     #### keypoint description
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
     for level in levelListWithFloor
-      image   = imageList[level]
-      border  = (kernelList[level].length>>1)+1
+      image  = imageList[level]
+      border = (kernelList[level].length>>1)+1
       for color in colorList
         extreme = extremeList[level][color].subarray(0, extremeCountList[level][color])
         feature = featureList[color]
-        offsetList = Feature.gaussian feature, image, extreme, count0, count1
-      for feature, color in featureList
-        featureList[color] = feature.subarray(offsetList[color])
+        offset  = Feature.gaussian feature, image, extreme, count0, count1
+        featureList[color] = feature.subarray(offset)
     for feature, color in featureList
       feature.subarray(0, featureList.length-feature.length)
