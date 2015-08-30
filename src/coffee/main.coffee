@@ -79,28 +79,12 @@ Image.load url, (imageData)->
         context.globalCompositeOperation = 'multiply'
         for offset in [0..keypoints.length-1] by 6
 
-          g00 = keypoints[offset+0]
-          g01 = keypoints[offset+1]
-          g11 = keypoints[offset+2]
-          g0 = keypoints[offset+3]
-          g1 = keypoints[offset+4]
-          g = keypoints[offset+5]
-
-          trc = (g00+g11)/2
-          det = g00*g11-g01*g01
-          dif = sqrt(trc*trc-det)
-          l0 = trc-dif
-          l1 = trc+dif
-
-          norm = fround(1/(g01*g01-g00*g11))
-          u0 = fround(norm*(g0*g11-g1*g01))
-          u1 = fround(norm*(g1*g00-g0*g01))
-          th = atan2(-g01-g01, g00-g11)/2
-          lg = sqrt(abs(l0*l1))
-          r0 = sqrt(abs(lg/l0))
-          r1 = sqrt(abs(lg/l1))
-
-          color = 0
+          u0 = keypoints[offset+0]
+          u1 = keypoints[offset+1]
+          th = keypoints[offset+2]
+          r0 = keypoints[offset+3]
+          r1 = keypoints[offset+4]
+          color = keypoints[offset+5]|0
 
           context.save()
           context.translate u0, u1
