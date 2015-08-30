@@ -13,7 +13,7 @@ pi = Math.PI
 tau = pi*2
 
 module.exports =
-  gaussian: (oppum, opend, opper, sigma, count0, count1)->
+  gaussian: (oppum, opend, opper, count0, count1)->
     total = 0
     for offset, i in opper by 2
       fields = opper[i+1]
@@ -30,7 +30,7 @@ module.exports =
 
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
-      s1_1 = fround(2*(1<<scale))
+      s1_1 = fround(1<<scale)
       s1_2 = fround(s1_1/2)
       s2_1 = fround(s1_1*s1_1)
       s2_4 = fround(s2_1/4)
