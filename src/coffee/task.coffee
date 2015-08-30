@@ -61,7 +61,7 @@ module.exports =
       extremeCountList[level] = count
 
     #### describe
-    featureList = (new Float32Array(extremeCountTotal*3) for color in [0..8])
+    featureList = (new Float32Array(extremeCountTotal*3) for color in [1..8])
     console.log(featureList.length);
     feature = featureList
     for level in [0..levels]
