@@ -45,7 +45,7 @@ module.exports =
       sigma = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
-    #### suppress
+    #### non extremum suppression
     extremeCountTotal = 0
     extremeCountList = (0 for level in [0..levels])
     extremeList = (new Int32Array(size>>2) for level in [0..levels])
