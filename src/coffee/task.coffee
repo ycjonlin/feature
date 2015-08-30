@@ -1,6 +1,6 @@
 Surface = require './surface'
 Measure = require './measure'
-Suppress = require './suppress'
+Extreme = require './extreme'
 Feature = require './feature'
 
 module.exports =
@@ -55,21 +55,21 @@ module.exports =
       measure2 = measureList[level+1]
       extreme  = extremeList[level]
       border   = (kernelList[level].length>>1)+1
-      count    = Suppress.neighbor_6 extreme,
+      count    = Extreme.neighbor_6 extreme,
         measure0, measure1, measure2, border, count1, count0, count0, 1
       extremeCountTotal += count
       extremeCountList[level] = count
 
     #### describe
     featureList = (new Float32Array(extremeCountTotal*3) for color in [0..7])
-    feature = featureList
     for level in [0..levels]
       continue if extremeCountList[level] == 0
       image   = imageList[level]
       extreme = extremeList[level].subarray(0, extremeCountList[level])
       border  = (kernelList[level].length>>1)+1
       sigma   = sigmaList[level]
-      offset  = Feature.gaussian feature, image, extreme, count0, count1
-      feature = feature.subarray(offset)
-
-    featureList.subarray(0, featureList.length-feature.length)
+      offsetList = Feature.gaussian featureList, image, extreme, count0, count1
+      for feature, color in featureList
+        featureList[color] = feature.subarray(offsetList[color])
+    for feature, color in featureList
+      feature.subarray(0, featureList.length-feature.length)
