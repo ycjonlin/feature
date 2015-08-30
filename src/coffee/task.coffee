@@ -43,28 +43,29 @@ module.exports =
 
     #### surface measurement
     # Use the specified measuring function
-    measureList = (new Float32Array(size) for level in levelListWithFloorAndCeiling)
+    measureList = ()
     for level in levelListWithFloorAndCeiling
-      measure = measureList[level]
-      image = imageList[level]
-      sigma = sigmaList[level]
+      measure = new Float32Array(size)
+      image   = imageList[level]
+      sigma   = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
+      measureList.push measure
 
     #### non-extremum suppression
     extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in levelListWithFloor)
-    extremeCountList = ((0 for color in colorList) for level in levelListWithFloor)
-    extremeCountTotal = (0 for color in colorList)
+    extremeOffsetList = ((0 for color in colorList) for level in levelListWithFloor)
+    extremeOffsetTotal = (0 for color in colorList)
     for level in levelList
-      measure0  = measureList[level-1]
-      measure1  = measureList[level]
-      measure2  = measureList[level+1]
-      extreme   = extremeList[level]
-      border    = (kernelList[level].length>>1)+1
-      countList = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
-                                     border, count1, count0, count0, 1
+      measure0 = measureList[level-1]
+      measure1 = measureList[level]
+      measure2 = measureList[level+1]
+      extreme  = extremeList[level]
+      border   = (kernelList[level].length>>1)+1
+      offsetList = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
+                                      border, count1, count0, count0, 1
       for color in colorList
-        extremeCountList[level][color] = countList[color]
-        extremeCountTotal[color] += countList[color]
+        extremeCountList[level][color] = offsetList[color]
+        extremeCountTotal[color] += offsetList[color]
 
     #### keypoint description
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
