@@ -37,15 +37,14 @@ module.exports =
     count0 = width*2
     size   = imageList[0].length
     levels = imageList.length-1
-    levelList = [1..levels-1]
-    levelListWithFloor = [0..levels-1]
-    levelListWithFloorAndCeiling = [0..levels]
+    levelListWithoutTop = [0..levels-1]
+    levelListWithTop = [0..levels]
     borderList = ((kernel.length>>1)+1 for kernel in kernelList)
 
     #### surface measurement
     # Use the specified measuring function
     measureList = []
-    for level in levelListWithFloorAndCeiling
+    for level in [0..levels-1]
       measure = new Float32Array(size)
       image   = imageList[level]
       sigma   = sigmaList[level]
@@ -62,14 +61,14 @@ module.exports =
       measure1    = measureList[level]
       measure2    = measureList[level+1]
       border      = borderList[level]
-      offsetList  = Extreme.neighbor_6 extreme, measure0, measure1, measure2, border, count1, count0, count0, 1
+      offsetList  = Extreme.neighbor_6 extremeList, measure0, measure1, measure2, border, count1, count0, count0, 1
       extremeOffsetListList[level] = offsetList
       for color in colorList
         extremeOffsetTotalList[color] += offsetList[color]
 
     #### keypoint description
-    featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
-    for level in levelListWithFloor
+    featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
+    for level in levelList
       image  = imageList[level]
       border = borderList[level]
       for color in colorList
