@@ -31,6 +31,7 @@ module.exports =
       s = fround(sigma*(1<<scale))
       x0 = fround(i0<<scale)
       x1 = fround(i1<<scale)
+      
       # taylerian: f(x) ~ x'[]f[,]x[]
       f00 = fround((e01+e21-e11-e11)*s2)
       f01 = fround((e00+e22-e02-e20)*s2/4)
