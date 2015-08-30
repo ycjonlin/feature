@@ -40,6 +40,7 @@ module.exports =
     levelList = [1..levels-1]
     levelListWithFloor = [0..levels-1]
     levelListWithFloorAndCeiling = [0..levels]
+    borderList = ((kernel.length>>1)+1 for kernel in kernelList)
 
     #### surface measurement
     # Use the specified measuring function
@@ -52,14 +53,14 @@ module.exports =
       measureList.push measure
 
     #### non-extremum suppression
-    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in levelListWithFloor)
-    extremeOffsetList = ((0 for color in colorList) for level in levelListWithFloor)
+    extremeList = []
+    extremeOffsetList = []
     extremeOffsetTotal = (0 for color in colorList)
     for level in levelList
       measure0 = measureList[level-1]
       measure1 = measureList[level]
       measure2 = measureList[level+1]
-      extreme  = extremeList[level]
+      extreme  = (new Int32Array(size>>4) for color in colorList)
       border   = (kernelList[level].length>>1)+1
       offsetList = Extreme.neighbor_6 extreme, measure0, measure1, measure2, 
                                       border, count1, count0, count0, 1
