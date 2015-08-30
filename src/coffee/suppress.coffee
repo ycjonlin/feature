@@ -88,13 +88,18 @@ module.exports =
             (e11>opend2[offset0-step1]) and (e11>opend2[offset0+step1])
           )
         )
-          color = 0; scale = -1
+          # index
           i0 = index0|0; n0 = count0
           i1 = index1|0; n1 = count1
+          # scale
+          scale = -1
           while n0 >= i0 and n1 >= i1
             n0 >>= 1; n1 >>= 1; scale += 1
+          # color
+          color = if sign then 0 else 4
           if i0 >= n0 then i0 -= n0; color |= 2
           if i1 >= n1 then i1 -= n1; color |= 1
+          # border
           if i0 >= border and i0 < n0-border and
              i1 >= border and i1 < n1-border
             oppum[total+0] = offset0
