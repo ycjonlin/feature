@@ -48,8 +48,8 @@ module.exports =
     #### non-extremum suppression
     extremeCountTotal = 
       (new Int32Array(size>>4) for color in [0..5])
-    extremeCountList = (
-      (new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
+    extremeCountList = (for level in [0..levels]
+      (new Int32Array(size>>4) for color in [0..5]))
     extremeList = (
       (new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
     for level in [1..levels]
