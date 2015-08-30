@@ -57,7 +57,7 @@ module.exports =
     extremeOffsetTotalList = (0 for color in colorList)
     for level in levelListWithoutTop
       extremeList = (new Int32Array(size>>4) for color in colorList)
-      measure0    = measureList[if level > 0 then level-1 else 0]
+      measure0    = measureList[if level == 0 then 1 else level-1]
       measure1    = measureList[level]
       measure2    = measureList[level+1]
       border      = borderList[level]
