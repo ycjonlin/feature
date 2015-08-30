@@ -63,15 +63,15 @@ module.exports =
       measure2    = measureList[level+1]
       border      = borderList[level]
       offsetList  = Extreme.neighbor_6 extreme, measure0, measure1, measure2, border, count1, count0, count0, 1
+      extremeOffsetListList[level] = offsetList
       for color in colorList
-        extremeCountList[level][color] = offsetList[color]
-        extremeCountTotal[color] += offsetList[color]
+        extremeOffsetTotalList[color] += offsetList[color]
 
     #### keypoint description
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
     for level in levelListWithFloor
       image  = imageList[level]
-      border = (kernelList[level].length>>1)+1
+      border = borderList[level]
       for color in colorList
         extreme = extremeList[level][color].subarray(0, extremeCountList[level][color])
         feature = featureList[color]
