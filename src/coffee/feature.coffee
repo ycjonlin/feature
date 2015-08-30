@@ -46,23 +46,9 @@ module.exports =
       g00 = fround(norm*(f*f00-f0*f0))
       g01 = fround(norm*(f*f01-f0*f1))
       g11 = fround(norm*(f*f11-f1*f1))
-      g0  = fround(f0/f-g00*x0-g01*x1)
-      g1  = fround(f1/f-g01*x0-g11*x1)
-      g   = fround(log(f)*2-(f0/f+g0)*x0-(f1/f+g1)*x1)
-
-      trc = (g00+g11)/2
-      det = g00*g11-g01*g01
-      dif = sqrt(trc*trc-det)
-      l0 = trc-dif
-      l1 = trc+dif
-
-      norm = fround(1/(g01*g01-g00*g11))
-      u0 = fround(norm*(g0*g11-g1*g01))
-      u1 = fround(norm*(g1*g00-g0*g01))
-      th = atan2(-g01-g01, g00-g11)/2
-      lg = sqrt(abs(l0*l1))
-      r0 = sqrt(abs(lg/l0))
-      r1 = sqrt(abs(lg/l1))
+      g0  = fround(f0/f-(g00*x0+g01*x1))
+      g1  = fround(f1/f-(g01*x0+g11*x1))
+      g   = fround(log(f)-((f0/f+g0)*x0+(f1/f+g1)*x1)/2)
 
       oppum[total+0] = u0
       oppum[total+1] = u1
