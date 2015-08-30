@@ -60,9 +60,9 @@ module.exports =
       u0 = fround(norm*(g0*g11-g1*g01))
       u1 = fround(norm*(g1*g00-g0*g01))
       t = atan2(-g01-g01, g00-g11)/2
-      r = sqrt(abs(l0*l1))
-      r0 = 1/sqrt(abs(l0/r))
-      r1 = 1/sqrt(abs(l1/r))
+      lg = sqrt(abs(l0*l1))
+      r0 = sqrt(abs(lg/l0))
+      r1 = sqrt(abs(lg/l1))
 
       oppum[total+0] = u0
       oppum[total+1] = u1
