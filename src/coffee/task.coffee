@@ -35,21 +35,22 @@ module.exports =
   feature: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2
-    levels = imageList.length-2
+    levelList = [0..imageList.length-2]
+    levelAndCapList = [0..imageList.length-1]
     size = imageList[0].length
 
     #### measure
     # Use the specified 
-    measureList = (new Float32Array(size) for level in [0..levels+1])
-    for level in [0..levels+1]
+    measureList = (new Float32Array(size) for level in levelAndCapList)
+    for level in levelAndCapList
       measure = measureList[level]
       image = imageList[level]
       sigma = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
 
     #### non-extremum suppression
-    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in [0..levels])
-    extremeCountList = ((0 for color in colorList) for level in [0..levels])
+    extremeList = ((new Int32Array(size>>4) for color in [0..5]) for level in levelList)
+    extremeCountList = ((0 for color in colorList) for level in levelList)
     extremeCountTotal = (0 for color in colorList)
     for level in [1..levels]
       measure0 = measureList[level-1]
@@ -65,13 +66,13 @@ module.exports =
 
     #### describe
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
-    for level in [0..levels]
-      continue if extremeCountList[level] == 0
+    for level in levelList
       image   = imageList[level]
+      for color in colorList
       extreme = extremeList[level].subarray(0, extremeCountList[level])
       border  = (kernelList[level].length>>1)+1
       sigma   = sigmaList[level]
-      offsetList = Feature.gaussian featureList, image, extreme, count0, count1
+      offset  = Feature.gaussian featureList, image, extreme, count0, count1
       for feature, color in featureList
         featureList[color] = feature.subarray(offsetList[color])
     for feature, color in featureList
