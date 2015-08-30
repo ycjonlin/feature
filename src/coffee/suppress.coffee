@@ -26,7 +26,8 @@ module.exports =
             (e11>opend0[offset0]) and (e11>opend2[offset0])
           )
         )
-          color = 0; scale = -1
+          color = if sign then 0 else 4
+          scale = -1
           i0 = index0|0; n0 = count0
           i1 = index1|0; n1 = count1
           while n0 >= i0 and n1 >= i1
