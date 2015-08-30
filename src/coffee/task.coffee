@@ -40,7 +40,7 @@ module.exports =
     size = imageList[0].length
 
     #### measure
-    # Use the specified 
+    # Use the specified measuring function
     measureList = (new Float32Array(size) for level in levelAndCapList)
     for level in levelAndCapList
       measure = measureList[level]
@@ -68,11 +68,11 @@ module.exports =
     featureList = (new Float32Array(extremeCountTotal*3) for color in colorList)
     for level in levelList
       image   = imageList[level]
-      for color in colorList
-      extreme = extremeList[level].subarray(0, extremeCountList[level])
       border  = (kernelList[level].length>>1)+1
-      sigma   = sigmaList[level]
-      offset  = Feature.gaussian featureList, image, extreme, count0, count1
+      for color in colorList
+        extreme = extremeList[level][color].subarray(0, extremeCountList[level][color])
+        feature = featureList[color]
+        offset  = Feature.gaussian feature, image, extreme, count0, count1
       for feature, color in featureList
         featureList[color] = feature.subarray(offsetList[color])
     for feature, color in featureList
