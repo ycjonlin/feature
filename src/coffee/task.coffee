@@ -53,7 +53,7 @@ module.exports =
 
     #### non-extremum suppression
     extremeListList = []
-    extremeOffsetListList = []  
+    extremeOffsetListList = []
     extremeOffsetTotalList = (0 for color in colorList)
     for level in levelListWithoutCap
       extremeList = (new Int32Array(size>>4) for color in colorList)
