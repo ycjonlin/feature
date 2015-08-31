@@ -53,7 +53,7 @@ module.exports =
 
     #### non-extremum suppression
     extremeListList = []
-    extremeOffsetListList = []
+    extremeOffsetListList = []  
     extremeOffsetTotalList = (0 for color in colorList)
     for level in levelListWithoutTop
       extremeList = (new Int32Array(size>>4) for color in colorList)
@@ -65,6 +65,7 @@ module.exports =
       extremeOffsetListList[level] = offsetList
       for color in colorList
         extremeOffsetTotalList[color] += offsetList[color]
+    return
 
     #### keypoint description
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
