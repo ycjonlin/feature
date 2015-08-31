@@ -37,8 +37,8 @@ module.exports =
     count0 = width*2
     size   = imageList[0].length
     levels = imageList.length-1
-    levelListWithoutTop = [0..levels-1]
-    levelListWithTop = [0..levels]
+    levelListWithoutCap = [1..levels-1]
+    levelListWithCap = [0..levels]
     borderList = ((kernel.length>>1)+1 for kernel in kernelList)
 
     #### surface measurement
