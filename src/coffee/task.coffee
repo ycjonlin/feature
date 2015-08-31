@@ -50,7 +50,6 @@ module.exports =
       sigma   = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
       measureList.push measure
-    return
 
     #### non-extremum suppression
     extremeListList = []
