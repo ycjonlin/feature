@@ -44,7 +44,7 @@ module.exports =
     #### surface measurement
     # Use the specified measuring function
     measureList = []
-    for level in levelListWithTop
+    for level in levelListWithCap
       measure = new Float32Array(size)
       image   = imageList[level]
       sigma   = sigmaList[level]
