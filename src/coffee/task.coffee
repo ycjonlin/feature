@@ -50,6 +50,7 @@ module.exports =
       sigma   = sigmaList[level]
       Measure[method] measure, image, sigma, count1, count0, count0, 1
       measureList.push measure
+    return
 
     #### non-extremum suppression
     extremeListList = []
@@ -65,7 +66,6 @@ module.exports =
       extremeOffsetListList[level] = offsetList
       for color in colorList
         extremeOffsetTotalList[color] += offsetList[color]
-    return
 
     #### keypoint description
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
