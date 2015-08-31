@@ -55,7 +55,7 @@ module.exports =
     extremeListList = []
     extremeOffsetListList = []  
     extremeOffsetTotalList = (0 for color in colorList)
-    for level in levelListWithoutTop
+    for level in levelListWithoutCap
       extremeList = (new Int32Array(size>>4) for color in colorList)
       measure0    = measureList[if level == 0 then 1 else level-1]
       measure1    = measureList[level]
@@ -68,7 +68,7 @@ module.exports =
 
     #### keypoint description
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
-    for level in levelListWithoutTop
+    for level in levelListWithoutCap
       image  = imageList[level]
       border = borderList[level]
       for color in colorList
