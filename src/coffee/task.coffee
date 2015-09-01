@@ -76,6 +76,7 @@ module.exports =
         extreme = extremeListList[level][color].subarray(0, extremeOffsetListList[level][color])
         feature = featureList[color]
         offset  = Feature.gaussian feature, image, extreme, count0, count1
+        console.log(offset)
         featureList[color] = feature.subarray(offset)
     for feature, color in featureList
       feature.subarray(0, featureList.length-feature.length)
