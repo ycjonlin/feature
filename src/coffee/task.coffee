@@ -78,3 +78,4 @@ module.exports =
         offset  = Feature.gaussian feature, image, extreme, count0, count1
         feature = feature.subarray(offset)
       featureList[color] = feature.subarray(-feature.length, feature.length)
+    featureList
