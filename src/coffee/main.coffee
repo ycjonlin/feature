@@ -52,7 +52,7 @@ console.log url
 Image.load url, (imageData)->
   image = Image.extract imageData
   size = image.length
-  width = imageData.width
+  width = imageData.width/2
   height = imageData.height
 
   levels = 2
