@@ -84,3 +84,4 @@ module.exports =
   # match
   # --
   # Match keypoints from 2 Float32Array objects.
+  match: ()->
