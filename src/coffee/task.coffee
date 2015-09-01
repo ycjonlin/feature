@@ -78,4 +78,5 @@ module.exports =
         offset  = Feature.gaussian feature, image, extreme, count0, count1
         feature = feature.subarray(offset)
         console.log(feature.byteOffset)
+      console.log('---')
       featureList[color] = feature.subarray(0, feature.length)
