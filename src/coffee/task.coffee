@@ -70,12 +70,11 @@ module.exports =
     #### keypoint description
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
     for color in colorList
+      feature = featureList[color]
       for level in levelListWithoutCap
-        feature = featureList[color]
         image   = imageList[level]
         border  = borderList[level]
         extreme = extremeListList[level][color].subarray(0, extremeOffsetListList[level][color])
         offset  = Feature.gaussian feature, image, extreme, count0, count1
-        featureList[color] = feature.subarray(offset)
-    for feature, color in featureList
-      feature.subarray(0, featureList.length-feature.length)
+        feature = feature.subarray(offset)
+      featureList[color] = feature.subarray(0, feature.length)
