@@ -50,11 +50,6 @@ var config = {
     watch: './src/stylus/*.styl',
     destination: './public/css/'
   },
-  /*natives: {
-    source: './src/nacl/*.cpp',
-    watch: './src/nacl/*.{cpp,hpp}',
-    destination: './public/nacl/'
-  },*/
   assets: {
     source: './src/assets/**/*.*',
     watch: './src/assets/**/*.*',
@@ -152,56 +147,7 @@ gulp.task('styles', function() {
     match: '**/*.css'
   }));
 });
-/*
-gulp.task('natives', function() {
-  var pipeline = gulp.src(config.natives.source)
-    .pipe(shell([
-      'mkdir -p <%= dst() %>',
-      'time <%= bin %>/pnacl-clang++ <%= file.path %> '+
-        '<%= compile.join(" ") %> -c -o <%= dst(file) %>.o',
-      'time <%= bin %>/pnacl-clang++ -o <%= dst(file) %>.pexe '+
-        '<%= dst(file) %>.o <%= link.join(" ") %>',
-      'time <%= bin %>/pnacl-finalize <%= dst(file) %>.pexe '+
-        '-o <%= dst(file) %>.final.pexe',
-      'echo <%= nmf(file) %> > <%= dst(file) %>.nmf'
-    ], {
-      templateData: {
-        bin: 'nacl_sdk/pepper_43/toolchain/mac_pnacl/bin',
-        compile: [
-          '-Inacl_sdk/pepper_43/include',
-          '-Inacl_sdk/pepper_43/ports/include',
-          '-O3'
-        ],
-        link: [
-          '-Lnacl_sdk/pepper_43/lib/pnacl/Release',
-          '-Lnacl_sdk/pepper_43/ports/lib/newlib_pnacl/Release',
-          '-lppapi_cpp', '-lppapi', '-ljpeg', '-lpng'
-        ],
-        dst: function(file) {
-          if (file == null)
-            return config.natives.destination;
-          var basename = path.basename(file.path, '.cpp');
-          return config.natives.destination+basename;
-        },
-        nmf: function(file) {
-          var url = path.basename(file.path, '.cpp');
-          return JSON.stringify(JSON.stringify({
-              "program": {
-                "portable": {
-                  "pnacl-translate": {
-                    "url": url+'.final.pexe'
-                  }
-                }
-              }
-            }, null, 2));
-        }
-      }
-    }))
-    .on('error', handleError);
 
-  return pipeline;
-});
-*/
 gulp.task('assets', function() {
   return gulp.src(config.assets.source)
     .pipe(gulp.dest(config.assets.destination));
@@ -221,7 +167,6 @@ gulp.task('watch', function() {
   gulp.watch(config.documents.watch, ['documents']);
   gulp.watch(config.templates.watch, ['templates']);
   gulp.watch(config.styles.watch, ['styles']);
-  //gulp.watch(config.natives.watch, ['natives']);
   gulp.watch(config.assets.watch, ['assets']);
 
   var bundle = watchify(browserify(browserifyConfig));
@@ -237,7 +182,7 @@ gulp.task('watch', function() {
   }).emit('update');
 });
 
-var buildTasks = ['documents', 'templates', 'styles', /*'natives', */'assets'];
+var buildTasks = ['documents', 'templates', 'styles', 'assets'];
 
 gulp.task('revision', buildTasks.concat(['scripts']), function() {
   return gulp.src(config.revision.source, {base: config.revision.base})
