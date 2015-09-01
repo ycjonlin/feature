@@ -71,7 +71,7 @@ Image.load url, (imageData)->
   Task.__barrier__ null
   for method in ['trace', 'determinant', 'gaussian']
     context = newCanvas width, height
-    Task.feature [method, imageList, kernelList, sigmaList, width, height],
+    Task.detect [method, imageList, kernelList, sigmaList, width, height],
       context, (keypointListList, context)->
         context.globalCompositeOperation = 'multiply'
         for keypointList, i in keypointListList
