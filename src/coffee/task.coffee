@@ -72,7 +72,7 @@ module.exports =
       image  = imageList[level]
       border = borderList[level]
       for color in colorList
-        extreme = extremeList[level][color].subarray(0, extremeOffsetListList[level][color])
+        extreme = extremeListList[level][color].subarray(0, extremeOffsetListList[level][color])
         feature = featureList[color]
         offset  = Feature.gaussian feature, image, extreme, count0, count1
         featureList[color] = feature.subarray(offset)
