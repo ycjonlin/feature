@@ -67,6 +67,7 @@ module.exports =
         extremeOffsetTotalList[color] += offsetList[color]
 
     #### keypoint description
+    return
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
     for level in levelListWithoutCap
       image  = imageList[level]
