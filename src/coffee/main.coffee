@@ -72,40 +72,42 @@ Image.load url, (imageData)->
   for method in ['trace', 'determinant', 'gaussian']
     context = newCanvas width, height
     Task.feature [method, imageList, kernelList, sigmaList, width, height],
-      context, (keypoints, context)->
-        console.log 'keypoints:', keypoints
+      context, (keypointListList, context)->
+        console.log 'keypoints:', keypointListList
         context.globalCompositeOperation = 'multiply'
-        for offset in [0..keypoints.length-1] by 6
+        for keypointList, i in keypointListList
+          color = colorList[i]
+          for offset in [0..keypointList.length-1] by 6
 
-          g00 = keypoints[offset+0]
-          g01 = keypoints[offset+1]
-          g11 = keypoints[offset+2]
-          g0  = keypoints[offset+3]
-          g1  = keypoints[offset+4]
-          g   = keypoints[offset+5]
+            g00 = keypointList[offset+0]
+            g01 = keypointList[offset+1]
+            g11 = keypointList[offset+2]
+            g0  = keypointList[offset+3]
+            g1  = keypointList[offset+4]
+            g   = keypointList[offset+5]
 
-          trc = (g00+g11)/2
-          det = g00*g11-g01*g01
-          dif = sqrt(trc*trc-det)
-          l0 = trc-dif
-          l1 = trc+dif
+            trc = (g00+g11)/2
+            det = g00*g11-g01*g01
+            dif = sqrt(trc*trc-det)
+            l0 = trc-dif
+            l1 = trc+dif
 
-          norm = fround(1/(g01*g01-g00*g11))
-          u0 = fround(norm*(g0*g11-g1*g01))
-          u1 = fround(norm*(g1*g00-g0*g01))
-          th = atan2(-g01-g01, g00-g11)/2
-          lg = sqrt(abs(l0*l1))
-          r0 = sqrt(abs(lg/l0))
-          r1 = sqrt(abs(lg/l1))
+            norm = fround(1/(g01*g01-g00*g11))
+            u0 = fround(norm*(g0*g11-g1*g01))
+            u1 = fround(norm*(g1*g00-g0*g01))
+            th = atan2(-g01-g01, g00-g11)/2
+            lg = sqrt(abs(l0*l1))
+            r0 = sqrt(abs(lg/l0))
+            r1 = sqrt(abs(lg/l1))
 
-          context.save()
-          context.translate u0, u1
-          context.rotate th
-          context.scale r0, r1
-          context.beginPath()
-          context.arc 0, 0, 2, 0, tau
-          context.fillStyle = colorList[0]
-          context.fill()
-          context.restore()
+            context.save()
+            context.translate u0, u1
+            context.rotate th
+            context.scale r0, r1
+            context.beginPath()
+            context.arc 0, 0, 2, 0, tau
+            context.fillStyle = color
+            context.fill()
+            context.restore()
 
   Task.__barrier__ null
