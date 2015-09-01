@@ -73,7 +73,6 @@ Image.load url, (imageData)->
     context = newCanvas width, height
     Task.detect [method, imageList, kernelList, sigmaList, width, height],
       context, (keypointListList, context)->
-        return
         context.globalCompositeOperation = 'multiply'
         for keypointList, i in keypointListList
           color = colorList[i]
