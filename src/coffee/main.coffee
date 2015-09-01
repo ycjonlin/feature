@@ -73,7 +73,6 @@ Image.load url, (imageData)->
     context = newCanvas width, height
     Task.feature [method, imageList, kernelList, sigmaList, width, height],
       context, (keypointListList, context)->
-        console.log 'keypoints:', keypointListList
         context.globalCompositeOperation = 'multiply'
         for keypointList, i in keypointListList
           color = colorList[i]
