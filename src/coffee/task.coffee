@@ -28,11 +28,11 @@ module.exports =
     image2
 
 
-  # feature
+  # detect
   # --
-  # Retrieve feature points from an Float32Array sandwidth slice of an filter pyramid.
+  # Deatect keypoints from an Float32Array sandwidth slice of an filter pyramid.
   
-  feature: (method, imageList, kernelList, sigmaList, width, height)->
+  detect: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2
     size   = imageList[0].length
