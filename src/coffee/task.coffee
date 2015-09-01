@@ -30,7 +30,7 @@ module.exports =
 
   # detect
   # --
-  # Deatect keypoints from an Float32Array sandwidth slice of an filter pyramid.
+  # Detect keypoints from 3 consective Float32Array objects of a filter pyramid.
   
   detect: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
@@ -79,3 +79,8 @@ module.exports =
         feature = feature.subarray(offset)
       featureList[color] = featureList[color].subarray(0, featureList[color].length-feature.length)
     featureList
+
+
+  # match
+  # --
+  # Deatect keypoints from an Float32Array sandwidth slice of an filter pyramid.
