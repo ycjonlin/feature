@@ -83,4 +83,4 @@ module.exports =
 
   # match
   # --
-  # Deatect keypoints from an Float32Array sandwidth slice of an filter pyramid.
+  # Match keypoints from 2 Float32Array objects.
