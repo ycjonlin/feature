@@ -36,12 +36,13 @@ module.exports =
       n01 = ((g01-t01)/s01)|0
       n11 = ((g11-t11)/s11)|0
 
-      offset = i
-      bucket = n|(n0<<p0)|(n1<<p1)|(n00<<p00)|(n01<<p01)|(n11<<p11)
+      bucket = (n<<p0)|(n0<<p1)|(n1<<p00)|(n00<<p01)|(n01<<p11)|n11
+      offset = totalList[bucket]
 
-      total = totalList[bucket]
-      totalBucket[bucket] = total+1
-      indexBucket[bucket] = 
+      totalBucket[bucket] = offset+1
+      indexBucket[offset<<p] = i
+
+    totalBucket, indexBucket
 
   # match
   # --
