@@ -47,7 +47,7 @@ module.exports =
       offset = totalList[bucket]
 
       totalBucket[bucket] = offset+1
-      indexBucket[offset<<p5] = i
+      indexBucket[offset<<p0] = i
 
     totalBucket, indexBucket
 
