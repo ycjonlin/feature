@@ -29,6 +29,13 @@ module.exports =
     max4 = (maxList[4]/unit4)|0
     max5 = (maxList[5]/unit5)|0
 
+    n0 = max0-min0+1
+    n1 = max1-min1+1
+    n2 = max2-min2+1
+    n3 = max3-min3+1
+    n4 = max4-min4+1
+    n5 = max5-min5+1
+
     totalBucket = new Int32Array(n0*n1*n2*n3*n4*n5)
     indexBucket = new Int32Array()
 
