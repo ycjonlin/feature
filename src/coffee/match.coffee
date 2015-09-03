@@ -6,12 +6,12 @@ module.exports =
 
   partition: (oppum, unit, min, max)->
 
-    s0 = scale[0]
-    s1 = scale[1]
-    s2 = scale[2]
-    s3 = scale[3]
-    s4 = scale[4]
-    s5 = scale[5]
+    s0 = unit[0]
+    s1 = unit[1]
+    s2 = unit[2]
+    s3 = unit[3]
+    s4 = unit[4]
+    s5 = unit[5]
 
     t0 = translate[0]
     t1 = translate[1]
