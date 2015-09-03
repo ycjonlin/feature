@@ -1,24 +1,27 @@
+max = Math.max
+min = Math.min
+
 module.exports = 
 
   # partition
   # --
   # Partition
 
-  partition: (oppum, unit, min, max)->
+  partition: (oppum, unitLength, minValue, maxValue)->
 
-    s0 = unit[0]
-    s1 = unit[1]
-    s2 = unit[2]
-    s3 = unit[3]
-    s4 = unit[4]
-    s5 = unit[5]
+    t0 = minValue[0]
+    t1 = minValue[1]
+    t2 = minValue[2]
+    t3 = minValue[3]
+    t4 = minValue[4]
+    t5 = minValue[5]
 
-    t0 = translate[0]
-    t1 = translate[1]
-    t2 = translate[2]
-    t3 = translate[3]
-    t4 = translate[4]
-    t5 = translate[5]
+    s0 = maxValue[0]-t0
+    s1 = maxValue[1]-t1
+    s2 = maxValue[2]-t2
+    s3 = maxValue[3]-t3
+    s4 = maxValue[4]-t4
+    s5 = maxValue[5]-t5
 
     p5 = 
     p4 = +p5
