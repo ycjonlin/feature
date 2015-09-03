@@ -84,4 +84,7 @@ module.exports =
   # match
   # --
   # Match keypoints from 2 Float32Array objects.
-  match: (feature0, feature1)->
+  match: (keypoint0, keypoint1)->
+    partition0 = Match.partition keypoint0
+    partition1 = Match.partition keypoint1
+    match = Match.match partition0, partition1
