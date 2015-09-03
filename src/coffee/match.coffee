@@ -39,19 +39,19 @@ module.exports =
     totalBucket = new Int32Array(count0*count1*count2*count3*count4*count5)
     indexBucket = new Int32Array()
 
-    for g0, i in oppum by 6
-      g1 = oppum[i+1]
-      g2 = oppum[i+2]
-      g3 = oppum[i+3]
-      g4 = oppum[i+4]
-      g5 = oppum[i+5]
+    for value0, i in oppum by 6
+      value1 = oppum[i+1]
+      value2 = oppum[i+2]
+      value3 = oppum[i+3]
+      value4 = oppum[i+4]
+      value5 = oppum[i+5]
 
-      i0 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i1 = g1 < min1 ? 0 : g1 > max1 ? n1-1 : ((g1/unit1)|0)-min1
-      i2 = g2 < min2 ? 0 : g2 > max2 ? n2-1 : ((g2/unit2)|0)-min2
-      i3 = g3 < min3 ? 0 : g3 > max3 ? n3-1 : ((g3/unit3)|0)-min2
-      i4 = g4 < min4 ? 0 : g4 > max4 ? n4-1 : ((g4/unit4)|0)-min4
-      i5 = g5 < min5 ? 0 : g5 > max5 ? n5-1 : ((g5/unit5)|0)-min5
+      i0 = value0 < min0 ? 0 : value0 > max0 ? n0-1 : ((value0/unit0)|0)-min0
+      i1 = value1 < min1 ? 0 : value1 > max1 ? n1-1 : ((value1/unit1)|0)-min1
+      i2 = value2 < min2 ? 0 : value2 > max2 ? n2-1 : ((value2/unit2)|0)-min2
+      i3 = value3 < min3 ? 0 : value3 > max3 ? n3-1 : ((value3/unit3)|0)-min2
+      i4 = value4 < min4 ? 0 : value4 > max4 ? n4-1 : ((value4/unit4)|0)-min4
+      i5 = value5 < min5 ? 0 : value5 > max5 ? n5-1 : ((value5/unit5)|0)-min5
 
       bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
       offset = totalList[bucket]
