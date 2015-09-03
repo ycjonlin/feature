@@ -4,7 +4,7 @@ module.exports =
   # --
   # Partition
 
-  partition: (oppum, grid)->
+  partition: (oppum, unit, range)->
     total = 0
 
     u   = grid[0]
@@ -26,6 +26,8 @@ module.exports =
       n00 = (g00/u00)|0
       n01 = (g01/u01)|0
       n11 = (g11/u11)|0
+
+      offset = n|n0|n1|n00|n01|n11
 
   # match
   # --
