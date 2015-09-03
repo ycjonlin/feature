@@ -21,7 +21,7 @@ module.exports =
     t01 = translate[4]
     t11 = translate[5]
 
-    for g, i in oppum by 6
+    for g, offset in oppum by 6
       g0  = oppum[i+1]
       g1  = oppum[i+2]
       g00 = oppum[i+3]
@@ -35,13 +35,13 @@ module.exports =
       n01 = ((g01-t01)/s01)|0
       n11 = ((g11-t11)/s11)|0
 
-      offset = n|n0|n1|n00|n01|n11
+      grid = n|n0|n1|n00|n01|n11
 
   # match
   # --
   # Match 
 
   match: (oppum0, oppum1)->
-    for grid0 in space0
+    
 
 
