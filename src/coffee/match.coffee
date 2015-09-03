@@ -50,7 +50,7 @@ module.exports =
       offset = totalList[bucket]
 
       totalBucket[bucket] = offset+1
-      indexBucket[offset<<p0] = i
+      indexBucket[offset] = i
 
     totalBucket, indexBucket
 
