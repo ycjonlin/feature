@@ -1,5 +1,6 @@
 max = Math.max
 min = Math.min
+floor = Math.floor
 
 module.exports = 
 
@@ -7,28 +8,32 @@ module.exports =
   # --
   # Partition
 
-  partition: (oppum, unitLength, minValue, maxValue)->
+  partition: (oppum, unitList, minList, maxList)->
 
-    t0 = minValue[0]
-    t1 = minValue[1]
-    t2 = minValue[2]
-    t3 = minValue[3]
-    t4 = minValue[4]
-    t5 = minValue[5]
+    unit0 = unitList[0]
+    unit1 = unitList[1]
+    unit2 = unitList[2]
+    unit3 = unitList[3]
+    unit4 = unitList[4]
+    unit5 = unitList[5]
 
-    s0 = maxValue[0]-t0
-    s1 = maxValue[1]-t1
-    s2 = maxValue[2]-t2
-    s3 = maxValue[3]-t3
-    s4 = maxValue[4]-t4
-    s5 = maxValue[5]-t5
+    min0 = minList[0]
+    min1 = minList[1]
+    min2 = minList[2]
+    min3 = minList[3]
+    min4 = minList[4]
+    min5 = minList[5]
 
-    p5 = 
-    p4 = +p5
-    p3 = +p4
-    p2 = +p3
-    p1 = +p2
-    p0 = +p1
+    max0 = maxList[0]
+    max1 = maxList[1]
+    max2 = maxList[2]
+    max3 = maxList[3]
+    max4 = maxList[4]
+    max5 = maxList[5]
+
+    max(min(g0, minValue[0]), maxValue[0])/unitLength[0]
+
+    n0 = ((minValue[0]/unitLength[0])|0) - ((minValue[0]/unitLength[0])|0) + 1
 
     totalBucket = new Int32Array(1<<p0)
     indexBucket = new Int32Array()
