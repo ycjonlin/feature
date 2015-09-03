@@ -4,15 +4,23 @@ module.exports =
   # --
   # Partition
 
-  partition: (oppum, unit, range)->
+  partition: (oppum, scale, translate)->
     total = 0
 
-    u   = grid[0]
-    u0  = grid[1]
-    u1  = grid[2]
-    u00 = grid[3]
-    u01 = grid[4]
-    u11 = grid[5]
+    s   = scale[0]
+    s0  = scale[1]
+    s1  = scale[2]
+    s00 = scale[3]
+    s01 = scale[4]
+    s11 = scale[5]
+
+    t   = translate[0]
+    t0  = translate[1]
+    t1  = translate[2]
+    t00 = translate[3]
+    t01 = translate[4]
+    t11 = translate[5]
+
     for g, i in oppum by 6
       g0  = oppum[i+1]
       g1  = oppum[i+2]
@@ -20,12 +28,12 @@ module.exports =
       g01 = oppum[i+4]
       g11 = oppum[i+5]
 
-      n   = (g/u)|0
-      n0  = (g0/u0)|0
-      n1  = (g1/u1)|0
-      n00 = (g00/u00)|0
-      n01 = (g01/u01)|0
-      n11 = (g11/u11)|0
+      n   = ((g  -t  )/s  )|0
+      n0  = ((g0 -t0 )/s0 )|0
+      n1  = ((g1 -t1 )/s1 )|0
+      n00 = ((g00-t00)/s00)|0
+      n01 = ((g01-t01)/s01)|0
+      n11 = ((g11-t11)/s11)|0
 
       offset = n|n0|n1|n00|n01|n11
 
