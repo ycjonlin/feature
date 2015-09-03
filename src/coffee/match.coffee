@@ -4,9 +4,7 @@ module.exports =
   # --
   # Partition
 
-  partition: (oppum, scale, translate)->
-    totalBucket = new Int32Array()
-    indexBucket = new Int32Array()
+  partition: (oppum, unit, min, max)->
 
     s0 = scale[0]
     s1 = scale[1]
@@ -22,12 +20,15 @@ module.exports =
     t4 = translate[4]
     t5 = translate[5]
 
-    p0 = 
-    p1 = +p0
-    p2 = +p1
-    p3 = +p2
-    p4 = +p3
-    p5 = +p4
+    p5 = 
+    p4 = +p5
+    p3 = +p4
+    p2 = +p3
+    p1 = +p2
+    p0 = +p1
+
+    totalBucket = new Int32Array(1<<p0)
+    indexBucket = new Int32Array()
 
     for g0, i in oppum by 6
       g1 = oppum[i+1]
