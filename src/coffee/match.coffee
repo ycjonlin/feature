@@ -46,14 +46,14 @@ module.exports =
       value4 = oppum[i+4]
       value5 = oppum[i+5]
 
-      i0 = value0 < min0 ? 0 : value0 > max0 ? n0-1 : ((value0/unit0)|0)-min0
-      i1 = value1 < min1 ? 0 : value1 > max1 ? n1-1 : ((value1/unit1)|0)-min1
-      i2 = value2 < min2 ? 0 : value2 > max2 ? n2-1 : ((value2/unit2)|0)-min2
-      i3 = value3 < min3 ? 0 : value3 > max3 ? n3-1 : ((value3/unit3)|0)-min2
-      i4 = value4 < min4 ? 0 : value4 > max4 ? n4-1 : ((value4/unit4)|0)-min4
-      i5 = value5 < min5 ? 0 : value5 > max5 ? n5-1 : ((value5/unit5)|0)-min5
+      index0 = value0 < min0 ? 0 : value0 > max0 ? n0-1 : ((value0/unit0)|0)-min0
+      index1 = value1 < min1 ? 0 : value1 > max1 ? n1-1 : ((value1/unit1)|0)-min1
+      index2 = value2 < min2 ? 0 : value2 > max2 ? n2-1 : ((value2/unit2)|0)-min2
+      index3 = value3 < min3 ? 0 : value3 > max3 ? n3-1 : ((value3/unit3)|0)-min2
+      index4 = value4 < min4 ? 0 : value4 > max4 ? n4-1 : ((value4/unit4)|0)-min4
+      index5 = value5 < min5 ? 0 : value5 > max5 ? n5-1 : ((value5/unit5)|0)-min5
 
-      bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
+      bucket = ((((index0*n1+index1)*n2+index2)*n3+index3)*n4+index4)*n5+index5
       offset = totalList[bucket]
 
       totalBucket[bucket] = offset+1
