@@ -31,11 +31,14 @@ module.exports =
     max4 = maxList[4]
     max5 = maxList[5]
 
-    max(min(g0, minValue[0]), maxValue[0])/unitLength[0]
+    n0 = ((max0/unit0)|0) - ((min0/unit0)|0) + 1
+    n1 = ((max1/unit1)|0) - ((min1/unit1)|0) + 1
+    n2 = ((max2/unit2)|0) - ((min2/unit2)|0) + 1
+    n3 = ((max3/unit3)|0) - ((min3/unit3)|0) + 1
+    n4 = ((max4/unit4)|0) - ((min4/unit4)|0) + 1
+    n5 = ((max5/unit5)|0) - ((min5/unit5)|0) + 1
 
-    n0 = ((minValue[0]/unitLength[0])|0) - ((minValue[0]/unitLength[0])|0) + 1
-
-    totalBucket = new Int32Array(1<<p0)
+    totalBucket = new Int32Array(n0*n1*n2*n3*n4*n5)
     indexBucket = new Int32Array()
 
     for g0, i in oppum by 6
