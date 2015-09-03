@@ -2,6 +2,7 @@ Surface = require './surface'
 Measure = require './measure'
 Extreme = require './extreme'
 Feature = require './feature'
+Match = require './match'
 
 colorList = [0..5]
 
