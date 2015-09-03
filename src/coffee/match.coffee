@@ -41,7 +41,7 @@ module.exports =
 
       total = totalList[bucket]
       totalBucket[bucket] = total+1
-      indexBucket[bucket][total] = 
+      indexBucket[bucket] = 
 
   # match
   # --
