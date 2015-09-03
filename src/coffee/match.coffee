@@ -17,26 +17,19 @@ module.exports =
     unit4 = unitList[4]
     unit5 = unitList[5]
 
-    min0 = minList[0]
-    min1 = minList[1]
-    min2 = minList[2]
-    min3 = minList[3]
-    min4 = minList[4]
-    min5 = minList[5]
+    min0 = (minList[0]/unit0)|0
+    min1 = (minList[1]/unit1)|0
+    min2 = (minList[2]/unit2)|0
+    min3 = (minList[3]/unit3)|0
+    min4 = (minList[4]/unit4)|0
+    min5 = (minList[5]/unit5)|0
 
-    max0 = maxList[0]
-    max1 = maxList[1]
-    max2 = maxList[2]
-    max3 = maxList[3]
-    max4 = maxList[4]
-    max5 = maxList[5]
-
-    n0 = ((max0/unit0)|0) - ((min0/unit0)|0) + 1
-    n1 = ((max1/unit1)|0) - ((min1/unit1)|0) + 1
-    n2 = ((max2/unit2)|0) - ((min2/unit2)|0) + 1
-    n3 = ((max3/unit3)|0) - ((min3/unit3)|0) + 1
-    n4 = ((max4/unit4)|0) - ((min4/unit4)|0) + 1
-    n5 = ((max5/unit5)|0) - ((min5/unit5)|0) + 1
+    max0 = (maxList[0]/unit0)|0
+    max1 = (maxList[1]/unit1)|0
+    max2 = (maxList[2]/unit2)|0
+    max3 = (maxList[3]/unit3)|0
+    max4 = (maxList[4]/unit4)|0
+    max5 = (maxList[5]/unit5)|0
 
     totalBucket = new Int32Array(n0*n1*n2*n3*n4*n5)
     indexBucket = new Int32Array()
@@ -48,12 +41,12 @@ module.exports =
       g4 = oppum[i+4]
       g5 = oppum[i+5]
 
-      i0  = ((g0-t0)/s0)|0
-      i1  = ((g1-t1)/s1)|0
-      i2  = ((g2-t2)/s2)|0
-      i3  = ((g3-t3)/s3)|0
-      i4  = ((g4-t4)/s4)|0
-      i5  = ((g5-t5)/s5)|0
+      n0 = ((g0/unit0)|0) - ((min0/unit0)|0) + 1
+      n1 = ((max1/unit1)|0) - ((min1/unit1)|0) + 1
+      n2 = ((max2/unit2)|0) - ((min2/unit2)|0) + 1
+      n3 = ((max3/unit3)|0) - ((min3/unit3)|0) + 1
+      n4 = ((max4/unit4)|0) - ((min4/unit4)|0) + 1
+      n5 = ((max5/unit5)|0) - ((min5/unit5)|0) + 1
 
       bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
       offset = totalList[bucket]
