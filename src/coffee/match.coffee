@@ -20,7 +20,12 @@ module.exports =
       g01 = oppum[i+4]
       g11 = oppum[i+5]
 
-      n   = ()|0
+      n   = (g/u)|0
+      n0  = (g0/u0)|0
+      n1  = (g1/u1)|0
+      n00 = (g00/u00)|0
+      n01 = (g01/u01)|0
+      n11 = (g11/u11)|0
 
   # match
   # --
