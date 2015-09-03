@@ -37,14 +37,14 @@ module.exports =
       g4 = oppum[i+4]
       g5 = oppum[i+5]
 
-      n0  = ((g0-t0)/s0)|0
-      n1  = ((g1-t1)/s1)|0
-      n2  = ((g2-t2)/s2)|0
-      n3  = ((g3-t3)/s3)|0
-      n4  = ((g4-t4)/s4)|0
-      n5  = ((g5-t5)/s5)|0
+      i0  = ((g0-t0)/s0)|0
+      i1  = ((g1-t1)/s1)|0
+      i2  = ((g2-t2)/s2)|0
+      i3  = ((g3-t3)/s3)|0
+      i4  = ((g4-t4)/s4)|0
+      i5  = ((g5-t5)/s5)|0
 
-      bucket = (n0<<p1)|(n1<<p2)|(n2<<p3)|(n3<<p4)|(n4<<p5)|n5
+      bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
       offset = totalList[bucket]
 
       totalBucket[bucket] = offset+1
