@@ -5,7 +5,8 @@ module.exports =
   # Partition
 
   partition: (oppum, scale, translate)->
-    total = 0
+    totalBucket = new Int32Array()
+    indexBucket = new Int32Array()
 
     s   = scale[0]
     s0  = scale[1]
@@ -21,7 +22,7 @@ module.exports =
     t01 = translate[4]
     t11 = translate[5]
 
-    for g, offset in oppum by 6
+    for g, i in oppum by 6
       g0  = oppum[i+1]
       g1  = oppum[i+2]
       g00 = oppum[i+3]
@@ -35,7 +36,12 @@ module.exports =
       n01 = ((g01-t01)/s01)|0
       n11 = ((g11-t11)/s11)|0
 
-      bucket = n|n0|n1|n00|n01|n11
+      offset = i
+      bucket = n|(n0<<p0)|(n1<<p1)|(n00<<p00)|(n01<<p01)|(n11<<p11)
+
+      total = totalList[bucket]
+      totalBucket[bucket] = total+1
+      indexBucket[bucket][total] = 
 
   # match
   # --
