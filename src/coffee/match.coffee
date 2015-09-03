@@ -35,7 +35,7 @@ module.exports =
       n01 = ((g01-t01)/s01)|0
       n11 = ((g11-t11)/s11)|0
 
-      grid = n|n0|n1|n00|n01|n11
+      bucket = n|n0|n1|n00|n01|n11
 
   # match
   # --
