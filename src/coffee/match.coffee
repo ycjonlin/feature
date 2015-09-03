@@ -1,5 +1,3 @@
-max = Math.max
-min = Math.min
 floor = Math.floor
 
 module.exports = 
@@ -41,12 +39,12 @@ module.exports =
       g4 = oppum[i+4]
       g5 = oppum[i+5]
 
-      n0 = ((g0/unit0)|0) - ((min0/unit0)|0) + 1
-      n1 = ((max1/unit1)|0) - ((min1/unit1)|0) + 1
-      n2 = ((max2/unit2)|0) - ((min2/unit2)|0) + 1
-      n3 = ((max3/unit3)|0) - ((min3/unit3)|0) + 1
-      n4 = ((max4/unit4)|0) - ((min4/unit4)|0) + 1
-      n5 = ((max5/unit5)|0) - ((min5/unit5)|0) + 1
+      i0 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i1 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i2 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i3 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i4 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i5 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
 
       bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
       offset = totalList[bucket]
