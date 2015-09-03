@@ -40,11 +40,11 @@ module.exports =
       g5 = oppum[i+5]
 
       i0 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i1 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i2 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i3 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i4 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
-      i5 = g0 < min0 ? 0 : g0 > max0 ? n0-1 : ((g0/unit0)|0)-min0
+      i1 = g1 < min1 ? 0 : g1 > max1 ? n1-1 : ((g1/unit1)|0)-min1
+      i2 = g2 < min2 ? 0 : g2 > max2 ? n2-1 : ((g2/unit2)|0)-min2
+      i3 = g3 < min3 ? 0 : g3 > max3 ? n3-1 : ((g3/unit3)|0)-min2
+      i4 = g4 < min4 ? 0 : g4 > max4 ? n4-1 : ((g4/unit4)|0)-min4
+      i5 = g5 < min5 ? 0 : g5 > max5 ? n5-1 : ((g5/unit5)|0)-min5
 
       bucket = ((((i0*n1+i1)*n2+i2)*n3+i3)*n4+i4)*n5+i5
       offset = totalList[bucket]
