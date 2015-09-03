@@ -53,7 +53,12 @@ module.exports =
       index4 = value4 < min4 ? 0 : value4 > max4 ? count4-1 : ((value4/unit4)|0)-min4
       index5 = value5 < min5 ? 0 : value5 > max5 ? count5-1 : ((value5/unit5)|0)-min5
 
-      bucket = ((((index0*count1+index1)*count2+index2)*count3+index3)*count4+index4)*count5+index5
+      bucket = (((((index0
+        *count1+index1)
+        *count2+index2)
+        *count3+index3)
+        *count4+index4)
+        *count5+index5)
       offset = totalList[bucket]
 
       totalBucket[bucket] = offset+1
