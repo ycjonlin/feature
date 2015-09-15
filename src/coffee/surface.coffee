@@ -118,9 +118,14 @@ module.exports =
       while index0 < count0
 
         sum = fround(0.0)
-        K = J<<1
-        oppum[J] = fround(0.25*(opend[K]+opend[K+i_step]+opend[K+j_step]+opend[K+i_step+j_step]))
-        
+        offset2 = offset0<<1
+        oppum[offset1] = fround((
+          opend[offset2]+
+          opend[offset2+step0]+
+          opend[offset2+step1]+
+          opend[offset2+step0+step1]
+        )/4)
+
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
