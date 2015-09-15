@@ -47,29 +47,35 @@ module.exports =
   # It's basically the opposite of Surface.extract(). Only the last 3 sub-planes of the argument object
   # is filled in the red-, green-, blue-channel of the result object.
 
-  compact: (oppum, opend, offset0, offset1, offset2, i_count, i_step, j_count, j_step)->
-    i_count = i_count|0; i_step = i_step|0
-    j_count = j_count|0; j_step = j_step|0
+  compact: (oppum, opend, offset0, offset1, offset2, count1, step1, count0, step0)->
+    total = (0 for color in [1..oppum.length])
+    count0 = count0|0; step0 = step0|0
+    count1 = count1|0; step1 = step1|0
     _ = 0
-    i = 0; I = 0
-    while i < i_count
-      j = 0; J = I
-      while j < j_count
-        channel0 = opend[offset0+J|0]
-        channel1 = opend[offset1+J|0]
-        channel2 = opend[offset2+J|0]
+    index1 = 0; offset1 = 0
+    while index1 < count1
+      index0 = 0; offset0 = offset1
+      while index0 < count0
+        
+        channel0 = opend0[offset0]
+        channel1 = opend1[offset0]
+        channel2 = opend2[offset0]
+
         value0 = fround(+3.2406*channel0-1.5372*channel1-0.4986*channel2)
         value1 = fround(-0.9689*channel0+1.8758*channel1+0.0415*channel2)
         value2 = fround(+0.0557*channel0-0.2040*channel1+1.0570*channel2)
+
         value0 = if value0 > 0.0031308 then fround(1.055*pow(value0, 1/2.4)) else fround(12.92*value0)
         value1 = if value1 > 0.0031308 then fround(1.055*pow(value1, 1/2.4)) else fround(12.92*value1)
         value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)) else fround(12.92*value2)
+
         oppum[_] = (value0*255)|0; _ = _+1|0
         oppum[_] = (value1*255)|0; _ = _+1|0
         oppum[_] = (value2*255)|0; _ = _+1|0
         oppum[_] = 255; _ = _+1|0
-        j = (j+1)|0; J = (J+j_step)|0
-      i = (i+1)|0; I = (I+i_step)|0
+
+        index0 = (index0+1)|0; offset0 = (offset0+step0)|0
+      index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
   
