@@ -18,8 +18,6 @@ module.exports =
   # blue-channel data of the original object, respectively.
 
   extract: (oppum0, oppum1, oppum2, opend, count1, step1, count0, step0)->
-    console.log count1, step1, count0, step0
-    return
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
