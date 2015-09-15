@@ -18,7 +18,6 @@ module.exports =
   # blue-channel data of the original object, respectively.
 
   extract: (oppum0, oppum1, oppum2, opend, count1, step1, count0, step0)->
-    total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
@@ -48,7 +47,6 @@ module.exports =
   # is filled in the red-, green-, blue-channel of the result object.
 
   compact: (oppum, opend0, opend1, opend2, count1, step1, count0, step0)->
-    total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
@@ -86,7 +84,6 @@ module.exports =
   # creating a grayscale complete image.
 
   flatten: (oppum, opend, count1, step1, count0, step0)->
-    total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
