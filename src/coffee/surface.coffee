@@ -161,7 +161,7 @@ module.exports =
 
           indexKernel = (indexKernel+1)|0; offsetKernel = (offsetKernel+stepKernel)|0
 
-        oppum[offsetKernel] = sum
+        oppum[offset0] = sum
         
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
