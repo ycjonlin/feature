@@ -1,5 +1,5 @@
 Image = require './image'
-Task = require('./library') require './task'
+Task = require './task'
 
 fround = Math.fround
 sqrt = Math.sqrt
