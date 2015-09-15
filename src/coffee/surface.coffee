@@ -17,7 +17,7 @@ module.exports =
   # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
   # blue-channel data of the original object, respectively.
 
-  extract: (oppum, opend, offset0, offset1, offset2, count1, step1, count0, step0)->
+  extract: (oppum, opend, channelOffset0, channelOffset1, channelOffset2, count1, step1, count0, step0)->
     total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
@@ -31,10 +31,10 @@ module.exports =
         channel1 = linearToCurve[opend[_]]; _ = _+1|0
         channel2 = linearToCurve[opend[_]]; _ = _+1|0
         _ = _+1|0
-        
-        oppum[offset0+J|0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
-        oppum[offset1+J|0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
-        oppum[offset2+J|0] = fround(0.0193*channel0+0.1192*channel1+0.9505*channel2)
+
+        oppum[channelOffset0+offset0|0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
+        oppum[channelOffset1+offset0|0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
+        oppum[channelOffset2+offset0|0] = fround(0.0193*channel0+0.1192*channel1+0.9505*channel2)
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
