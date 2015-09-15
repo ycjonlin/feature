@@ -52,8 +52,10 @@ module.exports =
   compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
-    Surface.compact image.data, array, 
-      width, size*2, width+size*2, 
+    Surface.compact image.data, 
+      array.subarray(width), 
+      array.subarray(size*2), 
+      array.subarray(width+size*2), 
       height, width*2, width, 1
     image
 
