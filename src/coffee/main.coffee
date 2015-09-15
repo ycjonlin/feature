@@ -50,12 +50,12 @@ colorList = [
 url = 'https://farm4.staticflickr.com/3755/19651424679_aa20a63dba_b.jpg'
 console.log url
 Image.load url, (imageData)->
-  return
-  
   image = Image.extract imageData, 0, 0, imageData.width, imageData.height
   size = image.length
   width = imageData.width
   height = imageData.height
+  return
+  
 
   levels = 2
   sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
