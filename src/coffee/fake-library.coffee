@@ -3,6 +3,7 @@ module.exports = (module_, concurrency_=4)->
   library_ = {}
 
   call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
+    console.log function_
     results_ = function_ arguments_
     if callback_
       callback_ results_, attachments_
