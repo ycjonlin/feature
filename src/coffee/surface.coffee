@@ -94,15 +94,17 @@ module.exports =
     while index1 < count1
       index0 = 0; offset0 = offset1
       while index0 < count0
-        
+
         channel = opend[J]
         channel = if channel > 0.0031308 then fround(1.055*pow(channel, 1/2.4)) else fround(12.92*channel)
+
         oppum[_] = (channel*255)|0; _ = _+1|0
         oppum[_] = (channel*255)|0; _ = _+1|0
         oppum[_] = (channel*255)|0; _ = _+1|0
         oppum[_] = 255; _ = _+1|0
-        j = (j+1)|0; J = (J+j_step)|0
-      i = (i+1)|0; I = (I+i_step)|0
+        
+        index0 = (index0+1)|0; offset0 = (offset0+step0)|0
+      index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
   
   # downsize
