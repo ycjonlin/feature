@@ -35,11 +35,9 @@ module.exports =
     halfpage = height * stribe
     Surface.extract \
       array.subarray(width), 
-      array.subarray(halfpage+width), 
       array.subarray(halfpage), 
-      image.data, 
-      width, halfpage, width+halfpage, 
-      height, stribe, width, 1
+      array.subarray(halfpage+width), 
+      image.data, height, stribe, width, 1
     #while width >= 1 and height >= 1
     #  Surface.downsize array, array,
     #    height, stribe, width, 1
