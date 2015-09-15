@@ -63,7 +63,7 @@ module.exports =
       measure2    = measureList[level+1]
       border      = borderList[level]
       offsetList  = Extreme.neighbor_6 extremeList, measure0, measure1, measure2, border, count1, count0, count0, 1
-      console.log offsetList
+      console.log extremeList
       extremeListList[level] = extremeList
       extremeOffsetListList[level] = offsetList
       for color in colorList
