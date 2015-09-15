@@ -37,6 +37,10 @@ module.exports =
     Surface.extract array, image.data, 
       width, halfpage, width+halfpage, 
       height, stribe, width, 1
+    #while width >= 1 and height >= 1
+    #  Surface.downsize array, array,
+    #    height, stribe, width, 1
+    #  width >>= 1; height >>= 1
     array
 
   # compact
