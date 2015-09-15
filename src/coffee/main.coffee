@@ -59,7 +59,7 @@ Image.load url, (imageData)->
   sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
   kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
   imageList = (null for level in [0..levels+1])
-  
+
   Task.__barrier__ null
   for level in [0..levels+1]
     context = newCanvas width, height
@@ -69,7 +69,7 @@ Image.load url, (imageData)->
         context.putImageData imageData, 0, 0
         imageList[level] = image
   Task.__barrier__ null
-  return
+  ###
   for method in ['trace', 'determinant', 'gaussian']
     context = newCanvas width, height
     Task.detect [method, imageList, kernelList, sigmaList, width, height],
@@ -109,5 +109,5 @@ Image.load url, (imageData)->
             context.fillStyle = color
             context.fill()
             context.restore()
-
   Task.__barrier__ null
+  ###
