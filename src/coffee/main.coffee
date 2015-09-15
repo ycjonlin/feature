@@ -110,4 +110,3 @@ Image.load url, (imageData)->
             context.fill()
             context.restore()
   Task.__barrier__ null
-  
