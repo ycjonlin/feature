@@ -30,8 +30,6 @@ module.exports =
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image, x, y, width, height)->
-    width = image.width
-    height = image.height
     stribe = width * 2
     array = new Float32Array(width * height * 4)
     halfpage = height * stribe
