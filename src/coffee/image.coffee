@@ -34,13 +34,17 @@ module.exports =
     array = new Float32Array(width * height * 4)
     halfpage = height * stribe
     console.log x, y, width, height
-    Surface.extract array, image.data, 
+    Surface.extract \
+      array.subarray(width), 
+      array.subarray(halfpage+width), 
+      array.subarray(halfpage), 
+      image.data, 
       width, halfpage, width+halfpage, 
       height, stribe, width, 1
-    # while width >= 1 and height >= 1
-    #   Surface.downsize array, array,
-    #     height, stribe, width, 1
-    #   width >>= 1; height >>= 1
+    #while width >= 1 and height >= 1
+    #  Surface.downsize array, array,
+    #    height, stribe, width, 1
+    #  width >>= 1; height >>= 1
     array
 
   # compact
