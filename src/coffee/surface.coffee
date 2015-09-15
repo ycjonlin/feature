@@ -152,7 +152,7 @@ module.exports =
       index0 = 0; offset0 = offset1
       while index0 < count0
         
-        sum = fround(0.5)
+        sum = opend[offset0] #fround(0.0)
         ###
         indexKernel = 0; offsetKernel = offset0
         while indexKernel < countKernel
