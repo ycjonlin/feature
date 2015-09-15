@@ -3,7 +3,7 @@ module.exports = (module_, concurrency_=4)->
   library_ = {}
 
   call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
-    results_ = module_[function_].apply arguments_
+    results_ = module_[function_].apply null, arguments_
     if callback_
       callback_ results_, attachments_
     null
