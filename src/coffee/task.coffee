@@ -14,6 +14,7 @@ module.exports =
   # Return a new Float32Array with result. For more detail, see Surface.convolute().
 
   convolute: (kernel, image, width, height)->
+    console.log kernel, image, width, height
     count1 = height*2
     count0 = width*2
     radius = kernel.length>>1
