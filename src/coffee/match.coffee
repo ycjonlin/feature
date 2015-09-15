@@ -59,7 +59,7 @@ module.exports =
       totalBucket[bucket] = offset+1
       indexBucket[offset] = i
 
-    totalBucket, indexBucket
+    totalBucket #, indexBucket
 
   # match
   # --
