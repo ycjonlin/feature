@@ -145,6 +145,7 @@ module.exports =
     countKernel = countKernel|0; stepKernel = stepKernel|0
 
     console.log count1, step1, count0, step0, countKernel, stepKernel
+    return 0
 
     index1 = 0; offset1 = 0
     while index1 < count1
