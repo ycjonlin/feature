@@ -50,7 +50,7 @@ colorList = [
 url = 'https://farm4.staticflickr.com/3755/19651424679_aa20a63dba_b.jpg'
 console.log url
 Image.load url, (imageData)->
-  image = Image.extract imageData
+  image = Image.extract imageData, 0, 0, imageData.width, imageData.height
   size = image.length
   width = imageData.width
   height = imageData.height
