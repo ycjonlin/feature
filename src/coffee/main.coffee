@@ -54,12 +54,12 @@ Image.load url, (imageData)->
   size = image.length
   width = imageData.width
   height = imageData.height
-
+  return
   levels = 2
   sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
   kernelList = (gaussian(sigmaList[level]) for level in [0..levels+1])
   imageList = (null for level in [0..levels+1])
-  return
+  
   Task.__barrier__ null
   for level in [0..levels+1]
     context = newCanvas width, height
