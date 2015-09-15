@@ -14,7 +14,6 @@ module.exports =
   # Return a new Float32Array with result. For more detail, see Surface.convolute().
 
   convolute: (kernel, image, width, height)->
-    console.log kernel, image, width, height
     count1 = height*2
     count0 = width*2
     radius = kernel.length>>1
@@ -64,6 +63,7 @@ module.exports =
       measure2    = measureList[level+1]
       border      = borderList[level]
       offsetList  = Extreme.neighbor_6 extremeList, measure0, measure1, measure2, border, count1, count0, count0, 1
+      console.log offsetList
       extremeListList[level] = extremeList
       extremeOffsetListList[level] = offsetList
       for color in colorList
