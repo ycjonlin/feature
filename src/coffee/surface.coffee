@@ -144,8 +144,6 @@ module.exports =
     count1 = count1|0; step1 = step1|0
     countKernel = countKernel|0; stepKernel = stepKernel|0
 
-    return
-
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
