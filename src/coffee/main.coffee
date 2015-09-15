@@ -55,7 +55,6 @@ Image.load url, (imageData)->
   width = imageData.width
   height = imageData.height
   return
-  
 
   levels = 2
   sigmaList = (pow(2, 1+(level-1)/levels) for level in [0..levels+1])
