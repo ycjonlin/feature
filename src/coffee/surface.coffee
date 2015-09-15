@@ -21,6 +21,7 @@ module.exports =
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
+    
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
@@ -50,6 +51,7 @@ module.exports =
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
+
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
@@ -87,6 +89,7 @@ module.exports =
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
+
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
@@ -112,6 +115,7 @@ module.exports =
   downsize: (oppum, opend, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
+
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
@@ -135,7 +139,18 @@ module.exports =
   # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel 
   # onto another 1-componented Float32Array object. (should not be the same one)
 
-  convolute: (oppum, opend, oppor, i_count, i_step, j_count, j_step, k_count, k_step)->
+  convolute: (oppum, opend, oppor, count1, step1, count0, step0, k_count, k_step)->
+    count0 = count0|0; step0 = step0|0
+    count1 = count1|0; step1 = step1|0
+    count2 = count2|0; step2 = step2|0
+
+    index2 = 0; offset2 = 0
+    while index2 < count2
+      index1 = 0; offset1 = 0
+      while index1 < count1
+        index0 = 0; offset0 = offset1
+        while index0 < count0
+
     i_count = i_count|0; i_step = i_step|0
     j_count = j_count|0; j_step = j_step|0
     k_count = k_count|0; k_step = k_step|0
