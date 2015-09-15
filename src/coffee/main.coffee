@@ -65,9 +65,9 @@ Image.load url, (imageData)->
     context = newCanvas width, height
     Task.convolute [kernelList[level], image, width, height],
       [level, context], (image, [level, context])->
-        #imageData = Image.compact image, context, width, height
-        #context.putImageData imageData, 0, 0
-        #imageList[level] = image
+        imageData = Image.compact image, context, width, height
+        context.putImageData imageData, 0, 0
+        imageList[level] = image
   Task.__barrier__ null
   ###
   for method in ['trace', 'determinant', 'gaussian']
