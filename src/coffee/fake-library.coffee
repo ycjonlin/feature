@@ -28,48 +28,9 @@ module.exports = (module_, concurrency_=4)->
   library_ = {}
   interval_ = Date.now()
 
-  dispatch_ = ()->
-    while queue_.length > 0
-      if queue_[0].function_
-        # task could only be removed when some workers are idling
-        break if idle_.length == 0
-        action_ = queue_.shift()
-        register_ = registry_[action_.serial_]
-        worker_ = idle_.shift()
-        timestamp_ = Date.now()
-        worker_.postMessage action_
-        register_.timestamp_ = Date.now()
-        console.log (register_.timestamp_-timestamp_)+'ms', 'postMessage'
-      else
-        # barrier could only be removed when all workers are idling
-        break if idle_.length < concurrency_
-        action_ = queue_.shift()
-        register_ = registry_[action_.serial_]
-        delete registry_[action_.serial_]
-        latency_ = Date.now()-interval_
-        interval_ = interval_+latency_
-        console.log latency_+'ms', '__barrier__'
-        if register_.callback_
-          register_.callback_()
-    null
-
-  call_ = (function_, arguments_=[], attachment_=null, callback_=null)->
-    # setup register
-    call_serial_ = ''+serial_; serial_ += 1
-    register_ =
-      attachment_: attachment_
-      callback_: callback_
-      timestamp_: null
-    registry_[call_serial_] = register_
-    # setup action
-    action_ =
-      serial_: call_serial_
-      function_: function_
-      arguments_: arguments_
-      results_: null
-    queue_.push action_
-    # assign to a worker or queue
-    dispatch_()
+  call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
+    results_ = function_ arguments_
+    callback_ results_, attachments_
     null
 
   return_ = (event_)->
