@@ -53,11 +53,11 @@ module.exports = (module_, concurrency_=4)->
           register_.callback_()
     null
 
-  call_ = (function_, arguments_=[], attachment_=null, callback_=null)->
+  call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
     # setup register
     call_serial_ = ''+serial_; serial_ += 1
     register_ =
-      attachment_: attachment_
+      attachments_: attachments_
       callback_: callback_
       timestamp_: null
     registry_[call_serial_] = register_
@@ -86,7 +86,7 @@ module.exports = (module_, concurrency_=4)->
     console.log latency_+'ms', action_.function_
     # invoke callback
     if register_.callback_ != null
-      register_.callback_ action_.results_, register_.attachment_
+      register_.callback_ action_.results_, register_.attachments_
     # dispatch
     dispatch_()
     null
@@ -131,8 +131,8 @@ module.exports = (module_, concurrency_=4)->
     profile_[key_] = 0
 
   # load module
-  factory_ = (function_)-> (arguments_, attachment_, callback_)->
-    call_ function_, arguments_, attachment_, callback_
+  factory_ = (function_)-> (arguments_, attachments_, callback_)->
+    call_ function_, arguments_, attachments_, callback_
   for key_ of module_
     library_[key_] = factory_(key_)
   library_.__barrier__ = __barrier__
