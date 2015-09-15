@@ -120,6 +120,7 @@ module.exports = (module_, concurrency_=4)->
   sources['library'] = [Function(['require', 'module', 'exports'],
     "(#{marshal_})(self,#{sourcify(path)})"), {}]
   source_ = "(#{bundleFn})(#{sourcify(sources)},{},['library'])"
+  console.log source_
   url_ = URL.createObjectURL(new Blob([source_], {type: 'text/javascript'}))
   for i in [1..concurrency_]
     worker_ = new Worker(url_)
