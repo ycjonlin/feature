@@ -16,8 +16,8 @@ module.exports = (module_, concurrency_=4)->
   __profile__ = ()->
 
   # load module
-  factory_ = (function_)-> (arguments_, attachment_, callback_)->
-    call_ function_, arguments_, attachment_, callback_
+  factory_ = (function_)-> (arguments_, attachments_, callback_)->
+    call_ function_, arguments_, attachments_, callback_
   for key_ of module_
     library_[key_] = factory_(key_)
   library_.__barrier__ = __barrier__
