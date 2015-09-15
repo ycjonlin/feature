@@ -109,18 +109,20 @@ module.exports =
   # Shrink the last 3 sub-places of a 1-componented Float32Array object 
   # onto the first sub-plane of another Float32Array object. (could also be the same one)
 
-  downsize: (oppum, opend, i_count, i_step, j_count, j_step)->
-    i_count = i_count|0; i_step = i_step|0
-    j_count = j_count|0; j_step = j_step|0
-    i = 0; I = 0
-    while i < i_count
-      j = 0; J = I
-      while j < j_count
+  downsize: (oppum, opend, count1, step1, count0, step0)->
+    count0 = count0|0; step0 = step0|0
+    count1 = count1|0; step1 = step1|0
+    index1 = 0; offset1 = 0
+    while index1 < count1
+      index0 = 0; offset0 = offset1
+      while index0 < count0
+
         sum = fround(0.0)
         K = J<<1
         oppum[J] = fround(0.25*(opend[K]+opend[K+i_step]+opend[K+j_step]+opend[K+i_step+j_step]))
-        j = (j+1)|0; J = (J+j_step)|0
-      i = (i+1)|0; I = (I+i_step)|0
+        
+        index0 = (index0+1)|0; offset0 = (offset0+step0)|0
+      index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
   # convolute
