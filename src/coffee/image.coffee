@@ -29,7 +29,7 @@ module.exports =
   # Convert a ImageData object into a 4-times-as-big Float32Array object.
   # For more detail, see Surface.extract() and Surface.downsize().
 
-  extract: (image, width, height)->
+  extract: (image, x, y, width, height)->
     width = image.width
     height = image.height
     stribe = width * 2
