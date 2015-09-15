@@ -38,10 +38,10 @@ module.exports =
       array.subarray(halfpage), 
       array.subarray(halfpage+width), 
       image.data, height, stribe, width, 1
-    #while width >= 1 and height >= 1
-    #  Surface.downsize array, array,
-    #    height, stribe, width, 1
-    #  width >>= 1; height >>= 1
+    while width >= 1 and height >= 1
+      Surface.downsize array, array,
+        height, stribe, width, 1
+      width >>= 1; height >>= 1
     array
 
   # compact
