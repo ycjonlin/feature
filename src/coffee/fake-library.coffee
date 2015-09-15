@@ -1,6 +1,5 @@
 
 module.exports = (module_, concurrency_=4)->
-
   library_ = {}
 
   call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
