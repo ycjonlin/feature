@@ -69,6 +69,9 @@ module.exports =
         value1 = if value1 > 0.0031308 then fround(1.055*pow(value1, 1/2.4)) else fround(12.92*value1)
         value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)) else fround(12.92*value2)
 
+        if _ < 16
+          console.log value0, value1, value2
+
         oppum[_] = (value0*255)|0; _ = _+1|0
         oppum[_] = (value1*255)|0; _ = _+1|0
         oppum[_] = (value2*255)|0; _ = _+1|0
