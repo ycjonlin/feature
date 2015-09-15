@@ -34,7 +34,6 @@ module.exports =
     array = new Float32Array(width * height * 4)
     halfpage = height * stribe
     console.log x, y, width, height
-    return
     Surface.extract array, image.data, 
       width, halfpage, width+halfpage, 
       height, stribe, width, 1
