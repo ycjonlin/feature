@@ -68,6 +68,7 @@ Image.load url, (imageData)->
         imageData = Image.compact image, context, width, height
         context.putImageData imageData, 0, 0
         imageList[level] = image
+    break
   Task.__barrier__ null
   ###
   for method in ['trace', 'determinant', 'gaussian']
