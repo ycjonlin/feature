@@ -4,7 +4,8 @@ module.exports = (module_, concurrency_=4)->
 
   call_ = (function_, arguments_=[], attachments_=null, callback_=null)->
     results_ = function_ arguments_
-    callback_ results_, attachments_
+    if callback_
+      callback_ results_, attachments_
     null
 
   __barrier__ = (callback_)->
