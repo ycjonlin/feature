@@ -85,14 +85,16 @@ module.exports =
   # The single-channeled data of the original object is copyed into all 3 channels of the result object, 
   # creating a grayscale complete image.
 
-  flatten: (oppum, opend, i_count, i_step, j_count, j_step)->
-    i_count = i_count|0; i_step = i_step|0
-    j_count = j_count|0; j_step = j_step|0
+  flatten: (oppum, opend, step1, count0, step0)->
+    total = (0 for color in [1..oppum.length])
+    count0 = count0|0; step0 = step0|0
+    count1 = count1|0; step1 = step1|0
     _ = 0
-    i = 0; I = 0
-    while i < i_count
-      j = 0; J = I
-      while j < j_count
+    index1 = 0; offset1 = 0
+    while index1 < count1
+      index0 = 0; offset0 = offset1
+      while index0 < count0
+        
         channel = opend[J]
         channel = if channel > 0.0031308 then fround(1.055*pow(channel, 1/2.4)) else fround(12.92*channel)
         oppum[_] = (channel*255)|0; _ = _+1|0
