@@ -17,7 +17,7 @@ module.exports =
   # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
   # blue-channel data of the original object, respectively.
 
-  extract: (oppum, opend0, opend1, opend2, count1, step1, count0, step0)->
+  extract: (oppum0, oppum1, oppum2, opend, count1, step1, count0, step0)->
     total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
