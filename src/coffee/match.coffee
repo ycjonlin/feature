@@ -58,7 +58,6 @@ module.exports =
       offset = totalList[bucket]
       totalBucket[bucket] = offset+1
       indexBucket[offset] = i
-
     totalBucket, indexBucket
 
   # match
