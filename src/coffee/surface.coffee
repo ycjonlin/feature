@@ -47,7 +47,7 @@ module.exports =
   # It's basically the opposite of Surface.extract(). Only the last 3 sub-planes of the argument object
   # is filled in the red-, green-, blue-channel of the result object.
 
-  compact: (oppum, opend, offset0, offset1, offset2, count1, step1, count0, step0)->
+  compact: (oppum, opend0, opend1, opend2, count1, step1, count0, step0)->
     total = (0 for color in [1..oppum.length])
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
@@ -56,7 +56,7 @@ module.exports =
     while index1 < count1
       index0 = 0; offset0 = offset1
       while index0 < count0
-        
+
         channel0 = opend0[offset0]
         channel1 = opend1[offset0]
         channel2 = opend2[offset0]
