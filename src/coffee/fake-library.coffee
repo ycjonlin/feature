@@ -9,7 +9,8 @@ module.exports = (module_, concurrency_=4)->
     null
 
   __barrier__ = (callback_)->
-    callback_()
+    if callback_
+      callback_()
     null
 
   __profile__ = ()->
