@@ -152,15 +152,15 @@ module.exports =
       index0 = 0; offset0 = offset1
       while index0 < count0
         
-        sum = fround(0.0)
-
+        sum = opend[offset0]#fround(0.0)
+        ###
         indexKernel = 0; offsetKernel = offset0
         while indexKernel < countKernel
 
           sum = fround(sum + opend[offsetKernel] * oppor[indexKernel])
 
           indexKernel = (indexKernel+1)|0; offsetKernel = (offsetKernel+stepKernel)|0
-
+        ###
         oppum[offset0] = sum
         
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
