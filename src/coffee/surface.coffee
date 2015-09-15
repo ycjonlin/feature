@@ -157,26 +157,10 @@ module.exports =
           sum = fround(sum + opend[offsetKernel] * oppor[indexKernel])
 
           indexKernel = (indexKernel+1)|0; offsetKernel = (offsetKernel+stepKernel)|0
-        
+
         oppum[offsetKernel] = sum
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-    i_count = i_count|0; i_step = i_step|0
-    j_count = j_count|0; j_step = j_step|0
-    k_count = k_count|0; k_step = k_step|0
-    i = 0; I = 0
-    while i < i_count
-      j = 0; J = I
-      while j < j_count
-        sum = fround(0.0)
-        k = 0; K = J|0
-        while k < k_count
-          sum = fround(sum + opend[K] * oppor[k])
-          k = (k+1)|0; K = (K+k_step)|0
-        oppum[J] = sum
-        j = (j+1)|0; J = (J+j_step)|0
-      i = (i+1)|0; I = (I+i_step)|0
-    null
