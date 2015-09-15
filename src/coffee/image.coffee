@@ -33,7 +33,6 @@ module.exports =
     stribe = width * 2
     array = new Float32Array(width * height * 4)
     halfpage = height * stribe
-    console.log x, y, width, height
     Surface.extract \
       array.subarray(width), 
       array.subarray(halfpage+width), 
