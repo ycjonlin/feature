@@ -50,7 +50,7 @@ colorList = [
 url = 'https://farm4.staticflickr.com/3755/19651424679_aa20a63dba_b.jpg'
 console.log url
 Image.load url, (imageData)->
-  image = Image.extract imageData
+  image = Image.extract imageData, 0, 0, imageData.width, imageData.height
   size = image.length
   width = imageData.width
   height = imageData.height
@@ -69,6 +69,7 @@ Image.load url, (imageData)->
         context.putImageData imageData, 0, 0
         imageList[level] = image
   Task.__barrier__ null
+  
   for method in ['trace', 'determinant', 'gaussian']
     context = newCanvas width, height
     Task.detect [method, imageList, kernelList, sigmaList, width, height],
@@ -108,5 +109,4 @@ Image.load url, (imageData)->
             context.fillStyle = color
             context.fill()
             context.restore()
-
   Task.__barrier__ null
