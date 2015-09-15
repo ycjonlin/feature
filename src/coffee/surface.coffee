@@ -70,7 +70,7 @@ module.exports =
         value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)) else fround(12.92*value2)
 
         if _ < 16
-          console.log value0, value1, value2
+          console.log channel0, channel1, channel2
 
         oppum[_] = (value0*255)|0; _ = _+1|0
         oppum[_] = (value1*255)|0; _ = _+1|0
