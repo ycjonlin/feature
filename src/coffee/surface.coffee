@@ -51,7 +51,7 @@ module.exports =
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
-
+    console.log opend0, opend1, opend2
     index1 = 0; offset1 = 0
     while index1 < count1
       index0 = 0; offset0 = offset1
