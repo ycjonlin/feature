@@ -31,6 +31,7 @@ module.exports =
         channel1 = linearToCurve[opend[_]]; _ = _+1|0
         channel2 = linearToCurve[opend[_]]; _ = _+1|0
         _ = _+1|0
+        
         oppum[offset0+J|0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
         oppum[offset1+J|0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
         oppum[offset2+J|0] = fround(0.0193*channel0+0.1192*channel1+0.9505*channel2)
