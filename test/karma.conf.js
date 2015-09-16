@@ -30,7 +30,7 @@ module.exports = function(config) {
 
     browserify: {
       extensions: ['.coffee'],
-      transform: ['coffeeify', 'deamdify', 'debowerify'],
+      transform: ['coffeeify', 'deamdify', 'debowerify', 'istanbulify'],
       debug: true,
       files: [
         'src/coffee/**/*.coffee',
