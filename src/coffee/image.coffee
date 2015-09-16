@@ -33,7 +33,11 @@ module.exports =
     stribe = width * 2
     array = new Float32Array(width * height * 4)
     halfpage = height * stribe
-    Surface.extract array, image.data, height, stribe, width, 1
+    Surface.extract \
+      array.subarray(0), 
+      array.subarray(halfpage), 
+      array.subarray(halfpage+width), 
+      image.data, height, stribe, width, 1
     while width >= 1 and height >= 1
       Surface.downsize array, array,
         height, stribe, width, 1
@@ -48,7 +52,12 @@ module.exports =
   compact: (array, context, width, height)->
     image = context.createImageData width, height
     size = width * height
-    Surface.compact image.data, array, height, width*2, width, 1
+    Surface.compact \
+      image.data, 
+      array.subarray(width), 
+      array.subarray(size*2), 
+      array.subarray(width+size*2), 
+      height, width*2, width, 1
     image
 
   # flatten
