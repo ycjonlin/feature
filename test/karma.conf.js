@@ -25,7 +25,8 @@ module.exports = function(config) {
       watch: true,
       debug: true,
       files: [
-        'src/coffee/**/*.coffee'
+        'src/coffee/**/*.coffee',
+        'test/unit/**/*.coffee',
       ]
     },
 
