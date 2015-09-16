@@ -48,6 +48,12 @@ module.exports = function(config) {
     },
 
 
+    browserify: {
+      debug: true,
+      transform: []
+    },
+
+
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
