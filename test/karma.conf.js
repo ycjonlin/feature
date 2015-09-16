@@ -17,30 +17,24 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/unit/**/*.coffee',
-    ],
-    exclude: [
+      'src/coffee/**/*.coffee',
+      'test/unit/**/*.coffee'
     ],
 
 
+    coffeePreprocessor: {
+      options: {
+        sourceMap: true
+      }
+    },
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/coffee/**/*.coffee': 'coverage',
+      'test/unit/**/*.coffee': 'coffee'
     },
-
-
-    browserify: {
-      extensions: ['.coffee'],
-      transform: [], // ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
-      debug: true,
-      files: [
-        'test/unit/**/*.coffee',
-      ]
-    },
-
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
 
 
     coverageReporter: {
@@ -52,6 +46,12 @@ module.exports = function(config) {
         '**/*.coffee': 'ibrik'
       }
     },
+
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress', 'coverage'],
 
 
     // web server port
