@@ -20,11 +20,13 @@ module.exports = function(config) {
       'test/unit/**/*.coffee'
     ],
 
+
     coffeePreprocessor: {
       options: {
         sourceMap: true
       }
     },
+
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -32,6 +34,7 @@ module.exports = function(config) {
       'src/coffee/**/*.coffee': 'coverage',
       'test/unit/**/*.coffee': 'coffee'
     },
+
 
     coverageReporter: {
       type: 'html',
@@ -42,6 +45,7 @@ module.exports = function(config) {
         '**/*.coffee': 'ibrik'
       }
     },
+
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
