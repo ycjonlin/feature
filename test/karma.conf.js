@@ -33,17 +33,6 @@ module.exports = function(config) {
       transform: [], // ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
       debug: true,
     },
-    
-
-    coverageReporter: {
-      type: 'html',
-      instrumenters: {
-        ibrik: require('ibrik')
-      },
-      instrumenter: {
-        '**/*.coffee': 'ibrik'
-      }
-    },
 
 
     // test results reporter to use
