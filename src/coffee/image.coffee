@@ -38,6 +38,10 @@ module.exports =
       array.subarray(width+size*2), 
       image.data, 
       height, width*2, width, 1
+    while width >= 1 and height >= 1
+      Surface.downsize array, array,
+        height, width*2, width, 1
+      width >>= 1; height >>= 1
     array
 
   # compact
