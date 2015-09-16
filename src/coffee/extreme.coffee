@@ -1,4 +1,4 @@
-console.log global
+console.log this
 module.exports =
   neighbor_6: (oppumList, opend0, opend1, opend2, border, count1, step1, count0, step0)->
     totalList = (0 for color in [1..oppumList.length])
