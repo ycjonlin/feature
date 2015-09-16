@@ -31,7 +31,9 @@ module.exports = function(config) {
     browserify: {
       extensions: ['.coffee'],
       transform: [], // ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
-
+      debug: true,
+    },
+    
 
     coverageReporter: {
       type: 'html',
@@ -41,8 +43,6 @@ module.exports = function(config) {
       instrumenter: {
         '**/*.coffee': 'ibrik'
       }
-    },
-      debug: true,
     },
 
 
