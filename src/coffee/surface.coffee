@@ -122,7 +122,7 @@ module.exports =
       while index0 < count0
 
         offset2 = offset0<<1
-        oppum[offset0] = =fround((
+        oppum[offset0] = fround((
           opend[offset2]+
           opend[offset2+step0]+
           opend[offset2+step1]+
