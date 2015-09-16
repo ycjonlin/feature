@@ -16,36 +16,19 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-      'src/coffee/**/*.coffee',
-      'test/unit/**/*.coffee'
-    ],
+    files: [],
 
-
-    coffeePreprocessor: {
-      options: {
-        sourceMap: true
-      }
-    },
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'src/coffee/**/*.coffee': 'coverage',
-      'test/unit/**/*.coffee': 'coffee'
-    },
-
-
-    coverageReporter: {
-      type: 'html',
-      instrumenters: {
-        ibrik: require('ibrik')
-      },
-      instrumenter: {
-        '**/*.coffee': 'ibrik'
-      }
-    },
+    browserify: {
+      extensions: ['.coffee'],
+      transform: ['coffeeify', 'deamdify', 'debowerify'],
+      watch: true,
+      debug: true,
+      files: [
+        'src/bower_components/famous-polyfills/index.js'
+        'src/scripts/**/*.coffee'
+        'test/spec/**/*_spec.+(coffee|js)'
+      ]
+    }
 
 
     // test results reporter to use
