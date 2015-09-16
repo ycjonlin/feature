@@ -25,9 +25,7 @@ module.exports = function(config) {
       watch: true,
       debug: true,
       files: [
-        'src/bower_components/famous-polyfills/index.js'
-        'src/scripts/**/*.coffee'
-        'test/spec/**/*_spec.+(coffee|js)'
+        'src/coffee/**/*.coffee'
       ]
     }
 
