@@ -20,6 +20,11 @@ module.exports = function(config) {
       'test/unit/**/*.coffee'
     ],
 
+    coffeePreprocessor: {
+      options: {
+        sourceMap: true
+      }
+    },
 
     // list of files to exclude
     exclude: [
@@ -30,7 +35,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/**/*.coffee': ['coverage'],
-      'test/**/*.coffee': ['coffee']
+      'test/unit/**/*.coffee': ['coffee']
     },
 
 
