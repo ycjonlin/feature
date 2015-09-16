@@ -1,8 +1,10 @@
-npm-debug.log
-node_modules
-public
+*.pyc
 .DS_Store
-rev-manifest.json
+coverage
+doc
 nacl_sdk/pepper_43
 nacl_sdk/sdk_cache/archives
-*.pyc
+node_modules
+npm-debug.log
+public
+rev-manifest.json
