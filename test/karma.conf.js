@@ -34,16 +34,6 @@ module.exports = function(config) {
       debug: true,
     },
 
-    coverageReporter: {
-      type: 'html',
-      instrumenters: {
-        ibrik: require('ibrik')
-      },
-      instrumenter: {
-        'src/coffee/**/*.coffee': 'ibrik'
-      }
-    },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
