@@ -32,7 +32,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/coffee/**/*.coffee': ['coverage', 'coffee', 'browserify'],
+      'src/coffee/**/*.coffee': ['coverage', 'browserify'],
       'test/unit/**/*.coffee': 'coffee'
     },
 
