@@ -30,7 +30,18 @@ module.exports = function(config) {
 
     browserify: {
       extensions: ['.coffee'],
-      transform: [],
+      transform: [], // ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
+
+
+    coverageReporter: {
+      type: 'html',
+      instrumenters: {
+        ibrik: require('ibrik')
+      },
+      instrumenter: {
+        '**/*.coffee': 'ibrik'
+      }
+    },
       debug: true,
     },
 
