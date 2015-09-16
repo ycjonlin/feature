@@ -33,7 +33,7 @@ module.exports =
     array = new Float32Array(width*height*4)
     halfpage = height*width*2
     Surface.extract \
-      array.subarray(0), 
+      array.subarray(width), 
       array.subarray(halfpage), 
       array.subarray(halfpage+width), 
       image.data, height, width*2, width, 1
