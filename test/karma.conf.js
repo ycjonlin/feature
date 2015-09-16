@@ -33,12 +33,19 @@ module.exports = function(config) {
       'src/**/*.coffee': ['coverage'],
       'test/unit/**/*.coffee': ['coffee']
     },
+    
+    coverageReporter:
+      type: 'html'
+      instrumenters:
+        ibrik : require('ibrik')
+      instrumenter:
+        '**/*.coffee': 'ibrik'
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['coverage'],
+    reporters: ['dots', 'coverage'],
 
 
     // web server port
