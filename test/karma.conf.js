@@ -33,14 +33,16 @@ module.exports = function(config) {
       'src/**/*.coffee': ['coverage'],
       'test/unit/**/*.coffee': ['coffee']
     },
-    
-    coverageReporter:
-      type: 'html'
-      instrumenters:
-        ibrik : require('ibrik')
-      instrumenter:
-        '**/*.coffee': 'ibrik'
 
+    coverageReporter: {
+      type: 'html',
+      instrumenters: {
+        ibrik : require('ibrik')
+      }
+      instrumenter: {
+        '**/*.coffee': 'ibrik'
+      }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
