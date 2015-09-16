@@ -2,8 +2,6 @@
 .DS_Store
 coverage
 doc
-nacl_sdk/pepper_43
-nacl_sdk/sdk_cache/archives
 node_modules
 npm-debug.log
 public
