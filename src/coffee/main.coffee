@@ -100,8 +100,8 @@ Image.load url, (imageData)->
             r0 = sqrt(abs(lg/l0))
             r1 = sqrt(abs(lg/l1))
 
-            if offset < 64
-              console.log u0, u1
+            if offset == 0
+              console.log g00, g01, g11, g0, g1, g
 
             context.save()
             context.translate u0, u1
