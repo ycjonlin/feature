@@ -41,6 +41,17 @@ module.exports = function(config) {
     reporters: ['progress', 'coverage'],
 
 
+    coverageReporter: {
+      type: 'html',
+      instrumenters: {
+        ibrik: require('ibrik')
+      },
+      instrumenter: {
+        '**/*.coffee': 'ibrik'
+      }
+    },
+
+
     // web server port
     port: 9876,
 
