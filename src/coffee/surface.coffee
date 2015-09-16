@@ -122,7 +122,7 @@ module.exports =
       while index0 < count0
 
         sum = fround(0.0)
-        offset2 = offset0>>1
+        offset2 = offset0/2|0
         oppum[offset1] = fround((
           opend[offset2]+
           opend[offset2+step0]+
