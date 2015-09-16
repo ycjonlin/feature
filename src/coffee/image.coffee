@@ -31,12 +31,13 @@ module.exports =
 
   extract: (image, x, y, width, height)->
     array = new Float32Array(width*height*4)
-    halfpage = height*width*2
+    size = width*height
     Surface.extract \
       array.subarray(width), 
-      array.subarray(halfpage), 
-      array.subarray(halfpage+width), 
-      image.data, height, width*2, width, 1
+      array.subarray(size*2), 
+      array.subarray(width+size*2), 
+      image.data, 
+      height, width*2, width, 1
     while width >= 1 and height >= 1
       Surface.downsize array, array,
         height, width*2, width, 1
@@ -50,7 +51,7 @@ module.exports =
 
   compact: (array, context, width, height)->
     image = context.createImageData width, height
-    size = width * height
+    size = width*height
     Surface.compact \
       image.data, 
       array.subarray(width), 
