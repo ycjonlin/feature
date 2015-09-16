@@ -32,9 +32,6 @@ module.exports = function(config) {
       extensions: ['.coffee'],
       transform: ['coffeeify', 'deamdify', 'debowerify', 'istanbulify'],
       debug: true,
-      files: [
-        'test/unit/**/*.coffee',
-      ]
     },
 
     coverageReporter: {
