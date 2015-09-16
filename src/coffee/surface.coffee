@@ -122,12 +122,13 @@ module.exports =
       while index0 < count0
 
         offset2 = offset0<<1
-        oppum[offset1] = fround((
+        oppum[offset1] = 1
+        ###fround((
           opend[offset2]+
           opend[offset2+step0]+
           opend[offset2+step1]+
           opend[offset2+step0+step1]
-        )/4)
+        )/4)###
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
