@@ -33,7 +33,6 @@ module.exports = function(config) {
       transform: ['coffeeify', 'deamdify', 'debowerify', 'istanbulify'],
       debug: true,
       files: [
-        'src/coffee/**/*.coffee',
         'test/unit/**/*.coffee',
       ]
     },
