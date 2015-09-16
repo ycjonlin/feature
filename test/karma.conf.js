@@ -25,7 +25,6 @@ module.exports = function(config) {
 
 
     preprocessors: {
-      'test/unit/**/*.coffee': ['browserify']
     },
 
 
@@ -33,6 +32,9 @@ module.exports = function(config) {
       extensions: ['.coffee'],
       transform: [], // ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
       debug: true,
+      files: [
+        'test/unit/**/*.coffee',
+      ]
     },
 
 
