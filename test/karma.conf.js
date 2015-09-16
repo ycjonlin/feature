@@ -38,7 +38,7 @@ module.exports = function(config) {
       type: 'html',
       instrumenters: {
         ibrik : require('ibrik')
-      }
+      },
       instrumenter: {
         '**/*.coffee': 'ibrik'
       }
