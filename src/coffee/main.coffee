@@ -62,7 +62,7 @@ Image.load url, (imageData)->
 
   Task.__barrier__ null
   for level in [0..levels+1]
-    context = newCanvas width, height
+    context = newCanvas width*2, height*2
     Task.convolute [kernelList[level], image, width, height],
       [level, context], (image, [level, context])->
         imageData = Image.flatten image, context, width, height
