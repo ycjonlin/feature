@@ -16,7 +16,16 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [],
+    files: [
+      'test/unit/**/*.coffee',
+    ],
+    exclude: [
+    ],
+
+
+    preprocessors: {
+      'test/unit/**/*.coffee': ['browserify']
+    },
 
 
     browserify: {
@@ -27,11 +36,6 @@ module.exports = function(config) {
         'src/coffee/**/*.coffee',
         'test/unit/**/*.coffee',
       ]
-    },
-
-
-    preprocessors: {
-      'test/**/*.js': ['browserify']
     },
 
 
