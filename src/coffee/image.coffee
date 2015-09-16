@@ -30,17 +30,16 @@ module.exports =
   # For more detail, see Surface.extract() and Surface.downsize().
 
   extract: (image, x, y, width, height)->
-    stribe = width * 2
-    array = new Float32Array(width * height * 4)
-    halfpage = height * stribe
+    array = new Float32Array(width*height*4)
+    halfpage = height*width*2
     Surface.extract \
       array.subarray(0), 
       array.subarray(halfpage), 
       array.subarray(halfpage+width), 
-      image.data, height, stribe, width, 1
+      image.data, height, width*2, width, 1
     while width >= 1 and height >= 1
       Surface.downsize array, array,
-        height, stribe, width, 1
+        height, width*2, width, 1
       width >>= 1; height >>= 1
     array
 
