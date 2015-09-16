@@ -27,7 +27,7 @@ module.exports = function(config) {
       files: [
         'src/coffee/**/*.coffee'
       ]
-    }
+    },
 
 
     // test results reporter to use
