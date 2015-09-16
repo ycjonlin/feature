@@ -30,7 +30,7 @@ module.exports = function(config) {
 
     browserify: {
       extensions: ['.coffee'],
-      transform: ['coffeeify', 'deamdify', 'debowerify', 'brfs'],
+      transform: ['deamdify', 'debowerify', 'brfs'],
       debug: true,
     },
 
