@@ -43,7 +43,13 @@ module.exports = function(config) {
 
 
     coverageReporter: {
-      type : 'html'
+      type : 'html',
+      instrumenters: {
+        ibrik: require('ibrik')
+      },
+      instrumenter: {
+        '**/*.coffee': 'ibrik'
+      }
     },
 
 
