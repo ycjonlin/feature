@@ -46,7 +46,7 @@ module.exports = function(config) {
 
 
     coverageReporter: {
-      type : 'cobertura',
+      type : 'html',
       instrumenters: {
         ibrik: require('ibrik')
       },
