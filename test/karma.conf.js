@@ -35,10 +35,15 @@ module.exports = function(config) {
       'test/unit/**/*.coffee': 'browserify'
     },
 
+
     browserify: {
       transform: [],
       extensions: ['.coffee']
     },
+
+    coverageReporter = {
+      type : 'html'
+    }
 
 
     // test results reporter to use
