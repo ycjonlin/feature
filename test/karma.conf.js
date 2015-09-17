@@ -41,9 +41,10 @@ module.exports = function(config) {
       extensions: ['.coffee']
     },
 
-    coverageReporter = {
+
+    coverageReporter: {
       type : 'html'
-    }
+    },
 
 
     // test results reporter to use
