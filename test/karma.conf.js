@@ -52,7 +52,10 @@ module.exports = function(config) {
       },
       instrumenter: {
         '**/*.coffee': 'ibrik'
-      }
+      },
+      files: [
+        'src/coffee/**/*.coffee'
+      ]
     },
 
 
