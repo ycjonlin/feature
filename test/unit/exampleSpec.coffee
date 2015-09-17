@@ -1,4 +1,4 @@
-surface = require '../../src/coffee/surface'
+Surface = require '../../src/coffee/surface'
 
 describe 'Example spec', ->
   it 'should ...', ->
