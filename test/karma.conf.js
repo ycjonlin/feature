@@ -20,6 +20,9 @@ module.exports = function(config) {
       'src/coffee/**/*.coffee',
       'test/unit/**/*.coffee'
     ],
+    exclude: [
+      'src/coffee/main.coffee'
+    ],
 
 
     coffeePreprocessor: {
