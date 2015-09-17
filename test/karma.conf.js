@@ -38,7 +38,7 @@ module.exports = function(config) {
     browserify: {
       transform: ['reactify', 'coffeeify', 'brfs'],
       extensions: ['.coffee']
-    }
+    },
 
 
     coverageReporter: {
