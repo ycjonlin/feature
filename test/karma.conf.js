@@ -35,7 +35,7 @@ module.exports = function(config) {
     },
 
     browserify: {
-      transform: ['brfs'],
+      transform: ['coffeeify'],
       extensions: ['.coffee']
     },
 
