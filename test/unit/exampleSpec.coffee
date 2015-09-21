@@ -25,7 +25,7 @@ describe 'Surface', ->
         before,
         testHeight, testWidth*2, testWidth, 1
 
-      console.log Array.prototype.slice.call after
+      console.log Array.prototype.slice.call testAfter.length
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   ###
