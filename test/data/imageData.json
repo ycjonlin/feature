@@ -1,13 +1,15 @@
 module.exports = {
-  "width": 16,
-  "height": 16,
-  "size": 256,
   "test": {
     "extract": {"before": "image", "after": "extract"},
     "downsize": {"before": "extract", "after": "downsize"},
     "convolute": {"before": "downsize", "after": "convolute", "kernel": "kernel"},
     "compact": {"before": "convolute", "after": "compact"},
     "flatten": {"before": "convolute", "after": "flatten"}
+  },
+  "constant": {
+    "width": 16,
+    "height": 16,
+    "size": 256
   },
   "data": {
     "image": [
