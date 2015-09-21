@@ -1,5 +1,8 @@
 Surface = require '../../src/coffee/surface'
 
+pixels = new Uint8Array(require '../data/imageData')
+surface = new Float32Array()
+
 describe 'Surface', ->
   describe '.extract', ->
     it 'should ...', ->
