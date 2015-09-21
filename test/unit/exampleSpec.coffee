@@ -8,6 +8,12 @@ describe 'Surface', ->
       size = imageData.width*imageData.height
       image = new Uint8ClampArray(imageData.data)
       surface = new Float32Array(size*4)
+      Surface.extract \
+        surface.subarray(imageData.width),
+        surface.subarray(size*2),
+        surface.subarray(size*2+imageData.width), 
+        imageData,
+        imageData.height, imageData.width*2, imageData.width, 1
       console.log surface
       expect(true).toBe(true)
   ###
