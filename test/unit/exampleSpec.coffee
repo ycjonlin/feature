@@ -1,6 +1,6 @@
 Surface = require '../../src/coffee/surface'
 
-imageData = {}
+imageData = require '../data/imageData'
 
 describe 'Surface', ->
   describe '.extract', ->
