@@ -36,7 +36,7 @@ describe 'Surface', ->
   describe '.downsize', ->
     it 'should ...', ->
       expect(true).toBe(true)
+  ###
   describe '.convolute', ->
     it 'should ...', ->
       expect(true).toBe(true)
-  ###
