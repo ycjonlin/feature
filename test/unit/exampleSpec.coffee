@@ -42,17 +42,16 @@ describe 'Surface', ->
     it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
-      testKernel = surfaceTestData.data[surfaceTestData.test.extract.kernel]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
+      testKernel = surfaceTestData.data[surfaceTestData.test.extract.kernel]
+      testRadius = testKernelSize>>1
 
       before = new Uint8Array(testBefore)
       kernel = new Float32Array(testKernel)
       after = new Float32Array(testBefore.length)
-      Surface.extract \
-        after.subarray(testWidth),
-        after.subarray(testSize*2),
-        after.subarray(testSize*2+testWidth), 
-        before,
-        testHeight, testWidth*2, testWidth, 1
+      Surface.extract after, before, kernel, 
+        (testHeight-testRadius)*2, testWidth*2, testWidth*2, 1, testKernelSize, testWidth*2
+      Surface.extract after, before, kernel, 
+        (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
