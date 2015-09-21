@@ -5,15 +5,22 @@ surfaceTestData = require '../data/surfaceTestData'
 describe 'Surface', ->
   describe '.extract', ->
     it 'should do its thing', ->
-      compactedData = new Uint8Array(imageData.data)
-      extractedData = new Float32Array(imageData.size*4)
+      testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
+      testWidth = surfaceTestData.width
+      testHeight = surfaceTestData.height
+      testSize = surfaceTestData.size
+
+      before = new Uint8Array(testBefore)
+      after = new Float32Array(testAfter.length)
       Surface.extract \
-        extractedData.subarray(imageData.width),
-        extractedData.subarray(imageData.size*2),
-        extractedData.subarray(imageData.size*2+imageData.width), 
-        compactedData,
-        imageData.height, imageData.width*2, imageData.width, 1
-      expect(Array.prototype.slice.call extractedData).toEqual(imageData.extractedData)
+        after.subarray(testWidth),
+        after.subarray(testSize*2),
+        after.subarray(testSize*2+testWidth), 
+        before,
+        testHeight, testWidth*2, testWidth, 1
+      
+      expect(Array.prototype.slice.call after).toEqual(imageData.after)
   ###
   describe '.compact', ->
     it 'should ...', ->
