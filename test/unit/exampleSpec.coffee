@@ -63,7 +63,7 @@ describe 'Surface', ->
       testKernel = surfaceTestData.data[surfaceTestData.test.convolute.kernel]
       testRadius = testKernelSize>>1
 
-      between = new Float32Array(testBefore)
+      during = new Float32Array(testBefore)
       after = new Float32Array(testBefore)
       kernel = new Float32Array(testKernel)
       Surface.extract between, after, kernel, 
