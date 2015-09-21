@@ -4,10 +4,10 @@ describe 'Surface', ->
 
   surfaceTestData = require '../data/surfaceTestData'
 
-  testWidth = surfaceTestData.width
-  testHeight = surfaceTestData.height
-  testSize = surfaceTestData.size
-  testKernelSize = surfaceTestData.kernelSize
+  testWidth = surfaceTestData.constant.width
+  testHeight = surfaceTestData.constant.height
+  testSize = surfaceTestData.constant.size
+  testKernelSize = surfaceTestData.constant.kernelSize
 
   describe '.extract', ->
 
