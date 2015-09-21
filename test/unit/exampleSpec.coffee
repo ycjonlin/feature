@@ -1,11 +1,13 @@
 Surface = require '../../src/coffee/surface'
 
-pixels = new Uint8Array(require '../data/imageData')
-surface = new Float32Array()
+imageData = require '../data/imageData'
 
 describe 'Surface', ->
   describe '.extract', ->
-    it 'should ...', ->
+    it 'should do its thing', ->
+      image = new Uint8ClampArray(imageData.data)
+      surface = new Float32Array()
+      Surface.extract(, imageData)
       expect(true).toBe(true)
   ###
   describe '.compact', ->
