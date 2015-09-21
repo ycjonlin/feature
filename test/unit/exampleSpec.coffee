@@ -4,6 +4,7 @@ describe 'Surface', ->
   describe '.extract', ->
     it 'should ...', ->
       expect(true).toBe(true)
+  ###
   describe '.compact', ->
     it 'should ...', ->
       expect(true).toBe(true)
@@ -16,3 +17,4 @@ describe 'Surface', ->
   describe '.convolute', ->
     it 'should ...', ->
       expect(true).toBe(true)
+  ###
