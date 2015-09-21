@@ -33,17 +33,23 @@ describe 'Surface', ->
   describe '.flatten', ->
     it 'should ...', ->
       expect(true).toBe(true)
-  describe '.downsize', ->
-    it 'should ...', ->
-      expect(true).toBe(true)
   ###
+  describe '.downsize', ->
+
+    it 'should ...', ->
+
+      testBefore = surfaceTestData.data[surfaceTestData.test.downsize.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.downsize.after]
+      
+      expect(true).toBe(true)
+
   describe '.convolute', ->
 
     it 'should ...', ->
 
-      testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
-      testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
-      testKernel = surfaceTestData.data[surfaceTestData.test.extract.kernel]
+      testBefore = surfaceTestData.data[surfaceTestData.test.convolute.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.convolute.after]
+      testKernel = surfaceTestData.data[surfaceTestData.test.convolute.kernel]
       testRadius = testKernelSize>>1
 
       before = new Uint8Array(testBefore)
