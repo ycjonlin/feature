@@ -13,8 +13,7 @@ describe 'Surface', ->
         extractedData.subarray(imageData.size*2+imageData.width), 
         compactedData,
         imageData.height, imageData.width*2, imageData.width, 1
-      for i in [0..extractedData.length]
-        expect(extractedData[i]).toBe(imageData.extractedData[i])
+      expect(extractedData).toEqual(imageData.extractedData)
   ###
   describe '.compact', ->
     it 'should ...', ->
