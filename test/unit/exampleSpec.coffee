@@ -7,6 +7,7 @@ describe 'Surface', ->
     it 'should do its thing', ->
       image = new Uint8Array(imageData.data)
       surface = new Float32Array(imageData.size*4)
+      console.log JSON.stringify(surface)
       Surface.extract \
         surface.subarray(imageData.width),
         surface.subarray(imageData.size*2),
