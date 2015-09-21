@@ -51,9 +51,9 @@ describe 'Surface', ->
         Surface.downsize after, after,
           height, testWidth*2, width, 1
         width >>= 1; height >>= 1
-        
-      expect(Array.prototype.slice.call after).toEqual(testAfter)
 
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
+  ###
   describe '.convolute', ->
 
     it 'should ...', ->
@@ -72,3 +72,4 @@ describe 'Surface', ->
         (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
+  ###
