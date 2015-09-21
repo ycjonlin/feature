@@ -66,9 +66,9 @@ describe 'Surface', ->
       during = new Float32Array(testBefore)
       after = new Float32Array(testBefore)
       kernel = new Float32Array(testKernel)
-      Surface.extract between, after, kernel, 
+      Surface.extract during, after, kernel, 
         (testHeight-testRadius)*2, testWidth*2, testWidth*2, 1, testKernelSize, testWidth*2
-      Surface.extract after, between, kernel, 
+      Surface.extract after, during, kernel, 
         (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
