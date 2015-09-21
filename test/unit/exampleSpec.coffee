@@ -14,6 +14,7 @@ describe 'Surface', ->
         surface.subarray(size*2+imageData.width), 
         imageData,
         imageData.height, imageData.width*2, imageData.width, 1
+      console.log surface
       expect(true).toBe(true)
   ###
   describe '.compact', ->
