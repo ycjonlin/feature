@@ -26,7 +26,7 @@ describe 'Surface', ->
         testHeight, testWidth*2, testWidth, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
-  
+
   ###
   describe '.compact', ->
     it 'should ...', ->
@@ -43,15 +43,16 @@ describe 'Surface', ->
       testBefore = surfaceTestData.data[surfaceTestData.test.downsize.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.downsize.after]
 
-      before = new Float32Array(testBefore)
-      after = new Float32Array(testBefore.length)
+      after = new Float32Array(testBefore)
       width = testWidth
       height = testHeight
 
       while width >= 1 and height >= 1
-        Surface.downsize array, array,
-          height, stride, width, 1
+        Surface.downsize after, after,
+          height, testWidth*2, width, 1
         width >>= 1; height >>= 1
+        
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
 
   describe '.convolute', ->
 
