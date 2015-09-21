@@ -31,6 +31,9 @@ describe 'Surface', ->
 
     it 'should ...', ->
 
+      console.log surfaceTestData.test.compact
+      console.log Object.prototype.keys.call surfaceTestData.data
+
       testBefore = surfaceTestData.data[surfaceTestData.test.compact.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.compact.after]
 
