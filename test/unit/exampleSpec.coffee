@@ -53,7 +53,7 @@ describe 'Surface', ->
         width >>= 1; height >>= 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
-  ###
+  
   describe '.convolute', ->
 
     it 'should ...', ->
@@ -63,13 +63,12 @@ describe 'Surface', ->
       testKernel = surfaceTestData.data[surfaceTestData.test.convolute.kernel]
       testRadius = testKernelSize>>1
 
-      before = new Float32Array(testBefore)
+      between = new Float32Array(testBefore)
+      after = new Float32Array(testBefore)
       kernel = new Float32Array(testKernel)
-      after = new Float32Array(testBefore.length)
-      Surface.extract after, before, kernel, 
+      Surface.extract between, after, kernel, 
         (testHeight-testRadius)*2, testWidth*2, testWidth*2, 1, testKernelSize, testWidth*2
-      Surface.extract after, before, kernel, 
+      Surface.extract after, between, kernel, 
         (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
-  ###
