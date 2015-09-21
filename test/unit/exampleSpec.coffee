@@ -5,17 +5,14 @@ imageData = require '../data/imageData'
 describe 'Surface', ->
   describe '.extract', ->
     it 'should do its thing', ->
-      image = new Uint8Array(imageData.data)
-      surface = new Float32Array(imageData.size*4)
-      console.log Array.prototype.slice.call(surface)
+      extractedData = new Array(imageData.size*4)
       Surface.extract \
-        surface.subarray(imageData.width),
-        surface.subarray(imageData.size*2),
-        surface.subarray(imageData.size*2+imageData.width), 
-        image,
+        extractedData.subarray(imageData.width),
+        extractedData.subarray(imageData.size*2),
+        extractedData.subarray(imageData.size*2+imageData.width), 
+        imageData.data,
         imageData.height, imageData.width*2, imageData.width, 1
-      console.log Array.prototype.slice.call(surface)
-      expect(true).toBe(true)
+      expect(extractedData).toBe(imageData.extractedData)
   ###
   describe '.compact', ->
     it 'should ...', ->
