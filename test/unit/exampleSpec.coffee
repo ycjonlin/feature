@@ -11,7 +11,7 @@ describe 'Surface', ->
 
   describe '.extract', ->
 
-    it 'should do its thing', ->
+    it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
@@ -38,5 +38,20 @@ describe 'Surface', ->
       expect(true).toBe(true)
   ###
   describe '.convolute', ->
+
     it 'should ...', ->
-      expect(true).toBe(true)
+
+      testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
+      testKernel = surfaceTestData.data[surfaceTestData.test.extract.kernel]
+
+      before = new Uint8Array(testBefore)
+      after = new Float32Array(testAfter.length)
+      Surface.extract \
+        after.subarray(testWidth),
+        after.subarray(testSize*2),
+        after.subarray(testSize*2+testWidth), 
+        before,
+        testHeight, testWidth*2, testWidth, 1
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
