@@ -27,17 +27,29 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
-  ###
   describe '.compact', ->
 
     it 'should ...', ->
 
-      expect(true).toBe(true)
+      testBefore = surfaceTestData.data[surfaceTestData.test.compact.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.compact.after]
 
+      before = new Float32Array(testBefore)
+      after = new Uint8Array(testAfter.length)
+      Surface.compact \
+        after, 
+        before.subarray(testWidth),
+        before.subarray(testSize*2),
+        before.subarray(testSize*2+testWidth), 
+        testHeight, testWidth*2, testWidth, 1
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
+
+  ###
   describe '.flatten', ->
 
     it 'should ...', ->
-      
+
       expect(true).toBe(true)
 
   ###
