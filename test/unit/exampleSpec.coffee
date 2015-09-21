@@ -29,11 +29,17 @@ describe 'Surface', ->
 
   ###
   describe '.compact', ->
+
     it 'should ...', ->
+
       expect(true).toBe(true)
+
   describe '.flatten', ->
+
     it 'should ...', ->
+      
       expect(true).toBe(true)
+
   ###
 
   describe '.downsize', ->
