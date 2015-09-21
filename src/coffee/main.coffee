@@ -28,8 +28,6 @@ gaussian = (sigma)->
     kernel[i] = y
   kernel
 
-console.log gaussian 5/6
-
 newCanvas = (width, height)->
   canvas = document.createElement('canvas')
   context = canvas.getContext('2d')
