@@ -16,6 +16,8 @@ describe 'Surface', ->
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
 
+      console.log testBefore
+
       before = new Uint8Array(testBefore)
       after = new Float32Array(testAfter.length)
       Surface.extract \
