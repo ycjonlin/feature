@@ -16,8 +16,6 @@ describe 'Surface', ->
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
 
-      console.log testBefore
-
       before = new Uint8Array(testBefore)
       after = new Float32Array(testAfter.length)
       Surface.extract \
@@ -26,6 +24,8 @@ describe 'Surface', ->
         after.subarray(testSize*2+testWidth), 
         before,
         testHeight, testWidth*2, testWidth, 1
+
+      console.log before
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   ###
