@@ -5,12 +5,13 @@ imageData = require '../data/imageData'
 describe 'Surface', ->
   describe '.extract', ->
     it 'should do its thing', ->
-      extractedData = new Array(imageData.size*4)
+      compactedData = new Uint8Array(imageData.data)
+      extractedData = new Float32Array(imageData.size*4)
       Surface.extract \
         extractedData.subarray(imageData.width),
         extractedData.subarray(imageData.size*2),
         extractedData.subarray(imageData.size*2+imageData.width), 
-        imageData.data,
+        compactedData,
         imageData.height, imageData.width*2, imageData.width, 1
       expect(extractedData).toBe(imageData.extractedData)
   ###
