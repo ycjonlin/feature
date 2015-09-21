@@ -1,4 +1,4 @@
-{
+module.export = {
   "width": 16,
   "height": 16,
   "size": 256,
