@@ -71,4 +71,6 @@ describe 'Surface', ->
       Surface.convolute after, during, kernel, 
         (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
+      console.log Array.prototype.slice.call after
+
       expect(Array.prototype.slice.call after).toEqual(testAfter)
