@@ -6,7 +6,7 @@ describe 'Surface', ->
   describe '.extract', ->
     it 'should do its thing', ->
       size = imageData.width*imageData.height
-      image = new Uint8ClampArray(imageData.data)
+      image = new Uint8Array(imageData.data)
       surface = new Float32Array(size*4)
       Surface.extract \
         surface.subarray(imageData.width),
