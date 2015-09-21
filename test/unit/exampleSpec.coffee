@@ -11,7 +11,7 @@ describe 'Surface', ->
         surface.subarray(imageData.width),
         surface.subarray(imageData.size*2),
         surface.subarray(imageData.size*2+imageData.width), 
-        imageData,
+        image,
         imageData.height, imageData.width*2, imageData.width, 1
       console.log image
       expect(true).toBe(true)
