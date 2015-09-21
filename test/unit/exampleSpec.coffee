@@ -42,11 +42,12 @@ describe 'Surface', ->
     it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
-      testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
       testKernel = surfaceTestData.data[surfaceTestData.test.extract.kernel]
+      testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
 
       before = new Uint8Array(testBefore)
-      after = new Float32Array(testAfter.length)
+      kernel = new Float32Array(testKernel)
+      after = new Float32Array(testBefore.length)
       Surface.extract \
         after.subarray(testWidth),
         after.subarray(testSize*2),
