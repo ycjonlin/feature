@@ -5,7 +5,9 @@ module.exports = {
   "test": {
     "extract": {"before": "image", "after": "extract"},
     "downsize": {"before": "extract", "after": "downsize"},
-    "convolute": {"before": "downsize", "after": "convolute", "kernel": "kernel"}
+    "convolute": {"before": "downsize", "after": "convolute", "kernel": "kernel"},
+    "compact": {"before": "convolute", "after": "compact"},
+    "flatten": {"before": "convolute", "after": "flatten"}
   },
   "data": {
     "image": [
