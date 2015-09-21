@@ -25,7 +25,7 @@ describe 'Surface', ->
         before,
         testHeight, testWidth*2, testWidth, 1
 
-      expect(Array.prototype.slice.call after).toEqual(imageData.after)
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
   ###
   describe '.compact', ->
     it 'should ...', ->
