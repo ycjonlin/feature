@@ -52,6 +52,8 @@ describe 'Surface', ->
           height, testWidth*2, width, 1
         width >>= 1; height >>= 1
 
+      console.log Array.prototype.slice.call after
+
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   ###
   describe '.convolute', ->
