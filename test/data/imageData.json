@@ -9,7 +9,8 @@ module.exports = {
   "constant": {
     "width": 16,
     "height": 16,
-    "size": 256
+    "size": 256,
+    "kernelSize": 5
   },
   "data": {
     "image": [
