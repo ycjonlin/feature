@@ -13,7 +13,7 @@ describe 'Surface', ->
         extractedData.subarray(imageData.size*2+imageData.width), 
         compactedData,
         imageData.height, imageData.width*2, imageData.width, 1
-      expect(extractedData).toBe(imageData.extractedData)
+      expect(extractedData).toBe(new Float32Array(imageData.extractedData))
   ###
   describe '.compact', ->
     it 'should ...', ->
