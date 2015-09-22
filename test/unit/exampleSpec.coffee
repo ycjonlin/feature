@@ -106,6 +106,7 @@ describe 'Measure', ->
       after = new Float32Array(testAfter.length)
       width = testWidth
       height = testHeight
+      sigma = 
 
       Measure.trace after, after,
         height, testWidth*2, width, 1
