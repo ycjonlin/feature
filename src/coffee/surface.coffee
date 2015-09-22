@@ -70,9 +70,9 @@ module.exports =
         value1 = if value1 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value1)
         value2 = if value2 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value2)
 
-        oppee[_] = (value0*255)|0; _ = _+1|0
-        oppee[_] = (value1*255)|0; _ = _+1|0
-        oppee[_] = (value2*255)|0; _ = _+1|0
+        oppee[_] = round(value0*255)|0; _ = _+1|0
+        oppee[_] = round(value1*255)|0; _ = _+1|0
+        oppee[_] = round(value2*255)|0; _ = _+1|0
         oppee[_] = 255; _ = _+1|0
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
