@@ -21,7 +21,7 @@ describe 'Surface', ->
       Surface.extract \
         after.subarray(testWidth),
         after.subarray(testSize*2),
-        after.subarray(testSize*2+testWidth), 
+        after.subarray(testSize*2+testWidth),
         before,
         testHeight, testWidth*2, testWidth, 1
 
