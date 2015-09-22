@@ -111,8 +111,8 @@ describe 'Measure', ->
   
   describe '.determinant', -> it 'should ...', ->
 
-      testBefore = measureTestData.data[measureTestData.test.trace.before]
-      testAfter = measureTestData.data[measureTestData.test.trace.after]
+      testBefore = measureTestData.data[measureTestData.test.determinant.before]
+      testAfter = measureTestData.data[measureTestData.test.determinant.after]
 
       before = new Float32Array(testBefore)
       after = new Float32Array(testAfter.length)
@@ -123,8 +123,8 @@ describe 'Measure', ->
   
   describe '.gaussian', -> it 'should ...', ->
 
-      testBefore = measureTestData.data[measureTestData.test.trace.before]
-      testAfter = measureTestData.data[measureTestData.test.trace.after]
+      testBefore = measureTestData.data[measureTestData.test.gaussian.before]
+      testAfter = measureTestData.data[measureTestData.test.gaussian.after]
 
       before = new Float32Array(testBefore)
       after = new Float32Array(testAfter.length)
