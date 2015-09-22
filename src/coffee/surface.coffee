@@ -78,7 +78,6 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
 
-  
   # flatten
   # --
   # Convert a 1-componented Float32Array object into a 3-componented Uint8Array object.
