@@ -53,11 +53,9 @@ describe 'Surface', ->
       testAfter = surfaceTestData.data[surfaceTestData.test.flatten.after]
 
       before = new Float32Array(testBefore)
-      after = new Uint8ClampedArray(testSize*16)
+      after = new Uint8ClampedArray(testAfter.length)
       Surface.flatten after, before,
         testHeight*2, testWidth*2, testWidth*2, 1
-
-      console.log Array.prototype.slice.call after
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
