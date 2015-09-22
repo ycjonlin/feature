@@ -96,11 +96,12 @@ module.exports =
       while index0 < count0
 
         channel = opend[offset0]
-        channel = if channel > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(channel*12.92)
+        value = if channel > 0.0031308 then fround(pow(channel, 1/2.4)*1.055-0.055) else fround(channel*12.92)
+        value = round(value*255)|0
 
-        oppee[_] = round(channel*255)|0; _ = _+1|0
-        oppee[_] = round(channel*255)|0; _ = _+1|0
-        oppee[_] = round(channel*255)|0; _ = _+1|0
+        oppee[_] = value; _ = _+1|0
+        oppee[_] = value; _ = _+1|0
+        oppee[_] = value; _ = _+1|0
         oppee[_] = 255; _ = _+1|0
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
