@@ -2,6 +2,7 @@
 # All functions are written in a order-free fashion.
 
 fround = Math.fround
+round = Math.round
 pow = Math.pow
 
 linearToCurve = new Float32Array(256)
