@@ -99,3 +99,23 @@ describe 'Surface', ->
 describe 'Measure', ->
 
   Measure = require '../../src/coffee/measure'
+  
+  describe '.trace', ->
+
+    it 'should ...', ->
+  
+  describe '.determinant', ->
+
+    it 'should ...', ->
+  
+  describe '.gaussian', ->
+
+    it 'should ...', ->
+
+describe 'Extreme', ->
+
+  Extreme = require '../../src/coffee/extreme'
+
+describe 'Feature', ->
+
+  Feature = require '../../src/coffee/feature'
