@@ -119,8 +119,6 @@ describe 'Measure', ->
       Measure.determinant after, before,
         testSigma, testHeight, testWidth, testWidth, 1
 
-      console.log Array.prototype.slice.call after
-
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   
   describe '.gaussian', -> it 'should ...', ->
@@ -133,7 +131,7 @@ describe 'Measure', ->
       Measure.gaussian after, before,
         testSigma, testHeight, testWidth, testWidth, 1
 
-      #console.log Array.prototype.slice.call after
+      console.log Array.prototype.slice.call after
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
