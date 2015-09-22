@@ -38,14 +38,14 @@ module.exports =
     count0 = width*2
     size   = imageList[0].length
     levels = imageList.length-1
-    levelListWithoutCap = [1..levels-1]
-    levelListWithCap = [0..levels]
+    levelListWithoutBase = [1..levels-1]
+    levelListWithBase = [0..levels]
     borderList = ((kernel.length>>1)+1 for kernel in kernelList)
 
     #### surface measurement
     # Use the specified measuring function
     measureList = []
-    for level in levelListWithCap
+    for level in levelListWithBase
       measure = new Float32Array(size)
       image   = imageList[level]
       sigma   = sigmaList[level]
@@ -56,7 +56,7 @@ module.exports =
     extremeListList = []
     extremeOffsetListList = []
     extremeOffsetTotalList = (0 for color in colorList)
-    for level in levelListWithoutCap
+    for level in levelListWithoutBase
       extremeList = (new Int32Array(size>>4) for color in colorList)
       measure0    = measureList[if level == 0 then 1 else level-1]
       measure1    = measureList[level]
@@ -72,7 +72,7 @@ module.exports =
     featureList = (new Float32Array(extremeOffsetTotalList[color]*3) for color in colorList)
     for color in colorList
       feature = featureList[color]
-      for level in levelListWithoutCap
+      for level in levelListWithoutBase
         image   = imageList[level]
         border  = borderList[level]
         extreme = extremeListList[level][color].subarray(0, extremeOffsetListList[level][color])
