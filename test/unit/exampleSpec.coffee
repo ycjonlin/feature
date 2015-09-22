@@ -95,6 +95,7 @@ describe 'Measure', ->
 
   testWidth = measureTestData.constant.width
   testHeight = measureTestData.constant.height
+  testSigma = measureTestData.constant.sigma
   
   describe '.trace', -> it 'should ...', ->
 
