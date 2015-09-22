@@ -95,3 +95,7 @@ describe 'Surface', ->
         (testHeight-testRadius)*2, testWidth*2, (testWidth-testRadius)*2, 1, testKernelSize, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
+
+describe 'Measure', ->
+
+  Measure = require '../../src/coffee/measure'
