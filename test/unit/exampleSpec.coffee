@@ -93,6 +93,9 @@ describe 'Measure', ->
 
   measureTestData = require '../data/measureTestData'
   
+  testWidth = measureTestData.constant.width
+  testHeight = measureTestData.constant.height
+  
   describe '.trace', -> it 'should ...', ->
   
   describe '.determinant', -> it 'should ...', ->
