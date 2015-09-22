@@ -96,6 +96,7 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
+
 describe 'Measure', ->
 
   Measure = require '../../src/coffee/measure'
@@ -112,9 +113,11 @@ describe 'Measure', ->
 
     it 'should ...', ->
 
+
 describe 'Extreme', ->
 
   Extreme = require '../../src/coffee/extreme'
+
 
 describe 'Feature', ->
 
