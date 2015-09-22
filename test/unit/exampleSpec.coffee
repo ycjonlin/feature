@@ -65,15 +65,6 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
-  ###
-  describe '.flatten', ->
-
-    it 'should ...', ->
-
-      expect(true).toBe(true)
-
-  ###
-
   describe '.downsize', ->
 
     it 'should ...', ->
