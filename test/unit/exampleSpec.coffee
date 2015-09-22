@@ -90,6 +90,8 @@ describe 'Surface', ->
 describe 'Measure', ->
 
   Measure = require '../../src/coffee/measure'
+
+  measureTestData = require '../data/measureTestData'
   
   describe '.trace', -> it 'should ...', ->
   
@@ -110,5 +112,5 @@ describe 'Extreme', ->
 describe 'Feature', ->
 
   Feature = require '../../src/coffee/feature'
-  
+
   describe '.gaussian', -> it 'should ...', ->
