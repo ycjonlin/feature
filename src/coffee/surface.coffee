@@ -7,7 +7,8 @@ pow = Math.pow
 linearToCurve = new Float32Array(256)
 for i in [0..255]
   c = i/255
-  linearToCurve[i] = if c > 0.04045 then pow((c+0.055)/1.055, 2.4) else c/12.92
+  linearToCurve[i] = if c > 0.04045 then fround(pow((c+0.055)/1.055, 2.4)) else fround(c/12.92)
+
 
 module.exports =
 
@@ -65,9 +66,9 @@ module.exports =
         value1 = fround(-0.9689*channel0+1.8758*channel1+0.0415*channel2)
         value2 = fround(+0.0557*channel0-0.2040*channel1+1.0570*channel2)
 
-        value0 = if value0 > 0.0031308 then fround(1.055*pow(value0, 1/2.4)) else fround(12.92*value0)
-        value1 = if value1 > 0.0031308 then fround(1.055*pow(value1, 1/2.4)) else fround(12.92*value1)
-        value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)) else fround(12.92*value2)
+        value0 = if value0 > 0.0031308 then fround(1.055*pow(value0, 1/2.4)-0.055) else fround(12.92*value0)
+        value1 = if value1 > 0.0031308 then fround(1.055*pow(value1, 1/2.4)-0.055) else fround(12.92*value1)
+        value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)-0.055) else fround(12.92*value2)
 
         oppum[_] = (value0*255)|0; _ = _+1|0
         oppum[_] = (value1*255)|0; _ = _+1|0
