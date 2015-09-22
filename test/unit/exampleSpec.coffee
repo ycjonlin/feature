@@ -55,10 +55,7 @@ describe 'Surface', ->
       before = new Float32Array(testBefore)
       after = new Uint8ClampedArray(testSize*16)
       Surface.flatten \
-        after,
-        before.subarray(testWidth),
-        before.subarray(testSize*2),
-        before.subarray(testSize*2+testWidth),
+        after, before,
         testHeight*2, testWidth*2, testWidth*2, 1
 
       console.log Array.prototype.slice.call after
