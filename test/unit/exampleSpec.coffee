@@ -40,7 +40,7 @@ describe 'Surface', ->
         after, 
         before.subarray(testWidth),
         before.subarray(testSize*2),
-        before.subarray(testSize*2+testWidth), 
+        before.subarray(testSize*2+testWidth),
         testHeight, testWidth*2, testWidth, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
