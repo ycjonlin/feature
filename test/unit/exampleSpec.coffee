@@ -112,8 +112,32 @@ describe 'Measure', ->
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   
   describe '.determinant', -> it 'should ...', ->
+
+      testBefore = measureTestData.data[measureTestData.test.trace.before]
+      testAfter = measureTestData.data[measureTestData.test.trace.after]
+
+      before = new Float32Array(testBefore)
+      after = new Float32Array(testAfter.length)
+      Measure.determinant after, before,
+        testSigma, testHeight, testWidth, testWidth, 1
+
+      console.log Array.prototype.slice.call after
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
   
   describe '.gaussian', -> it 'should ...', ->
+
+      testBefore = measureTestData.data[measureTestData.test.trace.before]
+      testAfter = measureTestData.data[measureTestData.test.trace.after]
+
+      before = new Float32Array(testBefore)
+      after = new Float32Array(testAfter.length)
+      Measure.gaussian after, before,
+        testSigma, testHeight, testWidth, testWidth, 1
+
+      console.log Array.prototype.slice.call after
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
 
 
 describe 'Extreme', ->
