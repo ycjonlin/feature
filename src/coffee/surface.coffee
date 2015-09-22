@@ -67,8 +67,8 @@ module.exports =
         value2 = fround(+0.0557*channel0-0.2040*channel1+1.0570*channel2)
 
         value0 = if value0 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value0)
-        value1 = if value1 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value1)
-        value2 = if value2 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value2)
+        value1 = if value1 > 0.0031308 then fround(pow(value1, 1/2.4)*1.055-0.055) else fround(12.92*value1)
+        value2 = if value2 > 0.0031308 then fround(pow(value2, 1/2.4)*1.055-0.055) else fround(12.92*value2)
 
         oppee[_] = round(value0*255)|0; _ = _+1|0
         oppee[_] = round(value1*255)|0; _ = _+1|0
