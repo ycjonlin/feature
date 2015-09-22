@@ -6,7 +6,7 @@ module.exports =
   # --
   # Retrieve the __trace of Hessian matrix__ from a Float32Array object in a new Float32Array object.
 
-  trace: (oppum, opend, sigma, count1, step1, count0, step0)->
+  trace: (oppee, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     count0 = (count0-2)|0; step0 = step0|0
     count1 = (count1-2)|0; step1 = step1|0
@@ -25,7 +25,7 @@ module.exports =
         f00 = fround(s2_1*(e01+e21-e11-e11))
         f11 = fround(s2_1*(e10+e12-e11-e11))
 
-        oppum[offset0] = f00+f11
+        oppee[offset0] = f00+f11
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
@@ -35,7 +35,7 @@ module.exports =
   # --
   # Retrieve the __determinant of Hessian matrix__ from a Float32Array object in a new Float32Array object.
   
-  determinant: (oppum, opend, sigma, count1, step1, count0, step0)->
+  determinant: (oppee, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
     count0 = (count0-2)|0; step0 = step0|0
@@ -56,7 +56,7 @@ module.exports =
         f01 = fround(s2_4*(e00+e22-e02-e20))
         f11 = fround(s2_1*(e10+e12-e11-e11))
 
-        oppum[offset0] = f00*f11-f01*f01
+        oppee[offset0] = f00*f11-f01*f01
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
@@ -66,7 +66,7 @@ module.exports =
   # --
   # Retrieve the __determinant of Gaussian matrix__ from a Float32Array object in a new Float32Array object.
   
-  gaussian: (oppum, opend, sigma, count1, step1, count0, step0)->
+  gaussian: (oppee, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
@@ -96,7 +96,7 @@ module.exports =
         g01 = fround(norm*(f01*f-f0*f1))
         g11 = fround(norm*(f11*f-f1*f1))
 
-        oppum[offset0] = g00*g11-g01*g01
+        oppee[offset0] = g00*g11-g01*g01
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
