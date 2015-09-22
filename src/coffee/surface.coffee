@@ -18,7 +18,7 @@ module.exports =
   # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
   # blue-channel data of the original object, respectively.
 
-  extract: (oppum0, oppum1, oppum2, opend, count1, step1, count0, step0)->
+  extract: (oppee0, oppee1, oppee2, opend, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
@@ -33,9 +33,9 @@ module.exports =
         channel2 = linearToCurve[opend[_]]; _ = _+1|0
         _ = _+1|0
 
-        oppum0[offset0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
-        oppum1[offset0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
-        oppum2[offset0] = fround(0.0193*channel0+0.1192*channel1+0.9505*channel2)
+        oppee0[offset0] = fround(0.4124*channel0+0.3576*channel1+0.1805*channel2)
+        oppee1[offset0] = fround(0.2126*channel0+0.7152*channel1+0.0722*channel2)
+        oppee2[offset0] = fround(0.0193*channel0+0.1192*channel1+0.9505*channel2)
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
@@ -48,7 +48,7 @@ module.exports =
   # It's basically the opposite of Surface.extract(). Only the last 3 sub-planes of the argument object
   # is filled in the red-, green-, blue-channel of the result object.
 
-  compact: (oppum, opend0, opend1, opend2, count1, step1, count0, step0)->
+  compact: (oppee, opend0, opend1, opend2, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
@@ -70,10 +70,10 @@ module.exports =
         value1 = if value1 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value1)
         value2 = if value2 > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*value2)
 
-        oppum[_] = (value0*255)|0; _ = _+1|0
-        oppum[_] = (value1*255)|0; _ = _+1|0
-        oppum[_] = (value2*255)|0; _ = _+1|0
-        oppum[_] = 255; _ = _+1|0
+        oppee[_] = (value0*255)|0; _ = _+1|0
+        oppee[_] = (value1*255)|0; _ = _+1|0
+        oppee[_] = (value2*255)|0; _ = _+1|0
+        oppee[_] = 255; _ = _+1|0
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
@@ -86,7 +86,7 @@ module.exports =
   # The single-channeled data of the original object is copyed into all 3 channels of the result object, 
   # creating a grayscale complete image.
 
-  flatten: (oppum, opend, count1, step1, count0, step0)->
+  flatten: (oppee, opend, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     _ = 0
@@ -99,10 +99,10 @@ module.exports =
         channel = opend[offset0]
         channel = if channel > 0.0031308 then fround(pow(value0, 1/2.4)*1.055-0.055) else fround(12.92*channel)
 
-        oppum[_] = round(channel*255)|0; _ = _+1|0
-        oppum[_] = round(channel*255)|0; _ = _+1|0
-        oppum[_] = round(channel*255)|0; _ = _+1|0
-        oppum[_] = 255; _ = _+1|0
+        oppee[_] = round(channel*255)|0; _ = _+1|0
+        oppee[_] = round(channel*255)|0; _ = _+1|0
+        oppee[_] = round(channel*255)|0; _ = _+1|0
+        oppee[_] = 255; _ = _+1|0
 
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
@@ -113,7 +113,7 @@ module.exports =
   # Shrink the last 3 sub-places of a 1-componented Float32Array object 
   # onto the first sub-plane of another Float32Array object. (could also be the same one)
 
-  downsize: (oppum, opend, count1, step1, count0, step0)->
+  downsize: (oppee, opend, count1, step1, count0, step0)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
 
@@ -123,7 +123,7 @@ module.exports =
       while index0 < count0
 
         offset2 = offset0<<1
-        oppum[offset0] = fround((
+        oppee[offset0] = fround((
           opend[offset2]+
           opend[offset2+step0]+
           opend[offset2+step1]+
@@ -139,7 +139,7 @@ module.exports =
   # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel 
   # onto another 1-componented Float32Array object. (should not be the same one)
 
-  convolute: (oppum, opend, oppor, count1, step1, count0, step0, countKernel, stepKernel)->
+  convolute: (oppee, opend, oppor, count1, step1, count0, step0, countKernel, stepKernel)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     countKernel = countKernel|0; stepKernel = stepKernel|0
@@ -153,7 +153,7 @@ module.exports =
         while indexKernel < countKernel
           sum = fround(sum + opend[offsetKernel] * oppor[indexKernel])
           indexKernel = (indexKernel+1)|0; offsetKernel = (offsetKernel+stepKernel)|0
-        oppum[offset0] = sum
+        oppee[offset0] = sum
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
