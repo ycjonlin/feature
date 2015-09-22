@@ -43,10 +43,6 @@ describe 'Surface', ->
         before.subarray(testSize*2+testWidth), 
         testHeight, testWidth*2, testWidth, 1
 
-      for i in [0..testAfter.length-1]
-        if after[i] != testAfter[i]
-          console.log after[i], testAfter[i]
-
       console.log Array.prototype.slice.call after
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
