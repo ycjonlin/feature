@@ -100,7 +100,7 @@ Image.load url, (imageData)->
             r0 = sqrt(abs(lg/l0))
             r1 = sqrt(abs(lg/l1))
 
-            if offset < 16*6
+            if offset < 6
               console.log u0, u1
 
             context.save()
