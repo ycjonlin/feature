@@ -1,8 +1,17 @@
 module.exports = {
   "test": {
-    "trace": {"before": "surface", "after": "trace"},
-    "determinant": {"before": "surface", "after": "determinant"},
-    "gaussian": {"before": "surface", "after": "gaussian"},
+    "trace": {
+      "before": ["surface", "surface0", "surface1", "surface00", "surface01", "surface11"], 
+      "after": "trace"
+    },
+    "determinant": {
+      "before": ["surface", "surface0", "surface1", "surface00", "surface01", "surface11"], 
+      "after": "determinant"
+    },
+    "gaussian": {
+      "before": ["surface", "surface0", "surface1", "surface00", "surface01", "surface11"], 
+      "after": "gaussian"
+    },
   },
   "constant": {
     "width": 32,
