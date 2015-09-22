@@ -53,7 +53,7 @@ describe 'Surface', ->
       testAfter = surfaceTestData.data[surfaceTestData.test.flatten.after]
 
       before = new Float32Array(testBefore)
-      after = new Uint8Array(testAfter.length)
+      after = new Uint8Array(testSize*4)
       Surface.flatten \
         after, 
         before.subarray(testWidth),
