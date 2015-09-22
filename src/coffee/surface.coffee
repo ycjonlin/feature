@@ -97,7 +97,7 @@ module.exports =
       while index0 < count0
 
         channel = opend[offset0]
-        channel = if channel > 0.0031308 then fround(1.055*pow(channel, 1/2.4)) else fround(12.92*channel)
+        channel = if channel > 0.0031308 then fround(1.055*pow(channel, 1/2.4)-0.055) else fround(12.92*channel)
 
         oppum[_] = (channel*255)|0; _ = _+1|0
         oppum[_] = (channel*255)|0; _ = _+1|0
