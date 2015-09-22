@@ -139,7 +139,7 @@ module.exports =
   # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel 
   # onto another 1-componented Float32Array object. (should not be the same one)
 
-  convolute: (oppee, opend, oppor, count1, step1, count0, step0, countKernel, stepKernel)->
+  convolute: (oppee, opend, opper, count1, step1, count0, step0, countKernel, stepKernel)->
     count0 = count0|0; step0 = step0|0
     count1 = count1|0; step1 = step1|0
     countKernel = countKernel|0; stepKernel = stepKernel|0
@@ -151,7 +151,7 @@ module.exports =
         sum = fround(0.0)
         indexKernel = 0; offsetKernel = offset0
         while indexKernel < countKernel
-          sum = fround(sum + opend[offsetKernel] * oppor[indexKernel])
+          sum = fround(sum + opend[offsetKernel] * opper[indexKernel])
           indexKernel = (indexKernel+1)|0; offsetKernel = (offsetKernel+stepKernel)|0
         oppee[offset0] = sum
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
