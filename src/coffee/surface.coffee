@@ -66,9 +66,9 @@ module.exports =
         value1 = fround(-0.9689*channel0+1.8758*channel1+0.0415*channel2)
         value2 = fround(+0.0557*channel0-0.2040*channel1+1.0570*channel2)
 
-        value0 = if value0 > 0.0031308 then fround(1.055*pow(value0, 1/2.4)-0.055) else fround(12.92*value0)
-        value1 = if value1 > 0.0031308 then fround(1.055*pow(value1, 1/2.4)-0.055) else fround(12.92*value1)
-        value2 = if value2 > 0.0031308 then fround(1.055*pow(value2, 1/2.4)-0.055) else fround(12.92*value2)
+        value0 = if value0 > 0.00313080 then fround(1.055*pow(value0, 1/2.4)-0.055) else fround(12.92*value0)
+        value1 = if value1 > 0.00313080 then fround(1.055*pow(value1, 1/2.4)-0.055) else fround(12.92*value1)
+        value2 = if value2 > 0.00313080 then fround(1.055*pow(value2, 1/2.4)-0.055) else fround(12.92*value2)
 
         oppum[_] = (value0*255)|0; _ = _+1|0
         oppum[_] = (value1*255)|0; _ = _+1|0
@@ -97,7 +97,7 @@ module.exports =
       while index0 < count0
 
         channel = opend[offset0]
-        channel = if channel > 0.0031308 then fround(1.055*pow(channel, 1/2.4)-0.055) else fround(12.92*channel)
+        channel = if channel > 0.00313080 then fround(1.055*pow(channel, 1/2.4)-0.055) else fround(12.92*channel)
 
         oppum[_] = round(channel*255)|0; _ = _+1|0
         oppum[_] = round(channel*255)|0; _ = _+1|0
