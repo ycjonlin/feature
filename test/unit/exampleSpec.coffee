@@ -46,6 +46,28 @@ describe 'Surface', ->
       for i in [0..testAfter.length-1]
         if after[i] != testAfter[i]
           console.log after[i], testAfter[i]
+          
+      console.log after
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
+
+  describe '.flatten', ->
+
+    it 'should ...', ->
+
+      testBefore = surfaceTestData.data[surfaceTestData.test.flatten.before]
+      testAfter = surfaceTestData.data[surfaceTestData.test.flatten.after]
+
+      before = new Float32Array(testBefore)
+      after = new Uint8Array(testAfter.length)
+      Surface.flatten \
+        after, 
+        before.subarray(testWidth),
+        before.subarray(testSize*2),
+        before.subarray(testSize*2+testWidth), 
+        testHeight, testWidth*2, testWidth, 1
+
+      console.log after
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
