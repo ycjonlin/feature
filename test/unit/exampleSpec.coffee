@@ -16,7 +16,7 @@ describe 'Surface', ->
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
 
-      before = new Uint8Array(testBefore)
+      before = new Uint8ClampedArray(testBefore)
       after = new Float32Array(testAfter.length)
       Surface.extract \
         after.subarray(testWidth),
