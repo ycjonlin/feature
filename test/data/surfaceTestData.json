@@ -1,7 +1,7 @@
 module.exports = {
   "test": {
     "extract": {"before": "image", "after": "extract"},
-    "compact": {"before": "extract", "after": "compact"},
+    "compact": {"before": "extract", "after": "image"},
     "flatten": {"before": "extract", "after": "flatten"},
     "downsize": {"before": "extract", "after": "downsize"},
     "convolute": {"before": "downsize", "after": "convolute", "kernel": "kernel"}
