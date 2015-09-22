@@ -9,9 +9,7 @@ describe 'Surface', ->
   testSize = surfaceTestData.constant.size
   testKernelSize = surfaceTestData.constant.kernelSize
 
-  describe '.extract', ->
-
-    it 'should ...', ->
+  describe '.extract', -> it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.extract.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.extract.after]
@@ -27,9 +25,7 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
-  describe '.compact', ->
-
-    it 'should ...', ->
+  describe '.compact', -> it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.compact.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.compact.after]
@@ -45,9 +41,7 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
-  describe '.flatten', ->
-
-    it 'should ...', ->
+  describe '.flatten', -> it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.flatten.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.flatten.after]
@@ -59,9 +53,7 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
-  describe '.downsize', ->
-
-    it 'should ...', ->
+  describe '.downsize', -> it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.downsize.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.downsize.after]
@@ -77,9 +69,7 @@ describe 'Surface', ->
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   
-  describe '.convolute', ->
-
-    it 'should ...', ->
+  describe '.convolute', -> it 'should ...', ->
 
       testBefore = surfaceTestData.data[surfaceTestData.test.convolute.before]
       testAfter = surfaceTestData.data[surfaceTestData.test.convolute.after]
@@ -101,17 +91,11 @@ describe 'Measure', ->
 
   Measure = require '../../src/coffee/measure'
   
-  describe '.trace', ->
-
-    it 'should ...', ->
+  describe '.trace', -> it 'should ...', ->
   
-  describe '.determinant', ->
-
-    it 'should ...', ->
+  describe '.determinant', -> it 'should ...', ->
   
-  describe '.gaussian', ->
-
-    it 'should ...', ->
+  describe '.gaussian', -> it 'should ...', ->
 
 
 describe 'Extreme', ->
