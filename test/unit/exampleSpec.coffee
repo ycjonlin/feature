@@ -59,7 +59,7 @@ describe 'Surface', ->
         before.subarray(testWidth),
         before.subarray(testSize*2),
         before.subarray(testSize*2+testWidth), 
-        testHeight, testWidth*2, testWidth, 1
+        testHeight*2, testWidth*2, testWidth*2, 1
 
       console.log Array.prototype.slice.call after
 
