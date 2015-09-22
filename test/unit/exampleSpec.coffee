@@ -16,12 +16,15 @@ describe 'Surface', ->
 
       before = new Uint8ClampedArray(testBefore)
       after = new Float32Array(testAfter.length)
+      width = testWidth
+      height = testHeight
+      
       Surface.extract \
         after.subarray(testWidth),
         after.subarray(testSize*2),
         after.subarray(testSize*2+testWidth),
         before,
-        testHeight, testWidth*2, testWidth, 1
+        height, width*2, width, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
@@ -32,12 +35,15 @@ describe 'Surface', ->
 
       before = new Float32Array(testBefore)
       after = new Uint8ClampedArray(testAfter.length)
+      width = testWidth
+      height = testHeight
+
       Surface.compact \
         after,
         before.subarray(testWidth),
         before.subarray(testSize*2),
         before.subarray(testSize*2+testWidth),
-        testHeight, testWidth*2, testWidth, 1
+        height, width*2, testWidth, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
@@ -48,8 +54,11 @@ describe 'Surface', ->
 
       before = new Float32Array(testBefore)
       after = new Uint8ClampedArray(testAfter.length)
+      width = testWidth
+      height = testHeight
+
       Surface.flatten after, before,
-        testHeight*2, testWidth*2, testWidth*2, 1
+        height*2, width*2, width*2, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
 
@@ -64,7 +73,7 @@ describe 'Surface', ->
 
       while width >= 1 and height >= 1
         Surface.downsize after, after,
-          height, testWidth*2, width, 1
+          height, width*2, width, 1
         width >>= 1; height >>= 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
@@ -106,10 +115,10 @@ describe 'Measure', ->
       after = new Float32Array(testAfter.length)
       width = testWidth
       height = testHeight
-      sigma = 
+      sigma = testSigma
 
       Measure.trace after, after,
-        height, testWidth*2, width, 1
+        height, width, width, 1
 
       expect(Array.prototype.slice.call after).toEqual(testAfter)
   
