@@ -35,7 +35,7 @@ describe 'Surface', ->
       testAfter = surfaceTestData.data[surfaceTestData.test.compact.after]
 
       before = new Float32Array(testBefore)
-      after = new Uint8Array(testAfter.length)
+      after = new Uint8ClampedArray(testAfter.length)
       Surface.compact \
         after, 
         before.subarray(testWidth),
