@@ -102,6 +102,10 @@ describe 'Extreme', ->
 
   Extreme = require '../../src/coffee/extreme'
 
+  describe '.neighbor_6', -> it 'should ...', ->
+  
+  describe '.neighbor_18', -> it 'should ...', ->
+
 
 describe 'Feature', ->
 
