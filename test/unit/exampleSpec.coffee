@@ -92,11 +92,24 @@ describe 'Measure', ->
   Measure = require '../../src/coffee/measure'
 
   measureTestData = require '../data/measureTestData'
-  
+
   testWidth = measureTestData.constant.width
   testHeight = measureTestData.constant.height
   
   describe '.trace', -> it 'should ...', ->
+
+      testBefore = measureTestData.data[measureTestData.test.trace.before]
+      testAfter = measureTestData.data[measureTestData.test.trace.after]
+
+      before = new Float32Array(testBefore)
+      after = new Float32Array(testAfter.length)
+      width = testWidth
+      height = testHeight
+
+      Measure.trace after, after,
+        height, testWidth*2, width, 1
+
+      expect(Array.prototype.slice.call after).toEqual(testAfter)
   
   describe '.determinant', -> it 'should ...', ->
   
