@@ -16,7 +16,7 @@ module.exports =
   # extract
   # --
   # Convert a 3-componented Uint8Array object into a 1-componented Float32Array object.
-  # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and 
+  # The result object contains 4 sub-planes, which are filled with 0s, red-, green-, and
   # blue-channel data of the original object, respectively.
 
   extract: (oppee0, oppee1, oppee2, opend, count1, step1, count0, step0)->
@@ -41,7 +41,7 @@ module.exports =
         index0 = (index0+1)|0; offset0 = (offset0+step0)|0
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     null
-  
+
   # compact
   # --
   # Convert a 1-componented Float32Array object into a 3-componented Uint8Array object.
@@ -82,7 +82,7 @@ module.exports =
   # flatten
   # --
   # Convert a 1-componented Float32Array object into a 3-componented Uint8Array object.
-  # The single-channeled data of the original object is copyed into all 3 channels of the result object, 
+  # The single-channeled data of the original object is copyed into all 3 channels of the result object,
   # creating a grayscale complete image.
 
   flatten: (oppee, opend, count1, step1, count0, step0)->
@@ -108,10 +108,10 @@ module.exports =
       index1 = (index1+1)|0; offset1 = (offset1+step1)|0
     console.log _
     null
-  
+
   # downsize
   # --
-  # Shrink the last 3 sub-places of a 1-componented Float32Array object 
+  # Shrink the last 3 sub-places of a 1-componented Float32Array object
   # onto the first sub-plane of another Float32Array object. (could also be the same one)
 
   downsize: (oppee, opend, count1, step1, count0, step0)->
@@ -137,7 +137,7 @@ module.exports =
 
   # convolute
   # --
-  # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel 
+  # Convolute a 1-componented Float32Array object with a 1D Float32Array kernel
   # onto another 1-componented Float32Array object. (should not be the same one)
 
   convolute: (oppee, opend, opper, count1, step1, count0, step0, countKernel, stepKernel)->

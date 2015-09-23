@@ -1,9 +1,9 @@
-# Image library provides functions that retrieve and manipulate ImageData object. 
+# Image library provides functions that retrieve and manipulate ImageData object.
 
 Surface = require './surface'
 
-module.exports = 
-  
+module.exports =
+
   # load
   # --
   # Load image data from a url address. Turn it into an ImageData object.
@@ -33,10 +33,10 @@ module.exports =
     array = new Float32Array(width*height*4)
     size = width*height
     Surface.extract \
-      array.subarray(width), 
-      array.subarray(size*2), 
-      array.subarray(width+size*2), 
-      image.data, 
+      array.subarray(width),
+      array.subarray(size*2),
+      array.subarray(width+size*2),
+      image.data,
       height, width*2, width, 1
     stride = width*2
     while width >= 1 and height >= 1
@@ -54,10 +54,10 @@ module.exports =
     image = context.createImageData width, height
     size = width*height
     Surface.compact \
-      image.data, 
-      array.subarray(width), 
-      array.subarray(size*2), 
-      array.subarray(width+size*2), 
+      image.data,
+      array.subarray(width),
+      array.subarray(size*2),
+      array.subarray(width+size*2),
       height, width*2, width, 1
     image
 
@@ -69,6 +69,6 @@ module.exports =
   flatten: (array, context, width, height)->
     image = context.createImageData width*2, height*2
     size = width * height
-    Surface.flatten image.data, array, 
+    Surface.flatten image.data, array,
       height*2, width*2, width*2, 1
     image

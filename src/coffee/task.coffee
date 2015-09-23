@@ -32,7 +32,7 @@ module.exports =
   # detect
   # --
   # Detect keypoints from 3 consective Float32Array objects of a filter pyramid.
-  
+
   detect: (method, imageList, kernelList, sigmaList, width, height)->
     count1 = height*2
     count0 = width*2

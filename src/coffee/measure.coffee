@@ -34,7 +34,7 @@ module.exports =
   # determinant
   # --
   # Retrieve the __determinant of Hessian matrix__ from a Float32Array object in a new Float32Array object.
-  
+
   determinant: (oppee, opend, sigma, count1, step1, count0, step0)->
     s2_1 = fround(sigma*sigma)
     s2_4 = fround(sigma*sigma/4)
@@ -65,7 +65,7 @@ module.exports =
   # gaussian
   # --
   # Retrieve the __determinant of Gaussian matrix__ from a Float32Array object in a new Float32Array object.
-  
+
   gaussian: (oppee, opend, sigma, count1, step1, count0, step0)->
     s1_2 = fround(sigma/2)
     s2_1 = fround(sigma*sigma)

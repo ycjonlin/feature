@@ -1,6 +1,6 @@
 floor = Math.floor
 
-module.exports = 
+module.exports =
 
   # partition
   # --
@@ -63,9 +63,6 @@ module.exports =
 
   # match
   # --
-  # Match 
+  # Match
 
   match: (oppum0, oppum1)->
-    
-
-

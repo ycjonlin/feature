@@ -69,7 +69,7 @@ Image.load url, (imageData)->
         context.putImageData imageData, 0, 0
         imageList[level] = image
   Task.__barrier__ null
-  
+
   for method in ['trace', 'determinant', 'gaussian']
     context = newCanvas width, height
     Task.detect [method, imageList, kernelList, sigmaList, width, height],
